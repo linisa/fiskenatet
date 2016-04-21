@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.services.ProductService;
 
-/**
- * Created by nordi_000 on 2016-04-20.
- */
 @RestController
 public class ProductController {
 
