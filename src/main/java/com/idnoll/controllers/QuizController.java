@@ -2,12 +2,14 @@ package com.idnoll.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.idnoll.models.QuestionModel;
 
 public class QuizController {
 
 	List<QuestionModel> questions = new ArrayList<>();
+	Scanner scan = new Scanner(System.in);
 	
 	public QuizController() {
 		populateList();
@@ -52,7 +54,19 @@ public class QuizController {
 	}
 	
 	public void getInput(){
-		//ta input från användaren och sätt det till userAnswer i QuestionModel.
+		String input = scan.nextLine();
+		if(input.equals("1")){
+			//if(questions.get(0).getCorrectAnswer().equals(randomizedAnswers[0])){
+				questions.get(0).setUserAnswer(questions.get(0).getCorrectAnswer());
+			//}
+			
+			
+			
+		}else if(input.equals("2")){
+			questions.get(0).setUserAnswer(questions.get(0).getWrongAnswer());
+		}else if(input.equals("3")){
+			questions.get(0).setUserAnswer(questions.get(0).getWrongAnswer2());
+		}
 	}
 	
 	public void checkIfRightAnswer(Integer i){
