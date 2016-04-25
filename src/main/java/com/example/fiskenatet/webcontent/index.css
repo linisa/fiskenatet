@@ -1,0 +1,44 @@
+*{
+    
+}
+
+.row{
+    background-color: #9EE8BD;
+}
+
+.title{
+    background-color: inherit;
+    overflow: auto;
+    color: black;
+}
+
+.shortDescription{
+    background-color: inherit;
+    overflow: auto;
+    color: #258281;
+}
+.endDate{
+    background-color: #EB6688;
+    padding: 1em;
+    text-align: center;
+    font-size: 2em;
+}
+.highestBid{
+    background-color: #EB6688;
+    padding: 1em;
+    text-align: center;
+    font-size: 2em;
+}
+.buyNowPrice{
+    background-color: #B56AA3;
+    padding: 1em;
+    text-align: center;
+    font-size: 2em;
+}
+.image{
+    width: 400px;
+    float: left;
+}
+.product{
+    border: double;
+}

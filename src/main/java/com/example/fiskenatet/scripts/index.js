@@ -27,13 +27,13 @@ function populateProductList(allProducts){
     
     for(i = 0; i < allProducts.length; i++){
         
-        productString+='<div><a href="#"><div class = "col-sm-8">';
-        productString+='<div><img src="'+ allProducts[i].image + '"></div>';
-        productString+='<div><h3>' + allProducts[i].title + '</h3>';
-        productString+='<p>' + allProducts[i].shortDescription + '</p></div></a></div>';
-        productString+='<div class="col-sm-4"><p>'+ allProducts[i].endDate +'</p>';
-        productString+='<p>'+ allProducts[i].highestBid +'</p>';
-        productString+='<p>'+ allProducts[i].buyNowPrice+'</p></div></div>';
+        productString+='<div class="product"><a href="#"><div class = "col-sm-8">';
+        productString+='<div><img src="'+ allProducts[i].image + '" class="image"></div>';
+        productString+='<div class="title"><h3>' + allProducts[i].title + '</h3>';
+        productString+='<p class="shortDescription">' + allProducts[i].shortDescription + '</p></div></a></div>';
+        productString+='<div class="col-sm-4"><p class="endDate">'+ allProducts[i].endDate +'</p>';
+        productString+='<p class="highestBid">'+ allProducts[i].highestBid +'</p>';
+        productString+='<p class="buyNowPrice">'+ allProducts[i].buyNowPrice+'</p></div></div>';
         
     }
     
