@@ -24,7 +24,6 @@ public class QuestionModel {
 	}
 	
 	public QuestionModel(String question, String correctAnswer, String wrongAnswer, String wrongAnswer2, String topic) {
-		super();
 		this.question = question;
 		this.correctAnswer = correctAnswer;
 		this.wrongAnswer = wrongAnswer;

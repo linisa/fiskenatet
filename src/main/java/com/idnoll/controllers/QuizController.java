@@ -3,26 +3,57 @@ package com.idnoll.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import com.idnoll.models.QuestionModel;
+
 
 public class QuizController {
 
 	List<QuestionModel> questions = new ArrayList<>();
+	String[] randomizedAnswers = new String[3];
+
+	static Integer correctAnswers = 0;
 	Scanner scan = new Scanner(System.in);
-	
+
 	public QuizController() {
-		populateList();
+		populateListWithQuestions();
+		welcomeMessage();
+		chooseCategory();
 		for (int i = 0; i < questions.size(); i++) {
 			printQuestion(questions.get(i));
-			getInput();
+			getInput(questions.get(i));
 			checkIfRightAnswer(i);
+		}
+		printNumberOfCorrectAnswers();
+	}
+
+	private void chooseCategory() {
+		System.out.println("Välj en kategori:");
+		System.out.println("1. Sport   2.Musik   3.Film");
+		String input = scan.nextLine();
+		
+		if(input.equals("1")){
+			System.out.println("Du valde sport");
+		}else{
+			System.out.println("Du valde sport?");
 		}
 		
 	}
-	
-	public void populateList(){
-		//populera lista med questionModel objekt.
+
+	private void welcomeMessage() {
+		System.out.println("###########################################################");
+		System.out.println("############"+" Välkommen till våran frågesport! "+"#############" );
+		System.out.println("###########################################################");
+		
+	}
+
+	private void printNumberOfCorrectAnswers() {
+		System.out.println();
+		System.out.println("Slut på quizen!");
+		System.out.println("Du hade " + correctAnswers + " rätta svar");
+		
+	}
+
+	public void populateListWithQuestions(){
 		QuestionModel questionOne = new QuestionModel();
 		questionOne.setQuestion("En mycket känd NBA-spelare avslutade sin karriär nyligen. Han heter Bryant i efternamn, men vad heter han i förnamn?");
 		questionOne.setCorrectAnswer("Kobe");
@@ -35,7 +66,7 @@ public class QuizController {
 		questionTwo.setQuestion("I september startar en hockeyturnering med världens bästa herrspelare. Vad heter turneringen?");
 		questionTwo.setCorrectAnswer("World Cup of Hockey");
 		questionTwo.setWrongAnswer("Stanley Cup");
-		questionTwo.setWrongAnswer2("Connie Smythe Memorial Cup");
+		questionTwo.setWrongAnswer2("Conn Smythe Memorial Cup");
 		questionTwo.setTopic("Sport");
 		questions.add(questionTwo);
 		
@@ -46,31 +77,30 @@ public class QuizController {
 		questionThree.setWrongAnswer2("Italien");
 		questionThree.setTopic("Sport");
 		questions.add(questionThree);
-		
+
 	}
-	
+
 	public void printQuestion(QuestionModel question){
-		//printa ut frågan med svarsalternativ
+		System.out.println();
+		System.out.println(question.getQuestion());
+		System.out.print("(1) "  + question.getCorrectAnswer() + "  (2) "  + question.getWrongAnswer() + "  (3) " + question.getWrongAnswer2()+"\n");
 	}
-	
-	public void getInput(){
+
+	public void getInput(QuestionModel question){
+		
 		String input = scan.nextLine();
-		if(input.equals("1")){
-			//if(questions.get(0).getCorrectAnswer().equals(randomizedAnswers[0])){
-				questions.get(0).setUserAnswer(questions.get(0).getCorrectAnswer());
-			//}
-			
-			
-			
-		}else if(input.equals("2")){
-			questions.get(0).setUserAnswer(questions.get(0).getWrongAnswer());
-		}else if(input.equals("3")){
-			questions.get(0).setUserAnswer(questions.get(0).getWrongAnswer2());
-		}
+			if(input.equals("1")){
+				question.setUserAnswer(question.getCorrectAnswer());
+				correctAnswers++;
+			}else if(input.equals("2")){
+				question.setUserAnswer(question.getWrongAnswer());
+			}else if(input.equals("3")){
+				question.setUserAnswer(question.getWrongAnswer2());
+			}
 	}
-	
+
 	public void checkIfRightAnswer(Integer i){
-	 
+
 		if(questions.get(i).getCorrectAnswer().equals(questions.get(i).getUserAnswer())){
 			System.out.println("Det var rätt svar!");
 		}else{
