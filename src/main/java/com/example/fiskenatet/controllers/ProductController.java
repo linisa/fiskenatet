@@ -24,6 +24,7 @@ public class ProductController {
     @CrossOrigin
     @RequestMapping(value = "/products", method = RequestMethod.POST)
     public void createProduct(@RequestBody ProductModel productModel) {
+        System.out.println("i controller!!!AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         productService.saveProduct(productModel);
 
     }

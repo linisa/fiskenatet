@@ -22,9 +22,7 @@ function getAllProducts() {
 
 function populateProductList(allProducts){
     $products = $('#productList');
-    
     var productString;
-    
     for(i = 0; i < allProducts.length; i++){
         
         productString+='<div class="product"><a href="#"><div class = "col-sm-8">';
