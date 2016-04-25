@@ -35,7 +35,7 @@ $(document).ready(function () {
             "shortDescription": $('#txtShortDes').val(),
             "longDescription": $('#txtLongDes').val(),
             "startPrice": $('#txtStartPrice').val(),
-            "buyNowPrice": $('#txtBuyNow').val(),
+            "buyNowPrice": $('#txtBuyNow').val()
             /*"startDate": startDate*/
         });
         console.log(product);

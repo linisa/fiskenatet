@@ -18,7 +18,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public void saveProduct(ProductModel productModel) {
-        System.out.println("i service!!!AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        System.out.println("i service!!!");
         productRepository.saveAndFlush(productModel); // saveandflush betyder sparar och skickar upp till databasen(?) direkt
     }
 
