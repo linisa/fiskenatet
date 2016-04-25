@@ -1,20 +1,19 @@
 *{
-    
+
 }
 
 .row{
     background-color: #9EE8BD;
+
 }
 
 .title{
     background-color: inherit;
-    overflow: auto;
     color: black;
 }
 
 .shortDescription{
     background-color: inherit;
-    overflow: auto;
     color: #258281;
 }
 .endDate{
@@ -39,6 +38,10 @@
     width: 400px;
     float: left;
 }
-.product{
+#productList{
     border: double;
+}
+
+.col-sm-8{
+    border: dotted;
 }
