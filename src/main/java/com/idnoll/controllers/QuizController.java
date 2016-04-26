@@ -8,22 +8,34 @@ import com.idnoll.models.QuestionModel;
 
 public class QuizController {
 
-	List<QuestionModel> questions = new ArrayList<>();
-	String[] randomizedAnswers = new String[3];
-
+	public List<QuestionModel> questions = new ArrayList<>();
+	
 	static Integer correctAnswers = 0;
 	Scanner scan = new Scanner(System.in);
 
-	public QuizController() {
+	
+	public void run(){
 		populateListWithQuestions();
 		welcomeMessage();
 		chooseCategory();
 		for (int i = 0; i < questions.size(); i++) {
 			printQuestion(questions.get(i));
 			getInput(questions.get(i));
-			checkIfRightAnswer(i);
+			printAnswer(checkIfRightAnswer(i));
+			
 		}
 		printNumberOfCorrectAnswers();
+	}
+
+	private void printAnswer(boolean isAnswerCorrect) {
+		if(isAnswerCorrect){
+			System.out.println("Det var rätt svar!");
+			
+		}else{
+			System.out.println("Det var fel");
+			
+		}
+		
 	}
 
 	private void chooseCategory() {
@@ -99,12 +111,13 @@ public class QuizController {
 			}
 	}
 
-	public void checkIfRightAnswer(Integer i){
-
+	public boolean checkIfRightAnswer(Integer i){
+		boolean isAnswerCorrect;
 		if(questions.get(i).getCorrectAnswer().equals(questions.get(i).getUserAnswer())){
-			System.out.println("Det var rätt svar!");
+			isAnswerCorrect = true;
 		}else{
-			System.out.println("Det var fel");
+			isAnswerCorrect = false;
 		}
+		return isAnswerCorrect;
 	}
 }

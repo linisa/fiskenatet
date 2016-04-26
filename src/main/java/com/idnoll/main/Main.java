@@ -7,6 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		QuizController quizController = new QuizController();
+		quizController.run();
 	}
 
 }
