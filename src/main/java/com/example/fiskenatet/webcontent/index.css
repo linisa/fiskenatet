@@ -1,4 +1,5 @@
 *{
+
 }
 
 .row{
@@ -7,11 +8,13 @@
 
 
 .title{
+    text-decoration: none;
     background-color: inherit;
     color: black;
 }
 
 .shortDescription{
+    text-decoration: none;
     background-color: inherit;
     color: #258281;
 }
