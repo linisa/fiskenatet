@@ -48,6 +48,18 @@ public class ProductModel implements Serializable{
 
     public ProductModel() {}
 
+    public ProductModel(int buyNowPrice, int startPrice, String description, String title, Date startDate, Date endDate, int highestBid, String image, String category) {
+        this.buyNowPrice = buyNowPrice;
+        this.startPrice = startPrice;
+        this.description = description;
+        this.title = title;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.highestBid = highestBid;
+        this.image = image;
+        this.category = category;
+    }
+
     public String getCategory() {
         return category;
     }
