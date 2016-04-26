@@ -32,8 +32,7 @@ $(document).ready(function () {
         var product = JSON.stringify({
             "title": $('#txtProductTitle').val(),
             "image": $('#txtProductImage').val(),
-            "shortDescription": $('#txtShortDes').val(),
-            "longDescription": $('#txtLongDes').val(),
+            "description": $('#txtDescription').val(),
             "startPrice": $('#txtStartPrice').val(),
             "buyNowPrice": $('#txtBuyNow').val()
             /*"startDate": startDate*/

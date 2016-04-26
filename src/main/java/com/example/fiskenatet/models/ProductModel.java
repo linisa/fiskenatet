@@ -25,13 +25,10 @@ public class ProductModel implements Serializable{
     @Column(name = "start_price")
     private int startPrice;
 
-    @Column(name = "long_description")
-    private String longDescription;
 
-    @Column(name = "short_description")
-    private String shortDescription;
+    @Column(name = "description")
+    private String description;
 
-    
     private String title;
 
     @Column(name = "start_date")
@@ -107,14 +104,6 @@ public class ProductModel implements Serializable{
         this.title = title;
     }
 
-    public String getLongDescription() {
-        return longDescription;
-    }
-
-    public void setLongDescription(String longDescription) {
-        this.longDescription = longDescription;
-    }
-
     public int getBuyNowPrice() {
         return buyNowPrice;
     }
@@ -131,12 +120,12 @@ public class ProductModel implements Serializable{
         this.startPrice = startPrice;
     }
 
-    public String getShortDescription() {
-        return shortDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
 

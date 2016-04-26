@@ -2,7 +2,6 @@
 }
 
 .row{
-    background-color: #9EE8BD;
 
 }
 
@@ -18,31 +17,32 @@
 }
 .endDate{
     background-color: #EB6688;
-    padding: 1em;
+    padding: 0.5em;
     text-align: center;
-    font-size: 2em;
 }
 .highestBid{
     background-color: #EB6688;
-    padding: 1em;
+    padding: 0.5em;
     text-align: center;
-    font-size: 2em;
+
 }
 .buyNowPrice{
     background-color: #B56AA3;
-    padding: 1em;
+    padding: 0.5em;
     text-align: center;
-    font-size: 2em;
+
 }
 .image{
-    width: 400px;
+    height: 150px;
+    width: 300px;
     float: left;
 }
-#productList{
-    border: double;
-}
 
-.col-sm-8{
-    border: dotted;
+
+.product{
+    overflow: hidden;
+    border: groove;
+    margin: 0.5em;
+    padding: 0.5em;
 }
 
