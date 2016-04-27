@@ -27,7 +27,7 @@ $(document).ready(function () {
         for (i = 0; i < allProducts.length; i++) {
             var description = allProducts[i].description;
 
-            productString += '<div class="product"><a href="#"><div class = "col-sm-8">';
+            productString += '<div class="product"><a href="#" class="productLink" data-value="'+ allProducts[i].id +'"><div class = "col-sm-8">';
             productString += '<div><img src="' + allProducts[i].image + '" class="image"></div>';
             productString += '<div class="productText"><h3>' + allProducts[i].title + '</h3>';
             productString += '<p class="description">' + description.substr(0, $smallLimit) + '...' + '</p></div></a></div>';
@@ -37,7 +37,12 @@ $(document).ready(function () {
         }
         $products.append(productString);
     }
-
+    
+    $(document).on("click", ".productLink", function () {
+        var currentProductId = $(this).data("value");
+        sessionStorage.setItem('currentProductId', currentProductId);
+        location.href = '../webcontent/productDetails.html';
+    })
     
     
 

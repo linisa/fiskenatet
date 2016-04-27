@@ -28,12 +28,20 @@ public class ProductController {
     public ResponseEntity<ArrayList<ProductModel>> readAll() {
         return new ResponseEntity<ArrayList<ProductModel>>(productService.getAllProducts(), HttpStatus.OK);
     }
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 2048a11cfb1474211036fb7c38338889d5b7fd82
 
     @CrossOrigin
     @RequestMapping(value = "/products", method = RequestMethod.DELETE)
     public void deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 2048a11cfb1474211036fb7c38338889d5b7fd82
 }
 
