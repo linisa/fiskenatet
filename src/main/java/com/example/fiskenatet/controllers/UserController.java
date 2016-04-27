@@ -7,7 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
+
 
 @RestController
 public class UserController {
@@ -17,15 +18,25 @@ public class UserController {
 
     @CrossOrigin
     @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public void createProduct(@RequestBody UserModel userModel) {
-        System.out.println("i controller!!!");
+    public void createUser(@RequestBody UserModel userModel) {
         userService.saveUser(userModel);
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ResponseEntity<ArrayList<UserModel>> readAllUser() {
-        return new ResponseEntity<ArrayList<UserModel>>(userService.getAllUsers(), HttpStatus.OK);
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    public ResponseEntity<UserModel> getUser(@PathVariable Long id) {
+        return new ResponseEntity<UserModel>(userService.getUser(id), HttpStatus.OK);
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "/username/{userName}", method = RequestMethod.GET)
+    public ResponseEntity<UserModel>getUserByName(@PathVariable String userName) {
+        return new ResponseEntity<UserModel>(userService.getUserByName(userName), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/users/", method = RequestMethod.GET)
+    public ResponseEntity<List<UserModel>> getAllUsers() {
+        return new ResponseEntity<List<UserModel>>(userService.getAllUsers(), HttpStatus.OK);
+    }
 }
