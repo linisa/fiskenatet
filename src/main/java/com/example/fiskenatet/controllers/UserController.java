@@ -17,12 +17,12 @@ public class UserController {
 
     @CrossOrigin
     @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public void createProduct(@RequestBody UserModel userModel) {
+    public void createUser(@RequestBody UserModel userModel) {
         userService.saveUser(userModel);
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public ResponseEntity<UserModel> getUser(@PathVariable Long id) {
         return new ResponseEntity<UserModel>(userService.getUser(id), HttpStatus.OK);
     }
