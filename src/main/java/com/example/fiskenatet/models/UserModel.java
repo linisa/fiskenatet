@@ -15,7 +15,7 @@ public class UserModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "product_id")
+    @Column(name = "user_id")
     private long id;
 
     @Column(name = "first_name")
@@ -33,9 +33,30 @@ public class UserModel implements Serializable {
     @Column(name = "mobile_number")
     private String mobileNumber;  //int eller String?
 
-    @Column(name = "rating")
-    private int Rating;
+    @Column(name = "rating_as_seller")
+    private int ratingAsSeller;
 
+    @Column(name = "rating_as_buyer")
+    private int ratingAsBuyer;
+
+
+
+
+    public int getRatingAsSeller() {
+        return ratingAsSeller;
+    }
+
+    public void setRatingAsSeller(int ratingAsSeller) {
+        this.ratingAsSeller = ratingAsSeller;
+    }
+
+    public int getRatingAsBuyer() {
+        return ratingAsBuyer;
+    }
+
+    public void setRatingAsBuyer(int ratingAsBuyer) {
+        this.ratingAsBuyer = ratingAsBuyer;
+    }
 
     public long getId() {
         return id;
@@ -81,11 +102,4 @@ public class UserModel implements Serializable {
         this.mobileNumber = mobileNumber;
     }
 
-    public int getRating() {
-        return Rating;
-    }
-
-    public void setRating(int rating) {
-        Rating = rating;
-    }
 }

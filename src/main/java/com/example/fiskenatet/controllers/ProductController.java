@@ -33,3 +33,4 @@ public class ProductController {
         return new ResponseEntity<ArrayList<ProductModel>>(productService.getAllProducts(), HttpStatus.OK);
     }
 }
+
