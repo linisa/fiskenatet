@@ -28,8 +28,16 @@ public class UserController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @RequestMapping(value = "/username/{userName}", method = RequestMethod.GET)
+    public ResponseEntity<UserModel>getUserByName(@PathVariable String userName) {
+        return new ResponseEntity<UserModel>(userService.getUserByName(userName), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/users/", method = RequestMethod.GET)
     public ResponseEntity<List<UserModel>> getAllUsers() {
         return new ResponseEntity<List<UserModel>>(userService.getAllUsers(), HttpStatus.OK);
     }
+
+
 }

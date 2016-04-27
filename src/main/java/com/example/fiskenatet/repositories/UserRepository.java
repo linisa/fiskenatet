@@ -2,9 +2,14 @@ package com.example.fiskenatet.repositories;
 
 import com.example.fiskenatet.models.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-/**
- * Created by Erik on 2016-04-27.
- */
+import java.util.List;
+
+
 public interface UserRepository extends JpaRepository<UserModel, Long> {
+
+    public UserModel findUserByUserName(String userName);
+
 }
