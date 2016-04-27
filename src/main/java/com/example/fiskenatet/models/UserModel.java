@@ -2,6 +2,7 @@ package com.example.fiskenatet.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Erik on 2016-04-27.
@@ -16,7 +17,14 @@ public class UserModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-    private long id;
+
+    private Long id;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<ProductModel> listOfProducts;
+
+    @OneToMany(mappedBy = "bidder", cascade = CascadeType.ALL)
+    private List<BidModel> listOfBids;
 
     @Column(name = "first_name")
     private String firstName;
@@ -42,27 +50,24 @@ public class UserModel implements Serializable {
     @Column(name = "rating_as_buyer")
     private int ratingAsBuyer;
 
-
-
-
-    public int getRatingAsSeller() {
-        return ratingAsSeller;
-    }
-
-    public void setRatingAsSeller(int ratingAsSeller) {
-        this.ratingAsSeller = ratingAsSeller;
-    }
-
-    public int getRatingAsBuyer() {
-        return ratingAsBuyer;
-    }
-
-    public void setRatingAsBuyer(int ratingAsBuyer) {
-        this.ratingAsBuyer = ratingAsBuyer;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
+    }
+
+    public List<ProductModel> getListOfProducts() {
+        return listOfProducts;
+    }
+
+    public void setListOfProducts(List<ProductModel> listOfProducts) {
+        this.listOfProducts = listOfProducts;
+    }
+
+    public List<BidModel> getListOfBids() {
+        return listOfBids;
+    }
+
+    public void setListOfBids(List<BidModel> listOfBids) {
+        this.listOfBids = listOfBids;
     }
 
     public String getFirstName() {
@@ -79,6 +84,14 @@ public class UserModel implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -105,11 +118,19 @@ public class UserModel implements Serializable {
         this.mobileNumber = mobileNumber;
     }
 
-    public String getUserName() {
-        return userName;
+    public int getRatingAsSeller() {
+        return ratingAsSeller;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setRatingAsSeller(int ratingAsSeller) {
+        this.ratingAsSeller = ratingAsSeller;
+    }
+
+    public int getRatingAsBuyer() {
+        return ratingAsBuyer;
+    }
+
+    public void setRatingAsBuyer(int ratingAsBuyer) {
+        this.ratingAsBuyer = ratingAsBuyer;
     }
 }
