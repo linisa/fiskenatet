@@ -24,11 +24,14 @@ public class UserModel implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "user_name")
+    private String userName;
+
     @Column(name = "password")
     private String password;
 
     @Column(name = "email")
-    private String eMail;
+    private String email;
 
     @Column(name = "mobile_number")
     private String mobileNumber;  //int eller String?
@@ -86,12 +89,12 @@ public class UserModel implements Serializable {
         this.password = password;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getMobileNumber() {
@@ -102,4 +105,11 @@ public class UserModel implements Serializable {
         this.mobileNumber = mobileNumber;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }
