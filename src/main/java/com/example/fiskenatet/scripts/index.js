@@ -34,14 +34,11 @@ $(document).ready(function () {
             productString += '<div class="col-sm-4"><p class="endDate">End Date: <br>' + allProducts[i].endDate + '</p>';
             productString += '<p class="highestBid">Highest Bid:<br>' + allProducts[i].highestBid + '</p>';
             productString += '<p class="buyNowPrice">Buy Now:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';
-
         }
-
         $products.append(productString);
-
-
-
     }
+
+    
     
 
 

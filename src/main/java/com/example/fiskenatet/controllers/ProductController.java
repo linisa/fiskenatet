@@ -20,9 +20,7 @@ public class ProductController {
     @CrossOrigin
     @RequestMapping(value = "/products", method = RequestMethod.POST)
     public void createProduct(@RequestBody ProductModel productModel) {
-        System.out.println("i controller!!!");
         productService.saveProduct(productModel);
-
     }
 
     @CrossOrigin
@@ -30,6 +28,7 @@ public class ProductController {
     public ResponseEntity<ArrayList<ProductModel>> readAll() {
         return new ResponseEntity<ArrayList<ProductModel>>(productService.getAllProducts(), HttpStatus.OK);
     }
+<<<<<<< HEAD
 
 
     @CrossOrigin
@@ -37,5 +36,7 @@ public class ProductController {
     public void deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);
     }
+=======
+>>>>>>> 0c2f942d8bcd17245ff8fa042ab758ca2297a238
 }
 
