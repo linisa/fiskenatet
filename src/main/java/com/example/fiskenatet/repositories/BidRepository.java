@@ -1,6 +1,7 @@
 package com.example.fiskenatet.repositories;
 
 import com.example.fiskenatet.models.BidModel;
+import com.example.fiskenatet.models.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
@@ -14,19 +15,6 @@ import java.util.List;
  */
 public interface BidRepository extends JpaRepository<BidModel, Long> {
 
-    //public List<BidModel> findBidByProductId(Long productId);
-
-   /*
-    // hitta budet med valt id och retunera detta budets pris (amount) som en sträng
-
-    @Query(value = "SELECT b.amount FROM BidModel b where b.id = :id", nativeQuery=true)
-    String findAmountById(@Param("id") Long id);
-
-    // hitta budet med valt id och retunera som bidmodel
-    BidModel findById(Long id);
-
-    // ska retunera en lista med alla bud som har product_id = det vi skickar in
-    List<BidModel> findBidsByProductId(Long id);
-    */
+    public List<BidModel> findAllBidsByCurrentProduct(Long id);
 
 }

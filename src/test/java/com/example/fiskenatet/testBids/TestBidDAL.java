@@ -25,8 +25,12 @@ public class TestBidDAL {
         return testBidModel.getAmount();
     }
 
+
+
     public static TestBidDAL getInstance() {
         return testBidDAL;
     }
+
+
 
 }

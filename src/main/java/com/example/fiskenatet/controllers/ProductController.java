@@ -17,23 +17,40 @@ public class ProductController {
     @Autowired //inkluderar alla dependency raderna ish.
     private ProductService productService;
 
+    // skapa en produkt
     @CrossOrigin
     @RequestMapping(value = "/products", method = RequestMethod.POST)
     public void createProduct(@RequestBody ProductModel productModel) {
         productService.saveProduct(productModel);
     }
 
+    // hämta alla produkter
     @CrossOrigin
     @RequestMapping(value = "/products", method = RequestMethod.GET)
-    public ResponseEntity<ArrayList<ProductModel>> readAll() {
+    public ResponseEntity<ArrayList<ProductModel>> getAllProducts() {
         return new ResponseEntity<ArrayList<ProductModel>>(productService.getAllProducts(), HttpStatus.OK);
     }
 
-
+    // delete en produkt
     @CrossOrigin
-    @RequestMapping(value = "/products", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
     public void deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);
+    }
+
+
+    // Uppdatera en produkt
+    @CrossOrigin
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
+    public void updateProduct(@PathVariable Long id, @RequestBody ProductModel productModel){
+        productService.updateProduct(id, productModel);
+    }
+
+    // hämtar en specifik produkt
+    @CrossOrigin
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
+    public ResponseEntity <ProductModel> getSelectedProduct(@PathVariable Long id){
+        return new ResponseEntity<ProductModel>(productService.getSelectedProduct(id), HttpStatus.OK);
     }
 
 }

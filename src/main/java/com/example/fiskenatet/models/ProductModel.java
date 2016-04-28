@@ -23,6 +23,7 @@ public class ProductModel implements Serializable{
     @JoinColumn(name = "owner_id")
     private UserModel owner;
 
+
     @OneToMany(mappedBy = "currentProduct", cascade = CascadeType.ALL)
     private List<BidModel> listOfBids;
 
