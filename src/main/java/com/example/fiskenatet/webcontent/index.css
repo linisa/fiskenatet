@@ -1,7 +1,11 @@
 * {
-
-
 }
+
+body{
+    width: 100%;
+    overflow-x: hidden;
+}
+
 /*Menu*/
 .navbar-nav {
     width: 100%;
@@ -13,6 +17,8 @@
   }
 
 #banner{
+    width: 100%;
+    display: block;
 }
 
 .LogIn{
@@ -28,6 +34,7 @@
     text-align: center;
     margin-top: 0.5em;
 }
+
 /*menu end*/
 
 

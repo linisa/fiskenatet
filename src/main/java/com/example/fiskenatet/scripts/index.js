@@ -1,6 +1,4 @@
-/**
- * Created by Erik on 2016-04-21.
- */
+
 $(document).ready(function () {
 
     var userUserName;
@@ -9,6 +7,27 @@ $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
 
     getAllProducts();
+    checkIfLoggedIn();
+
+    function checkIfLoggedIn() {
+        if(sessionStorage.getItem('currentUser') != null){
+            /*användare inloggad*/
+            document.getElementById("lnkLogOut").style.display = "inline-block";
+            document.getElementById("lnkAddProduct").style.display = "inline-block";
+            document.getElementById("LogIn").style.display = "none";
+        }else{
+            document.getElementById("lnkLogOut").style.display = "none";
+            document.getElementById("lnkAddProduct").style.display = "none";
+            document.getElementById("LogIn").style.display = "inline-block";
+        }
+    }
+
+    $(document).on("click", "#lnkLogOut", function () {
+        sessionStorage.removeItem('currentUser');
+        location.reload();
+    });
+
+
 
     function getAllProducts() {
         $.ajax({
@@ -48,6 +67,7 @@ $(document).ready(function () {
     })
 
     $('#btnLogIn').click(function () {
+        console.log("KLICK LOGIN!")
         userUserName = $('#UserUserName').val();
         userPassword = $('#UserPassword').val();
         console.log(userUserName);
@@ -74,10 +94,16 @@ $(document).ready(function () {
         if(foundUser.password == userPassword){
             console.log("Log in success");
             sessionStorage.setItem('currentUser', foundUser);
+            location.reload();
         }else{
             alert("Fel lösenord!");
             //MAKE ALERT FEL PASS
         }
     }
+
+
+
+
+
 });
 
