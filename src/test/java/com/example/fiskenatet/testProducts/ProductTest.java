@@ -1,10 +1,9 @@
-package com.example.fiskenatet;
+package com.example.fiskenatet.testProducts;
 
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.awt.print.Book;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,6 +12,11 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+
+/**
+ * Testing getAll, getOne, addOne.
+ * Todo: deleteAll, deleteOne, updateOne.
+ */
 public class ProductTest {
 
     private static TestProductDAL mockedTestProductDAL;

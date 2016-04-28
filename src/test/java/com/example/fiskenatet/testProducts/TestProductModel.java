@@ -1,4 +1,4 @@
-package com.example.fiskenatet;
+package com.example.fiskenatet.testProducts;
 
 /**
  * Created by nordi_000 on 2016-04-26.
@@ -15,6 +15,10 @@ public class TestProductModel {
         this.title = title;
         this.startPrice = startPrice;
         this.endPrice = endPrice;
+    }
+
+    public TestProductModel() {
+
     }
 
     public long getId() {

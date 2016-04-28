@@ -29,8 +29,9 @@ $(document).ready(function () {
         var product = JSON.stringify({
             "firstName": $('#tfFirstName').val(),
             "lastName": $('#tfLastName').val(),
+            "userName": $('#tfUserName').val(),
             "password": $('#tfPassword').val(),
-            "eMail": $('#tfEmail').val(),
+            "email": $('#tfEmail').val(),
             "mobileNumber": $('#tfMobileNumber').val()
             /*"startDate": startDate*/
         });
