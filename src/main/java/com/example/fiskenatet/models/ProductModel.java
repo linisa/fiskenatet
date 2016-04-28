@@ -160,5 +160,14 @@ public class ProductModel implements Serializable{
     public void setOwner(UserModel owner) {
         this.owner = owner;
     }
+
+    public List<BidModel> getListOfBids() {
+        return listOfBids;
+    }
+
+    public void setListOfBids(List<BidModel> listOfBids) {
+        this.listOfBids = listOfBids;
+    }
 }
+
 

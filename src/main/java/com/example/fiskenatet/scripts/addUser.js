@@ -30,7 +30,7 @@ $(document).ready(function () {
             "firstName": $('#tfFirstName').val(),
             "lastName": $('#tfLastName').val(),
             "password": $('#tfPassword').val(),
-            "eMail": $('#tfEmail').val(),
+            "email": $('#tfEmail').val(),
             "mobileNumber": $('#tfMobileNumber').val()
             /*"startDate": startDate*/
         });
