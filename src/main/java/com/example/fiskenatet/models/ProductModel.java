@@ -28,7 +28,7 @@ public class ProductModel implements Serializable{
     private List<BidModel> listOfBids;
 
     @Column(name = "buy_now_price")
-    private int buyNowPrice;
+        private int buyNowPrice;
 
     @Column(name = "start_price")
     private int startPrice;
@@ -54,10 +54,20 @@ public class ProductModel implements Serializable{
 
     private String category;
 
+    @Column(name = "is_sold")
+    private String isSold = "no";
+
     public ProductModel() {}
 
-    public String getCategory() {
+    public String getIsSold() {
+        return isSold;
+    }
 
+    public void setIsSold(String isSold) {
+        this.isSold = isSold;
+    }
+
+    public String getCategory() {
         return category;
     }
 
