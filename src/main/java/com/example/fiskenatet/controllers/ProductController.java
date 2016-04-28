@@ -3,6 +3,7 @@ package com.example.fiskenatet.controllers;
 
 import java.util.ArrayList;
 
+import com.example.fiskenatet.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,6 +52,13 @@ public class ProductController {
     @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
     public ResponseEntity <ProductModel> getSelectedProduct(@PathVariable Long id){
         return new ResponseEntity<ProductModel>(productService.getSelectedProduct(id), HttpStatus.OK);
+    }
+
+    // hämtar alla produkter från en vald kategori
+    @CrossOrigin
+    @RequestMapping(value = "/products/category/{category}", method = RequestMethod.GET)
+    public ResponseEntity<ArrayList<ProductModel>>getProductsByCategory(@PathVariable String category) {
+        return new ResponseEntity<ArrayList<ProductModel>>(productService.getAllProductsByCategory(category), HttpStatus.OK);
     }
 
 }
