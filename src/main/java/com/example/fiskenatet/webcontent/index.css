@@ -1,57 +1,42 @@
-*{
-
-}
-
-.row{
-
-}
+* {
 
 
-.title{
-    text-decoration: none;
-    background-color: inherit;
-    color: black;
 }
-#wrapper {
-    padding: 0px;
-    margin-top: 0;
-    margin-bottom: 0;
-    background-color: #F9F9F9;
+/*Menu*/
+.navbar-nav {
+    width: 100%;
+    text-align: center;
 }
-#header {
-    width: 910px;
-    height: 172px;
-    margin: 0 auto;
-    background-color: #F9F9F9;
-    background-repeat: no-repeat;
-    background-position: left top;
+.navbar-nav li {
+      float: none;
+      display: inline-block;
+  }
+
+#banner{
 }
 
-#menu {
-    width: 910px;
-    height: 50px;
-    padding: 0;
-    border-top: 1px #FFFFFF solid;
-    background-color: #F9F9F9;
-    margin-top: 2em;
-    margin-right: auto;
-    margin-bottom: 0;
-    margin-left: auto;
-    left: auto;
-    right: auto;
+.LogIn{
+    padding: 2em;
+    width: 20em;
+    min-height: 20em;
+    margin: auto;
+    background-color: transparent;
+    float: right;
+}
 
+.heading{
+    text-align: center;
+    margin-top: 0.5em;
 }
-#menu li{
-    float: left;
-}
-#menu ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    line-height: normal;
-}
-#menu li{
-    float: left;
+/*menu end*/
+
+
+/*Product List*/
+.product{
+    overflow: hidden;
+    border: groove;
+    margin: 0.5em;
+    padding: 0.5em;
 }
 
 .shortDescription{
@@ -82,26 +67,11 @@
     float: left;
 }
 
+/*Product list end*/
 
-.product{
-    overflow: hidden;
-    border: groove;
-    margin: 0.5em;
-    padding: 0.5em;
-}
 
-.LogIn{
-    padding: 2em;
-    width: 20em;
-    min-height: 20em;
-    margin: auto;
-    background-color: transparent;
-    float: right;
-}
 
-.heading{
-    text-align: center;
-    margin-top: 0.5em;
-}
+
+
 
 
