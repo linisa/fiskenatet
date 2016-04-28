@@ -1,4 +1,4 @@
-package com.example.fiskenatet;
+package com.example.fiskenatet.testProducts;
 
 import java.util.Collections;
 import java.util.List;
