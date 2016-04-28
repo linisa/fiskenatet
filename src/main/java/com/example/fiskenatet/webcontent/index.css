@@ -7,10 +7,12 @@
 }
 
 
-.title{
+#title{
     text-decoration: none;
     background-color: inherit;
-    color: black;
+    color: #258281;
+    text-align: center;
+    font-family:Elephant;
 }
 #wrapper {
     padding: 0px;
@@ -27,8 +29,8 @@
     background-position: left top;
 }
 
-#menu {
-    width: 910px;
+#bannerMenu {
+
     height: 50px;
     padding: 0;
     border-top: 1px #FFFFFF solid;
@@ -41,9 +43,8 @@
     right: auto;
 
 }
-#menu li{
-    float: left;
-}
+
+
 #menu ul {
     margin: 0;
     padding: 0;
