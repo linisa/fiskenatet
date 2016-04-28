@@ -6,11 +6,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.services.ProductService;
@@ -25,7 +21,6 @@ public class ProductController {
     @RequestMapping(value = "/products", method = RequestMethod.POST)
     public void createProduct(@RequestBody ProductModel productModel) {
         productService.saveProduct(productModel);
-
     }
 
     @CrossOrigin
@@ -34,4 +29,12 @@ public class ProductController {
         return new ResponseEntity<ArrayList<ProductModel>>(productService.getAllProducts(), HttpStatus.OK);
     }
 
+
+    @CrossOrigin
+    @RequestMapping(value = "/products", method = RequestMethod.DELETE)
+    public void deleteProduct(@PathVariable Long id){
+        productService.deleteProduct(id);
+    }
+
 }
+

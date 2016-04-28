@@ -1,0 +1,65 @@
+*{
+
+}
+
+.row{
+
+}
+
+
+.title{
+    text-decoration: none;
+    background-color: inherit;
+    color: black;
+}
+
+.shortDescription{
+    text-decoration: none;
+    background-color: inherit;
+    color: #258281;
+}
+.endDate{
+    background-color: #EB6688;
+    padding: 0.5em;
+    text-align: center;
+}
+.highestBid{
+    background-color: #EB6688;
+    padding: 0.5em;
+    text-align: center;
+
+}
+.buyNowPrice{
+    background-color: #B56AA3;
+    padding: 0.5em;
+    text-align: center;
+
+}
+.image{
+    height: 150px;
+    width: 300px;
+    float: left;
+}
+
+
+.product{
+    overflow: hidden;
+    border: groove;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+.LogIn{
+    padding: 2em;
+    width: 20em;
+    min-height: 20em;
+    margin: auto;
+    background-color: transparent;
+}
+
+.heading{
+    text-align: center;
+    margin-top: 0.5em;
+}
+
+
