@@ -43,7 +43,24 @@ $(document).ready(function () {
         sessionStorage.setItem('currentProductId', currentProductId);
         location.href = '../webcontent/productDetails.html';
     })
-    
+
+    $(document).on("click", "#btnLogIn", function () {
+
+    })
+
+    function getUserByUserName() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/username/' + ,//TODO:angivet username,
+            success: function (data, textStatus, jgXHR) {
+                //TODO MAKE INLOGGAD
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("getAllProducts error: " + textStatus);
+            }
+        });
+    }
     
 
 
