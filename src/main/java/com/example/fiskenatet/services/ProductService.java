@@ -27,12 +27,14 @@ public class ProductService {
         return (ArrayList<ProductModel>)productRepository.findAll();
     }
 
+
     // hämta en specifik produkt
     public ProductModel getSelectedProduct(Long id){
         return productRepository.getOne(id);
     }
 
     // delete en produkt
+
     public void deleteProduct(Long id){
         productRepository.delete(id);
     }
