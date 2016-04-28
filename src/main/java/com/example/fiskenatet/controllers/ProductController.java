@@ -29,7 +29,6 @@ public class ProductController {
         return new ResponseEntity<ArrayList<ProductModel>>(productService.getAllProducts(), HttpStatus.OK);
     }
 
-
     @CrossOrigin
     @RequestMapping(value = "/products", method = RequestMethod.DELETE)
     public void deleteProduct(@PathVariable Long id){

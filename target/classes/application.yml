@@ -5,16 +5,13 @@ spring:
     hibernate:
       dialect: org.hibernate.dialect.MYSQLInnoDBDialect
       naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
-      ddl-auto: create-drop
+      ddl-auto: update
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost/fiskenatet
+    url: jdbc:mysql://localhost/fiskenatet?useSSL=false
     username: root
-<<<<<<< HEAD
-    password: Acmilan1
-=======
-    password: assassin723
->>>>>>> 662973277a2e0e0fdffa9a7b38a373f0eb05bf16
+    password: smirre
+
   jackson:
     serialization:
       fail-on-empty-beans: false
