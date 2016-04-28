@@ -34,7 +34,7 @@ public class BidService {
         //bidRepository.findBidsByProductId("SELECT * FROM bids WHERE 'product_id' =" + 1 + "");
         System.out.println("hallåeller!!!");
         //return (ArrayList<BidModel>)bidRepository.findAll(productModel.getId());
-
+    }
     // hämtar alla buden
     public ArrayList<BidModel> getAllBids(){
         return (ArrayList<BidModel>) bidRepository.findAll();
