@@ -12,6 +12,47 @@
     background-color: inherit;
     color: black;
 }
+#wrapper {
+    padding: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: #F9F9F9;
+}
+#header {
+    width: 910px;
+    height: 172px;
+    margin: 0 auto;
+    background-color: #F9F9F9;
+    background-repeat: no-repeat;
+    background-position: left top;
+}
+
+#menu {
+    width: 910px;
+    height: 50px;
+    padding: 0;
+    border-top: 1px #FFFFFF solid;
+    background-color: #F9F9F9;
+    margin-top: 2em;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+    left: auto;
+    right: auto;
+
+}
+#menu li{
+    float: left;
+}
+#menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    line-height: normal;
+}
+#menu li{
+    float: left;
+}
 
 .shortDescription{
     text-decoration: none;
@@ -55,6 +96,7 @@
     min-height: 20em;
     margin: auto;
     background-color: transparent;
+    float: right;
 }
 
 .heading{
