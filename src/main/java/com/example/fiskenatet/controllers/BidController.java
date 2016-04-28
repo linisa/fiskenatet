@@ -1,8 +1,11 @@
 package com.example.fiskenatet.controllers;
 
-/**
- * Created by nordi_000 on 2016-04-27.
- */
+import com.example.fiskenatet.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+
 public class BidController {
 
+    @Autowired
+    private UserRepository userRepository;
 }

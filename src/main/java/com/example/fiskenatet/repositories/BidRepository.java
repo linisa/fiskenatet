@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface BidRepository extends JpaRepository<BidModel, Long> {
 
-    List<BidModel> findBidByProductId(Long id);
+    //public List<BidModel> findBidByProductId(Long productId);
 
    /*
     // hitta budet med valt id och retunera detta budets pris (amount) som en sträng
