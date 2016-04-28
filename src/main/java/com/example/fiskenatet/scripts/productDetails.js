@@ -11,7 +11,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             contentType: 'application/json',
-            url: rootURL + '/products/' + currentProductId,
+            url: rootURL + '/products' + currentProductId,
             success: function (data, textStatus, jgXHR) {
                 currentProduct = data;
                 populateProductDetails(data)

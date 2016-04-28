@@ -28,10 +28,12 @@ public class ProductService {
         return (ArrayList<ProductModel>)productRepository.findAll();
     }
 
+
     // hämta alla produkter från kategori - EJ KLAR
     public ArrayList<ProductModel> getAllProductsByCategory(String category) {
         return (ArrayList<ProductModel>) productRepository.findProductsByCategory(category);
     }
+
 
     // hämta en specifik produkt
     public ProductModel getSelectedProduct(Long id){
@@ -39,6 +41,7 @@ public class ProductService {
     }
 
     // delete en produkt
+
     public void deleteProduct(Long id){
         productRepository.delete(id);
     }
