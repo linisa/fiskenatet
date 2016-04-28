@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class AppTest {
+public class ProductTest {
 
     private static TestProductDAL mockedTestProductDAL;
     private static TestProductModel fish1;
