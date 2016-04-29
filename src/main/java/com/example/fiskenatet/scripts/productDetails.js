@@ -3,17 +3,39 @@ $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
 
     var currentProductId = sessionStorage.getItem('currentProductId');
-
-    getProductDetails(currentProductId);
+    var owner;
+    getProductDetails();
 
     var currentProduct;
+
+    $(document).on("click", "#lnkLogOut", function () {
+        sessionStorage.removeItem('currentUser');
+        location.href="../webcontent/index.html";
+    });
+    
     function getProductDetails() {
         $.ajax({
             type: 'GET',
             contentType: 'application/json',
-            url: rootURL + '/products' + currentProductId,
+            url: rootURL + '/products/' + currentProductId,
             success: function (data, textStatus, jgXHR) {
                 currentProduct = data;
+                getProductOwner();
+
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("getAllProducts error: " + textStatus);
+            }
+        });
+    }
+
+    function getProductOwner() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/users/' + currentProduct.owner,
+            success: function (data, textStatus, jgXHR) {
+                owner = data;
                 populateProductDetails();
             },
             error: function (jgXHR, textStatus, errorThrown) {
@@ -24,15 +46,19 @@ $(document).ready(function () {
 
     function populateProductDetails() {
         $product = $('#productDetails');
-        var productString;
+        var startDate= new Date(currentProduct.startDate).toLocaleString();
+        var productString="";
 
-            productString += '<div class="products"><a href="#"><div class = "col-sm-8">';
-            productString += '<div><img src="' + currentProduct.image + '" class="image"></div>';
-            productString += '<div class="productText"><h3>' + currentProduct.title + '</h3>';
-            productString += '<p class="description">' + currentProduct.description + '</p></div></a></div>';
-            productString += '<div class="col-sm-4"><p class="endDate">End Date: <br>' + currentProduct.endDate + '</p>';
-            productString += '<p class="highestBid">Highest Bid:<br>' + currentProduct.highestBid + '</p>';
-            productString += '<p class="buyNowPrice">Buy Now:<br>' + currentProduct.buyNowPrice + '</p></div></div>';
+            productString += '<div class="product"><div>';
+            productString += '<div class="row"><div class="col-sm-6 col-sm-offset-3"><img class="col-sm-12" src="' + currentProduct.image + '"></div></div>';
+            productString += '<div class="col-sm-8"><p class="productTextDetails">' + currentProduct.title + '</p>';
+            productString += '<p class="ownerDetails">Säljs av: ' + owner.firstName + " " + owner.lastName + " " + startDate +'</p>';
+            productString += '<p class="descriptionDetails">' + currentProduct.description + '</p></div></div>';
+            productString += '<div class="col-sm-4"><p class="endDateDetails">Slutdatum:<br>' + currentProduct.endDate + '</p>';
+            productString += '<p class="startPriceDetails">Startpris<br>' + currentProduct.startPrice + '</p>';
+            productString += '<p class="highestBidDetails">Högsta Bud<br>' + currentProduct.highestBid + '</p>';
+            productString += '<p class="buyNowPriceDetails">Köp Nu:<br>' + currentProduct.buyNowPrice + '</p></div></div>';
+
 
         $product.append(productString);
     }

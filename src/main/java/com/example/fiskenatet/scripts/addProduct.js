@@ -18,12 +18,14 @@ $(document).ready(function () {
             url: rootURL + '/products',
             data: formToJSON(),
             success: function (data, textStatus, jgXHR) {
-                console.log("GREAT SUCCESS!");                
+                console.log("GREAT SUCCESS!");
+                location.href="../webcontent/index.html";
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("send Error " +textStatus + "  " + errorThrown);
             }
         })
+        
     }
     
     function formToJSON() {

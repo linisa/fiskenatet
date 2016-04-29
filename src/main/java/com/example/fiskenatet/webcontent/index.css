@@ -64,7 +64,7 @@ body{
     padding: 0.5em;
 }
 
-.shortDescription{
+.description{
     text-decoration: none;
     background-color: inherit;
     color: #258281;
@@ -94,8 +94,39 @@ body{
 
 /*Product list end*/
 
+/*ProductDetails */
 
+.productTextDetails{
+    font-size: 4em;
+}
 
+.descriptionDetails{
+    font-size: 1em;
+}
+.endDateDetails{
+    margin-top: 1em;
+    background-color: #EB6688;
+    padding: 0.5em;
+    text-align: center;
+}
+.highestBidDetails{
+    background-color: #EB6688;
+    padding: 0.5em;
+    text-align: center;
+}
+.buyNowPriceDetails{
+    background-color: #B56AA3;
+    padding: 0.5em;
+    text-align: center;
+}
+
+.startPriceDetails{
+    background-color: #EB6688;
+    padding: 0.5em;
+    text-align: center;
+}
+
+/*productDetails end*/
 
 
 

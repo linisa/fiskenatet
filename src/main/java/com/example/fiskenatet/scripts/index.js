@@ -35,13 +35,9 @@ $(document).ready(function () {
             contentType: 'application/json',
             url: rootURL + '/products',
             success: function (data, textStatus, jgXHR) {
-<<<<<<< HEAD
-                console.log("i get all products");
-                populateProductList(data)
-=======
                 populateProductList(data);
                 console.log(data[0].title);
->>>>>>> 847c29df993cb15ef25c3cb75ffdcd323d89ed2c
+
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("getAllProducts error: " + textStatus);
@@ -68,8 +64,10 @@ $(document).ready(function () {
     }
     
     $(document).on("click", ".productLink", function () {
+        console.log("click");
         var currentProductId = $(this).data("value");
         sessionStorage.setItem('currentProductId', currentProductId);
+        console.log(currentProductId);
         location.href = '../webcontent/productDetails.html';
     })
 
