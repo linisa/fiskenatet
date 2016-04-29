@@ -1,12 +1,17 @@
 * {
-
-
 }
 
 body{
     width: 100%;
     overflow-x: hidden;
 }
+
+
+body{
+    width: 100%;
+    overflow-x: hidden;
+}
+
 
 /*Menu*/
 .navbar-nav {
@@ -19,6 +24,11 @@ body{
   }
 
 #banner{
+
+
+
+    width: 100%;
+    display: block;
 
 }
 
@@ -35,6 +45,7 @@ body{
     text-align: center;
     margin-top: 0.5em;
 }
+
 /*menu end*/
 
 

@@ -45,10 +45,10 @@ public class UserModel implements Serializable {
     private String mobileNumber;  //int eller String?
 
     @Column(name = "rating_as_seller")
-    private int ratingAsSeller;
+    private String ratingAsSeller;
 
     @Column(name = "rating_as_buyer")
-    private int ratingAsBuyer;
+    private String ratingAsBuyer;
 
     public Long getId() {
         return id;
@@ -118,19 +118,19 @@ public class UserModel implements Serializable {
         this.mobileNumber = mobileNumber;
     }
 
-    public int getRatingAsSeller() {
+    public String getRatingAsSeller() {
         return ratingAsSeller;
     }
 
-    public void setRatingAsSeller(int ratingAsSeller) {
+    public void setRatingAsSeller(String ratingAsSeller) {
         this.ratingAsSeller = ratingAsSeller;
     }
 
-    public int getRatingAsBuyer() {
+    public String getRatingAsBuyer() {
         return ratingAsBuyer;
     }
 
-    public void setRatingAsBuyer(int ratingAsBuyer) {
+    public void setRatingAsBuyer(String ratingAsBuyer) {
         this.ratingAsBuyer = ratingAsBuyer;
     }
 }

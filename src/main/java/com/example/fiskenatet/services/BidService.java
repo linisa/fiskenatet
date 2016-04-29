@@ -25,16 +25,6 @@ public class BidService {
         bidRepository.saveAndFlush(bidModel);
     }
 
-    public ArrayList<BidModel> getAllBidsForProduct(Long id) {
-        return (ArrayList<BidModel>) bidRepository.findAllBidsByCurrentProduct(id);
-    }
-
-
-    public void getAllBidsWithProductId(){
-        //bidRepository.findBidsByProductId("SELECT * FROM bids WHERE 'product_id' =" + 1 + "");
-        System.out.println("hallåeller!!!");
-        //return (ArrayList<BidModel>)bidRepository.findAll(productModel.getId());
-    }
     // hämtar alla buden
     public ArrayList<BidModel> getAllBids(){
         return (ArrayList<BidModel>) bidRepository.findAll();

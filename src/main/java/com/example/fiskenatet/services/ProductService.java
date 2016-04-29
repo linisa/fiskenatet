@@ -2,6 +2,7 @@ package com.example.fiskenatet.services;
 
 import java.util.ArrayList;
 
+import com.example.fiskenatet.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    // skapa
+    // skapa produkt
     public void saveProduct(ProductModel productModel) {
         productRepository.saveAndFlush(productModel); // saveandflush betyder sparar och skickar upp till databasen(?) direkt
     }
@@ -25,6 +26,12 @@ public class ProductService {
     // hämta alla produkter
     public ArrayList<ProductModel> getAllProducts() {
         return (ArrayList<ProductModel>)productRepository.findAll();
+    }
+
+
+    // hämta alla produkter från kategori - EJ KLAR
+    public ArrayList<ProductModel> getAllProductsByCategory(String category) {
+        return (ArrayList<ProductModel>) productRepository.findProductsByCategory(category);
     }
 
 
@@ -39,6 +46,7 @@ public class ProductService {
         productRepository.delete(id);
     }
 
+    // uppdatera en produkt
     public void updateProduct(Long id, ProductModel productModel) {
         ProductModel productToUpdate = productRepository.getOne(id);
         productToUpdate.setTitle(productModel.getTitle());
@@ -46,10 +54,8 @@ public class ProductService {
         productToUpdate.setBuyNowPrice(productModel.getBuyNowPrice());
         productToUpdate.setCategory(productModel.getCategory());
         productToUpdate.setImage(productModel.getImage());
-        productToUpdate.setStartDate(productModel.getStartDate());
         productToUpdate.setEndDate(productModel.getStartDate());
         productToUpdate.setStartPrice(productModel.getStartPrice());
-        productToUpdate.setHighestBid(productModel.getHighestBid());
         productRepository.saveAndFlush(productToUpdate);
     }
 }

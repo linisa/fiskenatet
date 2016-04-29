@@ -15,6 +15,6 @@ import java.util.List;
  */
 public interface BidRepository extends JpaRepository<BidModel, Long> {
 
-    public List<BidModel> findAllBidsByCurrentProduct(Long id);
+
 
 }

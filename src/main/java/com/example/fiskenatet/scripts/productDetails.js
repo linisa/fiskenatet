@@ -14,7 +14,7 @@ $(document).ready(function () {
             url: rootURL + '/products' + currentProductId,
             success: function (data, textStatus, jgXHR) {
                 currentProduct = data;
-                populateProductDetails(data)
+                populateProductDetails();
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("getAllProducts error: " + textStatus);
