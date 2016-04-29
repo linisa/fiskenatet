@@ -35,7 +35,8 @@ $(document).ready(function () {
             contentType: 'application/json',
             url: rootURL + '/products',
             success: function (data, textStatus, jgXHR) {
-                populateProductList(data)
+                populateProductList(data);
+                console.log(data[0].title);
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("getAllProducts error: " + textStatus);
@@ -45,14 +46,14 @@ $(document).ready(function () {
 
     function populateProductList(allProducts) {
         $products = $('#productList');
-        var productString;
-        var $smallLimit = 90;
+        var productString="";
+        var smallLimit = 90;
         for (i = 0; i < allProducts.length; i++) {
             var description = allProducts[i].description;
             productString += '<div class="product"><a href="#" class="productLink" data-value="'+ allProducts[i].id +'"><div class = "col-sm-8">';
             productString += '<div><img src="' + allProducts[i].image + '" class="image"></div>';
             productString += '<div class="productText"><h3>' + allProducts[i].title + '</h3>';
-            productString += '<p class="description">' + description.substr(0, $smallLimit) + '...' + '</p></div></a></div>';
+            productString += '<p class="description">' + description.substr(0, smallLimit) + '...' + '</p></div></a></div>';
             productString += '<div class="col-sm-4"><p class="endDate">End Date: <br>' + allProducts[i].endDate + '</p>';
             productString += '<p class="highestBid">Highest Bid:<br>' + allProducts[i].highestBid + '</p>';
             productString += '<p class="buyNowPrice">Buy Now:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';
@@ -80,11 +81,10 @@ $(document).ready(function () {
             contentType: 'application/json',
             url: rootURL + '/username/' + userUserName ,
             success: function (data, textStatus, jgXHR) {
-                console.log(data.password);
-                logInValidation(data);
+                console.log("i sucess" + data.password);
+                    logInValidation(data);
             },
             error: function (jgXHR, textStatus, errorThrown) {
-                console.log("getAllProducts error: " + textStatus);
             }
         });
     }
@@ -92,8 +92,8 @@ $(document).ready(function () {
     function logInValidation(foundUser) {
         console.log("i validation");
         if(foundUser.password == userPassword){
-            console.log("Log in success");
-            sessionStorage.setItem('currentUser', foundUser);
+            console.log("Log in success" + foundUser.firstName);
+            sessionStorage.setItem('currentUser', foundUser.id);
             location.reload();
         }else{
             alert("Fel lösenord!");
