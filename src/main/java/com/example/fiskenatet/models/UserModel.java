@@ -53,6 +53,10 @@ public class UserModel implements Serializable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public List<ProductModel> getListOfProducts() {
         return listOfProducts;
     }

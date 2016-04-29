@@ -1,23 +1,27 @@
 
 $(document).ready(function () {
-
-    var userUserName;
-    var userPassword;
-    
     var rootURL = 'http://localhost:8091/api';
-
+    var userUserName;
+    var userPassword;  
+    
     getAllProducts();
     checkIfLoggedIn();
 
     function checkIfLoggedIn() {
         if(sessionStorage.getItem('currentUser') != null){
             /*användare inloggad*/
-            document.getElementById("lnkLogOut").style.display = "inline-block";
             document.getElementById("lnkAddProduct").style.display = "inline-block";
+            document.getElementById("lnkProfile").style.display = "inline-block";
+            document.getElementById("lnkLogOut").style.display = "inline-block";
+
+            document.getElementById("lnkRegUser").style.display = "none";
             document.getElementById("LogIn").style.display = "none";
         }else{
-            document.getElementById("lnkLogOut").style.display = "none";
             document.getElementById("lnkAddProduct").style.display = "none";
+            document.getElementById("lnkProfile").style.display = "none";
+            document.getElementById("lnkLogOut").style.display = "none";
+
+            document.getElementById("lnkRegUser").style.display = "inline-block";
             document.getElementById("LogIn").style.display = "inline-block";
         }
     }
@@ -25,6 +29,10 @@ $(document).ready(function () {
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
         location.reload();
+    });
+
+    $(document).on("click", "#lnkProfile", function () {
+        location.href="../webcontent/userProfile.html";
     });
 
 
@@ -104,10 +112,5 @@ $(document).ready(function () {
             //MAKE ALERT FEL PASS
         }
     }
-
-
-
-
-
 });
 
