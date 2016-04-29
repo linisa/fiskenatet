@@ -7,12 +7,13 @@
   <artifactId>Fiskenatet</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
-
   <name>Fiskenatet</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <unit-tests.skip>false</unit-tests.skip>
+      <assertj.version>1.7.0</assertj.version>
   </properties>
 
   <dependencies>
@@ -43,5 +44,23 @@
           <version>1.9.5</version>
           <scope>test</scope>
       </dependency>
+      <dependency>
+          <groupId>org.assertj</groupId>
+          <artifactId>assertj-core</artifactId>
+          <version>${assertj.version}</version>
+      </dependency>
   </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>${unit-tests.skip}</skipTests>
+                    <excludes>
+                        <exclude>**/IT.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
