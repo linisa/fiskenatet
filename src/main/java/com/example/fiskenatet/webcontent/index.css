@@ -41,6 +41,13 @@ body{
     float: right;
 }
 
+#wrongPassword{
+    color: red;
+}
+#wrongUserName{
+    color: red;
+}
+
 .heading{
     text-align: center;
     margin-top: 0.5em;

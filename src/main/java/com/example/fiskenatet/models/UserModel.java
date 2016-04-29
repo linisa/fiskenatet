@@ -13,7 +13,6 @@ import java.util.List;
 @Table(name = "users")
 public class UserModel implements Serializable {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
