@@ -26,7 +26,7 @@ public class UserService {
     }
 
     // hämta specifik användare med USERNAME
-    public UserModel getUserByName(String userName) {
+    public UserModel getUserByUserName(String userName) {
         return (UserModel) userRepository.findUserByUserName(userName);
     }
 

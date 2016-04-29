@@ -14,11 +14,10 @@
         <div class="col-sm-12">
             <img id="banner" alt="logga" src="../resources/bannerfishies.jpg">
             <ul id="menubar" class="nav navbar-nav">
-                <li><a href="index.html">START</a></li>
+                <li><a href="index.html">Hem</a></li>
                 <li><a id="lnkAddProduct" href="addProduct.html">Add Product</a></li>
                 <li><a id="lnkLogOut" href="#">Logga ut</a></li>
                 <li><a id="lnkProfile" href="#">Profil</a></li>
-                <li><a href="addUser.html">Registrera</a></li>
             </ul>
         </div>
     </div>
@@ -26,11 +25,44 @@
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
             <div class="row">
-                <div class="col-sm-6">
-                    <h2>Användaruppgifter</h2>
-                    <p id="upFirstName"></p>
-                    <p id="upLastName"></p>
-
+                <div class="col-sm-6" id="userDetailsList">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4>Användaruppgifter</h4>
+                            <table width="100%">
+                                <tr>
+                                    <td>Användarnamn: </td>
+                                    <td id="upUserName"></td>
+                                </tr>
+                                <tr>
+                                    <td>Förnamn: </td>
+                                    <td id="upFirstName"></td>
+                                </tr>
+                                <tr>
+                                    <td>Efternamn: </td>
+                                    <td id="upLastName"></td>
+                                </tr>
+                                <tr>
+                                    <td>E-mail: </td>
+                                    <td id="upEmail"></td>
+                                </tr>
+                                <tr>
+                                    <td>Mobilnummer: </td>
+                                    <td id="upMobileNumber"></td>
+                                </tr>
+                                <tr>
+                                    <td>Säljarbetyg: </td>
+                                    <td id="upRatingAsSeller"></td>
+                                </tr>
+                                <tr>
+                                    <td>Köparbetyg: </td>
+                                    <td id="upRatingAsBuyer"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <a href="editUser.html" id="btnEditUser">Redigera profil</a>
+                        <a href="#" id="btnDeleteUser">Ta bort profil</a>
+                    </div>
                 </div>
                 <div class="col-sm-6">
 
@@ -38,15 +70,5 @@
             </div>
         </div>
     </div>
-
-
-
 </body>
 </html>
-
-private String userName;
-private String password;
-private String email;
-private String mobileNumber;
-private String ratingAsSeller;
-private String ratingAsBuyer;

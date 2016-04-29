@@ -1,11 +1,9 @@
 
 $(document).ready(function () {
-
-    var userUserName;
-    var userPassword;
-    
     var rootURL = 'http://localhost:8091/api';
-
+    var userUserName;
+    var userPassword;  
+    
     getAllProducts();
     checkIfLoggedIn();
 

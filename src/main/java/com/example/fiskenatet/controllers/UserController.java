@@ -34,8 +34,8 @@ public class UserController {
     // hämta specifik user med USERNAME
     @CrossOrigin
     @RequestMapping(value = "/username/{userName}", method = RequestMethod.GET)
-    public ResponseEntity<UserModel>getUserByName(@PathVariable String userName) {
-        return new ResponseEntity<UserModel>(userService.getUserByName(userName), HttpStatus.OK);
+    public ResponseEntity<UserModel>getUserByUserName(@PathVariable String userName) {
+        return new ResponseEntity<UserModel>(userService.getUserByUserName(userName), HttpStatus.OK);
     }
 
     // hämta alla users

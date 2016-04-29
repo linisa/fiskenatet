@@ -83,7 +83,19 @@ body{
 
 /*Product list end*/
 
+/*UserProfile*/
 
+.profileInfo{
+    float: left;
+    text-align: right;
+
+}
+#userDetailsList p{
+    text-align: right;
+}
+
+
+/*UserProfile End*/
 
 
 

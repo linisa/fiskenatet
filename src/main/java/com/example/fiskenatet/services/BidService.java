@@ -25,7 +25,6 @@ public class BidService {
         bidRepository.saveAndFlush(bidModel);
     }
 
-
     // hämtar alla buden
     public ArrayList<BidModel> getAllBids(){
         return (ArrayList<BidModel>) bidRepository.findAll();
