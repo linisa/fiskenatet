@@ -64,9 +64,9 @@ $(document).ready(function () {
             productString += '<div><img src="' + allProducts[i].image + '" class="image"></div>';
             productString += '<div class="productText"><h3>' + allProducts[i].title + '</h3>';
             productString += '<p class="description">' + description.substr(0, smallLimit) + '...' + '</p></div></a></div>';
-            productString += '<div class="col-sm-4"><p class="endDate">End Date: <br>' + allProducts[i].endDate + '</p>';
-            productString += '<p class="highestBid">Highest Bid:<br>' + allProducts[i].highestBid + '</p>';
-            productString += '<p class="buyNowPrice">Buy Now:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';
+            productString += '<div class="col-sm-4"><p class="endDate">Slutdatum: <br>' + allProducts[i].endDate + '</p>';
+            productString += '<p class="highestBid">Högsta Bud:<br>' + allProducts[i].highestBid + '</p>';
+            productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';
         }
         $products.append(productString);
     }

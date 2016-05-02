@@ -94,39 +94,58 @@ body{
 
 /*Product list end*/
 
-<<<<<<< HEAD
+
 /*ProductDetails */
 
-.productTextDetails{
+#productTextDetails{
     font-size: 4em;
 }
 
-.descriptionDetails{
-    font-size: 1em;
+#ownerDetails{
+    display: inline;
+    padding-right: 1.5em;
 }
-.endDateDetails{
+
+#startDateDetails{
+    display: inline;
+}
+
+#descriptionDetails{
+    font-size: 1em;
+    padding-top: 1em;
+}
+#endDateDetails{
     margin-top: 1em;
     background-color: #EB6688;
     padding: 0.5em;
     text-align: center;
 }
-.highestBidDetails{
+
+#lnkAddBid{
     background-color: #EB6688;
     padding: 0.5em;
     text-align: center;
 }
-.buyNowPriceDetails{
+
+#highestBidDetails{
+    background-color: #EB6688;
+    padding: 0.5em;
+    text-align: center;
+}
+#buyNowPriceDetails{
     background-color: #B56AA3;
     padding: 0.5em;
     text-align: center;
 }
 
-.startPriceDetails{
+#startPriceDetails{
     background-color: #EB6688;
     padding: 0.5em;
     text-align: center;
 }
-=======
+/*productDetails end*/
+
+
 /*UserProfile*/
 
 .profileInfo{
@@ -138,11 +157,10 @@ body{
     text-align: right;
 }
 
-
 /*UserProfile End*/
->>>>>>> 44ba25bdcee80bf26b5d327cbbd60dbfba414005
 
-/*productDetails end*/
+
+
 
 
 

@@ -1,4 +1,4 @@
-package com.example.fiskenatet.main;
+package com.example.fiskenatet;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
