@@ -1,9 +1,11 @@
 package com.example.fiskenatet.controllers;
 
+import com.example.fiskenatet.main.UserRating;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
 import com.example.fiskenatet.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -59,5 +61,10 @@ public class UserController {
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
     public void updateUser(@PathVariable Long id, @RequestBody UserModel userModel){
         userService.updateUser(id, userModel);
+    }
+    @CrossOrigin
+    @RequestMapping(value = "/users/rating/{id}", method = RequestMethod.PUT)
+    public void rateAUser(@PathVariable Long id, @RequestBody UserModel userModel){
+        userService.rateAUser(id, userModel);
     }
 }

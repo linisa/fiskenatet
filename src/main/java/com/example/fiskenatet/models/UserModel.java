@@ -1,5 +1,7 @@
 package com.example.fiskenatet.models;
 
+import com.example.fiskenatet.main.UserRating;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -16,7 +18,6 @@ public class UserModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-
     private Long id;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
@@ -44,10 +45,10 @@ public class UserModel implements Serializable {
     private String mobileNumber;  //int eller String?
 
     @Column(name = "rating_as_seller")
-    private String ratingAsSeller;
+    private String ratingAsSeller = "No rating yet";
 
     @Column(name = "rating_as_buyer")
-    private String ratingAsBuyer;
+    private String ratingAsBuyer = "No rating yet";
 
     public Long getId() {
         return id;

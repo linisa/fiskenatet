@@ -1,5 +1,6 @@
 package com.example.fiskenatet.services;
 
+import com.example.fiskenatet.main.UserRating;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
 import com.example.fiskenatet.repositories.UserRepository;
@@ -51,7 +52,14 @@ public class UserService {
         userToUpdate.setMobileNumber(userModel.getMobileNumber());
         userToUpdate.setPassword(userModel.getPassword());
         userRepository.saveAndFlush(userToUpdate);
-
+    }
+    public void rateAUser(Long id, UserModel userModel){
+        UserModel userToUpdate = userRepository.getOne(id);
+        String oldRating = userToUpdate.getRatingAsBuyer();   // gamla betyget
+        String newRateToAdd = userModel.getRatingAsBuyer();  // nya betyget
+        UserRating userRating = new UserRating();
+        userRating.setUserRatingForDatabase(userToUpdate, oldRating, newRateToAdd);
+        userRepository.saveAndFlush(userToUpdate);
     }
 
 

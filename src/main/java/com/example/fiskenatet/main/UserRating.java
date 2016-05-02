@@ -21,13 +21,28 @@ public class UserRating {
         int totalRatingPoints = 0;
         String selectedNumber;
         String averageRating="";
-
-        for(int i = 0; i < currentRating.length(); i++) {
-            selectedNumber = currentRating.substring(i,i+1);
-            totalRatingPoints += Integer.parseInt(selectedNumber);
+        if(currentRating.equals("No rating yet")) {
+            averageRating = "No rating yet";
+            return averageRating;
+        } else {
+            for (int i = 0; i < currentRating.length(); i++) {
+                selectedNumber = currentRating.substring(i, i + 1);
+                totalRatingPoints += Integer.parseInt(selectedNumber);
+            }
+            averageRating = Integer.toString(totalRatingPoints / currentRating.length());
+            return averageRating;
         }
-        averageRating = Integer.toString(totalRatingPoints / currentRating.length());
 
-        return averageRating;
     }
+
+    public void setUserRatingForDatabase(UserModel userModel, String oldRating, String newRating) {
+        if(oldRating.equals("No rating yet")){
+                userModel.setRatingAsBuyer(newRating);
+        }else {
+            userModel.setRatingAsBuyer(oldRating + newRating);
+        }
+
+
+    }
+
 }
