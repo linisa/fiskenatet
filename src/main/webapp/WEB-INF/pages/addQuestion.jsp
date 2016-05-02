@@ -28,24 +28,24 @@
             <a class="dropdown-toggle" data-toggle="dropdown" href=""><span class="glyphicon glyphicon-cog"></span>
             <ul class="dropdown-menu">
               <li><a href="#">Skapa</a></li>
-              <li><a href="#">ï¿½ndra</a></li>
+              <li><a href="#">Ändra</a></li>
               <li><a href="#">Ta bort</a></li>
             </ul>
           </li>
         </ul>
     </div>
     <div id="addQuestion">
-      <h2>Skapa ny frÃ¥ga</h2>
+      <h2>Skapa ny fråga</h2>
          <div id="addQuestionList">
              <form:form method="post" action="questions">
                  <ul>
                    <li>
-                       <label for="questionString">FrÃ¥ga:</label>
-                       <input name="questionString" id="questionString" value="${question.questionString}"/>
+                       <label for="questionString">Fråga:</label>
+                       <input name="questionString" id="questionString" value="${question.question}"/>
                    </li>
                    <br>
                    <li>
-                     <label for="correctAnswer">RÃ¤tt svar:</label>
+                     <label for="correctAnswer">Rätt svar:</label>
                      <input name="correctAnswer" id="correctAnswer" value="${question.correctAnswer}"/>
                    </li>
                     <br>
