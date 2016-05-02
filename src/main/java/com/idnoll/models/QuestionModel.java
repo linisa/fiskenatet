@@ -1,5 +1,9 @@
 package com.idnoll.models;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,11 +15,13 @@ public class QuestionModel {
 	@GeneratedValue
 	private Long id;
 	
+	private String subCategory;
+	private String category;
+	
 	private String question;
 	private String correctAnswer;
-	private String wrongAnswer;
-	private String wrongAnswer2;
-	private String topic;
+	private String firstWrongAnswer;
+	private String secondWrongAnswer;
 	private String userAnswer;
 	
 	
@@ -23,12 +29,28 @@ public class QuestionModel {
 		
 	}
 	
-	public QuestionModel(String question, String correctAnswer, String wrongAnswer, String wrongAnswer2, String topic) {
+	
+	
+	public QuestionModel( String question, String correctAnswer,
+			String firstWrongAnswer, String secondWrongAnswer, String category, String subCategory) {
 		this.question = question;
 		this.correctAnswer = correctAnswer;
-		this.wrongAnswer = wrongAnswer;
-		this.wrongAnswer2 = wrongAnswer2;
-		this.topic = topic;
+		this.firstWrongAnswer = firstWrongAnswer;
+		this.secondWrongAnswer = secondWrongAnswer;
+		this.category = category;
+		this.subCategory = subCategory;
+	}
+
+
+
+	public List<String> getShuffledAnswers(){
+		List<String> randomAnswers = new ArrayList<>();
+		randomAnswers.add(getCorrectAnswer());
+		randomAnswers.add(getFirstWrongAnswer());
+		randomAnswers.add(getSecondWrongAnswer());
+		
+		Collections.shuffle(randomAnswers);
+		return randomAnswers;
 	}
 
 	public Long getId() {
@@ -64,33 +86,52 @@ public class QuestionModel {
 		this.correctAnswer = correctAnswer;
 	}
 
-	public String getWrongAnswer() {
-		return wrongAnswer;
+	public String getFirstWrongAnswer() {
+		return firstWrongAnswer;
 	}
 
-	public void setWrongAnswer(String wrongAnswer) {
-		this.wrongAnswer = wrongAnswer;
+	public void setFirstWrongAnswer(String firstWrongAnswer) {
+		this.firstWrongAnswer = firstWrongAnswer;
 	}
 
-	public String getWrongAnswer2() {
-		return wrongAnswer2;
+	public String getSecondWrongAnswer() {
+		return secondWrongAnswer;
 	}
 
-	public void setWrongAnswer2(String wrongAnswer2) {
-		this.wrongAnswer2 = wrongAnswer2;
+	public void setSecondWrongAnswer(String secondWrongAnswer) {
+		this.secondWrongAnswer = secondWrongAnswer;
 	}
 
-	public String getTopic() {
-		return topic;
+
+
+	public String getSubCategory() {
+		return subCategory;
 	}
 
-	public void setTopic(String topic) {
-		this.topic = topic;
+
+
+	public void setSubCategory(String subCategory) {
+		this.subCategory = subCategory;
 	}
+
+
+
+	public String getCategory() {
+		return category;
+	}
+
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "QuestionModel [id=" + id + ", question=" + question + ", correctAnswer=" + correctAnswer
-				+ ", wrongAnswer=" + wrongAnswer + ", wrongAnswer2=" + wrongAnswer2 + ", topic=" + topic + "]";
-	}	
+		return "QuestionModel [id=" + id + ", subCategory=" + subCategory + ", category=" + category + ", question="
+				+ question + ", correctAnswer=" + correctAnswer + ", firstWrongAnswer=" + firstWrongAnswer
+				+ ", secondWrongAnswer=" + secondWrongAnswer + ", userAnswer=" + userAnswer + "]";
+	}
 }

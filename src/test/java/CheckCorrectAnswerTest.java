@@ -1,4 +1,4 @@
-import static org.junit.Assert.*;
+/*import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -10,11 +10,11 @@ public class CheckCorrectAnswerTest {
 	
 	@Test
 	public void testAnswers() {
-		quizController.populateListWithQuestions();
+		//quizController.populateListWithQuestions();
 		quizController.questions.get(0).setUserAnswer("Kobe");
 		quizController.questions.get(1).setUserAnswer("Memorial Cup");
 		assertEquals(true, quizController.checkIfRightAnswer(0));
 		assertEquals(false, quizController.checkIfRightAnswer(1));
 	}
 
-}
+}*/
