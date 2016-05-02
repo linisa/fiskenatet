@@ -14,15 +14,15 @@ $(document).ready(function () {
             document.getElementById("lnkProfile").style.display = "inline-block";
             document.getElementById("lnkLogOut").style.display = "inline-block";
 
+            document.getElementById("lnkLogIn").style.display = "none";
             document.getElementById("lnkRegUser").style.display = "none";
-            document.getElementById("LogIn").style.display = "none";
         }else{
             document.getElementById("lnkAddProduct").style.display = "none";
             document.getElementById("lnkProfile").style.display = "none";
             document.getElementById("lnkLogOut").style.display = "none";
 
+            document.getElementById("lnkLogIn").style.display = "inline-block";
             document.getElementById("lnkRegUser").style.display = "inline-block";
-            document.getElementById("LogIn").style.display = "inline-block";
         }
     }
 

@@ -1,6 +1,7 @@
 package com.example.fiskenatet.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.fiskenatet.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,16 +25,15 @@ public class ProductService {
     }
 
     // hämta alla produkter
-    public ArrayList<ProductModel> getAllProducts() {
+    public List<ProductModel> getAllProducts() {
         return (ArrayList<ProductModel>)productRepository.findAll();
     }
 
 
     // hämta alla produkter från kategori - EJ KLAR
-    public ArrayList<ProductModel> getAllProductsByCategory(String category) {
-        return (ArrayList<ProductModel>) productRepository.findProductsByCategory(category);
+    public List<ProductModel> getAllProductsByCategory(String category) {
+        return (List<ProductModel>) productRepository.findProductsByCategory(category);
     }
-
 
     // hämta en specifik produkt
     public ProductModel getSelectedProduct(Long id){

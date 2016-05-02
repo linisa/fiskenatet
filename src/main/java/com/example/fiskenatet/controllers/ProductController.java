@@ -2,6 +2,7 @@ package com.example.fiskenatet.controllers;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.fiskenatet.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class ProductController {
     // hämta alla produkter
     @CrossOrigin
     @RequestMapping(value = "/products", method = RequestMethod.GET)
-    public ResponseEntity<ArrayList<ProductModel>> getAllProducts() {
-        return new ResponseEntity<ArrayList<ProductModel>>(productService.getAllProducts(), HttpStatus.OK);
+    public ResponseEntity<List<ProductModel>> getAllProducts() {
+        return new ResponseEntity<List<ProductModel>>(productService.getAllProducts(), HttpStatus.OK);
     }
 
     // delete en produkt
@@ -57,9 +58,8 @@ public class ProductController {
     // hämtar alla produkter från en vald kategori
     @CrossOrigin
     @RequestMapping(value = "/products/category/{category}", method = RequestMethod.GET)
-    public ResponseEntity<ArrayList<ProductModel>>getProductsByCategory(@PathVariable String category) {
-        return new ResponseEntity<ArrayList<ProductModel>>(productService.getAllProductsByCategory(category), HttpStatus.OK);
+    public ResponseEntity<List<ProductModel>>getProductsByCategory(@PathVariable String category) {
+        return new ResponseEntity<List<ProductModel>>(productService.getAllProductsByCategory(category), HttpStatus.OK);
     }
-
 }
 

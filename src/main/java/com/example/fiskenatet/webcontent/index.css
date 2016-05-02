@@ -6,13 +6,6 @@ body{
     overflow-x: hidden;
 }
 
-
-body{
-    width: 100%;
-    overflow-x: hidden;
-}
-
-
 /*Menu*/
 .navbar-nav {
     width: 100%;
@@ -24,22 +17,10 @@ body{
   }
 
 #banner{
-
-
-
     width: 100%;
     display: block;
-
 }
 
-.LogIn{
-    padding: 2em;
-    width: 20em;
-    min-height: 20em;
-    margin: auto;
-    background-color: transparent;
-    float: right;
-}
 
 #wrongPassword{
     color: red;
@@ -143,6 +124,8 @@ body{
     padding: 0.5em;
     text-align: center;
 }
+
+
 /*productDetails end*/
 
 
@@ -158,6 +141,34 @@ body{
 }
 
 /*UserProfile End*/
+
+
+/*User profile Product list*/
+
+#ownerProduct{
+
+}
+#ownerProductImage{
+
+}
+
+#ownerProductTitle{
+
+}
+
+#ownerProductDescription{}
+#ownerProductStartDate{}
+#ownerProductEndDate{}
+#ownerProductTotalBids{}
+#ownerProductHighestBid{}
+#ownerProductBuyNowPrice{}
+#btnEditProduct{}
+#btndeleteProduct{}
+
+
+
+/*User profile Product list END*/
+
 
 
 

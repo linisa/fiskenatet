@@ -54,6 +54,7 @@ $(document).ready(function(){
                 alert('addCustomer error: ' + textStatus);
                 console.log("addCustomer error: " + textStatus);
             }
+            
         });
     }
 

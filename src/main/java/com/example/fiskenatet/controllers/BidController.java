@@ -25,12 +25,11 @@ public class BidController {
         bidService.saveBid(bidModel);
     }
 
-
-    // har ingen funktion men den är fin tänker Kalle :)
+   /* // har ingen funktion men den är fin tänker Kalle :)
     @CrossOrigin
     @RequestMapping(value = "/bids", method = RequestMethod.GET)
     public ResponseEntity<ArrayList<BidModel>> getAllBids() {
         return new ResponseEntity<ArrayList<BidModel>>(bidService.getAllBids(), HttpStatus.OK);
-    }
+    }*/
 
 }
