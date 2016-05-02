@@ -22,6 +22,8 @@ public class UserBuilder {
         return this;
     }
 
+
+
     public UserModel build(){
         return userModel;
     }

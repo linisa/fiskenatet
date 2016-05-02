@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,6 +38,7 @@ public class UserController {
     public ResponseEntity<UserModel>getUserByUserName(@PathVariable String userName) {
         return new ResponseEntity<UserModel>(userService.getUserByUserName(userName), HttpStatus.OK);
     }
+
 
     // hämta alla users
     @CrossOrigin
