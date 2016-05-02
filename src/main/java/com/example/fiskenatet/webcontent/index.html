@@ -8,32 +8,48 @@
     <script type="text/javascript" src="../scripts/index.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel ="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+
     <div class="row">
+
         <div class="col-sm-12">
             <img id="banner" alt="logga" src="../resources/bannerfishies.jpg">
-<<<<<<< HEAD
-            <ul id="menubar" class="nav navbar-nav">
 
-=======
         <ul id="menubar" class="nav navbar-nav">
->>>>>>> 44ba25bdcee80bf26b5d327cbbd60dbfba414005
+
+            <div class="dropdown">
                 <li><a id="lnkAddProduct" href="addProduct.html">Add Product</a></li>
                 <li><a id="lnkProfile" href="#">Profil</a></li>
                 <li><a id="lnkLogOut" href="#">Logga ut</a></li>
-<<<<<<< HEAD
-                <li><a href="addUser.html">Registrera</a></li>
-
-=======
                 <li><a id="lnkRegUser" href="addUser.html">Registrera</a></li>
->>>>>>> 44ba25bdcee80bf26b5d327cbbd60dbfba414005
-            </ul>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Logga in
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <form>
+                            <p>Användarnamn</p>
+                            <input type="text" id="UserUserName" name="inputUserName" placeholder="Användarnamn" required><br>
+                            <p>Lösenord</p>
+                            <input type="password" id="UserPassword" name="inputPassword" placeholder="Lösenord" required><br>
+                            <input type="button" value="Logga in!" id="btnLogIn">
+                        </form>
+                    </ul>
+                </li>
         </div>
 
     </div>
+
+
+
     <div class="row">
         <div class="col-sm-8" id="productList">
+
 
 
             <!-- här skrivs produktlistan ut -->
@@ -42,19 +58,8 @@
 
 
         </div>
-        <div class="col-sm-4" id="column4">
-            <div class="LogIn" id="LogIn">
-                <div class="heading">
-                    <form>
-                        <p>Användarnamn</p>
-                        <input type="text" id="UserUserName" name="inputUserName" placeholder="Användarnamn" required><br>
-                        <p>Lösenord</p>
-                        <input type="password" id="UserPassword" name="inputPassword" placeholder="Lösenord" required><br>
-                        <input type="button" value="Logga in!" id="btnLogIn">
-                    </form>
-                </div>
-            </div>
-        </div>
+
+
     </div>
 </body>
 </html>

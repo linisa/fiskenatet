@@ -12,6 +12,13 @@ body{
     overflow-x: hidden;
 }
 
+body{
+    width: 100%;
+    overflow-x: hidden;
+}
+
+
+
 
 /*Menu*/
 .navbar-nav {
@@ -24,12 +31,8 @@ body{
   }
 
 #banner{
-
-
-
     width: 100%;
     display: block;
-
 }
 
 .LogIn{
@@ -94,7 +97,7 @@ body{
 
 /*Product list end*/
 
-<<<<<<< HEAD
+
 /*ProductDetails */
 
 .productTextDetails{
@@ -126,7 +129,7 @@ body{
     padding: 0.5em;
     text-align: center;
 }
-=======
+
 /*UserProfile*/
 
 .profileInfo{
@@ -140,7 +143,7 @@ body{
 
 
 /*UserProfile End*/
->>>>>>> 44ba25bdcee80bf26b5d327cbbd60dbfba414005
+
 
 /*productDetails end*/
 
