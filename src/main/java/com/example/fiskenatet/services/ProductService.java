@@ -25,14 +25,14 @@ public class ProductService {
     }
 
     // hämta alla produkter
-    public ArrayList<ProductModel> getAllProducts() {
+    public List<ProductModel> getAllProducts() {
         return (ArrayList<ProductModel>)productRepository.findAll();
     }
 
 
     // hämta alla produkter från kategori - EJ KLAR
-    public ArrayList<ProductModel> getAllProductsByCategory(String category) {
-        return (ArrayList<ProductModel>) productRepository.findProductsByCategory(category);
+    public List<ProductModel> getAllProductsByCategory(String category) {
+        return (List<ProductModel>) productRepository.findProductsByCategory(category);
     }
 
     // hämta en specifik produkt

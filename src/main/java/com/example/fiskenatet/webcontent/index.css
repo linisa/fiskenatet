@@ -19,17 +19,8 @@ body{
 #banner{
     width: 100%;
     display: block;
-
 }
 
-.LogIn{
-    padding: 2em;
-    width: 20em;
-    min-height: 20em;
-    margin: auto;
-    background-color: transparent;
-    float: right;
-}
 
 #wrongPassword{
     color: red;
@@ -116,7 +107,9 @@ body{
     padding: 0.5em;
     text-align: center;
 }
+
 /*productDetails end*/
+
 
 /*UserProfile*/
 
@@ -130,6 +123,7 @@ body{
 }
 
 /*UserProfile End*/
+
 
 /*User profile Product list*/
 
