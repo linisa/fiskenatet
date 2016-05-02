@@ -11,15 +11,15 @@ body{
     width: 100%;
     overflow-x: hidden;
 }
-<<<<<<< HEAD
+
 body{
     width: 100%;
     overflow-x: hidden;
 }
-=======
 
 
->>>>>>> b5efe417d14214a93292ab287a119b4ee3036358
+
+
 /*Menu*/
 .navbar-nav {
     width: 100%;
@@ -31,15 +31,8 @@ body{
   }
 
 #banner{
-
-<<<<<<< HEAD
-=======
-
-
     width: 100%;
     display: block;
-
->>>>>>> b5efe417d14214a93292ab287a119b4ee3036358
 }
 
 .LogIn{
@@ -104,7 +97,7 @@ body{
 
 /*Product list end*/
 
-<<<<<<< HEAD
+
 /*ProductDetails */
 
 .productTextDetails{
@@ -136,7 +129,7 @@ body{
     padding: 0.5em;
     text-align: center;
 }
-=======
+
 /*UserProfile*/
 
 .profileInfo{
@@ -150,7 +143,7 @@ body{
 
 
 /*UserProfile End*/
->>>>>>> 44ba25bdcee80bf26b5d327cbbd60dbfba414005
+
 
 /*productDetails end*/
 
