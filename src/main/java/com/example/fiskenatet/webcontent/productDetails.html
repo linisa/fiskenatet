@@ -16,7 +16,9 @@
 
                 <li><a href="index.html">Hem</a></li>
                 <li><a id="lnkAddProduct" href="addProduct.html">Add Product</a></li>
+                <li><a id="lnkProfile" href="#">Profil</a></li>
                 <li><a id="lnkLogOut" href="#">Logga ut</a></li>
+                <li><a id="lnkRegUser" href="addUser.html">Registrera</a></li>
 
             </ul>
         </div>
@@ -24,6 +26,29 @@
 
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2" id="productDetails">
+            <div class="product">
+                <div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <img id="productImage" class="col-sm-12">
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <p id="productTextDetails"></p>
+                        <p id="ownerDetails"></p>
+                        <p id="startDateDetails"></p>
+                        <p id="descriptionDetails"></p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <p id="endDateDetails"></p>
+                    <input type="number" id="addBidDetails" required><br>
+                    <a href="#"><p id="lnkAddBid"></p></a>
+                    <p id="startPriceDetails"></p>
+                    <p id="highestBidDetails"></p>
+                    <p id="buyNowPriceDetails"></p>
+                </div>
+            </div>
         </div>
     </div>
 </body>

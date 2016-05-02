@@ -61,6 +61,5 @@ public class ProductController {
     public ResponseEntity<List<ProductModel>>getProductsByCategory(@PathVariable String category) {
         return new ResponseEntity<List<ProductModel>>(productService.getAllProductsByCategory(category), HttpStatus.OK);
     }
-
 }
 

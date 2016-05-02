@@ -6,20 +6,6 @@ body{
     overflow-x: hidden;
 }
 
-
-body{
-    width: 100%;
-    overflow-x: hidden;
-}
-
-body{
-    width: 100%;
-    overflow-x: hidden;
-}
-
-
-
-
 /*Menu*/
 .navbar-nav {
     width: 100%;
@@ -35,14 +21,6 @@ body{
     display: block;
 }
 
-.LogIn{
-    padding: 2em;
-    width: 20em;
-    min-height: 20em;
-    margin: auto;
-    background-color: transparent;
-    float: right;
-}
 
 #wrongPassword{
     color: red;
@@ -100,35 +78,56 @@ body{
 
 /*ProductDetails */
 
-.productTextDetails{
+#productTextDetails{
     font-size: 4em;
 }
 
-.descriptionDetails{
-    font-size: 1em;
+#ownerDetails{
+    display: inline;
+    padding-right: 1.5em;
 }
-.endDateDetails{
+
+#startDateDetails{
+    display: inline;
+}
+
+#descriptionDetails{
+    font-size: 1em;
+    padding-top: 1em;
+}
+#endDateDetails{
     margin-top: 1em;
     background-color: #EB6688;
     padding: 0.5em;
     text-align: center;
 }
-.highestBidDetails{
+
+#lnkAddBid{
     background-color: #EB6688;
     padding: 0.5em;
     text-align: center;
 }
-.buyNowPriceDetails{
+
+#highestBidDetails{
+    background-color: #EB6688;
+    padding: 0.5em;
+    text-align: center;
+}
+#buyNowPriceDetails{
     background-color: #B56AA3;
     padding: 0.5em;
     text-align: center;
 }
 
-.startPriceDetails{
+#startPriceDetails{
     background-color: #EB6688;
     padding: 0.5em;
     text-align: center;
 }
+
+
+/*productDetails end*/
+
 
 /*UserProfile*/
 
@@ -141,11 +140,38 @@ body{
     text-align: right;
 }
 
-
 /*UserProfile End*/
 
 
-/*productDetails end*/
+/*User profile Product list*/
+
+#ownerProduct{
+
+}
+#ownerProductImage{
+
+}
+
+#ownerProductTitle{
+
+}
+
+#ownerProductDescription{}
+#ownerProductStartDate{}
+#ownerProductEndDate{}
+#ownerProductTotalBids{}
+#ownerProductHighestBid{}
+#ownerProductBuyNowPrice{}
+#btnEditProduct{}
+#btndeleteProduct{}
+
+
+
+/*User profile Product list END*/
+
+
+
+
 
 
 

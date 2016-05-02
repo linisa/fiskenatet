@@ -11,6 +11,7 @@ spring:
     url: jdbc:mysql://localhost/fiskenatet?useSSL=false
     username: root
     password: mysql
+
   jackson:
     serialization:
       fail-on-empty-beans: false

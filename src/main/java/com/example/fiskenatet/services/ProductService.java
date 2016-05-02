@@ -35,7 +35,6 @@ public class ProductService {
         return (List<ProductModel>) productRepository.findProductsByCategory(category);
     }
 
-
     // hämta en specifik produkt
     public ProductModel getSelectedProduct(Long id){
         return productRepository.getOne(id);
