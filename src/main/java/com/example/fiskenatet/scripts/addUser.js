@@ -16,17 +16,19 @@ $(document).ready(function () {
             data: formToJSON(),
             success: function (data, textStatus, jgXHR) {
                 console.log("GREAT SUCCESS!");
-                location.href="../webcontent/index.html"
+                moveMe();
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("send Error " +textStatus + "  " + errorThrown);
+            },
+            complete: function (jgXHR, textStatus, errorThrown) {
+                console.log("GREAT COMPLETE!");
+                moveMe();
             }
         })
     }
-
     function formToJSON() {
         console.log("i form to json");
-        
         var product = JSON.stringify({
             "firstName": $('#tfFirstName').val(),
             "lastName": $('#tfLastName').val(),
@@ -38,5 +40,11 @@ $(document).ready(function () {
         });
         console.log(product);
         return product;
+    }
+
+    function moveMe() {
+        console.log("i move me");
+        location.href = "../webcontent/index.html"
+
     }
 });

@@ -2,6 +2,7 @@ package com.example.fiskenatet.controllers;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.fiskenatet.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,5 @@ public class ProductController {
     public ResponseEntity<ArrayList<ProductModel>>getProductsByCategory(@PathVariable String category) {
         return new ResponseEntity<ArrayList<ProductModel>>(productService.getAllProductsByCategory(category), HttpStatus.OK);
     }
-
 }
 

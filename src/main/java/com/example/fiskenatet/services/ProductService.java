@@ -1,6 +1,7 @@
 package com.example.fiskenatet.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.fiskenatet.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,6 @@ public class ProductService {
     public ArrayList<ProductModel> getAllProductsByCategory(String category) {
         return (ArrayList<ProductModel>) productRepository.findProductsByCategory(category);
     }
-
 
     // hämta en specifik produkt
     public ProductModel getSelectedProduct(Long id){
