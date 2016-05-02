@@ -29,7 +29,8 @@ public class BidService {
     /*public ArrayList<BidModel> getAllBids(){
         return (ArrayList<BidModel>) bidRepository.findAll();
 
-    }*/
+    }
+    */
 
 
 }

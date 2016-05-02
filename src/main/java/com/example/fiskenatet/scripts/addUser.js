@@ -16,6 +16,7 @@ $(document).ready(function () {
             data: formToJSON(),
             success: function (data, textStatus, jgXHR) {
                 console.log("GREAT SUCCESS!");
+                location.href="../webcontent/index.html"
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("send Error " +textStatus + "  " + errorThrown);

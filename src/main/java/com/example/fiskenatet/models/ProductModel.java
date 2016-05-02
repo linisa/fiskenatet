@@ -57,7 +57,9 @@ public class ProductModel implements Serializable{
     @Column(name = "is_sold")
     private String isSold = "no";
 
-    public ProductModel() {}
+    public ProductModel() {
+
+    }
 
     public String getIsSold() {
         return isSold;
