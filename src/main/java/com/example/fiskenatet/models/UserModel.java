@@ -13,7 +13,6 @@ import java.util.List;
 @Table(name = "users")
 public class UserModel implements Serializable {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
@@ -45,13 +44,17 @@ public class UserModel implements Serializable {
     private String mobileNumber;  //int eller String?
 
     @Column(name = "rating_as_seller")
-    private int ratingAsSeller;
+    private String ratingAsSeller;
 
     @Column(name = "rating_as_buyer")
-    private int ratingAsBuyer;
+    private String ratingAsBuyer;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public List<ProductModel> getListOfProducts() {
@@ -118,19 +121,19 @@ public class UserModel implements Serializable {
         this.mobileNumber = mobileNumber;
     }
 
-    public int getRatingAsSeller() {
+    public String getRatingAsSeller() {
         return ratingAsSeller;
     }
 
-    public void setRatingAsSeller(int ratingAsSeller) {
+    public void setRatingAsSeller(String ratingAsSeller) {
         this.ratingAsSeller = ratingAsSeller;
     }
 
-    public int getRatingAsBuyer() {
+    public String getRatingAsBuyer() {
         return ratingAsBuyer;
     }
 
-    public void setRatingAsBuyer(int ratingAsBuyer) {
+    public void setRatingAsBuyer(String ratingAsBuyer) {
         this.ratingAsBuyer = ratingAsBuyer;
     }
 }

@@ -25,15 +25,8 @@ public class BidController {
         bidService.saveBid(bidModel);
     }
 
-    // ej klar
-    /*
-    @CrossOrigin
-    @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
-    public ResponseEntity<ArrayList<BidModel>> getProductBidHistory(@PathVariable Long id) {
-        return new ResponseEntity<ArrayList<BidModel>>(bidService.getAllBidsForProduct(id), HttpStatus.OK);
-    }
-    */
 
+    // har ingen funktion men den är fin tänker Kalle :)
     @CrossOrigin
     @RequestMapping(value = "/bids", method = RequestMethod.GET)
     public ResponseEntity<ArrayList<BidModel>> getAllBids() {
