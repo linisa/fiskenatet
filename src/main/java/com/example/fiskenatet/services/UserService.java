@@ -44,12 +44,14 @@ public class UserService {
     // uppdatera specifik användare med ID
     public void updateUser(Long id, UserModel userModel) {
         UserModel userToUpdate = userRepository.getOne(id);
+
         userToUpdate.setFirstName(userModel.getFirstName());
         userToUpdate.setLastName(userModel.getLastName());
         userToUpdate.setEmail(userModel.getEmail());
         userToUpdate.setMobileNumber(userModel.getMobileNumber());
         userToUpdate.setPassword(userModel.getPassword());
         userRepository.saveAndFlush(userToUpdate);
+
     }
 
 

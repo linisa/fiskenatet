@@ -26,10 +26,11 @@ public class BidService {
     }
 
     // hämtar alla buden
-    public ArrayList<BidModel> getAllBids(){
+    /*public ArrayList<BidModel> getAllBids(){
         return (ArrayList<BidModel>) bidRepository.findAll();
 
     }
+    */
 
 
 }
