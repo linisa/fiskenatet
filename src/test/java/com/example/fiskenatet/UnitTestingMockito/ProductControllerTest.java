@@ -33,46 +33,53 @@ public class ProductControllerTest {
     @Mock
     private ProductRepository productRepository;
 
-    private static final ProductModel torsk = new ProductBuilder().id(1L).title("Torsk").description("En god fisk").category("Fiskar").build();
-    private static final ProductModel pingvin = new ProductBuilder().id(2L).title("Pingu").description("Svartvit fågel").category("Fåglar").build();
+    private static final Long ID_1 = 1L;
+    private static final Long ID_2 = 2L;
+    private static final String TITLE_1 = "Torsk";
+    private static final String TITLE_2 = "Blåval";
+    private static final String CATEGORY_1 = "Fiskar";
+    private static final String CATEGORY_2 = "Valar";
+
+    private static final ProductModel fish1 = new ProductBuilder().id(ID_1).title(TITLE_1).category(CATEGORY_1).build();
+    private static final ProductModel fish2 = new ProductBuilder().id(ID_2).title(TITLE_2).category(CATEGORY_2).build();
 
     @Test
     public void testAddProduct(){
-        productController.createProduct(torsk);
-        verify(productService).saveProduct(torsk);
+        productController.createProduct(fish1);
+        verify(productService).saveProduct(fish1);
     }
     @Test
     public void testDeleteProduct(){
-        productController.deleteProduct(2L);
-        verify(productService).deleteProduct(2L);
+        productController.deleteProduct(ID_2);
+        verify(productService).deleteProduct(ID_2);
     }
     @Test
     public void testUpdateProduct(){
-        productController.updateProduct(2L, pingvin);
-        verify(productService).updateProduct(2L, pingvin);
+        productController.updateProduct(ID_2, fish2);
+        verify(productService).updateProduct(ID_2, fish2);
     }
     @Test
     public void testGetAllProducts(){
-        ArrayList<ProductModel> listan = new ArrayList<ProductModel>();
-        listan.add(torsk);
-        listan.add(pingvin);
-        ResponseEntity respons = new ResponseEntity<ArrayList<ProductModel>>(listan, HttpStatus.OK);
-        given(productService.getAllProducts()).willReturn(Arrays.asList(torsk, pingvin));
+        ArrayList<ProductModel> productList = new ArrayList<ProductModel>();
+        productList.add(fish1);
+        productList.add(fish2);
+        ResponseEntity respons = new ResponseEntity<ArrayList<ProductModel>>(productList, HttpStatus.OK);
+        given(productService.getAllProducts()).willReturn(Arrays.asList(fish1, fish2));
         assertThat(productController.getAllProducts()).isEqualTo(respons);
     }
     @Test
     public void testGetSelectedProduct(){
-        given(productService.getSelectedProduct(1L)).willReturn(torsk);
-        ResponseEntity respons= new ResponseEntity<ProductModel>(torsk, HttpStatus.OK);
-        assertThat(productController.getSelectedProduct(1L)).isEqualTo(respons);
+        given(productService.getSelectedProduct(ID_1)).willReturn(fish1);
+        ResponseEntity respons= new ResponseEntity<ProductModel>(fish1, HttpStatus.OK);
+        assertThat(productController.getSelectedProduct(ID_1)).isEqualTo(respons);
     }
     @Test
     public void testGetProductByCategory(){
-        ArrayList<ProductModel> listan = new ArrayList<ProductModel>();
-        listan.add(pingvin);
-        ResponseEntity respons = new ResponseEntity<ArrayList<ProductModel>>(listan, HttpStatus.OK);
-        given(productService.getAllProductsByCategory("Fåglar")).willReturn(Arrays.asList(pingvin));
-        assertThat(productController.getProductsByCategory("Fåglar")).isEqualTo(respons);
+        ArrayList<ProductModel> productList = new ArrayList<ProductModel>();
+        productList.add(fish2);
+        ResponseEntity responsMessage = new ResponseEntity<ArrayList<ProductModel>>(productList, HttpStatus.OK);
+        given(productService.getAllProductsByCategory(CATEGORY_2)).willReturn(Arrays.asList(fish2));
+        assertThat(productController.getProductsByCategory(CATEGORY_2)).isEqualTo(responsMessage);
     }
 
 }

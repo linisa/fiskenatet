@@ -21,7 +21,7 @@ import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
@@ -37,40 +37,42 @@ public class UserControllerTest {
     @Mock
     private UserService userService;
 
-    private static final String USER_NAME = "Berra";
-    private static final String FIRST_NAME = "Bert";
-    private static final Long USER_ID = 1L;
+    private static final String USER_NAME_1 = "Berra";
+    private static final String FIRST_NAME_1 = "Bert";
+    private static final Long USER_ID_1 = 1L;
+    private static final String USER_NAME_2 = "Acmilan";
+    private static final String FIRST_NAME_2 = "Kalle";
+    private static final Long USER_ID_2 = 2L;
 
-    private static final UserModel user1 = new UserBuilder().id(USER_ID).firstName(FIRST_NAME).userName(USER_NAME).build();
-    private static final UserModel user2 = new UserBuilder().id(2L).firstName("Kalle").userName("Acmilan").build();
-    private static final UserModel user3 = new UserBuilder().build();
+    private static final UserModel user1 = new UserBuilder().id(USER_ID_1).firstName(FIRST_NAME_1).userName(USER_NAME_1).build();
+    private static final UserModel user2 = new UserBuilder().id(USER_ID_2).firstName(FIRST_NAME_2).userName(USER_NAME_2).build();
 
     @Test
     public void testFindAllUsers(){
-        ArrayList<UserModel> listan = new ArrayList<UserModel>();
-        listan.add(user1);
-        listan.add(user2);
-        ResponseEntity respons= new ResponseEntity<ArrayList<UserModel>>(listan, HttpStatus.OK);
+        ArrayList<UserModel> userList = new ArrayList<UserModel>();
+        userList.add(user1);
+        userList.add(user2);
+        ResponseEntity responsMessage = new ResponseEntity<ArrayList<UserModel>>(userList, HttpStatus.OK);
         given(userService.getAllUsers()).willReturn(Arrays.asList(user1, user2));
-        assertThat(userController.getAllUsers()).isEqualTo(respons);
+        assertThat(userController.getAllUsers()).isEqualTo(responsMessage);
     }
 
     @Test
     public void testUpdateUser() {
-        userController.updateUser(2L, user1);
-        verify(userService).updateUser(2L, user1);
+        userController.updateUser(USER_ID_2, user1);
+        verify(userService).updateUser(USER_ID_2, user1);
     }
 
     @Test
     public void testGetUser(){
-        given(userService.getUser(USER_ID)).willReturn(user1);
-        ResponseEntity respons= new ResponseEntity<UserModel>(user1, HttpStatus.OK);
-        assertThat(userController.getUser(USER_ID)).isEqualTo(respons);
+        given(userService.getUser(USER_ID_1)).willReturn(user1);
+        ResponseEntity responsMessage = new ResponseEntity<UserModel>(user1, HttpStatus.OK);
+        assertThat(userController.getUser(USER_ID_1)).isEqualTo(responsMessage);
     }
     @Test
     public void testDeleteUser() {
-        userController.deleteUser(USER_ID);
-        verify(userService).deleteUser(USER_ID);
+        userController.deleteUser(USER_ID_1);
+        verify(userService).deleteUser(USER_ID_1);
 
     }
     @Test
@@ -80,8 +82,8 @@ public class UserControllerTest {
     }
     @Test
     public void testGetUserByUsername(){
-        given(userService.getUserByUserName("Berra")).willReturn(user1);
-        ResponseEntity respons= new ResponseEntity<UserModel>(user1, HttpStatus.OK);
-        assertThat(userController.getUserByUserName("Berra")).isEqualTo(respons);
+        given(userService.getUserByUserName(USER_NAME_1)).willReturn(user1);
+        ResponseEntity responsMessage = new ResponseEntity<UserModel>(user1, HttpStatus.OK);
+        assertThat(userController.getUserByUserName(USER_NAME_1)).isEqualTo(responsMessage);
     }
 }

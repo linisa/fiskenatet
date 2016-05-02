@@ -22,12 +22,12 @@ public class BidControllerTest {
     @Mock
     private BidService bidService;
 
-    private static final BidModel bid1 = new BidBuilder().build();
-    private static final BidModel bid2 = new BidBuilder().build();
+    private static final BidModel car1 = new BidBuilder().build();
+    private static final BidModel car2 = new BidBuilder().build();
 
     @Test
     public void testCreateBid(){
-        bidController.createBid(bid1);
-        verify(bidService).saveBid(bid1);
+        bidController.createBid(car1);
+        verify(bidService).saveBid(car2);
     }
 }
