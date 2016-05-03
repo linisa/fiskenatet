@@ -31,14 +31,14 @@ public class UserController {
     @CrossOrigin
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public ResponseEntity<UserModel> getUser(@PathVariable Long id) {
-        return new ResponseEntity<UserModel>(userService.getUser(id), HttpStatus.OK);
+        return new ResponseEntity<UserModel>(userService.findUser(id), HttpStatus.OK);
     }
 
     // hämta specifik user med USERNAME
     @CrossOrigin
     @RequestMapping(value = "/username/{userName}", method = RequestMethod.GET)
     public ResponseEntity<UserModel>getUserByUserName(@PathVariable String userName) {
-        return new ResponseEntity<UserModel>(userService.getUserByUserName(userName), HttpStatus.OK);
+        return new ResponseEntity<UserModel>(userService.findUserByUserName(userName), HttpStatus.OK);
     }
 
 
@@ -46,25 +46,44 @@ public class UserController {
     @CrossOrigin
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ResponseEntity<List<UserModel>> getAllUsers() {
-        return new ResponseEntity<List<UserModel>>(userService.getAllUsers(), HttpStatus.OK);
+        return new ResponseEntity<List<UserModel>>(userService.findAllUsers(), HttpStatus.OK);
     }
 
     // delete specifik user
     @CrossOrigin
     @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+        userService.deleteUserInDatabase(id);
     }
 
     // uppdatera användare - EJ KLAR
     @CrossOrigin
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
     public void updateUser(@PathVariable Long id, @RequestBody UserModel userModel){
-        userService.updateUser(id, userModel);
+        userService.updateUserInDatabase(id, userModel);
     }
+
     @CrossOrigin
-    @RequestMapping(value = "/users/rating/{id}", method = RequestMethod.PUT)
-    public void rateAUser(@PathVariable Long id, @RequestBody UserModel userModel){
-        userService.rateAUser(id, userModel);
+    @RequestMapping(value = "/users/setbuyerrating/{id}", method = RequestMethod.PUT)
+    public void rateABuyer(@PathVariable Long id, @RequestBody UserModel userModel){
+        userService.saveBuyerRating(id, userModel);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/users/setsellerrating/{id}", method = RequestMethod.PUT)
+    public void rateASeller(@PathVariable Long id, @RequestBody UserModel userModel){
+        userService.saveSellerRating(id, userModel);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/users/getbuyerrating/{id}", method = RequestMethod.GET)
+    public String getBuyerRate(@PathVariable Long id){
+        return (userService.findBuyerRating(id));
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/users/getsellerrating/{id}", method = RequestMethod.GET)
+    public String getSellerRate(@PathVariable Long id){
+        return (userService.findSellerRating(id));
     }
 }

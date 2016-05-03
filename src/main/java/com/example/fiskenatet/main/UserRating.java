@@ -10,39 +10,46 @@ import static jdk.nashorn.internal.objects.NativeString.substring;
  */
 public class UserRating {
 
-    /**
-     * Funktion för att få ut medelbetyget hos en användare, antingen som säljare
-     * eller som köpare. Input till funktionen är en sträng bestående av siffror
-     * och som retur värde får man tillbaka medelvärdet av strängen.
-     * @param currentRating = skicka in userModel.getRatingSeller eller Buyer!
-     * @return tillbaka får du en sträng som är snittvärdet (betyg).
-     */
-    public String getUserAverageRating(String currentRating) {
-        int totalRatingPoints = 0;
-        String selectedNumber;
-        String averageRating="";
-        if(currentRating.equals("No rating yet")) {
-            averageRating = "No rating yet";
-            return averageRating;
-        } else {
-            for (int i = 0; i < currentRating.length(); i++) {
-                selectedNumber = currentRating.substring(i, i + 1);
-                totalRatingPoints += Integer.parseInt(selectedNumber);
-            }
-            averageRating = Integer.toString(totalRatingPoints / currentRating.length());
-            return averageRating;
-        }
+    // Från backend till frontend. Hämtar betyg från databasen och räknar
+    // snittbetyget och retunerar detta som en string.
+    public String getUserAverageRating(String ratingStringFromDB) {
 
+        double totalRatingPoints = 0;
+        String selectedNumber;
+        double doubleAverageRating;
+        String stringAverageRating="";
+        if(ratingStringFromDB.equals("No rating yet")) {
+            stringAverageRating = "No rating yet";
+            return stringAverageRating;
+        } else {
+            for (int i = 0; i < ratingStringFromDB.length(); i++) {
+                selectedNumber = ratingStringFromDB.substring(i, i + 1);
+                totalRatingPoints += Double.parseDouble(selectedNumber);
+            }
+            doubleAverageRating = (totalRatingPoints / ratingStringFromDB.length());
+            stringAverageRating = Double.toString(Math.round(doubleAverageRating));
+            stringAverageRating = stringAverageRating.substring(0, 1);
+            return stringAverageRating;
+        }
     }
 
-    public void setUserRatingForDatabase(UserModel userModel, String oldRating, String newRating) {
+
+    // Input från frontend till backend. Lägger på det nya betyget på dom andra.
+    public void setBuyerRatingForDatabase(UserModel userModel, String oldRating, String newRating) {
         if(oldRating.equals("No rating yet")){
                 userModel.setRatingAsBuyer(newRating);
         }else {
             userModel.setRatingAsBuyer(oldRating + newRating);
         }
+    }
 
-
+    // Input från frontend till backend. Lägger på det nya betyget på dom andra.
+    public void setSellerRatingForDatabase(UserModel userModel, String oldRating, String newRating) {
+        if(oldRating.equals("No rating yet")){
+            userModel.setRatingAsSeller(newRating);
+        }else {
+            userModel.setRatingAsSeller(oldRating + newRating);
+        }
     }
 
 }

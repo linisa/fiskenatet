@@ -51,12 +51,12 @@ public class ProductControllerTest {
     @Test
     public void testDeleteProduct(){
         productController.deleteProduct(ID_2);
-        verify(productService).deleteProduct(ID_2);
+        verify(productService).deleteProductInDatabase(ID_2);
     }
     @Test
     public void testUpdateProduct(){
         productController.updateProduct(ID_2, fish2);
-        verify(productService).updateProduct(ID_2, fish2);
+        verify(productService).updateProductInDatabase(ID_2, fish2);
     }
     @Test
     public void testGetAllProducts(){
@@ -64,12 +64,12 @@ public class ProductControllerTest {
         productList.add(fish1);
         productList.add(fish2);
         ResponseEntity respons = new ResponseEntity<ArrayList<ProductModel>>(productList, HttpStatus.OK);
-        given(productService.getAllProducts()).willReturn(Arrays.asList(fish1, fish2));
+        given(productService.findAllProducts()).willReturn(Arrays.asList(fish1, fish2));
         assertThat(productController.getAllProducts()).isEqualTo(respons);
     }
     @Test
     public void testGetSelectedProduct(){
-        given(productService.getSelectedProduct(ID_1)).willReturn(fish1);
+        given(productService.findSelectedProduct(ID_1)).willReturn(fish1);
         ResponseEntity respons= new ResponseEntity<ProductModel>(fish1, HttpStatus.OK);
         assertThat(productController.getSelectedProduct(ID_1)).isEqualTo(respons);
     }
@@ -78,7 +78,7 @@ public class ProductControllerTest {
         ArrayList<ProductModel> productList = new ArrayList<ProductModel>();
         productList.add(fish2);
         ResponseEntity responsMessage = new ResponseEntity<ArrayList<ProductModel>>(productList, HttpStatus.OK);
-        given(productService.getAllProductsByCategory(CATEGORY_2)).willReturn(Arrays.asList(fish2));
+        given(productService.findAllProductsByCategory(CATEGORY_2)).willReturn(Arrays.asList(fish2));
         assertThat(productController.getProductsByCategory(CATEGORY_2)).isEqualTo(responsMessage);
     }
 

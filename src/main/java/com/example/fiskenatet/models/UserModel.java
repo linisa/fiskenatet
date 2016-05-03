@@ -44,9 +44,11 @@ public class UserModel implements Serializable {
     @Column(name = "mobile_number")
     private String mobileNumber;  //int eller String?
 
+    @Lob
     @Column(name = "rating_as_seller")
     private String ratingAsSeller = "No rating yet";
 
+    @Lob
     @Column(name = "rating_as_buyer")
     private String ratingAsBuyer = "No rating yet";
 

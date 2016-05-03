@@ -4,6 +4,7 @@ import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
 import com.example.fiskenatet.repositories.BidRepository;
+import com.example.fiskenatet.repositories.ProductRepository;
 import com.example.fiskenatet.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;

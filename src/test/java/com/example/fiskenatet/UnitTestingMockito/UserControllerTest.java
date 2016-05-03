@@ -53,26 +53,26 @@ public class UserControllerTest {
         userList.add(user1);
         userList.add(user2);
         ResponseEntity responsMessage = new ResponseEntity<ArrayList<UserModel>>(userList, HttpStatus.OK);
-        given(userService.getAllUsers()).willReturn(Arrays.asList(user1, user2));
+        given(userService.findAllUsers()).willReturn(Arrays.asList(user1, user2));
         assertThat(userController.getAllUsers()).isEqualTo(responsMessage);
     }
 
     @Test
     public void testUpdateUser() {
         userController.updateUser(USER_ID_2, user1);
-        verify(userService).updateUser(USER_ID_2, user1);
+        verify(userService).updateUserInDatabase(USER_ID_2, user1);
     }
 
     @Test
     public void testGetUser(){
-        given(userService.getUser(USER_ID_1)).willReturn(user1);
+        given(userService.findUser(USER_ID_1)).willReturn(user1);
         ResponseEntity responsMessage = new ResponseEntity<UserModel>(user1, HttpStatus.OK);
         assertThat(userController.getUser(USER_ID_1)).isEqualTo(responsMessage);
     }
     @Test
     public void testDeleteUser() {
         userController.deleteUser(USER_ID_1);
-        verify(userService).deleteUser(USER_ID_1);
+        verify(userService).deleteUserInDatabase(USER_ID_1);
 
     }
     @Test
@@ -82,7 +82,7 @@ public class UserControllerTest {
     }
     @Test
     public void testGetUserByUsername(){
-        given(userService.getUserByUserName(USER_NAME_1)).willReturn(user1);
+        given(userService.findUserByUserName(USER_NAME_1)).willReturn(user1);
         ResponseEntity responsMessage = new ResponseEntity<UserModel>(user1, HttpStatus.OK);
         assertThat(userController.getUserByUserName(USER_NAME_1)).isEqualTo(responsMessage);
     }

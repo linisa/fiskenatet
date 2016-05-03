@@ -23,8 +23,7 @@ $(document).ready(function(){
                 updateForm();
             },
             error: function(jgXHR, textStatus, errorThrown) {
-                //alert('getCustomer error: ' + textStatus);
-                console.log("getCustomer error: " + textStatus);
+                console.log("getUser error: " + textStatus);
             }
         });
     }
@@ -48,11 +47,9 @@ $(document).ready(function(){
             success: function (data, textStatus, jgXHR) {
                 console.log("success");
                 location.href="../webcontent/userProfile.html";
-                //alert('Customer account created successfully');
             },
             error: function(jgXHR, textStatus, errorThrown) {
-                alert('addCustomer error: ' + textStatus);
-                console.log("addCustomer error: " + textStatus);
+                console.log("editUser error: " + textStatus);
             }
             
         });
@@ -61,16 +58,15 @@ $(document).ready(function(){
     function formToJSON() {
         console.log("i form to json");
 
-        var product = JSON.stringify({
+        var user = JSON.stringify({
             "firstName": $('#tfFirstName').val(),
             "lastName": $('#tfLastName').val(),
             "userName": $('#tfUserName').val(),
             "password": $('#tfPassword').val(),
             "email": $('#tfEmail').val(),
             "mobileNumber": $('#tfMobileNumber').val()
-            /*"startDate": startDate*/
         });
-        console.log(product);
-        return product;
+        console.log(user);
+        return user;
     }
 });

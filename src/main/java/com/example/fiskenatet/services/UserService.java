@@ -22,28 +22,28 @@ public class UserService {
     }
 
     // hämta specifik användare med ID
-    public UserModel getUser(Long id) {
+    public UserModel findUser(Long id) {
         return (UserModel) userRepository.getOne(id);
     }
 
     // hämta specifik användare med USERNAME
-    public UserModel getUserByUserName(String userName) {
+    public UserModel findUserByUserName(String userName) {
         return (UserModel) userRepository.findUserByUserName(userName);
     }
 
     // hämta alla användare
-    public List<UserModel> getAllUsers() {
+    public List<UserModel> findAllUsers() {
         return (List<UserModel>) userRepository.findAll();
 
     }
 
     // delete användar med ID
-    public void deleteUser(Long id) {
+    public void deleteUserInDatabase(Long id) {
         userRepository.delete(id);
     }
 
     // uppdatera specifik användare med ID
-    public void updateUser(Long id, UserModel userModel) {
+    public void updateUserInDatabase(Long id, UserModel userModel) {
         UserModel userToUpdate = userRepository.getOne(id);
 
         userToUpdate.setFirstName(userModel.getFirstName());
@@ -53,13 +53,40 @@ public class UserService {
         userToUpdate.setPassword(userModel.getPassword());
         userRepository.saveAndFlush(userToUpdate);
     }
-    public void rateAUser(Long id, UserModel userModel){
+
+
+    public void saveBuyerRating(Long id, UserModel userModel){
         UserModel userToUpdate = userRepository.getOne(id);
         String oldRating = userToUpdate.getRatingAsBuyer();   // gamla betyget
         String newRateToAdd = userModel.getRatingAsBuyer();  // nya betyget
         UserRating userRating = new UserRating();
-        userRating.setUserRatingForDatabase(userToUpdate, oldRating, newRateToAdd);
+        userRating.setBuyerRatingForDatabase(userToUpdate, oldRating, newRateToAdd);
         userRepository.saveAndFlush(userToUpdate);
+    }
+
+    public void saveSellerRating(Long id, UserModel userModel){
+        UserModel userToUpdate = userRepository.getOne(id);
+        String oldRating = userToUpdate.getRatingAsSeller();   // gamla betyget
+        String newRateToAdd = userModel.getRatingAsSeller();  // nya betyget
+        UserRating userRating = new UserRating();
+        userRating.setSellerRatingForDatabase(userToUpdate, oldRating, newRateToAdd);
+        userRepository.saveAndFlush(userToUpdate);
+    }
+
+    public String findBuyerRating(Long id){
+        UserModel userModel = userRepository.getOne(id);
+        String buyersFullRating = userModel.getRatingAsBuyer();
+        UserRating userRating = new UserRating();
+        String averageRating = userRating.getUserAverageRating(buyersFullRating);
+        return averageRating;
+    }
+
+    public String findSellerRating(Long id){
+        UserModel userModel = userRepository.getOne(id);
+        String sellersFullRating = userModel.getRatingAsSeller();
+        UserRating userRating = new UserRating();
+        String averageRating = userRating.getUserAverageRating(sellersFullRating);
+        return averageRating;
     }
 
 
