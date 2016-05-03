@@ -5,16 +5,41 @@ $(document).ready(function () {
     var currentUserId = sessionStorage.getItem('currentUser');
     var currentProductId = sessionStorage.getItem('currentProductId');
     var owner;
+    var listOfBids;
+
     getProductDetails();
 
     var currentProduct;
 
 
+    function getHighestBid() {
+        listOfBids = currentProduct['listOfBids'];
+        if(listOfBids.length != 0){
+           listOfBids.sort(function (a, b) {
+                return b.amount - a.amount;
+            });
+
+            document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br>" +  listOfBids[0].amount + " kr";
+        }else{
+            document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br>" +  currentProduct.startPrice + " kr";
+        }
+    }
+
     $('#lnkAddBid').click(function () {
         console.log("klick!");
-
-        addBid();
-
+        var startPrice = currentProduct.startPrice;
+        var newBid = document.getElementById('addBidDetails').value;
+        console.log(newBid);
+        try{
+            var oldBid = listOfBids[0].amount;
+        }catch(Exception){
+            oldBid = startPrice
+        }
+        if(newBid > oldBid){
+            addBid();
+        }else{
+            alert("För lågt bud");
+        }
 
     });
     
@@ -27,7 +52,7 @@ $(document).ready(function () {
             data: formToJSON(),
             success: function (data, textStatus, jgXHR) {
                 console.log("GREAT SUCCESS!");
-                
+                location.reload();
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("send Error " +textStatus + "  " + errorThrown);
@@ -40,7 +65,6 @@ $(document).ready(function () {
 
         var date = new Date();
         var product = JSON.stringify({
-
 
             "currentProduct": {'id' : currentProductId},
             "bidder": {'id' : currentUserId},
@@ -63,8 +87,10 @@ $(document).ready(function () {
 
             if(sessionStorage.getItem('currentUser') == owner.id){
                 document.getElementById("lnkAddBid").style.display = "none";
+                document.getElementById("addBidDetails").style.display = "none";
             }else{
                 document.getElementById("lnkAddBid").style.display = "inline-block";
+                document.getElementById("addBidDetails").style.display = "inline-block";
             }
 
             document.getElementById("lnkRegUser").style.display = "none";
@@ -73,6 +99,7 @@ $(document).ready(function () {
             document.getElementById("lnkProfile").style.display = "none";
             document.getElementById("lnkLogOut").style.display = "none";
             document.getElementById("lnkAddBid").style.display = "none";
+            document.getElementById("addBidDetails").style.display = "none";
 
             document.getElementById("lnkRegUser").style.display = "inline-block";
         }
@@ -95,7 +122,7 @@ $(document).ready(function () {
             success: function (data, textStatus, jgXHR) {
                 currentProduct = data;
                 getProductOwner();
-
+                getHighestBid();
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("getAllProducts error: " + textStatus);
@@ -129,9 +156,8 @@ $(document).ready(function () {
         document.getElementById('descriptionDetails').innerHTML = currentProduct.description;
         document.getElementById('endDateDetails').innerHTML = "Slutdatum: <br> " + currentProduct.endDate;
         document.getElementById('lnkAddBid').innerHTML = "Lägg ett bud";
-        document.getElementById('startPriceDetails').innerHTML = "Utropspris: <br> " + currentProduct.startPrice;
-        document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br> " + currentProduct.highestBid;
-        document.getElementById('buyNowPriceDetails').innerHTML = "Köp nu: <br> " + currentProduct.buyNowPrice;
+        document.getElementById('startPriceDetails').innerHTML = "Utropspris: <br> " + currentProduct.startPrice + " kr";
+        document.getElementById('buyNowPriceDetails').innerHTML = "Köp nu: <br> " + currentProduct.buyNowPrice + " kr";
     }
     
 });

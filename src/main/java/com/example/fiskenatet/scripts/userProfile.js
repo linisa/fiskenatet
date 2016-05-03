@@ -16,18 +16,17 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#lnkDeleteProduct", function () {
-        checkAuctionForBids();
+        var currentProductId = $(this).data("value");
+        getProductById(currentProductId);
     });
 
     $(document).on("click", "#btnDeleteUser", function () {
         checkUserForActiveAuctions();
     });
 
-    function checkAuctionForBids(){
-        var currentProductId = $(this).data("value");
-        var currentProduct = getProductById(currentProductId);
+    function checkAuctionForBids(currentProduct){
         if(currentProduct['listOfBids'].length == 0){
-            deleteProduct(currentProductId);
+            deleteProduct(currentProduct.id);
         }else{
             alert("Misslyckades, Man kan inte ta bort en annons någon budat på!");
         }
@@ -39,7 +38,7 @@ $(document).ready(function () {
             alert("Det går inte att ta bort ett konto med aktiva auktioner!");
         }
     }
-    
+
     function deleteUser() {
         $.ajax({
             type: 'DELETE',
@@ -48,6 +47,17 @@ $(document).ready(function () {
             success: function (data, textStatus, jgXHR) {
                 sessionStorage.removeItem('currentUser');
                 location.href="../webcontent/index.html";
+            }
+        });
+    }
+
+    function getProductById(currentProductId) {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/products/' + currentProductId,
+            success: function (data, textStatus, jgXHR) {
+                checkAuctionForBids(data);
             }
         });
     }
@@ -63,19 +73,6 @@ $(document).ready(function () {
             }
         });
     }
-    function getProductById(currentProductId) {
-        $.ajax({
-            type: 'GET',
-            contentType: 'application/json',
-            url: rootURL + '/products/' + currentProductId,
-            success: function (data, textStatus, jgXHR) {
-                currentUser = data;
-                populateUserInfo();
-                populateUserProducts();
-            }
-        });
-    }
-
 
     function getUserById() {
         $.ajax({
