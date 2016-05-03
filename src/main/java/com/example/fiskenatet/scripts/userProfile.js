@@ -11,26 +11,36 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#lnkEditProduct", function () {
+        console.log("click, i editProduct");
+        var currentProductID = $(this).data("value");
 
-        //TODO: MAKE FUNCTION
+        getProductById(currentProductID, function(currentProduct){
+            if(currentProduct['listOfBids'].length == 0){
+                sessionStorage.setItem("productToEdit", currentProductID);
+            }else{
+                alert("Misslyckades, Man kan inte uppdatera en annons någon budat på!");
+            }
+        });
     });
 
     $(document).on("click", "#lnkDeleteProduct", function () {
-        var currentProductId = $(this).data("value");
-        getProductById(currentProductId);
+        console.log("click, i deleteproduct");
+        var currentProductID = $(this).data("value");
+
+        getProductById(currentProductID, function(currentProduct){
+            if(currentProduct['listOfBids'].length == 0){
+                deleteProduct(currentProduct.id);
+            }else{
+                alert("Misslyckades, Man kan inte ta bort en annons någon budat på!");
+            }
+        });
+
     });
 
     $(document).on("click", "#btnDeleteUser", function () {
         checkUserForActiveAuctions();
     });
 
-    function checkAuctionForBids(currentProduct){
-        if(currentProduct['listOfBids'].length == 0){
-            deleteProduct(currentProduct.id);
-        }else{
-            alert("Misslyckades, Man kan inte ta bort en annons någon budat på!");
-        }
-    }
     function checkUserForActiveAuctions() {
         if(currentUser['listOfProducts'].length == 0){
             deleteUser();
@@ -51,13 +61,13 @@ $(document).ready(function () {
         });
     }
 
-    function getProductById(currentProductId) {
+    function getProductById(currentProductId, callBack) {
         $.ajax({
             type: 'GET',
             contentType: 'application/json',
             url: rootURL + '/products/' + currentProductId,
             success: function (data, textStatus, jgXHR) {
-                checkAuctionForBids(data);
+                callBack(data);
             }
         });
     }
@@ -68,6 +78,7 @@ $(document).ready(function () {
             contentType: 'application/json',
             url: rootURL + '/products/' + currentProductId,
             success: function (data, textStatus, jgXHR) {
+                console.log("deleteProduct: " + data);
                 sessionStorage.removeItem('currentProductId');
                 location.reload();
             }
@@ -81,7 +92,6 @@ $(document).ready(function () {
             url: rootURL + '/users/' + currentUserID,
             success: function (data, textStatus, jgXHR) {
                 currentUser = data;
-                console.log(data);
                 populateUserInfo();
                 populateUserProducts();
             }
@@ -121,8 +131,6 @@ $(document).ready(function () {
            productString+='</div><div class="col-sm-6">';
            productString+='<a id="lnkDeleteProduct"href="#" data-value="'+ currentUser['listOfProducts'][i].id +'">Ta bort annons</a>';
            productString+='</div></div></div>';
-
-               
        }
         $products.append(productString);
     }
