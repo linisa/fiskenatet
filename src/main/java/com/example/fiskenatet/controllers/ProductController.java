@@ -30,14 +30,14 @@ public class ProductController {
     @CrossOrigin
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     public ResponseEntity<List<ProductModel>> getAllProducts() {
-        return new ResponseEntity<List<ProductModel>>(productService.getAllProducts(), HttpStatus.OK);
+        return new ResponseEntity<List<ProductModel>>(productService.findAllProducts(), HttpStatus.OK);
     }
 
     // delete en produkt
     @CrossOrigin
     @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
     public void deleteProduct(@PathVariable Long id){
-        productService.deleteProduct(id);
+        productService.deleteProductInDatabase(id);
     }
 
 
@@ -45,21 +45,28 @@ public class ProductController {
     @CrossOrigin
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
     public void updateProduct(@PathVariable Long id, @RequestBody ProductModel productModel){
-        productService.updateProduct(id, productModel);
+        productService.updateProductInDatabase(id, productModel);
+    }
+
+    // Sätt produkt till såld
+    @CrossOrigin
+    @RequestMapping(value = "/products/issold/{id}", method = RequestMethod.PUT)
+    public void updateProductWhenSold(@PathVariable Long id){
+        productService.updateProductWhenSold(id);
     }
 
     // hämtar en specifik produkt
     @CrossOrigin
     @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
     public ResponseEntity <ProductModel> getSelectedProduct(@PathVariable Long id){
-        return new ResponseEntity<ProductModel>(productService.getSelectedProduct(id), HttpStatus.OK);
+        return new ResponseEntity<ProductModel>(productService.findSelectedProduct(id), HttpStatus.OK);
     }
 
     // hämtar alla produkter från en vald kategori
     @CrossOrigin
     @RequestMapping(value = "/products/category/{category}", method = RequestMethod.GET)
     public ResponseEntity<List<ProductModel>>getProductsByCategory(@PathVariable String category) {
-        return new ResponseEntity<List<ProductModel>>(productService.getAllProductsByCategory(category), HttpStatus.OK);
+        return new ResponseEntity<List<ProductModel>>(productService.findAllProductsByCategory(category), HttpStatus.OK);
     }
 }
 

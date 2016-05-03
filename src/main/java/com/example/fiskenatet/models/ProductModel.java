@@ -23,17 +23,16 @@ public class ProductModel implements Serializable{
     @JoinColumn(name = "owner_id")
     private UserModel owner;
 
-
     @OneToMany(mappedBy = "currentProduct", cascade = CascadeType.ALL)
     private List<BidModel> listOfBids;
 
     @Column(name = "buy_now_price")
-        private int buyNowPrice;
+    private int buyNowPrice;
 
     @Column(name = "start_price")
     private int startPrice;
 
-
+    @Lob
     @Column(name = "description")
     private String description;
 
@@ -44,8 +43,6 @@ public class ProductModel implements Serializable{
 
     @Column(name = "end_date")
     private Date endDate; //datum + tid?
-
-    //private ArrayList<BidModel> bidList;
 
     @Column(name = "highest_bid")
     private int highestBid;
