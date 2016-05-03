@@ -7,10 +7,28 @@ $(document).ready(function () {
     var owner;
     var listOfBids;
 
+
     getProductDetails();
 
     var currentProduct;
 
+    $(document).on("click", "#buyNowPriceDetails", function () {
+        alert("Swisha: " + currentProduct.buyNowPrice + " kr" + " till telefonnumret: " + owner.mobileNumber);
+        deleteProduct();
+    });
+
+    function deleteProduct() {
+        console.log("i delete product " + currentProductId);
+        $.ajax({
+            type: 'DELETE',
+            contentType: 'application/json',
+            url: rootURL + '/products/' + currentProductId,
+            success: function (data, textStatus, jgXHR) {
+                sessionStorage.removeItem('currentProductId');
+                location.href="../webcontent/index.html";
+            }
+        });
+    }
 
     function getHighestBid() {
         listOfBids = currentProduct['listOfBids'];
