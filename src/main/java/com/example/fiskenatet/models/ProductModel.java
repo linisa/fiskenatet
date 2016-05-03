@@ -33,7 +33,7 @@ public class ProductModel implements Serializable{
     @Column(name = "start_price")
     private int startPrice;
 
-
+    @Lob
     @Column(name = "description")
     private String description;
 

@@ -13,6 +13,7 @@ $(document).ready(function () {
             document.getElementById("lnkAddProduct").style.display = "inline-block";
             document.getElementById("lnkProfile").style.display = "inline-block";
             document.getElementById("lnkLogOut").style.display = "inline-block";
+            
 
             document.getElementById("lnkLogIn").style.display = "none";
             document.getElementById("lnkRegUser").style.display = "none";
@@ -20,6 +21,7 @@ $(document).ready(function () {
             document.getElementById("lnkAddProduct").style.display = "none";
             document.getElementById("lnkProfile").style.display = "none";
             document.getElementById("lnkLogOut").style.display = "none";
+            
 
             document.getElementById("lnkLogIn").style.display = "inline-block";
             document.getElementById("lnkRegUser").style.display = "inline-block";
