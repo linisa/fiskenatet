@@ -113,10 +113,20 @@ body{
     text-align: center;
 }
 
+#addBidDetails{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5em;
+    text-align: center;
+    box-shadow: inset 1px 1px;
+}
+
 #lnkAddBid{
+    width: 100%;
     background-color: #EB6688;
     padding: 0.5em;
     text-align: center;
+    color: black;
 }
 
 #highestBidDetails{

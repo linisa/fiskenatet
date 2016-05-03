@@ -2,7 +2,6 @@ $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
     var currentUserID = sessionStorage.getItem("currentUser");
     var currentUser;
-    var currentUserProducts;
 
     getUserById();
     
@@ -18,15 +17,28 @@ $(document).ready(function () {
 
     $(document).on("click", "#lnkDeleteProduct", function () {
         var currentProductId = $(this).data("value");
-        deleteProduct(currentProductId);
-
-        location.href="../webcontent/index.html";
+        getProductById(currentProductId);
     });
 
     $(document).on("click", "#btnDeleteUser", function () {
-        deleteUser()
+        checkUserForActiveAuctions();
     });
-    
+
+    function checkAuctionForBids(currentProduct){
+        if(currentProduct['listOfBids'].length == 0){
+            deleteProduct(currentProduct.id);
+        }else{
+            alert("Misslyckades, Man kan inte ta bort en annons någon budat på!");
+        }
+    }
+    function checkUserForActiveAuctions() {
+        if(currentUser['listOfProducts'].length == 0){
+            deleteUser();
+        }else{
+            alert("Det går inte att ta bort ett konto med aktiva auktioner!");
+        }
+    }
+
     function deleteUser() {
         $.ajax({
             type: 'DELETE',
@@ -35,6 +47,17 @@ $(document).ready(function () {
             success: function (data, textStatus, jgXHR) {
                 sessionStorage.removeItem('currentUser');
                 location.href="../webcontent/index.html";
+            }
+        });
+    }
+
+    function getProductById(currentProductId) {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/products/' + currentProductId,
+            success: function (data, textStatus, jgXHR) {
+                checkAuctionForBids(data);
             }
         });
     }
