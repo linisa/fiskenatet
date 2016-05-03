@@ -22,7 +22,7 @@
     <div class="nav-tabs">
         <ul class="nav nav-tabs nav-justified">
           <li><a href="${pageContext.request.contextPath}/quizPage.html">Geografi</a></li>
-          <li><a href="${pageContext.request.contextPath}/createQuestion.html">Sport</a></li>
+          <li><a href="#">Sport</a></li>
           <li><a href="#">Natur</a></li>
           <li><a href="#">Film</a></li>
           <li><a href="#">Musik</a></li>
@@ -30,7 +30,7 @@
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href=""><span class="glyphicon glyphicon-cog"></span>
             <ul class="dropdown-menu">
-              <li><a href="#">Skapa</a></li>
+              <li><a href="${pageContext.request.contextPath}/createQuestion.html">Skapa</a></li>
               <li><a href="#">Ändra</a></li>
               <li><a href="#">Ta bort</a></li>
             </ul>

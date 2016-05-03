@@ -43,28 +43,19 @@
         </ul>
     </div>
     <div class="">
-        <form:form method="POST" >
-
-            <c:forEach items="${questions}" var="questionModel">
+        <form method="POST">
+		
+            <c:forEach items="${questions}" var="questionModel" varStatus="counter">
               <div>
-              <h3>Fr√•ga :</h3>
-              <!--  <c:set var="randomAnswerArray"> ${  list.toArray(questionModel.getShuffledAnswers())} </c:set> -->
                 <h3><c:out value="${questionModel.question}"></c:out></h3>
-                <form:radiobutton path="${questionModel.userAnswer}" value="randomAnswerArray[0]" label="randomAnswerArray[0]" />
-                <form:radiobutton path="${questionModel.userAnswer}" value="randomAnswerArray[1]" label="randomAnswerArray[1]" />
-                <form:radiobutton path="${questionModel.userAnswer}" value="randomAnswerArray[2]" label="randomAnswerArray[2]" />
-
-                <form:radiobutton path="#" value="#" label="Svar 1" />
-                <form:radiobutton path="#" value="#" label="Svar 2" />
-                <form:radiobutton path="#" value="#" label="Svar 3" />
-
+                	<input type="radio" name="answer${counter.index}" value="${ questionModel.randomPosition[0]}" ><label>${questionModel.randomPosition[0]}</label><br>
+                	<input type="radio" name="answer${counter.index}" value="${ questionModel.randomPosition[1]}" ><label>${questionModel.randomPosition[1]}</label><br>
+                	<input type="radio" name="answer${counter.index}" value="${ questionModel.randomPosition[2]}" ><label>${questionModel.randomPosition[2]}</label><br>			
               </div>
             </c:forEach>
-
-
-        </form:form>
+            <input type="submit" value="R‰tta">
+        </form>
     </div>
   </div>
-
 </body>
 </html>

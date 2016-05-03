@@ -1,24 +1,24 @@
 package com.idnoll.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
 import com.idnoll.models.QuestionModel;
-import com.idnoll.services.AdminService;
+
 
 @RestController
 public class AdminController {
 
-	@Autowired
-	AdminService adminService;
+	//@Autowired
+	//AdminService adminService;
 	
-	@ResponseBody
+	
  
 	
 	@RequestMapping(value="/createQuestion", method = RequestMethod.GET)
