@@ -42,11 +42,11 @@
           </li>
         </ul>
     </div>
-    <div class="">
+    <div>
         <form method="POST">
 		
             <c:forEach items="${questions}" var="questionModel" varStatus="counter">
-              <div>
+              <div class="quizSection">
                 <h3><c:out value="${questionModel.question}"></c:out></h3>
                 	<input type="radio" name="answer${counter.index}" value="${ questionModel.randomPosition[0]}" ><label>${questionModel.randomPosition[0]}</label><br>
                 	<input type="radio" name="answer${counter.index}" value="${ questionModel.randomPosition[1]}" ><label>${questionModel.randomPosition[1]}</label><br>

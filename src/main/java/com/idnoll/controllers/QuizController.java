@@ -35,6 +35,7 @@ public class QuizController {
 	@RequestMapping(value="/quizPage", method=RequestMethod.GET)
 	public ModelAndView quizPage(){
 		ModelAndView model = new ModelAndView("quizPage");
+		questions.clear();
 		questions.add(new QuestionModel("Vad är 1+1","2","3","4","Matte",0L));
 		/*Map<String, Object> models = new HashMap<>();
 		models.put("userAnswerArray", answers);
