@@ -27,7 +27,7 @@ import com.idnoll.models.QuestionModel;
 @Configuration
 public class QuizController {
 	
-	List<QuestionModel> questions = new ArrayList<>();
+	public List<QuestionModel> questions = new ArrayList<>();
 	
 	
 	
@@ -35,7 +35,7 @@ public class QuizController {
 	@RequestMapping(value="/quizPage", method=RequestMethod.GET)
 	public ModelAndView quizPage(){
 		ModelAndView model = new ModelAndView("quizPage");
-		questions.clear();
+		List<QuestionModel> questions = new ArrayList<>();
 		questions.add(new QuestionModel("Vad är 1+1","2","3","4","Matte",0L));
 		/*Map<String, Object> models = new HashMap<>();
 		models.put("userAnswerArray", answers);
@@ -50,17 +50,12 @@ public class QuizController {
 		List<String> answers = new ArrayList<>();
 		for (int i = 0; i < questions.size(); i++) {
 			answers.add(request.getParameter("answer"+i));
-		}
-		
-		for (int i = 0; i < answers.size(); i++) {
-			System.out.println("ANSWERS METODEN:" + answers.get(i));
-		}
-		
+		}		
 		checkNumberOfRightAnswers(answers);
 		
 	}
 
-	public Integer checkNumberOfRightAnswers( List<String> userAnswers){
+	public Integer checkNumberOfRightAnswers(List<String> userAnswers){
 		
 		int correctAnswerCounter = 0;
 		
