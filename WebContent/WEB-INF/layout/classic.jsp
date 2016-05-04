@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>   
- 
+
 <!DOCTYPE html>
 <html>
 <head>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>  
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<body>
+
+<%@ taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx" %>  
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -34,9 +36,10 @@
       </ul>
     </div>
   </div>
-  
+  <tilesx:useAttribute name="current" />
   <tiles:insertAttribute name="body" />
   <br>
   <br>
 </nav>
+</body>
 </html>

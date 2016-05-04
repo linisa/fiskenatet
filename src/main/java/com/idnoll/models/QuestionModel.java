@@ -7,13 +7,14 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class QuestionModel {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long question_id;
 	
 	private String subCategory;
 	private String category;
@@ -23,6 +24,9 @@ public class QuestionModel {
 	private String firstWrongAnswer;
 	private String secondWrongAnswer;
 	private String userAnswer;
+	
+	@JoinColumn(name = "menuModel")
+	private UndercategoryModel undercategoryModel;
 	
 	
 	public QuestionModel() {
@@ -54,7 +58,7 @@ public class QuestionModel {
 	}
 
 	public Long getId() {
-		return id;
+		return question_id;
 	}
 	
 	public String getUserAnswer() {
@@ -67,7 +71,7 @@ public class QuestionModel {
 
 
 	public void setId(Long id) {
-		this.id = id;
+		this.question_id = id;
 	}
 
 	public String getQuestion() {
@@ -128,9 +132,21 @@ public class QuestionModel {
 
 
 
+	public UndercategoryModel getUndercategoryModel() {
+		return undercategoryModel;
+	}
+
+
+
+	public void setUndercategoryModel(UndercategoryModel undercategoryModel) {
+		this.undercategoryModel = undercategoryModel;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "QuestionModel [id=" + id + ", subCategory=" + subCategory + ", category=" + category + ", question="
+		return "QuestionModel [id=" + question_id + ", subCategory=" + subCategory + ", category=" + category + ", question="
 				+ question + ", correctAnswer=" + correctAnswer + ", firstWrongAnswer=" + firstWrongAnswer
 				+ ", secondWrongAnswer=" + secondWrongAnswer + ", userAnswer=" + userAnswer + "]";
 	}
