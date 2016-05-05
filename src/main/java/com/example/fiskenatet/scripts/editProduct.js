@@ -57,6 +57,8 @@ $(document).ready(function() {
 
     function formToJSON() {
         var product = JSON.stringify({
+
+            "category" : $( "#selectCategory option:selected" ).text(),
             "firstName": $('#tfProductTitle').val(),
             "lastName": $('#tfProductImage').val(),
             "userName": $('#tfDescription').val(),

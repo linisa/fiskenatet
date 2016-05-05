@@ -30,8 +30,10 @@ $(document).ready(function () {
     
     function formToJSON() {
         console.log("i form to json");
-        var startDate = new Date()
+        var startDate = new Date();
         var product = JSON.stringify({
+
+            "category" : $( "#selectCategory option:selected" ).text(),
             "title": $('#txtProductTitle').val(),
             "image": $('#txtProductImage').val(),
             "description": $('#txtDescription').val(),

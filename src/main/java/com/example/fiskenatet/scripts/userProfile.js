@@ -183,6 +183,7 @@ $(document).ready(function () {
            productString+='</div></div><div class="row"><div class="col-sm-6">';
            productString+='<p id="ownerProductStartDate">Datum tillagt: <br>' + listOfProducts[i].startDate + '</p>';
            productString+='<p id="ownerProductEndDate">Slutdatum: <br>' + listOfProducts[i].endDate + '</p>';
+           productString+='<p id="ownerProductCategory">Kategori: <br>' + listOfProducts[i].category + '</p>';
            productString+='</div><div class="col-sm-6">';
            productString+='<p id="ownerProductTotalBids">Totalt antal bud: <br>' + listOfProducts[i].listOfBids.length + '</p>';
            productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' + listOfProducts[i].highestBid + '</p>';

@@ -10,7 +10,15 @@ $(document).ready(function () {
 
     getProductDetails();
 
-    
+
+    $(document).on("click", "#lnkProfile", function () {
+        location.href="../webcontent/userProfile.html";
+    });
+
+    $(document).on("click", "#lnkLogOut", function () {
+        sessionStorage.removeItem('currentUser');
+        location.href="../webcontent/index.html";
+    });
 
     $(document).on("click", "#buyNowPriceDetails", function () {
         alert("Swisha: " + currentProduct.buyNowPrice + " kr" + " till telefonnumret: " + owner.mobileNumber);
@@ -97,9 +105,7 @@ $(document).ready(function () {
 
         return product;
     }
-
-
-
+    
     function checkIfLoggedIn() {
         if(sessionStorage.getItem('currentUser') != null){
             /*användare inloggad*/
@@ -126,15 +132,6 @@ $(document).ready(function () {
             document.getElementById("lnkRegUser").style.display = "inline-block";
         }
     }
-
-    $(document).on("click", "#lnkProfile", function () {
-        location.href="../webcontent/userProfile.html";
-    });
-    
-    $(document).on("click", "#lnkLogOut", function () {
-        sessionStorage.removeItem('currentUser');
-        location.href="../webcontent/index.html";
-    });
     
     function getProductDetails() {
         $.ajax({
@@ -175,6 +172,7 @@ $(document).ready(function () {
         document.getElementById('productTextDetails').innerHTML  = currentProduct.title;
         document.getElementById('ownerDetails').innerHTML = "Säljs av: " + owner.userName;
         document.getElementById('startDateDetails').innerHTML = " " + startDate;
+        document.getElementById('categoryDetails').innerHTML = "Kategori: " + owner.category;
         document.getElementById('descriptionDetails').innerHTML = currentProduct.description;
         document.getElementById('endDateDetails').innerHTML = "Slutdatum: <br> " + currentProduct.endDate;
         document.getElementById('lnkAddBid').innerHTML = "Lägg ett bud";
