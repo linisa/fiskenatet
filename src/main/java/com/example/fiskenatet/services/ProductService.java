@@ -63,7 +63,7 @@ public class ProductService {
     }
     public void updateProductWhenSold(Long id){
         ProductModel soldProduct = productRepository.getOne(id);
-        soldProduct.setIsSold("yes");
+        soldProduct.setIsSold(true);
         NotificationHandler notificationHandler = new NotificationHandler();
         UserModel userModel = userRepository.getOne(soldProduct.getOwner());
         notificationHandler.notifySeller(soldProduct, userModel);
