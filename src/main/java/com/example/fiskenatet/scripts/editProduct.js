@@ -12,7 +12,6 @@ $(document).ready(function() {
         return false;
     });
 
-
     function getProduct() {
         $.ajax({
             type: 'GET',
@@ -38,7 +37,6 @@ $(document).ready(function() {
     }
 
     function updateProduct() {
-
         $.ajax({
             type: 'PUT',
             contentType: 'application/json',
@@ -57,18 +55,13 @@ $(document).ready(function() {
 
     function formToJSON() {
         var product = JSON.stringify({
-            "firstName": $('#tfProductTitle').val(),
-            "lastName": $('#tfProductImage').val(),
-            "userName": $('#tfDescription').val(),
-            "password": $('#tfStartPrice').val(),
-            "email": $('#tfBuyNow').val(),
+            "title": $('#tfProductTitle').val(),
+            "image": $('#tfProductImage').val(),
+            "description": $('#tfDescription').val(),
+            "startPrice": $('#tfStartPrice').val(),
+            "buyNowPrice": $('#tfBuyNow').val(),
         });
         console.log(product);
         return product;
     }
-
-
-
-
-
 });
