@@ -1,9 +1,26 @@
 $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
     var currentUserID = sessionStorage.getItem("currentUser");
+    var currentProductId = sessionStorage.getItem('currentProductId');
     var currentUser;
+    var currentProduct;
+
+
 
     getUserById();
+
+    $(document).on("click", "#lnkSetProductAsSold", function () {
+        var currentProductID = $(this).data("value");
+        getProductById(currentProductID, function (currentProduct) {
+            productToHistoryJSON(currentProduct, function (JSONHistory) {
+                moveSoldProductToHistory(JSONHistory);
+            });
+
+       })
+
+
+       
+    });
     
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
@@ -48,6 +65,47 @@ $(document).ready(function () {
             alert("Det går inte att ta bort ett konto med aktiva auktioner!");
         }
     }
+
+
+    function moveSoldProductToHistory(JSONHistory){
+        console.log("in moveSoldProductToHistory");
+        $.ajax({
+            type: 'POST',
+            contentType:'application/json',
+            url: rootURL + '/history',
+            data: JSONHistory,
+            success: function (data, textStatus, jgXHR) {
+                console.log("GREAT SUCCESS!");
+                deleteProduct(currentProductId);
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("send Error " +textStatus + "  " + errorThrown);
+            }
+        })
+
+    }
+    
+    
+    function productToHistoryJSON(currentProduct, callback) {
+        
+            var product = JSON.stringify({
+                "owner" : {id: currentUserID},
+                "description": currentProduct.description,
+                "title": currentProduct.title,
+                "startDate": currentProduct.startDate,
+                "endDate": currentProduct.endDate,
+                "soldFor": currentProduct.soldFor,
+                "image": currentProduct.image
+            });
+            console.log(product);
+
+         callback(product);
+        
+    }
+    
+    
+    
+    
 
     function deleteUser() {
         $.ajax({
@@ -114,22 +172,28 @@ $(document).ready(function () {
         var productString="";
         var smallLimit = 90;
        for(i = 0; i < currentUser['listOfProducts'].length; i++){
+           var listOfProducts = currentUser['listOfProducts'];
+
+
            productString+='<div class="OwnerProductObject"><div class="row"><div class="col-sm-4">';
-           productString+='<img class="col-sm-12" src="' + currentUser['listOfProducts'][i].image + '">';
+           productString+='<img class="col-sm-12" src="' + listOfProducts[i].image + '">';
            productString+='</div><div class="col-sm-8">';
-           productString+='<h3 id="ownerProductTitle">' + currentUser['listOfProducts'][i].title + '</h3>';
-           productString+='<p class="ownerProductDescription">' + currentUser['listOfProducts'][i].description + '</p>';
+           productString+='<h3 id="ownerProductTitle">' + listOfProducts[i].title + '</h3>';
+           productString+='<p class="ownerProductDescription">' + listOfProducts[i].description + '</p>';
            productString+='</div></div><div class="row"><div class="col-sm-6">';
-           productString+='<p id="ownerProductStartDate">Datum tillagt: <br>' + currentUser['listOfProducts'][i].startDate + '</p>';
-           productString+='<p id="ownerProductEndDate">Slutdatum: <br>' + currentUser['listOfProducts'][i].endDate + '</p>';
+           productString+='<p id="ownerProductStartDate">Datum tillagt: <br>' + listOfProducts[i].startDate + '</p>';
+           productString+='<p id="ownerProductEndDate">Slutdatum: <br>' + listOfProducts[i].endDate + '</p>';
            productString+='</div><div class="col-sm-6">';
-           productString+='<p id="ownerProductTotalBids">Totalt antal bud: <br>' + currentUser['listOfProducts'][i].listOfBids.length + '</p>';
-           productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' + currentUser['listOfProducts'][i].highestBid + '</p>';
-           productString+='<p id="ownerProductBuyNowPrice">Utköpspris: <br>' + currentUser['listOfProducts'][i].buyNowPrice + '</p>';
-           productString+='</div></div><div class="row"><div class="col-sm-6">';
-           productString+='<a id="lnkEditProduct" href="#" data-value="'+ currentUser['listOfProducts'][i].id +'">Redigera annons</a>';
-           productString+='</div><div class="col-sm-6">';
-           productString+='<a id="lnkDeleteProduct"href="#" data-value="'+ currentUser['listOfProducts'][i].id +'">Ta bort annons</a>';
+           productString+='<p id="ownerProductTotalBids">Totalt antal bud: <br>' + listOfProducts[i].listOfBids.length + '</p>';
+           productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' + listOfProducts[i].highestBid + '</p>';
+           productString+='<p id="ownerProductBuyNowPrice">Utköpspris: <br>' + listOfProducts[i].buyNowPrice + '</p>';
+           productString+='</div></div><div class="row"><div class="col-sm-4">';
+           productString+='<a id="lnkEditProduct" href="#" data-value="'+ listOfProducts[i].id +'">Redigera annons</a>';
+           productString+='</div><div class="col-sm-4">';
+           productString+='<a id="lnkDeleteProduct"href="#" data-value="'+ listOfProducts[i].id +'">Ta bort annons</a></div>';
+           if(listOfProducts[i].isSold){
+               productString+='<div class="col-sm-4"><a id="lnkSetProductAsSold" href="#" data-value="'+ listOfProducts[i].id +'">Bekräfta köp</a></div>';
+           }
            productString+='</div></div></div>';
        }
         $products.append(productString);

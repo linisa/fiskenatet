@@ -1,6 +1,7 @@
 package com.example.fiskenatet.models;
 
 import com.example.fiskenatet.main.UserRating;
+import com.example.fiskenatet.services.HistoryService;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,6 +23,9 @@ public class UserModel implements Serializable {
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<ProductModel> listOfProducts;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<HistoryModel> listOfHistory;
 
     @OneToMany(mappedBy = "bidder", cascade = CascadeType.ALL)
     private List<BidModel> listOfBids;
@@ -54,6 +58,14 @@ public class UserModel implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public List<HistoryModel> getListOfHistory() {
+        return listOfHistory;
+    }
+
+    public void setListOfHistory(List<HistoryModel> listOfHistory) {
+        this.listOfHistory = listOfHistory;
     }
 
     public void setId(Long id) {

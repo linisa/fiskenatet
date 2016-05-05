@@ -6,30 +6,34 @@ $(document).ready(function () {
     var currentProductId = sessionStorage.getItem('currentProductId');
     var owner;
     var listOfBids;
-
+    var currentProduct;
 
     getProductDetails();
 
-    var currentProduct;
+    
 
     $(document).on("click", "#buyNowPriceDetails", function () {
         alert("Swisha: " + currentProduct.buyNowPrice + " kr" + " till telefonnumret: " + owner.mobileNumber);
-        deleteProduct();
+        setProductAsSold();
     });
+    
+    function setProductAsSold() {
 
-    function deleteProduct() {
-        console.log("i delete product " + currentProductId);
         $.ajax({
-            type: 'DELETE',
+            type: 'PUT',
             contentType: 'application/json',
-            url: rootURL + '/products/' + currentProductId,
+            url: rootURL + '/products/issold/' + currentProductId,
             success: function (data, textStatus, jgXHR) {
-                sessionStorage.removeItem('currentProductId');
-                location.href="../webcontent/index.html";
+                console.log("success");
+                
+            },
+            error: function(jgXHR, textStatus, errorThrown) {
+                console.log("editProduct error: " + textStatus);
             }
         });
     }
-
+    
+    
     function getHighestBid() {
         listOfBids = currentProduct['listOfBids'];
         if(listOfBids.length != 0){
