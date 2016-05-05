@@ -12,7 +12,6 @@ $(document).ready(function() {
         return false;
     });
 
-
     function getProduct() {
         $.ajax({
             type: 'GET',
@@ -38,7 +37,6 @@ $(document).ready(function() {
     }
 
     function updateProduct() {
-
         $.ajax({
             type: 'PUT',
             contentType: 'application/json',
@@ -57,6 +55,7 @@ $(document).ready(function() {
 
     function formToJSON() {
         var product = JSON.stringify({
+<<<<<<< HEAD
 
             "category" : $( "#selectCategory option:selected" ).text(),
             "firstName": $('#tfProductTitle').val(),
@@ -64,13 +63,15 @@ $(document).ready(function() {
             "userName": $('#tfDescription').val(),
             "password": $('#tfStartPrice').val(),
             "email": $('#tfBuyNow').val(),
+=======
+            "title": $('#tfProductTitle').val(),
+            "image": $('#tfProductImage').val(),
+            "description": $('#tfDescription').val(),
+            "startPrice": $('#tfStartPrice').val(),
+            "buyNowPrice": $('#tfBuyNow').val(),
+>>>>>>> 0c1cc9f1c049467d553c563fda69c55e82558e9f
         });
         console.log(product);
         return product;
     }
-
-
-
-
-
 });

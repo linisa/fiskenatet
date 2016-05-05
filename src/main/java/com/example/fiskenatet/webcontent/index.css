@@ -24,9 +24,6 @@ body{
       display: inline-block;
   }
 
-
-
-
 #banner{
     width: 100%;
     display: block;
@@ -150,6 +147,24 @@ body{
 /*productDetails end*/
 
 
+/*productDetails buyPopup*/
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+.rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+    content: "\2605";
+    position: absolute;
+}
+/*productDetails buyPopup END*/
+
+
 /*UserProfile*/
 
 .profileInfo{
@@ -162,7 +177,6 @@ body{
 }
 
 /*UserProfile End*/
-
 
 /*User profile Product list*/
 
@@ -177,14 +191,30 @@ body{
 
 }
 
-#ownerProductDescription{}
-#ownerProductStartDate{}
-#ownerProductEndDate{}
-#ownerProductTotalBids{}
-#ownerProductHighestBid{}
-#ownerProductBuyNowPrice{}
-#btnEditProduct{}
-#btndeleteProduct{}
+#ownerProductDescription{
+
+}
+#ownerProductStartDate{
+
+}
+#ownerProductEndDate{
+
+}
+#ownerProductTotalBids{
+
+}
+#ownerProductHighestBid{
+
+}
+#ownerProductBuyNowPrice{
+
+}
+#btnEditProduct{
+
+}
+#btndeleteProduct{
+
+}
 
 
 

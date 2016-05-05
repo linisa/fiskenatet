@@ -5,8 +5,6 @@ $(document).ready(function () {
     var currentUser;
     var currentProduct;
 
-
-
     getUserById();
 
     $(document).on("click", "#lnkSetProductAsSold", function () {
@@ -15,11 +13,7 @@ $(document).ready(function () {
             productToHistoryJSON(currentProduct, function (JSONHistory) {
                 moveSoldProductToHistory(JSONHistory);
             });
-
-       })
-
-
-       
+        })
     });
     
     $(document).on("click", "#lnkLogOut", function () {
@@ -30,10 +24,10 @@ $(document).ready(function () {
     $(document).on("click", "#lnkEditProduct", function () {
         console.log("click, i editProduct");
         var currentProductID = $(this).data("value");
-
         getProductById(currentProductID, function(currentProduct){
             if(currentProduct['listOfBids'].length == 0){
                 sessionStorage.setItem("productToEdit", currentProductID);
+                location.href="../webcontent/editProduct.html"
             }else{
                 alert("Misslyckades, Man kan inte uppdatera en annons någon budat på!");
             }
@@ -51,7 +45,6 @@ $(document).ready(function () {
                 alert("Misslyckades, Man kan inte ta bort en annons någon budat på!");
             }
         });
-
     });
 
     $(document).on("click", "#btnDeleteUser", function () {
@@ -66,7 +59,6 @@ $(document).ready(function () {
         }
     }
 
-
     function moveSoldProductToHistory(JSONHistory){
         console.log("in moveSoldProductToHistory");
         $.ajax({
@@ -75,6 +67,8 @@ $(document).ready(function () {
             url: rootURL + '/history',
             data: JSONHistory,
             success: function (data, textStatus, jgXHR) {
+                //TODO: MAKE SÄTT BETYG
+
                 console.log("GREAT SUCCESS!");
                 deleteProduct(currentProductId);
             },
@@ -82,31 +76,22 @@ $(document).ready(function () {
                 console.log("send Error " +textStatus + "  " + errorThrown);
             }
         })
-
     }
-    
-    
+
     function productToHistoryJSON(currentProduct, callback) {
-        
-            var product = JSON.stringify({
-                "owner" : {id: currentUserID},
-                "description": currentProduct.description,
-                "title": currentProduct.title,
-                "startDate": currentProduct.startDate,
-                "endDate": currentProduct.endDate,
-                "soldFor": currentProduct.soldFor,
-                "image": currentProduct.image
-            });
-            console.log(product);
-
-         callback(product);
-        
+        var product = JSON.stringify({
+            "owner" : {id: currentUserID},
+            "description": currentProduct.description,
+            "title": currentProduct.title,
+            "startDate": currentProduct.startDate,
+            "endDate": currentProduct.endDate,
+            "soldFor": currentProduct.soldFor,
+            "image": currentProduct.image
+        });
+        console.log(product);
+        callback(product);
     }
     
-    
-    
-    
-
     function deleteUser() {
         $.ajax({
             type: 'DELETE',
@@ -166,15 +151,12 @@ $(document).ready(function () {
         //document.getElementById('upRatingAsBuyer').innerHTML =currentUser[''];
     }
 
-    
     function populateUserProducts() {
         $products = $('#productList');
         var productString="";
         var smallLimit = 90;
        for(i = 0; i < currentUser['listOfProducts'].length; i++){
            var listOfProducts = currentUser['listOfProducts'];
-
-
            productString+='<div class="OwnerProductObject"><div class="row"><div class="col-sm-4">';
            productString+='<img class="col-sm-12" src="' + listOfProducts[i].image + '">';
            productString+='</div><div class="col-sm-8">';
@@ -199,7 +181,6 @@ $(document).ready(function () {
        }
         $products.append(productString);
     }
-
 });
 
 
