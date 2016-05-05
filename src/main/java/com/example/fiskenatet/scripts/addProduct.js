@@ -33,7 +33,7 @@ $(document).ready(function () {
         var startDate = new Date();
         var product = JSON.stringify({
 
-            "category" : $( "#selectCategory option:selected" ).text(),
+            "category" : $( "#selectCategory option:selected" ).val(),
             "title": $('#txtProductTitle').val(),
             "image": $('#txtProductImage').val(),
             "description": $('#txtDescription').val(),

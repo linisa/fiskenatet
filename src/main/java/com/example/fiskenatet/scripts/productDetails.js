@@ -9,7 +9,7 @@ $(document).ready(function () {
     var currentProduct;
 
     getProductDetails();
-<<<<<<< HEAD
+
 
 
     $(document).on("click", "#lnkProfile", function () {
@@ -21,9 +21,7 @@ $(document).ready(function () {
         location.href="../webcontent/index.html";
     });
 
-=======
     
->>>>>>> 0c1cc9f1c049467d553c563fda69c55e82558e9f
     $(document).on("click", "#buyNowPriceDetails", function () {
         
         alert("Swisha: " + currentProduct.buyNowPrice + " kr" + " till telefonnumret: " + owner.mobileNumber);
@@ -169,7 +167,7 @@ $(document).ready(function () {
         document.getElementById('productTextDetails').innerHTML  = currentProduct.title;
         document.getElementById('ownerDetails').innerHTML = "Säljs av: " + owner.userName;
         document.getElementById('startDateDetails').innerHTML = " " + startDate;
-        document.getElementById('categoryDetails').innerHTML = "Kategori: " + owner.category;
+        document.getElementById('categoryDetails').innerHTML = "Kategori: " + currentProduct.category;
         document.getElementById('descriptionDetails').innerHTML = currentProduct.description;
         document.getElementById('endDateDetails').innerHTML = "Slutdatum: <br> " + currentProduct.endDate;
         document.getElementById('lnkAddBid').innerHTML = "Lägg ett bud";

@@ -3,9 +3,23 @@ $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
     var userUserName;
     var userPassword;  
-    
-    getAllProducts();
+
+
+    checkCategory();
+    //getAllProducts();
     checkIfLoggedIn();
+    
+    function checkCategory() {
+        var category = document.getElementById("selectCategory");
+        var categoryChoice = category.options[category.selectedIndex].value;
+        if(categoryChoice = 0){
+            getAllProducts();
+        }else{
+            getProductByCategory(categoryChoice);
+        }
+    }
+
+
 
     function checkIfLoggedIn() {
         if(sessionStorage.getItem('currentUser') != null){
@@ -28,6 +42,11 @@ $(document).ready(function () {
         }
     }
 
+    $(document).on("click", "#selectCategory", function () {
+
+        location.reload();
+    });
+
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
         location.reload();
@@ -38,6 +57,21 @@ $(document).ready(function () {
     });
 
 
+    function getProductByCategory(categoryChoice) {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/products/category/' + categoryChoice,
+            success: function (data, textStatus, jgXHR) {
+                populateProductList(data);
+                console.log(data[0].title);
+
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("getAllProducts error: " + textStatus);
+            }
+        });
+    }
 
     function getAllProducts() {
         $.ajax({
@@ -82,7 +116,7 @@ $(document).ready(function () {
     })
 
     $('#btnLogIn').click(function () {
-        console.log("KLICK LOGIN!")
+        console.log("KLICK LOGIN!");
         userUserName = $('#UserUserName').val();
         userPassword = $('#UserPassword').val();
         console.log(userUserName);

@@ -55,21 +55,19 @@ $(document).ready(function() {
 
     function formToJSON() {
         var product = JSON.stringify({
-<<<<<<< HEAD
-
-            "category" : $( "#selectCategory option:selected" ).text(),
+            
+            "category" : $( "#selectCategory option:selected" ).val(),
             "firstName": $('#tfProductTitle').val(),
             "lastName": $('#tfProductImage').val(),
             "userName": $('#tfDescription').val(),
             "password": $('#tfStartPrice').val(),
             "email": $('#tfBuyNow').val(),
-=======
             "title": $('#tfProductTitle').val(),
             "image": $('#tfProductImage').val(),
             "description": $('#tfDescription').val(),
             "startPrice": $('#tfStartPrice').val(),
             "buyNowPrice": $('#tfBuyNow').val(),
->>>>>>> 0c1cc9f1c049467d553c563fda69c55e82558e9f
+
         });
         console.log(product);
         return product;
