@@ -24,9 +24,6 @@ body{
       display: inline-block;
   }
 
-
-
-
 #banner{
     width: 100%;
     display: block;
@@ -163,7 +160,6 @@ body{
 
 /*UserProfile End*/
 
-
 /*User profile Product list*/
 
 #ownerProduct{
@@ -177,14 +173,30 @@ body{
 
 }
 
-#ownerProductDescription{}
-#ownerProductStartDate{}
-#ownerProductEndDate{}
-#ownerProductTotalBids{}
-#ownerProductHighestBid{}
-#ownerProductBuyNowPrice{}
-#btnEditProduct{}
-#btndeleteProduct{}
+#ownerProductDescription{
+
+}
+#ownerProductStartDate{
+
+}
+#ownerProductEndDate{
+
+}
+#ownerProductTotalBids{
+
+}
+#ownerProductHighestBid{
+
+}
+#ownerProductBuyNowPrice{
+
+}
+#btnEditProduct{
+
+}
+#btndeleteProduct{
+
+}
 
 
 

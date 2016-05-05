@@ -88,7 +88,6 @@ $(document).ready(function () {
             "bidder": {'id' : currentUserId},
             "amount": $('#addBidDetails').val(),
             "bidDate": date
-
         });
 
         return product;
