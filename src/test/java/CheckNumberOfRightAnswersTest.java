@@ -9,7 +9,7 @@ import org.junit.Test;
 import com.idnoll.controllers.QuizController;
 import com.idnoll.models.QuestionModel;;
 
-public class checkNumberOfRightAnswersTest {
+public class CheckNumberOfRightAnswersTest {
 	
 	List<String> userAnswersCorrect;
 	List<String> userAnswersFalse;
