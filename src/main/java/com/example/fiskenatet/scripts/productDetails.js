@@ -162,7 +162,7 @@ $(document).ready(function () {
         document.getElementById('productTextDetails').innerHTML  = currentProduct.title;
         document.getElementById('ownerDetails').innerHTML = "Säljs av: " + owner.userName;
         document.getElementById('startDateDetails').innerHTML = " " + startDate;
-        document.getElementById('categoryDetails').innerHTML = "Kategori: " + owner.category;
+        document.getElementById('categoryDetails').innerHTML = "Kategori: " + currentProduct.category;
         document.getElementById('descriptionDetails').innerHTML = currentProduct.description;
         document.getElementById('endDateDetails').innerHTML = "Slutdatum: <br> " + currentProduct.endDate;
         document.getElementById('lnkAddBid').innerHTML = "Lägg ett bud";
