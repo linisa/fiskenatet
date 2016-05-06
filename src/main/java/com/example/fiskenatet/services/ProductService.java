@@ -3,7 +3,8 @@ package com.example.fiskenatet.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.fiskenatet.main.NotificationHandler;
+import com.example.fiskenatet.main.MailHandler;
+import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.UserModel;
 import com.example.fiskenatet.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,16 +62,29 @@ public class ProductService {
         productToUpdate.setStartPrice(productModel.getStartPrice());
         productRepository.saveAndFlush(productToUpdate);
     }
+
     public void updateProductWhenSold(Long id){
         ProductModel soldProduct = productRepository.getOne(id);
+
         soldProduct.setIsSold(true);
-        NotificationHandler notificationHandler = new NotificationHandler();
+        MailHandler mailHandler = new MailHandler();
+        UserModel owner = userRepository.getOne(soldProduct.getOwner());
+        List<BidModel> bidList = soldProduct.getListOfBids();
+        int size = bidList.size();
+        BidModel highestBid = bidList.get(size-1);
+        UserModel winner = userRepository.getOne(highestBid.getBidder());
+        mailHandler.sendWinnerNotification(owner, winner, soldProduct);
+        mailHandler.sendSellerNotification(owner, winner, soldProduct);
+
+
+
+
         UserModel userModel = userRepository.getOne(soldProduct.getOwner());
-        notificationHandler.notifySeller(soldProduct, userModel);
+
         productRepository.saveAndFlush(soldProduct);
     }
 
-    public void sendNotis() {
+    public void sendEmailTo() {
 
     }
 

@@ -44,8 +44,7 @@ public class ProductModel implements Serializable{
     @Column(name = "end_date")
     private Date endDate; //datum + tid?
 
-    @Column(name = "highest_bid")
-    private int highestBid;
+
     
     private String image;
 
@@ -110,16 +109,6 @@ public class ProductModel implements Serializable{
     public void setImage(String image) {
 
         this.image = image;
-    }
-
-    public int getHighestBid() {
-
-        return highestBid;
-    }
-
-    public void setHighestBid(int highestBid) {
-
-        this.highestBid = highestBid;
     }
 
     public Date getEndDate() {
