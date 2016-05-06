@@ -13,8 +13,30 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#btnConfirmSwish", function () {
-        setProductAsSold();
+        setSellerRating();
+        //setProductAsSold();
+        
     });
+    
+    function setSellerRating() {
+        var sellerRating = $("input[type='radio'][name='rating']:checked").val();
+        console.log(sellerRating);
+        $.ajax({
+            type: 'PUT',
+            contentType: 'application/json',
+            url: rootURL + '/users/' + currentProduct.owner,
+            data:sellerRating,
+            success: function (data, textStatus, jgXHR) {
+                console.log("Seller rating put:" + sellerRating);
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("getAllProducts error: " + textStatus);
+            }
+        });
+        
+    }
+    
+    
 
     function getProductDetails() {
         $.ajax({
@@ -60,10 +82,4 @@ $(document).ready(function () {
             }
         });
     }
-
-    /*<p>Swisha </p><p id="confirmSwishAmmount"></p><p> kr till telefonnummer: </p><p id="confirmSwishPhone"></p>
-     <button id="btnConfirmSwish" type="button" class="btn btn-info" data-toggle="collapse" data-target="#swishpurchaseConfirmed">Bekräfta köp</button>
-     <div id="swishpurchaseConfirmed" class="collapse">*/
-
-    
 });

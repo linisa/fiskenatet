@@ -10,9 +10,11 @@ $(document).ready(function () {
     checkIfLoggedIn();
     
     function checkCategory() {
+        document.getElementById("productList").innerHTML = "";
         var category = document.getElementById("selectCategory");
         var categoryChoice = category.options[category.selectedIndex].value;
-        if(categoryChoice = 0){
+        console.log(categoryChoice);
+        if(categoryChoice == 0){
             getAllProducts();
         }else{
             getProductByCategory(categoryChoice);
@@ -43,8 +45,7 @@ $(document).ready(function () {
     }
 
     $(document).on("click", "#selectCategory", function () {
-
-        location.reload();
+        checkCategory();
     });
 
     $(document).on("click", "#lnkLogOut", function () {
