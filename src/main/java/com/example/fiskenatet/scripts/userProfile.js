@@ -8,7 +8,11 @@ $(document).ready(function () {
     getUserById();
 
     $(document).on("click", "#lnkSetProductAsSold", function () {
-        var currentProductID = $(this).data("value");
+        //TODO: Make user input set buyer rating
+        
+        
+        
+        var currentProductID = $(this).data("value");        
         getProductById(currentProductID, function (currentProduct) {
             productToHistoryJSON(currentProduct, function (JSONHistory) {
                 moveSoldProductToHistory(JSONHistory);
@@ -67,8 +71,6 @@ $(document).ready(function () {
             url: rootURL + '/history',
             data: JSONHistory,
             success: function (data, textStatus, jgXHR) {
-                //TODO: MAKE SÄTT BETYG
-
                 console.log("GREAT SUCCESS!");
                 deleteProduct(currentProductId);
             },
@@ -175,12 +177,28 @@ $(document).ready(function () {
            productString+='</div><div class="col-sm-4">';
            productString+='<a id="lnkDeleteProduct"href="#" data-value="'+ listOfProducts[i].id +'">Ta bort annons</a></div>';
            if(listOfProducts[i].isSold){
-               productString+='<div class="col-sm-4"><a id="lnkSetProductAsSold" href="#" data-value="'+ listOfProducts[i].id +'">Bekräfta köp</a></div>';
+               productString+='<p id="confirmPurchase" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta köp</p>';
+               productString+='<div id="buyerRatingDiv" class="collapse">';
+               productString+='    <fieldset class="rating">';
+               productString+='    <legend>Säljarbetyg:</legend>';
+               productString+='<input type="radio" id="star5" name="rating" value="5" /><label for="star5">5 stars</label>';
+               productString+='<input type="radio" id="star4" name="rating" value="4" /><label for="star4">4 stars</label>';
+               productString+='<input type="radio" id="star3" name="rating" value="3" /><label for="star3">3 stars</label>';
+               productString+='<input type="radio" id="star2" name="rating" value="2" /><label for="star2">2 stars</label>';
+               productString+='<input type="radio" id="star1" name="rating" value="1" /><label for="star1">1 star</label>';
+               productString+='</fieldset>';
+               productString+='<div class="col-sm-4"><a id="lnkSetProductAsSold" href="#" data-value="'+ listOfProducts[i].id +'">Bekräfta köp</a></div></div>';
            }
            productString+='</div></div></div>';
        }
         $products.append(productString);
+
+
+
+
+
+
+
     }
 });
-
 
