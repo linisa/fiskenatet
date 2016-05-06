@@ -1,6 +1,4 @@
-/**
- * Created by Erik on 2016-04-25.
- */
+
 $(document).ready(function () {
     var rootURL ='http://localhost:8091/api';
     var sellerid = sessionStorage.getItem("currentUser");
