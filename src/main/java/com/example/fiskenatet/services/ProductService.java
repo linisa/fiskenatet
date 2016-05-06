@@ -71,16 +71,12 @@ public class ProductService {
         UserModel owner = userRepository.getOne(soldProduct.getOwner());
         List<BidModel> bidList = soldProduct.getListOfBids();
         int size = bidList.size();
+
         BidModel highestBid = bidList.get(size-1);
         UserModel winner = userRepository.getOne(highestBid.getBidder());
         mailHandler.sendWinnerNotification(owner, winner, soldProduct);
         mailHandler.sendSellerNotification(owner, winner, soldProduct);
-
-
-
-
         UserModel userModel = userRepository.getOne(soldProduct.getOwner());
-
         productRepository.saveAndFlush(soldProduct);
     }
 

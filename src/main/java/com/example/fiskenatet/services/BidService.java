@@ -34,24 +34,33 @@ public class BidService {
 
         //ProductModel currentProduct = productRepository.getOne(bidModel.getCurrentProduct());
         ProductModel currentProduct = productRepository.getOne(1L);
-        formerLeadingBid = getNextBiggestBid(currentProduct);
-        MailHandler mailHandler = new MailHandler();
-        mailHandler.sendBidderNotification(currentProduct, bidModel, formerLeadingBidder);
+        boolean formerBidderExist = getNextBiggestBid(currentProduct);
+        if(formerBidderExist) {
+            MailHandler mailHandler = new MailHandler();
+            mailHandler.sendBidderNotification(currentProduct, bidModel, formerLeadingBidder);
+        }
         bidRepository.saveAndFlush(bidModel);
     }
 
-    private BidModel getNextBiggestBid (ProductModel currentProduct) {
+    private boolean getNextBiggestBid (ProductModel currentProduct) {
 
         List<BidModel> bidList = currentProduct.getListOfBids();
-        formerLeadingBid.setAmount(0);
-        for(BidModel bidModel : bidList) {
-            if(bidModel.getAmount() > formerLeadingBid.getAmount()){
-                formerLeadingBid.setAmount(bidModel.getAmount());
-                formerLeadingBidder = userRepository.getOne(bidModel.getBidder());
-                formerLeadingBid.setBidder(formerLeadingBidder);
+        int sizeOfList = bidList.size();
+        if(sizeOfList>0) {
+            formerLeadingBid.setAmount(0);
+            for(BidModel bidModel : bidList) {
+                if(bidModel.getAmount() > formerLeadingBid.getAmount()){
+                    formerLeadingBid.setAmount(bidModel.getAmount());
+                    formerLeadingBidder = userRepository.getOne(bidModel.getBidder());
+                    formerLeadingBid.setBidder(formerLeadingBidder);
+                }
             }
+            return true;
+
         }
-        return formerLeadingBid;
+
+        return false;
+
     }
 
 }
