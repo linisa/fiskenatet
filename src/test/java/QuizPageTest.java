@@ -20,7 +20,7 @@ import com.idnoll.initializers.WebConfiguration;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes={Initilizer.class, WebConfiguration.class}, loader=AnnotationConfigWebContextLoader.class)
-public class RequestQuizPageTest {
+public class QuizPageTest {
 	
 	@Autowired 
 	WebApplicationContext wac;
