@@ -1,6 +1,4 @@
-/**
- * Created by Erik on 2016-04-25.
- */
+
 $(document).ready(function () {
     var rootURL ='http://localhost:8091/api';
     var sellerid = sessionStorage.getItem("currentUser");
@@ -30,8 +28,10 @@ $(document).ready(function () {
     
     function formToJSON() {
         console.log("i form to json");
-        var startDate = new Date()
+        var startDate = new Date();
         var product = JSON.stringify({
+
+            "category" : $( "#selectCategory option:selected" ).val(),
             "title": $('#txtProductTitle').val(),
             "image": $('#txtProductImage').val(),
             "description": $('#txtDescription').val(),

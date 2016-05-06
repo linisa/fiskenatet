@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Fiskenätet</title>
     <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="../scripts/userProfile.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -13,7 +15,42 @@
     <div class="row">
         <div class="col-sm-12">
             <img id="banner" alt="logga" src="../resources/bannerfishies.jpg">
+
             <ul id="menubar" class="nav navbar-nav">
+
+                <li class="dropdown">
+
+                    <select id="selectCategory">
+                        <option value="0" selected="selected">Välj Kategori</option>
+                        <option value="1">Torsk</option>
+                        <option value="2">Makrill</option>
+                        <option value="3">Kolja</option>
+                        <option value="4">Lax</option>
+                        <option value="5">Gråsej</option>
+                        <option value="6">Sill</option>
+                        <option value="7">Vitling</option>
+                        <option value="8">Rödspotta</option>
+                        <option value="9">Skaldjur</option>
+                        <option value="10">Övrigt</option>
+                    </select>
+
+
+                    <!--<a id="fishCategory" class="dropdown-toggle" data-toggle="dropdown" href="#">Kategori<span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="testMenu">
+                        <li class="btnCategory"><a id="torskFish"  href="#">Torsk</a></li>
+                        <li class="btnCategory"><a id="makrillFish" href="#">Makrill</a></li>
+                        <li class="btnCategory"><a id="koljaFish" href="#">Kolja</a></li>
+                        <li class="btnCategory"><a id="laxFish" href="#">Lax</a></li>
+                        <li class="btnCategory"><a id="grasejFish" href="#">Gråsej</a></li>
+                        <li class="btnCategory"><a id="sillFish" href="#">Sill</a></li>
+                        <li class="btnCategory"><a id="vitlingFish" href="#">Vitling</a></li>
+                        <li class="btnCategory"><a id="rodspottaFish" href="#">Rödspotta</a></li>
+                        <li class="btnCategory"><a id="ovrigtFish" href="#">Övrigt</a></li>
+                    </ul>-->
+
+
+                </li>
+
                 <li><a href="index.html">Hem</a></li>
                 <li><a id="lnkAddProduct" href="addProduct.html">Add Product</a></li>
                 <li><a id="lnkLogOut" href="#">Logga ut</a></li>

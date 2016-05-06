@@ -65,7 +65,8 @@ public class ProductService {
 
     public void updateProductWhenSold(Long id){
         ProductModel soldProduct = productRepository.getOne(id);
-        soldProduct.setIsSold("yes");
+
+        soldProduct.setIsSold(true);
         MailHandler mailHandler = new MailHandler();
         UserModel owner = userRepository.getOne(soldProduct.getOwner());
         List<BidModel> bidList = soldProduct.getListOfBids();
@@ -74,6 +75,11 @@ public class ProductService {
         UserModel winner = userRepository.getOne(highestBid.getBidder());
         mailHandler.sendWinnerNotification(owner, winner, soldProduct);
         mailHandler.sendSellerNotification(owner, winner, soldProduct);
+
+
+
+
+        UserModel userModel = userRepository.getOne(soldProduct.getOwner());
 
         productRepository.saveAndFlush(soldProduct);
     }

@@ -6,37 +6,44 @@ $(document).ready(function () {
     var currentProductId = sessionStorage.getItem('currentProductId');
     var owner;
     var listOfBids;
-
+    var currentProduct;
 
     getProductDetails();
 
-    var currentProduct;
-
-    $(document).on("click", "#buyNowPriceDetails", function () {
-        alert("Swisha: " + currentProduct.buyNowPrice + " kr" + " till telefonnumret: " + owner.mobileNumber);
-        deleteProduct();
+    $(document).on("click", "#lnkProfile", function () {
+        location.href="../webcontent/userProfile.html";
     });
 
-    function deleteProduct() {
-        console.log("i delete product " + currentProductId);
+    $(document).on("click", "#lnkLogOut", function () {
+        sessionStorage.removeItem('currentUser');
+        location.href="../webcontent/index.html";
+    });
+
+    $(document).on("click", "#buyNowPriceDetails", function () {
+
+        location.href="../webcontent/confirmPurchase.html"
+    });
+    
+    function setProductAsSold() {
         $.ajax({
-            type: 'DELETE',
+            type: 'PUT',
             contentType: 'application/json',
-            url: rootURL + '/products/' + currentProductId,
+            url: rootURL + '/products/issold/' + currentProductId,
             success: function (data, textStatus, jgXHR) {
-                sessionStorage.removeItem('currentProductId');
-                location.href="../webcontent/index.html";
+                console.log("success");
+            },
+            error: function(jgXHR, textStatus, errorThrown) {
+                console.log("editProduct error: " + textStatus);
             }
         });
     }
-
+    
     function getHighestBid() {
         listOfBids = currentProduct['listOfBids'];
         if(listOfBids.length != 0){
            listOfBids.sort(function (a, b) {
                 return b.amount - a.amount;
             });
-
             document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br>" +  listOfBids[0].amount + " kr";
         }else{
             document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br>" +  currentProduct.startPrice + " kr";
@@ -58,7 +65,6 @@ $(document).ready(function () {
         }else{
             alert("För lågt bud");
         }
-
     });
     
     function addBid(){
@@ -83,19 +89,14 @@ $(document).ready(function () {
 
         var date = new Date();
         var product = JSON.stringify({
-
             "currentProduct": {'id' : currentProductId},
             "bidder": {'id' : currentUserId},
             "amount": $('#addBidDetails').val(),
             "bidDate": date
-
         });
-
         return product;
     }
-
-
-
+    
     function checkIfLoggedIn() {
         if(sessionStorage.getItem('currentUser') != null){
             /*användare inloggad*/
@@ -110,7 +111,6 @@ $(document).ready(function () {
                 document.getElementById("lnkAddBid").style.display = "inline-block";
                 document.getElementById("addBidDetails").style.display = "inline-block";
             }
-
             document.getElementById("lnkRegUser").style.display = "none";
         }else{
             document.getElementById("lnkAddProduct").style.display = "none";
@@ -122,15 +122,6 @@ $(document).ready(function () {
             document.getElementById("lnkRegUser").style.display = "inline-block";
         }
     }
-
-    $(document).on("click", "#lnkProfile", function () {
-        location.href="../webcontent/userProfile.html";
-    });
-    
-    $(document).on("click", "#lnkLogOut", function () {
-        sessionStorage.removeItem('currentUser');
-        location.href="../webcontent/index.html";
-    });
     
     function getProductDetails() {
         $.ajax({
@@ -171,11 +162,11 @@ $(document).ready(function () {
         document.getElementById('productTextDetails').innerHTML  = currentProduct.title;
         document.getElementById('ownerDetails').innerHTML = "Säljs av: " + owner.userName;
         document.getElementById('startDateDetails').innerHTML = " " + startDate;
+        document.getElementById('categoryDetails').innerHTML = "Kategori: " + currentProduct.category;
         document.getElementById('descriptionDetails').innerHTML = currentProduct.description;
         document.getElementById('endDateDetails').innerHTML = "Slutdatum: <br> " + currentProduct.endDate;
         document.getElementById('lnkAddBid').innerHTML = "Lägg ett bud";
         document.getElementById('startPriceDetails').innerHTML = "Utropspris: <br> " + currentProduct.startPrice + " kr";
         document.getElementById('buyNowPriceDetails').innerHTML = "Köp nu: <br> " + currentProduct.buyNowPrice + " kr";
     }
-    
 });
