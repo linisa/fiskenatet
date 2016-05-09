@@ -1,7 +1,9 @@
 package com.example.fiskenatet.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.models.BidModel;
@@ -63,7 +65,11 @@ public class ProductService {
         productRepository.saveAndFlush(productToUpdate);
     }
 
-    public void updateProductWhenSold(Long id){
+
+
+    // FEL FEL FEL FEL FEL FEL FEL FEL FEL FEL FEL FEL FEL FEL
+    // MAN KAN INTE GÖRA FLER SAKER PÅ EN LISTA SAMTIDIGT, FOR LOOP SKIT
+    public void updateProductWhenSold(Long id) {
         ProductModel soldProduct = productRepository.getOne(id);
 
         soldProduct.setIsSold(true);
@@ -72,18 +78,31 @@ public class ProductService {
         List<BidModel> bidList = soldProduct.getListOfBids();
         int size = bidList.size();
 
-        BidModel highestBid = bidList.get(size-1);
+        BidModel highestBid = bidList.get(size - 1);
         UserModel winner = userRepository.getOne(highestBid.getBidder());
         mailHandler.sendWinnerNotification(owner, winner, soldProduct);
         mailHandler.sendSellerNotification(owner, winner, soldProduct);
-        UserModel userModel = userRepository.getOne(soldProduct.getOwner());
+        ArrayList<UserModel> loserList = (ArrayList)getAllLosers(winner, bidList);
+        for(UserModel loser : loserList){
+
+            mailHandler.sendLoserNotification(soldProduct, loser, owner, highestBid);
+        }
         productRepository.saveAndFlush(soldProduct);
     }
+    private List<UserModel> getAllLosers(UserModel winner, List<BidModel> bidList) {
+        List<UserModel> loserList = new ArrayList<UserModel>();
+        Set<UserModel> userHashSet = new HashSet<UserModel>();
+        for (BidModel bid : bidList) {
+            if (bid.getBidder() != winner.getId()) {
+                loserList.add(userRepository.getOne(bid.getBidder()));
+            }
 
-    public void sendEmailTo() {
-
+        }
+        userHashSet.addAll(loserList);
+        loserList.clear();
+        loserList.addAll(userHashSet);
+        return loserList;
     }
-
 
 }
 

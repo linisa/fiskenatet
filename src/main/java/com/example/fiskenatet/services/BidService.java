@@ -37,7 +37,7 @@ public class BidService {
         boolean formerBidderExist = getNextBiggestBid(currentProduct);
         if(formerBidderExist) {
             MailHandler mailHandler = new MailHandler();
-            mailHandler.sendBidderNotification(currentProduct, bidModel, formerLeadingBidder);
+            mailHandler.sendNewBidNotification(currentProduct, bidModel, formerLeadingBidder);
         }
         bidRepository.saveAndFlush(bidModel);
     }
