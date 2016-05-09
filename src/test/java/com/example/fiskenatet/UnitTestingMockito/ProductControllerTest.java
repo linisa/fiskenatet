@@ -82,4 +82,10 @@ public class ProductControllerTest {
         assertThat(productController.getProductsByCategory(CATEGORY_2)).isEqualTo(responsMessage);
     }
 
+    @Test
+    public void testUpdateProductWhenSold(){
+        productController.updateProductWhenSold(ID_1);
+        verify(productService).updateProductWhenSold(ID_1);
+    }
+
 }
