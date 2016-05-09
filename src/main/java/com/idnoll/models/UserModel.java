@@ -18,7 +18,9 @@ public class UserModel {
 	private String password;
 	private boolean isAdmin;
 	
-	public UserModel() {}
+	public UserModel() {
+		
+	}
 
 	
 

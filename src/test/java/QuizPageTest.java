@@ -14,12 +14,12 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.idnoll.initializers.Initilizer;
+import com.idnoll.initializers.Initializer;
 import com.idnoll.initializers.WebConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes={Initilizer.class, WebConfiguration.class}, loader=AnnotationConfigWebContextLoader.class)
+@ContextConfiguration(classes={Initializer.class, WebConfiguration.class}, loader=AnnotationConfigWebContextLoader.class)
 public class QuizPageTest {
 	
 	@Autowired 

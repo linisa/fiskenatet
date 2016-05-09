@@ -16,7 +16,7 @@
 
   $(document).ready(function() {
 
-    $("#newQuestionForm").submit(function(event) {
+    $("#editQuestionForm").submit(function(event) {
       var question = $("question").val();
       var correctAnswer = $("correctAnswer").val();
       var firstWrongAnswer = $("firstWrongAnswer").val();
@@ -27,7 +27,7 @@
             "secondWrongAnswer":secondWrongAnswer,"category":category,"subCategory":subCategory};
 
       $.ajax({
-        url: $("#newQuestionForm").attr("action"),
+        url: $("#editQuestionForm").attr("action"),
         data: JSON.stringify(json),
         type : "POST",
 
@@ -74,11 +74,11 @@
           </li>
         </ul>
     </div>
-    <div id="addQuestion">
-      <h2>Skapa ny fråga</h2>
+    <div id="editQuestion">
+      <h2>Ändra fråga</h2>
       <div id="fromResponse"></div>
-         <div id="addQuestionList">
-             <form:form id="newQuestionForm" action="${pageContext.request.contextPath}/createQuestion.json" commandName="questionModel">
+         <div id="editQuestionList">
+             <form:form id="editQuestionForm" action="${pageContext.request.contextPath}/editQuestion.json" commandName="questionModel">
                  <ul>
                    <li>
                        <label for="question">Fråga:</label>
@@ -112,7 +112,7 @@
                    </li>
                     <br>
                    <li>
-                       <input type="submit" value="Save" id="save" />
+                       <input type="submit" value="Edit" id="edit" />
                    </li>
                  </ul>
              </form:form>

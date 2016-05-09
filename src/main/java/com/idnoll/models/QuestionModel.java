@@ -1,18 +1,26 @@
+
 package com.idnoll.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
+
+@SuppressWarnings("serial")
 @Entity
-public class QuestionModel {
+@Table(name="questionmodel")
+public class QuestionModel implements Serializable {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private Long subCategory;
@@ -22,8 +30,11 @@ public class QuestionModel {
 	private String correctAnswer;
 	private String firstWrongAnswer;
 	private String secondWrongAnswer;
+	
+	@Transient
 	private String userAnswer;
 	
+	@Transient
 	private String[] randomPosition;
 	
 	
@@ -40,6 +51,16 @@ public class QuestionModel {
 		this.category = category;
 		this.subCategory = subCategory;
 		setRandomPosition();
+	}
+	
+	public QuestionModel update(QuestionModel questionModel){
+		this.question = questionModel.question;
+		this.correctAnswer = questionModel.correctAnswer;
+		this.firstWrongAnswer = questionModel.firstWrongAnswer;
+		this.correctAnswer = questionModel.secondWrongAnswer;
+		this.category = questionModel.category;
+		this.subCategory = questionModel.subCategory;
+		return this;
 	}
 
 	public String[] getShuffledAnswers(){
