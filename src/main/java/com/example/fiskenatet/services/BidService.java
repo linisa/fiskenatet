@@ -32,8 +32,8 @@ public class BidService {
 
     public void saveBid(BidModel bidModel) {
 
-        //ProductModel currentProduct = productRepository.getOne(bidModel.getCurrentProduct());
-        ProductModel currentProduct = productRepository.getOne(1L);
+        ProductModel currentProduct = productRepository.getOne(bidModel.getCurrentProduct());
+        //ProductModel currentProduct = productRepository.getOne(1L);
         boolean formerBidderExist = getNextBiggestBid(currentProduct);
         if(formerBidderExist) {
             MailHandler mailHandler = new MailHandler();
