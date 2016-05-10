@@ -1,6 +1,5 @@
 $(document).ready(function(){
   var timeLeft = 150;
-  console.log("hej");
 
   setInterval(function () {
     timeLeft = timeLeft - 1;
