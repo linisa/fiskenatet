@@ -1,5 +1,6 @@
 package com.example.fiskenatet.services;
 
+import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
@@ -21,16 +22,45 @@ public class BidService {
 
     @Autowired
     private BidRepository bidRepository;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private UserRepository userRepository;
+
+    private UserModel formerLeadingBidder = new UserModel();
+    private BidModel formerLeadingBid = new BidModel();
 
     public void saveBid(BidModel bidModel) {
+
+        ProductModel currentProduct = productRepository.getOne(bidModel.getCurrentProduct());
+        //ProductModel currentProduct = productRepository.getOne(1L);
+        boolean formerBidderExist = getNextBiggestBid(currentProduct);
+        if(formerBidderExist) {
+            MailHandler mailHandler = new MailHandler();
+            mailHandler.sendNewBidNotification(currentProduct, bidModel, formerLeadingBidder);
+        }
         bidRepository.saveAndFlush(bidModel);
     }
 
-    // hämtar alla buden
-    /*public ArrayList<BidModel> getAllBids(){
-        return (ArrayList<BidModel>) bidRepository.findAll();
+    private boolean getNextBiggestBid (ProductModel currentProduct) {
+
+        List<BidModel> bidList = currentProduct.getListOfBids();
+        int sizeOfList = bidList.size();
+        if(sizeOfList>0) {
+            formerLeadingBid.setAmount(0);
+            for(BidModel bidModel : bidList) {
+                if(bidModel.getAmount() > formerLeadingBid.getAmount()){
+                    formerLeadingBid.setAmount(bidModel.getAmount());
+                    formerLeadingBidder = userRepository.getOne(bidModel.getBidder());
+                    formerLeadingBid.setBidder(formerLeadingBidder);
+                }
+            }
+            return true;
+
+        }
+
+        return false;
 
     }
-    */
 
 }

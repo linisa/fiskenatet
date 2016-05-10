@@ -65,14 +65,14 @@ public class UserController {
 
     @CrossOrigin
     @RequestMapping(value = "/users/setbuyerrating/{id}", method = RequestMethod.PUT)
-    public void rateABuyer(@PathVariable Long id, @RequestBody UserModel userModel){
-        userService.saveBuyerRating(id, userModel);
+    public void rateABuyer(@PathVariable Long id, @RequestBody String addRating){
+        userService.saveBuyerRating(id, addRating);
     }
 
     @CrossOrigin
     @RequestMapping(value = "/users/setsellerrating/{id}", method = RequestMethod.PUT)
-    public void rateASeller(@PathVariable Long id, @RequestBody UserModel userModel){
-        userService.saveSellerRating(id, userModel);
+    public void rateASeller(@PathVariable Long id, @RequestBody String addRating){
+        userService.saveSellerRating(id, addRating);
     }
 
     @CrossOrigin

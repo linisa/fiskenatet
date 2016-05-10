@@ -1,9 +1,12 @@
 package com.example.fiskenatet.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import com.example.fiskenatet.main.NotificationHandler;
+import com.example.fiskenatet.main.MailHandler;
+import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.UserModel;
 import com.example.fiskenatet.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,9 @@ public class ProductService {
     public List<ProductModel> findAllProductsByCategory(String category) {
         return (List<ProductModel>) productRepository.findProductsByCategory(category);
     }
+    public List<ProductModel> findProductsByIsSold(String isSold){
+        return (List<ProductModel>) productRepository.findProductsByIsSold(isSold);
+    }
 
     // hämta en produkt från en vald kategori och användare - EJ KLAR
     public List<ProductModel> getProductByOwnerAndByCategory(String category, Long ownerId) {
@@ -67,19 +73,44 @@ public class ProductService {
         productToUpdate.setStartPrice(productModel.getStartPrice());
         productRepository.saveAndFlush(productToUpdate);
     }
-    public void updateProductWhenSold(Long id){
+
+
+    public void updateProductWhenSold(Long id) {
+        System.out.println("i prodService set sold");
         ProductModel soldProduct = productRepository.getOne(id);
-        soldProduct.setIsSold(true);
-        NotificationHandler notificationHandler = new NotificationHandler();
+
+        soldProduct.setIsSold("yes");
+        MailHandler mailHandler = new MailHandler();
+        UserModel owner = userRepository.getOne(soldProduct.getOwner());
+        List<BidModel> bidList = soldProduct.getListOfBids();
+        int size = bidList.size();
+
+        BidModel highestBid = bidList.get(size - 1);
+        UserModel winner = userRepository.getOne(highestBid.getBidder());
+        mailHandler.sendWinnerNotification(owner, winner, soldProduct);
+        mailHandler.sendSellerNotification(owner, winner, soldProduct);
+        ArrayList<UserModel> loserList = (ArrayList)getAllLosers(winner, bidList);
+        for(UserModel loser : loserList){
+
         UserModel userModel = userRepository.getOne(soldProduct.getOwner());
-        notificationHandler.notifySeller(soldProduct, userModel);
+            mailHandler.sendLoserNotification(soldProduct, loser, owner, highestBid);
+        }
         productRepository.saveAndFlush(soldProduct);
     }
+    private List<UserModel> getAllLosers(UserModel winner, List<BidModel> bidList) {
+        List<UserModel> loserList = new ArrayList<UserModel>();
+        Set<UserModel> userHashSet = new HashSet<UserModel>();
+        for (BidModel bid : bidList) {
+            if (bid.getBidder() != winner.getId()) {
+                loserList.add(userRepository.getOne(bid.getBidder()));
+            }
+        }
 
-    public void sendNotis() {
-
+        userHashSet.addAll(loserList);
+        loserList.clear();
+        loserList.addAll(userHashSet);
+        return loserList;
     }
-
 
 }
 

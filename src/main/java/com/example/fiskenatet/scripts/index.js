@@ -11,9 +11,10 @@ $(document).ready(function () {
     checkIfLoggedIn();
     
     function checkCategory() {
-        document.getElementById('productList').innerHTML = "";
+        document.getElementById("productList").innerHTML = "";
         var category = document.getElementById("selectCategory");
         var categoryChoice = category.options[category.selectedIndex].value;
+        console.log(categoryChoice);
         if(categoryChoice == 0){
             getAllProducts();
         }else{
@@ -96,6 +97,8 @@ $(document).ready(function () {
         var smallLimit = 90;
         for (i = 0; i < allProducts.length; i++) {
             console.log("i productlistan");
+            listOfBids = allProducts[i]['listOfBids'];
+
             var description = allProducts[i].description;
 
             listOfBids = allProducts[i]['listOfBids'];
@@ -111,13 +114,11 @@ $(document).ready(function () {
                 listOfBids.sort(function (a, b) {
                     return b.amount - a.amount;
                 });
+
                 productString += '<p class="highestBid">Högsta Bud:<br>' +  listOfBids[0].amount + " kr"  + '</p>';
             }else{
                 productString += '<p class="highestBid">Högsta Bud:<br>' +  allProducts[i].startPrice + " kr" + '</p>';
             }
-
-
-
 
 
             productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';

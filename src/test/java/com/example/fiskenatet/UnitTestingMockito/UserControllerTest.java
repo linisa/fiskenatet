@@ -86,4 +86,6 @@ public class UserControllerTest {
         ResponseEntity responsMessage = new ResponseEntity<UserModel>(user1, HttpStatus.OK);
         assertThat(userController.getUserByUserName(USER_NAME_1)).isEqualTo(responsMessage);
     }
+
+
 }

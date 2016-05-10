@@ -1,9 +1,8 @@
-package com.example.fiskenatet.testusers;
+package com.example.fiskenatet.testUsers;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.awt.print.Book;
 import java.util.Arrays;
 import java.util.List;
 

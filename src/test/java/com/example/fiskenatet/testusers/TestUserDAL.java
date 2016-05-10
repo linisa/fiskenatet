@@ -1,4 +1,4 @@
-package com.example.fiskenatet.testusers;
+package com.example.fiskenatet.testUsers;
 
 import java.util.Collections;
 import java.util.List;

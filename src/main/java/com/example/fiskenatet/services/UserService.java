@@ -55,21 +55,19 @@ public class UserService {
     }
 
 
-    public void saveBuyerRating(Long id, UserModel userModel){
+    public void saveBuyerRating(Long id, String addRating){
         UserModel userToUpdate = userRepository.getOne(id);
         String oldRating = userToUpdate.getRatingAsBuyer();   // gamla betyget
-        String newRateToAdd = userModel.getRatingAsBuyer();  // nya betyget
         UserRating userRating = new UserRating();
-        userRating.setBuyerRatingForDatabase(userToUpdate, oldRating, newRateToAdd);
+        userRating.setBuyerRatingForDatabase(userToUpdate, oldRating, addRating);
         userRepository.saveAndFlush(userToUpdate);
     }
 
-    public void saveSellerRating(Long id, UserModel userModel){
+    public void saveSellerRating(Long id, String addRating){
         UserModel userToUpdate = userRepository.getOne(id);
         String oldRating = userToUpdate.getRatingAsSeller();   // gamla betyget
-        String newRateToAdd = userModel.getRatingAsSeller();  // nya betyget
         UserRating userRating = new UserRating();
-        userRating.setSellerRatingForDatabase(userToUpdate, oldRating, newRateToAdd);
+        userRating.setSellerRatingForDatabase(userToUpdate, oldRating, addRating);
         userRepository.saveAndFlush(userToUpdate);
     }
 

@@ -46,42 +46,24 @@ public class ProductModel implements Serializable{
 
     @Column(name = "highest_bid")
     private int highestBid = 0;
-    
+
     private String image;
 
     private String category;
 
     @Column(name = "is_sold")
-    private boolean isSold;
+    private String isSold = "no";
 
-    @Column(name = "is_paid")
-    private boolean isPaid;
 
     public ProductModel() {
 
     }
 
-    public boolean isSold() {
+    public String getIsSold() {
         return isSold;
     }
 
-    public void setSold(boolean sold) {
-        isSold = sold;
-    }
-
-    public boolean isPaid() {
-        return isPaid;
-    }
-
-    public void setPaid(boolean paid) {
-        isPaid = paid;
-    }
-
-    public boolean getIsSold() {
-        return isSold;
-    }
-
-    public void setIsSold(boolean isSold) {
+    public void setIsSold(String isSold) {
         this.isSold = isSold;
     }
 
@@ -110,16 +92,6 @@ public class ProductModel implements Serializable{
     public void setImage(String image) {
 
         this.image = image;
-    }
-
-    public int getHighestBid() {
-
-        return highestBid;
-    }
-
-    public void setHighestBid(int highestBid) {
-
-        this.highestBid = highestBid;
     }
 
     public Date getEndDate() {

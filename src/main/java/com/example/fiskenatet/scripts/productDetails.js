@@ -10,8 +10,6 @@ $(document).ready(function () {
 
     getProductDetails();
 
-
-
     $(document).on("click", "#lnkProfile", function () {
         location.href="../webcontent/userProfile.html";
     });
@@ -21,11 +19,8 @@ $(document).ready(function () {
         location.href="../webcontent/index.html";
     });
 
-    
     $(document).on("click", "#buyNowPriceDetails", function () {
-        
-        alert("Swisha: " + currentProduct.buyNowPrice + " kr" + " till telefonnumret: " + owner.mobileNumber);
-        setProductAsSold();
+
         location.href="../webcontent/confirmPurchase.html"
     });
     
