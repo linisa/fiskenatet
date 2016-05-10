@@ -2,25 +2,25 @@
 $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
     var userUserName;
-    var userPassword;  
-
+    var userPassword;
+    var listOfBids;
+    
 
     checkCategory();
     //getAllProducts();
     checkIfLoggedIn();
     
     function checkCategory() {
+        document.getElementById('productList').innerHTML = "";
         var category = document.getElementById("selectCategory");
         var categoryChoice = category.options[category.selectedIndex].value;
-        if(categoryChoice = 0){
+        if(categoryChoice == 0){
             getAllProducts();
         }else{
             getProductByCategory(categoryChoice);
         }
     }
-
-
-
+    
     function checkIfLoggedIn() {
         if(sessionStorage.getItem('currentUser') != null){
             /*användare inloggad*/
@@ -43,8 +43,7 @@ $(document).ready(function () {
     }
 
     $(document).on("click", "#selectCategory", function () {
-
-        location.reload();
+        checkCategory();
     });
 
     $(document).on("click", "#lnkLogOut", function () {
@@ -73,6 +72,7 @@ $(document).ready(function () {
         });
     }
 
+
     function getAllProducts() {
         $.ajax({
             type: 'GET',
@@ -91,17 +91,35 @@ $(document).ready(function () {
 
     function populateProductList(allProducts) {
         $products = $('#productList');
+
         var productString="";
         var smallLimit = 90;
         for (i = 0; i < allProducts.length; i++) {
             console.log("i productlistan");
             var description = allProducts[i].description;
+
+            listOfBids = allProducts[i]['listOfBids'];
+
+
             productString += '<div class="product"><a href="#" class="productLink" data-value="'+ allProducts[i].id +'"><div class = "col-sm-8">';
             productString += '<div><img src="' + allProducts[i].image + '" class="image"></div>';
             productString += '<div class="productText"><h3>' + allProducts[i].title + '</h3>';
             productString += '<p class="description">' + description.substr(0, smallLimit) + '...' + '</p></div></a></div>';
             productString += '<div class="col-sm-4"><p class="endDate">Slutdatum: <br>' + allProducts[i].endDate + '</p>';
-            productString += '<p class="highestBid">Högsta Bud:<br>' + allProducts[i].highestBid + '</p>';
+
+            if(listOfBids.length != 0){
+                listOfBids.sort(function (a, b) {
+                    return b.amount - a.amount;
+                });
+                productString += '<p class="highestBid">Högsta Bud:<br>' +  listOfBids[0].amount + " kr"  + '</p>';
+            }else{
+                productString += '<p class="highestBid">Högsta Bud:<br>' +  allProducts[i].startPrice + " kr" + '</p>';
+            }
+
+
+
+
+
             productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';
         }
         $products.append(productString);

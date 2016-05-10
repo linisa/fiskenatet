@@ -39,6 +39,12 @@ public class ProductService {
         return (List<ProductModel>) productRepository.findProductsByCategory(category);
     }
 
+    // hämta en produkt från en vald kategori och användare - EJ KLAR
+    public List<ProductModel> getProductByOwnerAndByCategory(String category, Long ownerId) {
+        System.out.println("byownerAndCategoryService" + category);
+        return (List<ProductModel>) productRepository.findByCategoryAndOwner(category, ownerId);
+    }
+
     // hämta en specifik produkt
     public ProductModel findSelectedProduct(Long id){
         return productRepository.getOne(id);

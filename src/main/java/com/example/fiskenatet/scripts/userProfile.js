@@ -5,7 +5,65 @@ $(document).ready(function () {
     var currentUser;
     var currentProduct;
 
-    getUserById();
+    getUserById(function (currentUser) {
+        checkCategory();
+    });
+
+
+    function checkCategory() {
+        
+        var category = document.getElementById("selectCategory");
+        var categoryChoice = category.options[category.selectedIndex].value;
+        if(categoryChoice == 0){
+            console.log("ingen kategori vald");
+            populateUserProducts(currentUser['listOfProducts']);
+        }else{
+            console.log("kategori vald " + categoryChoice);
+            //populateUserProducts(categoryChoice);
+            //listCategory(categoryChoice);
+
+        }
+
+    }
+
+    /*function listCategory(currentProduct, callback) {
+        console.log("I listcategory");
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/products/byownerandcategory/' + currentUserID + "/" + currentProduct,
+            data: callback,
+            success: function (data, textStatus, jgXHR) {
+                populateUserProducts(currentUser['listOfProducts']);
+
+            },
+            error: function(jgXHR, textStatus, errorThrown) {
+                //alert('getCustomer error: ' + textStatus);
+                console.log("ListCategory error: " + textStatus);
+            }
+        });
+    }*/
+
+
+    /*function listCategory(categoryChoice){
+
+        var productList = currentUser['listOfProducts'];
+        console.log("productlist: " + productList[0].title);
+        var productListByCategory = [];
+        for (var i = 0; i < productList.length; i++){
+            console.log("i loopen");
+            if(productList[i].category == categoryChoice){
+                productListByCategory[i] = productList[i];
+                console.log("product added");
+                console.log(productListByCategory[i]);
+            }
+        }
+        populateUserProducts(productListByCategory);
+    }*/
+
+    $(document).on("click", "#selectCategory", function () {
+        checkCategory();
+    });
 
     $(document).on("click", "#lnkSetProductAsSold", function () {
         var currentProductID = $(this).data("value");
@@ -128,15 +186,16 @@ $(document).ready(function () {
         });
     }
 
-    function getUserById() {
+    function getUserById(callback) {
         $.ajax({
             type: 'GET',
             contentType: 'application/json',
             url: rootURL + '/users/' + currentUserID,
             success: function (data, textStatus, jgXHR) {
                 currentUser = data;
+                callback(data);
                 populateUserInfo();
-                populateUserProducts();
+                populateUserProducts(currentUser['listOfProducts']);
             }
         });
     }
@@ -151,12 +210,15 @@ $(document).ready(function () {
         //document.getElementById('upRatingAsBuyer').innerHTML =currentUser[''];
     }
 
-    function populateUserProducts() {
+    function populateUserProducts(listOfProducts) {
+        document.getElementById('productList').innerHTML = "";
         $products = $('#productList');
         var productString="";
         var smallLimit = 90;
        for(i = 0; i < currentUser['listOfProducts'].length; i++){
-           var listOfProducts = currentUser['listOfProducts'];
+           console.log("popUserProd: " + listOfProducts[i]);
+           listOfBids = listOfProducts[i]['listOfBids'];
+
            productString+='<div class="OwnerProductObject"><div class="row"><div class="col-sm-4">';
            productString+='<img class="col-sm-12" src="' + listOfProducts[i].image + '">';
            productString+='</div><div class="col-sm-8">';
@@ -168,7 +230,16 @@ $(document).ready(function () {
            productString+='<p id="ownerProductCategory">Kategori: <br>' + listOfProducts[i].category + '</p>';
            productString+='</div><div class="col-sm-6">';
            productString+='<p id="ownerProductTotalBids">Totalt antal bud: <br>' + listOfProducts[i].listOfBids.length + '</p>';
-           productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' + listOfProducts[i].highestBid + '</p>';
+
+           if(listOfBids.length != 0){
+               listOfBids.sort(function (a, b) {
+                   return b.amount - a.amount;
+               });
+               productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' +  listOfBids[0].amount + " kr"  + '</p>';
+           }else{
+               productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' +  listOfProducts[i].startPrice + " kr" + '</p>';
+           }
+
            productString+='<p id="ownerProductBuyNowPrice">Utköpspris: <br>' + listOfProducts[i].buyNowPrice + '</p>';
            productString+='</div></div><div class="row"><div class="col-sm-4">';
            productString+='<a id="lnkEditProduct" href="#" data-value="'+ listOfProducts[i].id +'">Redigera annons</a>';

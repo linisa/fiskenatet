@@ -54,6 +54,8 @@ $(document).ready(function () {
             document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br>" +  currentProduct.startPrice + " kr";
         }
     }
+    
+    
 
     $('#lnkAddBid').click(function () {
         console.log("klick!");
