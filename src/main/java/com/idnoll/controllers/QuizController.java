@@ -32,7 +32,7 @@ import com.idnoll.models.QuestionModel;
 @Configuration
 public class QuizController {
 	
-	public List<QuestionModel> questions;
+	public List<QuestionModel> questions = new ArrayList<>();
 	
 	
 	
@@ -40,7 +40,7 @@ public class QuizController {
 	@RequestMapping(value="/quizPage", method=RequestMethod.GET)
 	public ModelAndView quizPage(){
 		ModelAndView model = new ModelAndView("quizPage");
-		questions = new ArrayList<>();
+		questions.clear();
 		questions.add(new QuestionModel("Vad är 1+1","2","3","4","Matte",0L));
 		model.addObject("questions",questions);
 		return model;	
