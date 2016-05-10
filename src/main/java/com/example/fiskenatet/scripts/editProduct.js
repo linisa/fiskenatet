@@ -57,11 +57,6 @@ $(document).ready(function() {
         var product = JSON.stringify({
             
             "category" : $( "#selectCategory option:selected" ).val(),
-            "firstName": $('#tfProductTitle').val(),
-            "lastName": $('#tfProductImage').val(),
-            "userName": $('#tfDescription').val(),
-            "password": $('#tfStartPrice').val(),
-            "email": $('#tfBuyNow').val(),
             "title": $('#tfProductTitle').val(),
             "image": $('#tfProductImage').val(),
             "description": $('#tfDescription').val(),

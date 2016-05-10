@@ -96,13 +96,24 @@ $(document).ready(function () {
         var smallLimit = 90;
         for (i = 0; i < allProducts.length; i++) {
             console.log("i productlistan");
+            listOfBids = allProducts[i]['listOfBids'];
+
             var description = allProducts[i].description;
             productString += '<div class="product"><a href="#" class="productLink" data-value="'+ allProducts[i].id +'"><div class = "col-sm-8">';
             productString += '<div><img src="' + allProducts[i].image + '" class="image"></div>';
             productString += '<div class="productText"><h3>' + allProducts[i].title + '</h3>';
             productString += '<p class="description">' + description.substr(0, smallLimit) + '...' + '</p></div></a></div>';
             productString += '<div class="col-sm-4"><p class="endDate">Slutdatum: <br>' + allProducts[i].endDate + '</p>';
-            productString += '<p class="highestBid">Högsta Bud:<br>' + allProducts[i].highestBid + '</p>';
+
+            if(listOfBids.length != 0){
+                listOfBids.sort(function (a, b) {
+                    return b.amount - a.amount;
+                });
+                productString+='<p class="highestBid">Högsta bud: <br>' + listOfBids[0].amount + "kr" +'</p>';
+            }else{
+                productString+='<p class="highestBid">Högsta bud: <br>' + allProducts[i].startPrice + "kr" +'</p>'
+            }
+            
             productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';
         }
         $products.append(productString);

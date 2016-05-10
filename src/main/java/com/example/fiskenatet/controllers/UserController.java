@@ -65,7 +65,7 @@ public class UserController {
 
     @CrossOrigin
     @RequestMapping(value = "/users/setbuyerrating/{id}", method = RequestMethod.PUT)
-    public void rateABuyer(@PathVariable Long id, String addRating){
+    public void rateABuyer(@PathVariable Long id, @RequestBody String addRating){
         userService.saveBuyerRating(id, addRating);
     }
 

@@ -6,14 +6,11 @@ $(document).ready(function () {
     var currentProduct;
 
     getUserById();
-
     $(document).on("click", "#lnkSetProductAsSold", function () {
-        //TODO: Make user input set buyer rating
-        
-        
-        
-        var currentProductID = $(this).data("value");        
+        var currentProductID = $(this).data("value");
+
         getProductById(currentProductID, function (currentProduct) {
+            setBuyerRating(currentProduct);
             productToHistoryJSON(currentProduct, function (JSONHistory) {
                 moveSoldProductToHistory(JSONHistory);
             });
@@ -62,6 +59,37 @@ $(document).ready(function () {
             alert("Det går inte att ta bort ett konto med aktiva auktioner!");
         }
     }
+
+    function setBuyerRating(currentProduct) {
+        var buyerRating = $("input[type='radio'][name='rating']:checked").val();
+        console.log("setBuyerRating " + buyerRating);
+        $.ajax({
+            type: 'PUT',
+            contentType: 'application/json',
+            url: buyerRatingURL(currentProduct),
+            data:buyerRating,
+            success: function (data, textStatus, jgXHR) {
+                console.log("Buyer rating put:" + buyerRating);
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("setBuyerRating error: " + textStatus);
+            }
+        });
+
+    }
+
+
+    function buyerRatingURL(currentProduct) {
+
+        var bidList = currentProduct['listOfBids'];
+        bidList.sort(function (a, b) {
+            return b.amount - a.amount;
+        });
+        var ratingURL = 'http://localhost:8091/api/users/setbuyerrating/' + bidList[0].bidder;
+        console.log(ratingURL);
+        return ratingURL;
+    }
+
 
     function moveSoldProductToHistory(JSONHistory){
         console.log("in moveSoldProductToHistory");
@@ -159,24 +187,37 @@ $(document).ready(function () {
         var smallLimit = 90;
        for(i = 0; i < currentUser['listOfProducts'].length; i++){
            var listOfProducts = currentUser['listOfProducts'];
+           var startDate = new Date(listOfProducts[i].startDate);
+           var isSold = listOfProducts[i].isSold;
+           listOfBids = listOfProducts[i]['listOfBids'];
+
            productString+='<div class="OwnerProductObject"><div class="row"><div class="col-sm-4">';
            productString+='<img class="col-sm-12" src="' + listOfProducts[i].image + '">';
            productString+='</div><div class="col-sm-8">';
            productString+='<h3 id="ownerProductTitle">' + listOfProducts[i].title + '</h3>';
            productString+='<p class="ownerProductDescription">' + listOfProducts[i].description + '</p>';
            productString+='</div></div><div class="row"><div class="col-sm-6">';
-           productString+='<p id="ownerProductStartDate">Datum tillagt: <br>' + listOfProducts[i].startDate + '</p>';
+           productString+='<p id="ownerProductStartDate">Datum tillagt: <br>' + startDate.toLocaleString() + '</p>';
            productString+='<p id="ownerProductEndDate">Slutdatum: <br>' + listOfProducts[i].endDate + '</p>';
            productString+='<p id="ownerProductCategory">Kategori: <br>' + listOfProducts[i].category + '</p>';
            productString+='</div><div class="col-sm-6">';
            productString+='<p id="ownerProductTotalBids">Totalt antal bud: <br>' + listOfProducts[i].listOfBids.length + '</p>';
-           productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' + listOfProducts[i].highestBid + '</p>';
+
+           if(listOfBids.length != 0){
+               listOfBids.sort(function (a, b) {
+                   return b.amount - a.amount;
+               });
+               productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' + listOfBids[0].amount + "kr" +'</p>';
+           }else{
+               productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' + listOfProducts[i].startPrice + "kr" +'</p>'
+           }
+
            productString+='<p id="ownerProductBuyNowPrice">Utköpspris: <br>' + listOfProducts[i].buyNowPrice + '</p>';
            productString+='</div></div><div class="row"><div class="col-sm-4">';
            productString+='<a id="lnkEditProduct" href="#" data-value="'+ listOfProducts[i].id +'">Redigera annons</a>';
            productString+='</div><div class="col-sm-4">';
            productString+='<a id="lnkDeleteProduct"href="#" data-value="'+ listOfProducts[i].id +'">Ta bort annons</a></div>';
-           if(listOfProducts[i].isSold){
+           if(isSold == "yes"){
                productString+='<p id="confirmPurchase" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta köp</p>';
                productString+='<div id="buyerRatingDiv" class="collapse">';
                productString+='    <fieldset class="rating">';

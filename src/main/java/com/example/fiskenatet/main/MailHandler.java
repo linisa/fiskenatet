@@ -105,7 +105,7 @@ public class MailHandler {
             message.setFrom(new InternetAddress("fiskenaetet@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(loser.getEmail()));
             message.setSubject("Du förlorade en budgivning");
-            message.setText("Du förlorade budgivningen på '" + seller.getFirstName() + "'s " + currentProduct.getTitle() +"'"
+            message.setText("Du förlorade budgivningen på '" + seller.getUserName() + "'s " + currentProduct.getTitle() +"'"
                     +"\n"+ "Slutpriset blev: " + endBid.getAmount() +":-"
                     +"\n"+ "Lycka till nästa gång!"
                     +"\n"+ "Hälsningar Fiskenätet!");

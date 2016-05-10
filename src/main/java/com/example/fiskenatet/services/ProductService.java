@@ -70,6 +70,7 @@ public class ProductService {
 
 
     public void updateProductWhenSold(Long id) {
+        System.out.println("i prodService set sold");
         ProductModel soldProduct = productRepository.getOne(id);
 
         soldProduct.setIsSold("yes");

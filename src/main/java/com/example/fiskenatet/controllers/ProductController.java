@@ -52,6 +52,7 @@ public class ProductController {
     @CrossOrigin
     @RequestMapping(value = "/products/issold/{id}", method = RequestMethod.PUT)
     public void updateProductWhenSold(@PathVariable Long id){
+        System.out.println("i prodcontroller set sold");
         productService.updateProductWhenSold(id);
     }
 

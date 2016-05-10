@@ -14,9 +14,42 @@ $(document).ready(function () {
 
     $(document).on("click", "#btnConfirmSwish", function () {
         setSellerRating();
-        //setProductAsSold();
-        
+        addBidIfBuyout(function () {
+            setProductAsSold();
+        });
     });
+    
+    function addBidIfBuyout(callback) {
+        console.log("in addUser");
+        $.ajax({
+            type: 'POST',
+            contentType:'application/json',
+            url: rootURL + '/bids',
+            data: buyoutBidFormToJSON(),
+            success: function (data, textStatus, jgXHR) {
+                console.log("GREAT SUCCESS!");
+
+                callback();
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("send Error " +textStatus + "  " + errorThrown);
+            },
+        })
+    }
+
+    function buyoutBidFormToJSON() {
+        console.log("i form to json");
+        var bidDate = new Date();
+        var bid = JSON.stringify({
+            "currentProduct": {'id' : currentProductId},
+            "bidder": {'id' : owner.id},
+            "amount": currentProduct.buyNowPrice,
+            "bidDate": bidDate
+
+        });
+        console.log(bid);
+        return bid;
+    }
     
     function setSellerRating() {
         var sellerRating = $("input[type='radio'][name='rating']:checked").val();
@@ -70,6 +103,7 @@ $(document).ready(function () {
 
 
     function setProductAsSold() {
+        console.log("Setting product as sold")
         $.ajax({
             type: 'PUT',
             contentType: 'application/json',
