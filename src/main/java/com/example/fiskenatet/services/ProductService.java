@@ -76,9 +76,6 @@ public class ProductService {
         mailHandler.sendWinnerNotification(owner, winner, soldProduct);
         mailHandler.sendSellerNotification(owner, winner, soldProduct);
 
-
-
-
         UserModel userModel = userRepository.getOne(soldProduct.getOwner());
 
         productRepository.saveAndFlush(soldProduct);
