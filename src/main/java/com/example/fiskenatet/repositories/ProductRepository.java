@@ -15,6 +15,11 @@ public interface ProductRepository extends JpaRepository<ProductModel, Long> {
 
     public List<ProductModel> findProductsByCategory(String category);
 
+
+    public List<ProductModel> findByCategoryAndOwner(String category, Long ownerId);
+
+
     public List<ProductModel> findProductsByIsSold(String isSold);
+
 }
 

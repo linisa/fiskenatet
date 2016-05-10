@@ -6,12 +6,16 @@ import java.util.List;
 
 import com.example.fiskenatet.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.services.ProductService;
+
+import javax.validation.Valid;
 
 @RestController
 public class ProductController {
@@ -70,11 +74,20 @@ public class ProductController {
         return new ResponseEntity<List<ProductModel>>(productService.findAllProductsByCategory(category), HttpStatus.OK);
     }
 
-    
+    //hämtar en produkt från en vald kategori för en viss användare
+    @CrossOrigin
+    @RequestMapping(value = "/products/byownerandcategory/{category}/{ownerId}", method = RequestMethod.GET)
+    public ResponseEntity<List<ProductModel>>getProductByOwnerAndByCategory(@PathVariable String category,@PathVariable Long ownerId) {
+        System.out.println("byownerAndCategoryController");
+        return new ResponseEntity<List<ProductModel>>(productService.getProductByOwnerAndByCategory(category, ownerId), HttpStatus.OK);
+    }
+
+    //sätter en produkt till såld
     @CrossOrigin
     @RequestMapping(value = "/products/productissold/{isSold}", method = RequestMethod.GET)
     public ResponseEntity<List<ProductModel>>getUnsoldProducts(@PathVariable String isSold) {
         return new ResponseEntity<List<ProductModel>>(productService.findProductsByIsSold(isSold), HttpStatus.OK);
+
     }
 }
 

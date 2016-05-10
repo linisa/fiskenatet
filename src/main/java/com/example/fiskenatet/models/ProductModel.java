@@ -44,8 +44,9 @@ public class ProductModel implements Serializable{
     @Column(name = "end_date")
     private Date endDate; //datum + tid?
 
+    @Column(name = "highest_bid")
+    private int highestBid = 0;
 
-    
     private String image;
 
     private String category;

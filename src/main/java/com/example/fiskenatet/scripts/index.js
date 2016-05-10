@@ -2,8 +2,9 @@
 $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
     var userUserName;
-    var userPassword;  
-
+    var userPassword;
+    var listOfBids;
+    
 
     checkCategory();
     //getAllProducts();
@@ -20,9 +21,7 @@ $(document).ready(function () {
             getProductByCategory(categoryChoice);
         }
     }
-
-
-
+    
     function checkIfLoggedIn() {
         if(sessionStorage.getItem('currentUser') != null){
             /*användare inloggad*/
@@ -74,6 +73,7 @@ $(document).ready(function () {
         });
     }
 
+
     function getAllProducts() {
         $.ajax({
             type: 'GET',
@@ -92,6 +92,7 @@ $(document).ready(function () {
 
     function populateProductList(allProducts) {
         $products = $('#productList');
+
         var productString="";
         var smallLimit = 90;
         for (i = 0; i < allProducts.length; i++) {
@@ -99,6 +100,10 @@ $(document).ready(function () {
             listOfBids = allProducts[i]['listOfBids'];
 
             var description = allProducts[i].description;
+
+            listOfBids = allProducts[i]['listOfBids'];
+
+
             productString += '<div class="product"><a href="#" class="productLink" data-value="'+ allProducts[i].id +'"><div class = "col-sm-8">';
             productString += '<div><img src="' + allProducts[i].image + '" class="image"></div>';
             productString += '<div class="productText"><h3>' + allProducts[i].title + '</h3>';
@@ -109,11 +114,13 @@ $(document).ready(function () {
                 listOfBids.sort(function (a, b) {
                     return b.amount - a.amount;
                 });
-                productString+='<p class="highestBid">Högsta bud: <br>' + listOfBids[0].amount + "kr" +'</p>';
+
+                productString += '<p class="highestBid">Högsta Bud:<br>' +  listOfBids[0].amount + " kr"  + '</p>';
             }else{
-                productString+='<p class="highestBid">Högsta bud: <br>' + allProducts[i].startPrice + "kr" +'</p>'
+                productString += '<p class="highestBid">Högsta Bud:<br>' +  allProducts[i].startPrice + " kr" + '</p>';
             }
-            
+
+
             productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';
         }
         $products.append(productString);
