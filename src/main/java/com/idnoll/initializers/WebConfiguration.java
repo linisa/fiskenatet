@@ -6,12 +6,14 @@ import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import org.springframework.core.env.Environment;
+
 import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -32,6 +34,7 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableTransactionManagement
 @ComponentScan("com.idnoll")
 @PropertySource("classpath:application.properties")
+@EnableJpaRepositories("com.idnoll.repositories")
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 	
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";
@@ -102,18 +105,19 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 		return transactionManager;
 	}
 	
-
 	@Bean
 	public ViewResolver viewResolver(ContentNegotiationManager manager){
-		
 		List<ViewResolver> resolvers = new ArrayList<>();
 		
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		
 		resolver.setPrefix("/WEB-INF/pages/");
 		resolver.setSuffix(".jsp");
 		resolver.setViewClass(JstlView.class);
-	
 		resolvers.add(resolver);
+		
+		JsonHandler jsonHandler = new JsonHandler();
+		resolvers.add(jsonHandler);
 		
 		ContentNegotiatingViewResolver contentResolver = new ContentNegotiatingViewResolver();
 		contentResolver.setViewResolvers(resolvers);

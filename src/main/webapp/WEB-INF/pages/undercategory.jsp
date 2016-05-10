@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/taglib.jsp" %>      
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -10,26 +10,34 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-<jsp:include page="/WEB-INF/layout/page-header.jsp"></jsp:include>
+<jsp:include page="page-header.jsp"></jsp:include>
 	<div>
 	<br>
 	</div>
     <div class="undercategory">
         <!-- all ny content skapas här -->
         <h3>Välj ämnen!</h3>
-        <div class="list-group" id="Geografi">
-		  <a href="#" class="list-group-item active">
-		    Geografi
+        <div class="list-group">
+		  <a href="#" class="list-group-item active">Aqui
+		    <c:forEach 
+		    var="undercategories"
+		    items="${undercategories}">
+		    ${undercategories.undercategories_name}
+  			</c:forEach>
 		  </a>
-		  <a href="#" class="list-group-item">Skandinavien</a>
-		  <a href="#" class="list-group-item">Europa</a>
+		  <a href="#" class="list-group-item">
+		  
+  			</a>
+		  <a href="#" class="list-group-item">
+			<c:forEach 
+		    items="${undercategories}"  
+		    var="undercategories">
+		    ${undercategories.undercategories_name}
+  			</c:forEach>
+			</a>
 		  <a href="#" class="list-group-item">Amerika</a>
 		  <a href="#" class="list-group-item">Afrika</a>
 		  <a href="#" class="list-group-item">Asien</a>
@@ -44,26 +52,9 @@
 	<br>
 	</div>
 	<div>
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>${menu.category_menu}</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${menus}" var="menu">
-				<tr>
-					<td>
-						<a href="<spring:url value="/menus/${menu.menu_id}.html" />">
-						${menu.category_menu}
-						</a>
-					</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	<br>
 	</div>
 
-<jsp:include page="/WEB-INF/layout/page-footer.jsp"></jsp:include>
+<jsp:include page="page-footer.jsp"></jsp:include>
 </body>
 </html>

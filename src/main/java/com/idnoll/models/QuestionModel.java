@@ -1,60 +1,90 @@
+
 package com.idnoll.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.JoinColumn;
 
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+
+@SuppressWarnings("serial")
 @Entity
-public class QuestionModel {
+@Table(name="questionmodel")
+public class QuestionModel implements Serializable {
 
 	@Id
 	@GeneratedValue
 	private Long question_id;
 	
-	private String subCategory;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	
+	private Long subCategory;
 	private String category;
 	
 	private String question;
 	private String correctAnswer;
 	private String firstWrongAnswer;
 	private String secondWrongAnswer;
+	
+	@Transient
 	private String userAnswer;
 	
+
 	@JoinColumn(name = "menuModel")
 	private UndercategoryModel undercategoryModel;
+
+	@Transient
+	private String[] randomPosition;
+
 	
 	
 	public QuestionModel() {
 		
 	}
 	
-	
-	
 	public QuestionModel( String question, String correctAnswer,
-			String firstWrongAnswer, String secondWrongAnswer, String category, String subCategory) {
+			String firstWrongAnswer, String secondWrongAnswer, String category, Long subCategory) {
 		this.question = question;
 		this.correctAnswer = correctAnswer;
 		this.firstWrongAnswer = firstWrongAnswer;
 		this.secondWrongAnswer = secondWrongAnswer;
 		this.category = category;
 		this.subCategory = subCategory;
+		setRandomPosition();
+	}
+	
+	public QuestionModel update(QuestionModel questionModel){
+		this.question = questionModel.question;
+		this.correctAnswer = questionModel.correctAnswer;
+		this.firstWrongAnswer = questionModel.firstWrongAnswer;
+		this.correctAnswer = questionModel.secondWrongAnswer;
+		this.category = questionModel.category;
+		this.subCategory = questionModel.subCategory;
+		return this;
 	}
 
-
-
-	public List<String> getShuffledAnswers(){
+	public String[] getShuffledAnswers(){
 		List<String> randomAnswers = new ArrayList<>();
+	
 		randomAnswers.add(getCorrectAnswer());
 		randomAnswers.add(getFirstWrongAnswer());
 		randomAnswers.add(getSecondWrongAnswer());
-		
+	
 		Collections.shuffle(randomAnswers);
-		return randomAnswers;
+		String[] randomAnswersArray = {randomAnswers.get(0),randomAnswers.get(1),randomAnswers.get(2)};
+		return randomAnswersArray;
 	}
 
 	public Long getId() {
@@ -68,7 +98,6 @@ public class QuestionModel {
 	public void setUserAnswer(String userAnswer) {
 		this.userAnswer = userAnswer;
 	}
-
 
 	public void setId(Long id) {
 		this.question_id = id;
@@ -106,28 +135,28 @@ public class QuestionModel {
 		this.secondWrongAnswer = secondWrongAnswer;
 	}
 
-
-
-	public String getSubCategory() {
+	public Long getSubCategory() {
 		return subCategory;
 	}
 
-
-
-	public void setSubCategory(String subCategory) {
+	public void setSubCategory(Long subCategory) {
 		this.subCategory = subCategory;
 	}
-
-
 
 	public String getCategory() {
 		return category;
 	}
 
-
-
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	
+	public String[] getRandomPosition() {
+		return randomPosition;
+	}
+	
+	public void setRandomPosition() {
+		randomPosition = getShuffledAnswers();
 	}
 
 
@@ -150,4 +179,8 @@ public class QuestionModel {
 				+ question + ", correctAnswer=" + correctAnswer + ", firstWrongAnswer=" + firstWrongAnswer
 				+ ", secondWrongAnswer=" + secondWrongAnswer + ", userAnswer=" + userAnswer + "]";
 	}
+
+
+	
+	
 }

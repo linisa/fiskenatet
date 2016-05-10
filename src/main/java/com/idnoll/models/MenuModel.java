@@ -1,5 +1,7 @@
 package com.idnoll.models;
 
+
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,7 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class MenuModel {
+public class MenuModel implements Serializable{
+
 	
 	@Id
 	@GeneratedValue
@@ -43,8 +46,5 @@ public class MenuModel {
 	public void setListOfUndercategories(List<UndercategoryModel> listOfUndercategories) {
 		this.listOfUndercategories = listOfUndercategories;
 	}
-	
-	
-	
-
+		
 }

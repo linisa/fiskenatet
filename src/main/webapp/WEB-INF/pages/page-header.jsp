@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/taglib.jsp" %>   
+<%@ include file="taglib.jsp" %>   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,7 +10,7 @@
 <body>
 <div class="jumotron">
     	<div align="center">
-        <img src="images/quiz_logo.jpg" alt="Quiz Logo" width="60%"/>
+        <img src="/images/quiz_logo.jpg" alt="Quiz Logo" width="60%"/>
         <a href="#"><span class="glyphicon glyphicon-user"></span> Login</a>
     	</div>
     </div>
