@@ -51,10 +51,10 @@ public class ProductModel implements Serializable{
     private String category;
 
     @Column(name = "is_sold")
-    private boolean isSold;
+    private boolean isSold = false;
 
     @Column(name = "is_paid")
-    private boolean isPaid;
+    private boolean isPaid = false;
 
     public ProductModel() {
 

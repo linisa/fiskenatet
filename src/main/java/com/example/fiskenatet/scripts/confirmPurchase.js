@@ -20,17 +20,17 @@ $(document).ready(function () {
     
     function setSellerRating() {
         var sellerRating = $("input[type='radio'][name='rating']:checked").val();
-        console.log(sellerRating);
+        console.log("setSellerRating " + sellerRating);
         $.ajax({
             type: 'PUT',
             contentType: 'application/json',
-            url: rootURL + '/users/' + currentProduct.owner,
+            url: rootURL + '/users/setsellerrating/' + currentProduct.owner,
             data:sellerRating,
             success: function (data, textStatus, jgXHR) {
                 console.log("Seller rating put:" + sellerRating);
             },
             error: function (jgXHR, textStatus, errorThrown) {
-                console.log("getAllProducts error: " + textStatus);
+                console.log("setSellerRating error: " + textStatus);
             }
         });
         
@@ -48,7 +48,7 @@ $(document).ready(function () {
                 getProductOwner();
             },
             error: function (jgXHR, textStatus, errorThrown) {
-                console.log("getAllProducts error: " + textStatus);
+                console.log("getProductDetails error: " + textStatus);
             }
         });
     }
@@ -78,7 +78,7 @@ $(document).ready(function () {
                 console.log("success");
             },
             error: function(jgXHR, textStatus, errorThrown) {
-                console.log("editProduct error: " + textStatus);
+                console.log("setProductAsSold error: " + textStatus);
             }
         });
     }

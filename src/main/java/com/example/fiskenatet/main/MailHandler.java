@@ -20,8 +20,6 @@ import javax.mail.internet.MimeMessage;
 
 
 public class MailHandler {
-    private UserRepository userRepository;
-    private BidRepository bidRepository;
 
     public Session setUpMail() {
 
@@ -81,7 +79,7 @@ public class MailHandler {
             throw new RuntimeException(e);
         }
     }
-    public void sendBidderNotification(ProductModel currentProduct, BidModel bidModel, UserModel lastBidder) {
+    public void sendNewBidNotification(ProductModel currentProduct, BidModel bidModel, UserModel lastBidder) {
 
             try {
 
@@ -99,5 +97,24 @@ public class MailHandler {
             } catch (MessagingException e) {
                 throw new RuntimeException(e);
             }
+    }
+    public void sendLoserNotification(ProductModel currentProduct, UserModel loser, UserModel seller, BidModel endBid){
+        try {
+
+            Message message = new MimeMessage(setUpMail());
+            message.setFrom(new InternetAddress("fiskenaetet@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(loser.getEmail()));
+            message.setSubject("Du förlorade en budgivning");
+            message.setText("Du förlorade budgivningen på '" + seller.getFirstName() + "'s " + currentProduct.getTitle() +"'"
+                    +"\n"+ "Slutpriset blev: " + endBid.getAmount() +":-"
+                    +"\n"+ "Lycka till nästa gång!"
+                    +"\n"+ "Hälsningar Fiskenätet!");
+
+            Transport.send(message);
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
