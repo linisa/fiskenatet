@@ -6,6 +6,7 @@ $(document).ready(function () {
     var currentProduct;
 
     getUserById();
+    
     $(document).on("click", "#lnkSetProductAsSold", function () {
         var currentProductID = $(this).data("value");
 
@@ -77,8 +78,7 @@ $(document).ready(function () {
         });
 
     }
-
-
+    
     function buyerRatingURL(currentProduct) {
 
         var bidList = currentProduct['listOfBids'];
@@ -89,8 +89,7 @@ $(document).ready(function () {
         console.log(ratingURL);
         return ratingURL;
     }
-
-
+    
     function moveSoldProductToHistory(JSONHistory){
         console.log("in moveSoldProductToHistory");
         $.ajax({
@@ -220,8 +219,8 @@ $(document).ready(function () {
            if(isSold == "yes"){
                productString+='<p id="confirmPurchase" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta köp</p>';
                productString+='<div id="buyerRatingDiv" class="collapse">';
-               productString+='    <fieldset class="rating">';
-               productString+='    <legend>Säljarbetyg:</legend>';
+               productString+='<fieldset class="rating">';
+               productString+='<legend>Säljarbetyg:</legend>';
                productString+='<input type="radio" id="star5" name="rating" value="5" /><label for="star5">5 stars</label>';
                productString+='<input type="radio" id="star4" name="rating" value="4" /><label for="star4">4 stars</label>';
                productString+='<input type="radio" id="star3" name="rating" value="3" /><label for="star3">3 stars</label>';
@@ -233,13 +232,6 @@ $(document).ready(function () {
            productString+='</div></div></div>';
        }
         $products.append(productString);
-
-
-
-
-
-
-
     }
 });
 

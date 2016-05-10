@@ -69,6 +69,8 @@ public class ProductController {
     public ResponseEntity<List<ProductModel>>getProductsByCategory(@PathVariable String category) {
         return new ResponseEntity<List<ProductModel>>(productService.findAllProductsByCategory(category), HttpStatus.OK);
     }
+
+    
     @CrossOrigin
     @RequestMapping(value = "/products/productissold/{isSold}", method = RequestMethod.GET)
     public ResponseEntity<List<ProductModel>>getUnsoldProducts(@PathVariable String isSold) {
