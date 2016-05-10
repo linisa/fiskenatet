@@ -1,4 +1,4 @@
-package com.example.fiskenatet.testusers;
+package com.example.fiskenatet.testUsers;
 
 public class TestUserModel {
 

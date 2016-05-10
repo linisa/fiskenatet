@@ -51,36 +51,18 @@ public class ProductModel implements Serializable{
     private String category;
 
     @Column(name = "is_sold")
-    private boolean isSold = false;
+    private String isSold = "no";
 
-    @Column(name = "is_paid")
-    private boolean isPaid = false;
 
     public ProductModel() {
 
     }
 
-    public boolean isSold() {
+    public String getIsSold() {
         return isSold;
     }
 
-    public void setSold(boolean sold) {
-        isSold = sold;
-    }
-
-    public boolean isPaid() {
-        return isPaid;
-    }
-
-    public void setPaid(boolean paid) {
-        isPaid = paid;
-    }
-
-    public boolean getIsSold() {
-        return isSold;
-    }
-
-    public void setIsSold(boolean isSold) {
+    public void setIsSold(String isSold) {
         this.isSold = isSold;
     }
 

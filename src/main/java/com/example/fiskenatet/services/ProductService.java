@@ -41,6 +41,9 @@ public class ProductService {
     public List<ProductModel> findAllProductsByCategory(String category) {
         return (List<ProductModel>) productRepository.findProductsByCategory(category);
     }
+    public List<ProductModel> findProductsByIsSold(String isSold){
+        return (List<ProductModel>) productRepository.findProductsByIsSold(isSold);
+    }
 
     // hämta en specifik produkt
     public ProductModel findSelectedProduct(Long id){
@@ -66,13 +69,10 @@ public class ProductService {
     }
 
 
-
-    // FEL FEL FEL FEL FEL FEL FEL FEL FEL FEL FEL FEL FEL FEL
-    // MAN KAN INTE GÖRA FLER SAKER PÅ EN LISTA SAMTIDIGT, FOR LOOP SKIT
     public void updateProductWhenSold(Long id) {
         ProductModel soldProduct = productRepository.getOne(id);
 
-        soldProduct.setIsSold(true);
+        soldProduct.setIsSold("yes");
         MailHandler mailHandler = new MailHandler();
         UserModel owner = userRepository.getOne(soldProduct.getOwner());
         List<BidModel> bidList = soldProduct.getListOfBids();
