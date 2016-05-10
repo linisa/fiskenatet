@@ -25,9 +25,6 @@ public class InitDbService {
 	@Autowired
 	private UndercategoryRepository undercategoryRepository;
 	
-	@Autowired
-	private QuestionModel questionRepository;
-	
 	@PostConstruct
 	public void init(){
 		MenuModel categoryMenu = new MenuModel();

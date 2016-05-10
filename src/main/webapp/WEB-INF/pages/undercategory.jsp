@@ -25,7 +25,7 @@
 		    <c:forEach 
 		    var="undercategories"
 		    items="${undercategories}">
-		    ${undercategories.undercategories_name}
+		    ${undercategories.undercategory_menu_name}
   			</c:forEach>
 		  </a>
 		  <a href="#" class="list-group-item">

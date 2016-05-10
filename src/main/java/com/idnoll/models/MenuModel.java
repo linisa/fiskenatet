@@ -2,25 +2,35 @@ package com.idnoll.models;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
 
 @Entity
 public class MenuModel implements Serializable{
-
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
 	private Integer menu_id;
 	
 	private String menu_category_name;
 	
-	@OneToMany(mappedBy="menuModel")
-	private List<UndercategoryModel> listOfUndercategories;
+	@Transient
+	private List<UndercategoryModel> listOfUndercategories = new ArrayList<>();
+	
+	public MenuModel(){
+		
+	}
 
 	
 	public Integer getMenu_id() {

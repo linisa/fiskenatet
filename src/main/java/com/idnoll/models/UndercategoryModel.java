@@ -1,47 +1,30 @@
 package com.idnoll.models;
 
-import java.util.List;
+import java.io.Serializable;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
+@SuppressWarnings("serial")
 @Entity
-public class UndercategoryModel {
+public class UndercategoryModel implements Serializable {
 	
 	@Id
 	@GeneratedValue
 	private Integer undercategory_id;
 	
-	@Column(name="undercategory_menu_name")
 	private String undercategory_menu_name;
 	
-	
-	@ManyToOne
-	@JoinColumn(name = "menu_id")
+	@Transient
 	private MenuModel menuModel;
 
-
-	@OneToMany(mappedBy="question_id")
-	private List<QuestionModel> listOfQuestions;
 	
-	
-	
-
-
-	public List<QuestionModel> getListOfQuestions() {
-		return listOfQuestions;
+	public UndercategoryModel(){
+		
 	}
-
-
-	public void setListOfQuestions(List<QuestionModel> listOfQuestions) {
-		this.listOfQuestions = listOfQuestions;
-	}
-
 
 	public Integer getUndercategory_id() {
 		return undercategory_id;

@@ -24,7 +24,7 @@
   <div class="container">
     <div class="nav-tabs">
         <ul class="nav nav-tabs nav-justified">
-          <li><a href="${pageContext.request.contextPath}/quizPage.html">Geografi</a></li>
+          <li><a href="${pageContext.request.contextPath}/undercategory.html">Geografi</a></li>
           <li><a href="#">Sport</a></li>
           <li><a href="#">Natur</a></li>
           <li><a href="#">Film</a></li>

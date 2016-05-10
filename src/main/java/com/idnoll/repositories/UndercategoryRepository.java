@@ -6,6 +6,5 @@ import com.idnoll.models.MenuModel;
 import com.idnoll.models.UndercategoryModel;
 
 public interface UndercategoryRepository extends JpaRepository<UndercategoryModel, Integer>{
-
 	
 }

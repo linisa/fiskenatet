@@ -26,18 +26,13 @@ public class UndercategoryService {
 	@Autowired
 	private UndercategoryRepository undercategoryRepository;
 	
-
-	@PersistenceContext
-	private static EntityManager entityManager;
-	
 	public UndercategoryService(){
 		
 	}
 	
 	@Transactional
 	  public List<UndercategoryModel> getAllCategories() {
-	    List<UndercategoryModel> result = entityManager.createQuery("SELECT * FROM categories", 
-	    		UndercategoryModel.class).getResultList();
+	    List<UndercategoryModel> result = undercategoryRepository.findAll();
 	    return result;
 	  }
 	
