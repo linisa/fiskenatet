@@ -46,7 +46,7 @@ $(document).ready(function () {
     $('#selectCategory').change(function () {
         checkCategory();
     })
-    
+
 
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
