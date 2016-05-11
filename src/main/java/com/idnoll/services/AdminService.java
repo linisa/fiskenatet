@@ -29,7 +29,7 @@ public class AdminService implements AdminServiceInterface {
 
 	@Override
 	public void updateQuestion(Long id, QuestionModel questionModel) {
-		QuestionModel questionToUpdate = questionRepository.getOne(id);
+		QuestionModel questionToUpdate = getQuestion(questionModel.getId());
 		questionToUpdate.setQuestion(questionModel.getQuestion());
 		questionToUpdate.setCorrectAnswer(questionModel.getCorrectAnswer());
 		questionToUpdate.setFirstWrongAnswer(questionModel.getFirstWrongAnswer());
