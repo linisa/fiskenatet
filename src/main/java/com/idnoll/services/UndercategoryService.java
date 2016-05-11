@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.idnoll.models.MenuModel;
-import com.idnoll.models.UndercategoryModel;
-import com.idnoll.repositories.MenuRepository;
+import com.idnoll.models.CategoryModel;
+import com.idnoll.models.UnderCategoryModel;
+import com.idnoll.repositories.CategoryRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,18 +31,18 @@ public class UndercategoryService {
 	}
 	
 	@Transactional
-	  public List<UndercategoryModel> getAllCategories() {
-	    List<UndercategoryModel> result = undercategoryRepository.findAll();
+	  public List<UnderCategoryModel> getAllCategories() {
+	    List<UnderCategoryModel> result = undercategoryRepository.findAll();
 	    return result;
 	  }
 	
 	
-	public List<UndercategoryModel> findAllUndercategory(){
+	public List<UnderCategoryModel> findAllUndercategory(){
 		return undercategoryRepository.findAll();
 	}
 
 
-	public UndercategoryModel findOne(int undercategory_id) {
+	public UnderCategoryModel findOne(int undercategory_id) {
 		return undercategoryRepository.findOne(undercategory_id);
 		
 	}

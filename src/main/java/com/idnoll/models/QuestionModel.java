@@ -43,7 +43,7 @@ public class QuestionModel implements Serializable {
 	
 
 	@JoinColumn(name = "menuModel")
-	private UndercategoryModel undercategoryModel;
+	private UnderCategoryModel undercategoryModel;
 
 	@Transient
 	private String[] randomPosition;
@@ -161,13 +161,13 @@ public class QuestionModel implements Serializable {
 
 
 
-	public UndercategoryModel getUndercategoryModel() {
+	public UnderCategoryModel getUndercategoryModel() {
 		return undercategoryModel;
 	}
 
 
 
-	public void setUndercategoryModel(UndercategoryModel undercategoryModel) {
+	public void setUndercategoryModel(UnderCategoryModel undercategoryModel) {
 		this.undercategoryModel = undercategoryModel;
 	}
 

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -20,29 +22,28 @@
     <div class="undercategory">
         <!-- all ny content skapas här -->
         <h3>Välj ämnen!</h3>
+        
+        
         <div class="list-group">
-		  <a href="#" class="list-group-item active">Aqui
-		    <c:forEach 
-		    var="undercategories"
-		    items="${undercategories}">
-		    ${undercategories.undercategory_menu_name}
-  			</c:forEach>
-		  </a>
-		  <a href="#" class="list-group-item">
+        <c:set var="totalundercategories" value="${fn:length(undercategories)}" />
 		  
-  			</a>
-		  <a href="#" class="list-group-item">
-			<c:forEach 
-		    items="${undercategories}"  
-		    var="undercategories">
-		    ${undercategories.undercategories_name}
-  			</c:forEach>
-			</a>
-		  <a href="#" class="list-group-item">Amerika</a>
-		  <a href="#" class="list-group-item">Afrika</a>
-		  <a href="#" class="list-group-item">Asien</a>
-		  <a href="#" class="list-group-item">Oceanien</a>
-		  <a href="#" class="list-group-item">Världen</a>
+		  
+		  <a href="#" class="list-group-item active">
+		  <c:forEach var="undercategories" items='${undercategories}' varStatus="undercategoriesCounter">
+			  <c:if test="${undercategoriesCounter.count == 1}">
+			  <c:out value="${undercategories.undercategories_name}"></c:out>			  
+			  </c:if>
+		  </c:forEach>
+		   </a>
+		  
+		  <c:forEach var="undercategories" items='${undercategories}' varStatus="undercategoriesCounter">
+			  <c:if test="${undercategoriesCounter.count > 1}">
+			  <a href="#" class="list-group-item">
+			  <c:out value="${undercategories.undercategories_name}">
+			  </c:out>	
+			  </a>		  
+			  </c:if>
+		  </c:forEach>
 		</div>       
     </div>
 	<div class="col-sm-2">

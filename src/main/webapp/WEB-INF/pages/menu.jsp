@@ -29,15 +29,15 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>${menu.category_menu}</th>
+				<th>${categories.categories_name}</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${menus}" var="menu">
+			<c:forEach items="${categories}" var="menu">
 				<tr>
 					<td>
-						<a href="<spring:url value="/menus/${menu.menu_id}.html" />">
-						${menu.category_menu}
+						<a href="<spring:url value="/menu/${categories.categories_id}.html" />">
+						${categories.categories_name}
 						</a>
 					</td>
 				</tr>

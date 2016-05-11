@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.idnoll.services.MenuService;
+import com.idnoll.services.CategoryService;
 
 @RestController
 @Controller
@@ -17,7 +17,7 @@ import com.idnoll.services.MenuService;
 public class MenuController {
 
 	@Autowired
-	private MenuService menuService;
+	private CategoryService menuService;
 	
 	
 	@RequestMapping("/menu")

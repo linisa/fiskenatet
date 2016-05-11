@@ -20,7 +20,7 @@ import com.idnoll.models.*;
 @Configuration
 public class UndercategoryController {
 	
-	List<UndercategoryModel> undercategories;
+	List<UnderCategoryModel> undercategories;
 
 	@Autowired 
 	private UndercategoryService undercategoryService;

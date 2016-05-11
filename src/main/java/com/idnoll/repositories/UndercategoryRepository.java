@@ -2,9 +2,9 @@ package com.idnoll.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.idnoll.models.MenuModel;
-import com.idnoll.models.UndercategoryModel;
+import com.idnoll.models.CategoryModel;
+import com.idnoll.models.UnderCategoryModel;
 
-public interface UndercategoryRepository extends JpaRepository<UndercategoryModel, Integer>{
+public interface UndercategoryRepository extends JpaRepository<UnderCategoryModel, Integer>{
 	
 }
