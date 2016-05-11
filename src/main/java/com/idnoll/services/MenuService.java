@@ -24,10 +24,4 @@ public class MenuService {
 		return menuRepository.findOne(menu_id);
 		
 	}
-	
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> undercategory
 }

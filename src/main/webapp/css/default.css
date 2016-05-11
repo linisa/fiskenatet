@@ -1,10 +1,12 @@
 .jumbotron{
-  background-image: url("../images/jumbobackgroung.png");
+  background-image: url("../images/jumbotron.png");
   background-repeat: no-repeat;
-  background-size:100%;
-  width: 100%;
-  height: 250px;
+  background-size: cover;
+  background-position: center;
+  width: 90%;
+  height: 400px;
 }
+
 
 #login{
 	position: relative;
@@ -14,7 +16,42 @@
    font-size: 1.2em;
 }
 
-.container{
-  background-color: rgba(66,139,202,0.1);
-  text-align: center;
+body {
+	background-color: rgba(66,139,202,0.1);
+	color: rgb(66,139,202);
+}
+
+.pageclass {
+	text-align: center;
+}
+
+.nav-tabs{
+	background-color: white;
+}
+
+.nav-tabs > li > a{
+background-color: rgb(66,139,202);
+  border: medium none;
+  color:#fff;
+  border: 2px solid white;
+}
+.nav-tabs > li > a:hover{
+  background-color: rgba(66,139,202,0.5);
+  border: 1px solid black;
+    border: medium none;
+    border-radius: 0;
+    color:#fff;
+}
+
+.nav-tabs > li > a:FOCUS{
+  background-color: rgba(66,139,202,0.9);
+  border: 1px solid black;
+    border: medium none;
+    border-radius: 0;
+    color:#fff;
+}
+
+.dropdown-menu{
+	width: 100%;
+	height: 100%;
 }
