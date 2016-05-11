@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<spring:url value="/css/default.css" var="Style" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Frågesport</title>
 <link rel="stylesheet"
@@ -12,12 +15,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/default.css">
 </head>
 <body>
 
-  <div class="jumotron">
-    <div align="middle">
-        <img src="bild.jpg" alt="bild"/>
+  <div class="jumbotron">
+    <div id="login">
         <a href="#"><span class="glyphicon glyphicon-user"></span> Login</a>
     </div>
   </div>
@@ -40,7 +43,7 @@
           </li>
         </ul>
     </div>
-    <div class="">
+    <div class="view">
         <!-- all ny content skapas här -->
         <h1>INDEX SIDAN</h1>
      </div>

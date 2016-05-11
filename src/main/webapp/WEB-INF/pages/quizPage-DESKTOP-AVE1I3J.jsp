@@ -18,7 +18,7 @@
 
 </head>
 <body>
-  <div class="jumbotron" id="jumbo">
+  <div class="jumbotron">
     <div align="middle">
         <img src="bild.jpg" alt="bild"/>
         <a href="#"><span class="glyphicon glyphicon-user"></span> Login</a>
