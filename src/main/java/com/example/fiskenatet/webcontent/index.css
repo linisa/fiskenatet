@@ -28,8 +28,14 @@ body{
     width: 100%;
     position: relative;
 }
-
-
+#bannerText{
+    position: absolute;
+    color: white;
+    top: 0.1em;
+    left: 1em;
+    font-size: 6em;
+    font-weight: bold;
+}
 
 #wrongPassword{
     color: red;
@@ -144,9 +150,7 @@ body{
     text-align: center;
 }
 
-
 /*productDetails end*/
-
 
 /*confirmPurchase*/
 #swishOption p{
@@ -161,7 +165,6 @@ body{
 }
 
 .rating {
-
 
 }
 
