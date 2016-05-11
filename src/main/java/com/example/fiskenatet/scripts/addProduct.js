@@ -21,6 +21,9 @@ $(document).ready(function () {
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("send Error " +textStatus + "  " + errorThrown);
+            },
+            complete:function () {
+                location.href="../webcontent/index.html";
             }
         })
         

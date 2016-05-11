@@ -43,9 +43,10 @@ $(document).ready(function () {
         }
     }
 
-    $(document).on("click", "#selectCategory", function () {
+    $('#selectCategory').change(function () {
         checkCategory();
-    });
+    })
+    
 
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');

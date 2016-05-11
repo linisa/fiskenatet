@@ -55,7 +55,7 @@ body{
 /*Product List*/
 .product{
     overflow: hidden;
-    border: groove;
+    border: outset;
     margin: 0.5em;
     padding: 0.5em;
 }
@@ -67,19 +67,49 @@ body{
 }
 .endDate{
     background-color: #EB6688;
-    padding: 0.5em;
     text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    left: 0;
+    bottom: 0;
+    border: 0px solid rgba(0,0,0,0.1);
+    border-radius: 0 0 2px 2px;
+    border-bottom-width: 7px;
 }
 .highestBid{
     background-color: #EB6688;
-    padding: 0.5em;
     text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    left: 0;
+    bottom: 0;
+    border: 0px solid rgba(0,0,0,0.1);
+    border-radius: 0 0 2px 2px;
+    border-bottom-width: 7px;
 
 }
 .buyNowPrice{
-    background-color: #B56AA3;
-    padding: 0.5em;
+    background-color: #69cbff;
     text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    left: 0;
+    bottom: 0;
+    border: 0px solid rgba(0,0,0,0.1);
+    border-radius: 0 0 2px 2px;
+    border-bottom-width: 7px;
 
 }
 .image{
@@ -95,6 +125,7 @@ body{
 
 #productTextDetails{
     font-size: 4em;
+
 }
 
 #ownerDetails{
@@ -113,8 +144,17 @@ body{
 #endDateDetails{
     margin-top: 1em;
     background-color: #EB6688;
-    padding: 0.5em;
     text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    color: #fff;
+    display: block;
+    left: 0;
+    bottom: 0;
+    border: 0px solid rgba(0,0,0,0.1);
+    border-radius: 0 0 2px 2px;
+    border-bottom-width: 7px;
 }
 
 #addBidDetails{
@@ -135,19 +175,49 @@ body{
 
 #highestBidDetails{
     background-color: #EB6688;
-    padding: 0.5em;
     text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    left: 0;
+    bottom: 0;
+    border: 0px solid rgba(0,0,0,0.1);
+    border-radius: 0 0 2px 2px;
+    border-bottom-width: 7px;
 }
 #buyNowPriceDetails{
-    background-color: #B56AA3;
-    padding: 0.5em;
+    background-color: #69cbff;
     text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    left: 0;
+    bottom: 0;
+    border: 0px solid rgba(0,0,0,0.1);
+    border-radius: 0 0 2px 2px;
+    border-bottom-width: 7px;
 }
 
 #startPriceDetails{
     background-color: #EB6688;
-    padding: 0.5em;
     text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    left: 0;
+    bottom: 0;
+    border: 0px solid rgba(0,0,0,0.1);
+    border-radius: 0 0 2px 2px;
+    border-bottom-width: 7px;
 }
 
 /*productDetails end*/
@@ -243,6 +313,12 @@ body{
 /*UserProfile End*/
 
 /*User profile Product list*/
+
+.OwnerProductObject{
+    padding: 10px;
+    margin-top: 20px;
+    border:outset;
+}
 
 #ownerProduct{
 
