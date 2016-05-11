@@ -1,5 +1,9 @@
 package com.idnoll.models;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> undercategory
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +16,18 @@ import javax.persistence.Transient;
 
 @Entity
 public class MenuModel implements Serializable{
+<<<<<<< HEAD
 
 	private static final long serialVersionUID = 1L;
 	
+=======
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+>>>>>>> undercategory
 	@Id
 	@GeneratedValue
 	private Integer menu_id;
@@ -22,7 +35,11 @@ public class MenuModel implements Serializable{
 	private String menu_category_name;
 	
 	@Transient
+<<<<<<< HEAD
 	private List<UnderCategoryModel> listOfUndercategories = new ArrayList<>();
+=======
+	private List<UndercategoryModel> listOfUndercategories = new ArrayList<>();
+>>>>>>> undercategory
 	
 	public MenuModel(){
 		
@@ -45,6 +62,7 @@ public class MenuModel implements Serializable{
 		this.menu_category_name = menu_category_name;
 	}
 
+<<<<<<< HEAD
 	public List<UnderCategoryModel> getListOfUndercategories() {
 		return listOfUndercategories;
 	}
@@ -52,4 +70,14 @@ public class MenuModel implements Serializable{
 	public void setListOfUndercategories(List<UnderCategoryModel> listOfUndercategories) {
 		this.listOfUndercategories = listOfUndercategories;
 	}
+=======
+	public List<UndercategoryModel> getListOfUndercategories() {
+		return listOfUndercategories;
+	}
+
+	public void setListOfUndercategories(List<UndercategoryModel> listOfUndercategories) {
+		this.listOfUndercategories = listOfUndercategories;
+	}
+		
+>>>>>>> undercategory
 }

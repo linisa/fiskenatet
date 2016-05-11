@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.JoinColumn;
+
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -20,8 +23,12 @@ import javax.persistence.Transient;
 public class QuestionModel implements Serializable {
 
 	@Id
+	@GeneratedValue
+	private Long question_id;
+	
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
 	
 	private Long subCategory;
 	private String category;
@@ -34,8 +41,13 @@ public class QuestionModel implements Serializable {
 	@Transient
 	private String userAnswer;
 	
+
+	@JoinColumn(name = "menuModel")
+	private UnderCategoryModel undercategoryModel;
+
 	@Transient
 	private String[] randomPosition;
+
 	
 	
 	public QuestionModel() {
@@ -77,7 +89,7 @@ public class QuestionModel implements Serializable {
 	}
 
 	public Long getId() {
-		return id;
+		return question_id;
 	}
 	
 	public String getUserAnswer() {
@@ -89,7 +101,7 @@ public class QuestionModel implements Serializable {
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.question_id = id;
 	}
 
 	public String getQuestion() {
@@ -150,9 +162,21 @@ public class QuestionModel implements Serializable {
 
 
 
+	public UnderCategoryModel getUndercategoryModel() {
+		return undercategoryModel;
+	}
+
+
+
+	public void setUndercategoryModel(UnderCategoryModel undercategoryModel) {
+		this.undercategoryModel = undercategoryModel;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "QuestionModel [id=" + id + ", subCategory=" + subCategory + ", category=" + category + ", question="
+		return "QuestionModel [id=" + question_id + ", subCategory=" + subCategory + ", category=" + category + ", question="
 				+ question + ", correctAnswer=" + correctAnswer + ", firstWrongAnswer=" + firstWrongAnswer
 				+ ", secondWrongAnswer=" + secondWrongAnswer + ", userAnswer=" + userAnswer + "]";
 	}

@@ -2,16 +2,28 @@ package com.idnoll.services;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.idnoll.models.CategoryModel;
+import com.idnoll.models.UnderCategoryModel;
+import com.idnoll.repositories.CategoryRepository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+
+
 import org.springframework.transaction.annotation.Transactional;
 
-import com.idnoll.models.UnderCategoryModel;
+
+
 import com.idnoll.repositories.UndercategoryRepository;
 
 @Service
 public class UndercategoryService {
-
 	@Autowired
 	private UndercategoryRepository undercategoryRepository;
 	
@@ -36,8 +48,10 @@ public class UndercategoryService {
 		
 	}
 	
+
 	public UnderCategoryModel createUnderCategory(UnderCategoryModel undercategoryModel){
 		return undercategoryRepository.save(undercategoryModel);
 	}
 	
+
 }
