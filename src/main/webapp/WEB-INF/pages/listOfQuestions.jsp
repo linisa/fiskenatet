@@ -15,35 +15,38 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-  $(document).ready(function() {
+    $(document).ready(function() {
 
-    var deleteQuestion = $("a:contains('Delete')");
+		var deleteQuestion = $("a:contains('Delete')");
 
-    $(deleteQuestion).click(function(event) {
+		$(deleteQuestion).click(function(event) {
 
-      $.ajax({
-        url: $(event.target).attr("href"),
-        type: "DELETE",
+			$.ajax({
+				url: $(event.target).attr("href"),
+			  	type: "DELETE",
 
-        beforeSend: function(xhr){
-          xhr.setRequestHeader("Accept", "application/json");
-          xhr.setRequestHeader("Content-Type", "application/json");
-        },
+			  	beforeSend: function(xhr) {
+			  		xhr.setRequestHeader("Accept", "application/json");
+			  		xhr.setRequestHeader("Content-Type", "application/json");
+			  	},
 
-        success: function(question){
-          var response = "";
-          var rowToDelete = $(event.target).closest("tr");
+			  	success: function(question) {
+			  		var respContent = "";
+			  		var rowToDelete = $(event.target).closest("tr");
 
-          rowToDelete.remove();
-          response += "<span class="success">Question was deleted: [";"]</span>";
+			  		rowToDelete.remove();
 
-          $("#questionResponse").html(response);
-        }
-      });
-    //  event.preventDefault();
-    });
+			  		respContent += "<span class='success'>Frågan är raderad: [";
+			  		respContent += questionModel.question  + "]</span>";
 
-  });
+			  		$("#questionResponse").html(respContent);
+			  	}
+			});
+
+			event.preventDefault();
+		});
+
+});
 </script>
 </head>
 <body>
@@ -74,7 +77,7 @@
       </div>
         <div id="container">
           <div id="questionResponse"></div>
-          <table border="1px" cellpadding="1" cellspacing="1">
+          <table border="1px" cellpadding="0" cellspacing="0">
             <thead>
               <tr>
                 <th>Fråga</th><th>Kategori</th><th>Underkategori</th>
@@ -88,7 +91,7 @@
                   <td>${questionModel.subCategory}</td>
                   <td>
                     <a href="${pageContext.request.contextPath}/editQuestion/${questionModel.id}">Edit</a><br/>
-                    <a href="${pageContext.request.contextPath}/deleteQuestion/${questionModel.id}">Delete</a>
+                    <a href="${pageContext.request.contextPath}/deleteQuestion/${questionModel.id}.json">Delete</a>
                   </td>
                 </tr>
               </c:forEach>

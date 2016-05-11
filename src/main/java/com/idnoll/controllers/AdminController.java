@@ -21,7 +21,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.idnoll.models.QuestionModel;
+import com.idnoll.models.UnderCategoryModel;
 import com.idnoll.services.AdminServiceInterface;
+import com.idnoll.services.UndercategoryService;
 
 
 @RestController
@@ -33,6 +35,24 @@ public class AdminController {
 
 	@Autowired
 	private AdminServiceInterface adminServiceInterface;
+	
+	@Autowired
+	private UndercategoryService undercategoryService;
+	
+	
+	@RequestMapping(value="/createCategory", method = RequestMethod.GET)
+	public ModelAndView getCategory(){
+		ModelAndView mav = new ModelAndView("createCategory");
+		mav.addObject("underCategoryModel", new UnderCategoryModel());
+		return mav;
+	}
+	
+	@RequestMapping(value="/createCategory", method=RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public UnderCategoryModel createCategory(@RequestBody UnderCategoryModel underCategoryModel){
+		return undercategoryService.createUnderCategory(underCategoryModel);
+	}
 
 	@RequestMapping(value="/createQuestion", method = RequestMethod.GET)
 	public ModelAndView getQuestion(){
@@ -40,16 +60,7 @@ public class AdminController {
 		model.addObject("question", new QuestionModel());
 		return model;
 	}
-	
-	@RequestMapping(value="/createQuestion", method = RequestMethod.POST)
-	public ModelAndView createQuestion(@ModelAttribute QuestionModel questionModel,
-			final RedirectAttributes attributes){
-		ModelAndView model = new ModelAndView("redirect:/index.html");
-		createQuestion(questionModel);
-		attributes.addFlashAttribute("","");
-		return model;
-	}
-	
+
 	@RequestMapping(value="/createQuestion", method=RequestMethod.POST,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)

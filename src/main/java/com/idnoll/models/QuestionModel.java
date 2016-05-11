@@ -62,7 +62,8 @@ public class QuestionModel implements Serializable {
 		this.subCategory = questionModel.subCategory;
 		return this;
 	}
-
+	
+	
 	public String[] getShuffledAnswers(){
 		List<String> randomAnswers = new ArrayList<>();
 	
