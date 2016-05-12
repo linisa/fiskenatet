@@ -1,5 +1,6 @@
 .jumbotron{
-  background-image: url("../images/jumbotron.png");
+  background: url("../images/jumbotron.png"),
+  transparent;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -17,7 +18,10 @@
 }
 
 body {
-	background-color: rgba(66,139,202,0.1);
+	background-image: url("../images/background.png");
+	background-repeat: no-repeat;
+  	background-size: cover;
+  	background-position: center;
 	color: rgb(66,139,202);
 }
 
