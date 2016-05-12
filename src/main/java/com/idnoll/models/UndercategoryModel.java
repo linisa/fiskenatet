@@ -6,8 +6,11 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.ForeignKey;
 
 @SuppressWarnings("serial")
 @Entity
@@ -19,6 +22,15 @@ public class UnderCategoryModel implements Serializable {
 	private Integer undercategories_id;
 
 	private String undercategories_name;
+	
+	
+	@ForeignKey(name = "categories_id")
+	private String categories_id;
+
+	public String getCategories_id() {
+		return categories_id;
+	}
+
 
 	@Transient
 	private CategoryModel categoryModel;

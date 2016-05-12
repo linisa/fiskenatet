@@ -16,18 +16,19 @@
 
 <body>
 <jsp:include page="page-header.jsp"></jsp:include>
-	<div class="pageclass">
-	
+
+	<div>
+	</div>
+    
+	<div class="" style="padding: 50px;">
     <div>
         <!-- all ny content skapas här -->
-        <h3>Välj ämnen!</h3>
-        
-        
-        <div class="list-group">
+        <h3>Välj underkategori på din Quiz:</h3>
+  	    <div class="list-group">
         <c:set var="totalundercategories" value="${fn:length(undercategories)}" />
 		  
 		  
-		  <a href="#" class="list-group-item active">
+		  <a href="${pageContext.request.contextPath}/quizPage.html" class="list-group-item active">
 		  <c:forEach var="undercategories" items='${undercategories}' varStatus="undercategoriesCounter">
 			  <c:if test="${undercategoriesCounter.count == 1}">
 			  <c:out value="${undercategories.undercategories_name}"></c:out>			  
@@ -37,15 +38,17 @@
 		  
 		  <c:forEach var="undercategories" items='${undercategories}' varStatus="undercategoriesCounter">
 			  <c:if test="${undercategoriesCounter.count > 1}">
-			  <a href="#" class="list-group-item">
+			  <c:if test="${undercategories.categories_id == 1}">
+			  <a href="${pageContext.request.contextPath}/${undercategories.undercategories_name}.html" class="list-group-item">
 			  <c:out value="${undercategories.undercategories_name}">
 			  </c:out>	
-			  </a>		  
+			  </a>		
+			  </c:if>  
 			  </c:if>
 		  </c:forEach>
 		</div>       
     </div>
-	<div class="col-sm-2">
+	<div class="col-sm-2" align="center" >
         <input type="submit" value="Spela" class="btn btn-Lg btn-primary" />
     </div>
     <div>
