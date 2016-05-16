@@ -13,9 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by nordi_000 on 2016-04-27.
@@ -32,12 +29,10 @@ public class BidService {
 
     private UserModel formerLeadingBidder = new UserModel();
     private BidModel formerLeadingBid = new BidModel();
-    private static final Logger LOGGER = Logger.getLogger(BidService.class.getName());
 
     public void saveBid(BidModel bidModel) {
 
         ProductModel currentProduct = productRepository.getOne(bidModel.getCurrentProduct());
-        //ProductModel currentProduct = productRepository.getOne(1L);
         boolean formerBidderExist = getNextBiggestBid(currentProduct);
         if(formerBidderExist) {
             MailHandler mailHandler = new MailHandler();
@@ -47,10 +42,6 @@ public class BidService {
     }
 
     private boolean getNextBiggestBid (ProductModel currentProduct) {
-        LOGGER.setLevel(Level.INFO);
-        ConsoleHandler consoleHandler = new ConsoleHandler();
-        LOGGER.addHandler(consoleHandler);
-    try {
         List<BidModel> bidList = currentProduct.getListOfBids();
         int sizeOfList = bidList.size();
         if (sizeOfList > 0) {
@@ -66,12 +57,7 @@ public class BidService {
 
         }
 
-
-    }catch(ArrayIndexOutOfBoundsException ex){
-            LOGGER.log(Level.SEVERE, "ERROR", ex);
-        }
         return false;
     }
-
 
 }

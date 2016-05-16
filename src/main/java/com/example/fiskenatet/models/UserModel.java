@@ -4,6 +4,7 @@ import com.example.fiskenatet.main.UserRating;
 import com.example.fiskenatet.services.HistoryService;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class UserModel implements Serializable {
     private String userName;
 
     @Column(name = "password")
+    @Size(min = 5, max = 64)
     private String password;
 
     @Column(name = "email")
