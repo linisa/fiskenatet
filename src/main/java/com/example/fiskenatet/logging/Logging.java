@@ -16,7 +16,7 @@ public class Logging {
 
     public Logger createLog() {
         try {
-            FileHandler fileHandler = new FileHandler("snallafunkanu.txt");
+            FileHandler fileHandler = new FileHandler("logging.txt");
             fileHandler.setFormatter(new SimpleFormatter());
             log.addHandler(fileHandler);
         } catch (IOException e) {
@@ -24,4 +24,5 @@ public class Logging {
         }
         return log;
     }
+
 }
