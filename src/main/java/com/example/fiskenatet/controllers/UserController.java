@@ -32,6 +32,7 @@ public class UserController {
     public String controlUserInput(@RequestBody UserModel userModel) {
         return userService.controlUserInput(userModel);
     }
+
     // lägg till ny user
     @CrossOrigin
     @RequestMapping(value = "/users", method = RequestMethod.POST)

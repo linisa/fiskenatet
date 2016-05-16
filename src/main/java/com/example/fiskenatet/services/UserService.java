@@ -1,6 +1,7 @@
 package com.example.fiskenatet.services;
 
 import com.example.fiskenatet.logging.Logging;
+import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.main.UserRating;
 import com.example.fiskenatet.models.UserModel;
 import com.example.fiskenatet.repositories.UserRepository;
@@ -14,6 +15,8 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    private MailHandler mailHandler = new MailHandler();
 
     Logging logging = new Logging();
     Logger log = logging.createLog();
@@ -94,7 +97,6 @@ public class UserService {
 
     public String checkIfUserExistsInDatabase(UserModel userModel){
         String checkUser = "OK";
-
         List<UserModel> userList = userRepository.findAll();
         for(UserModel compareUser : userList) {
             if(compareUser.getUserName().equals(userModel.getUserName())){
@@ -114,8 +116,8 @@ public class UserService {
             checkUser = "Last name required";
         }if(userModel.getUserName().equals("")||userModel.getUserName().equals(" ")){
             checkUser = "User name required";
-        }if(userModel.getEmail().equals("")||userModel.getEmail().equals(" ")){
-            checkUser = "Email required";
+        }if(mailHandler.controlUserMail(userModel.getEmail()) == false){
+            checkUser = "Enter a valid e-mail address";
         }if(userModel.getMobileNumber().equals("")||userModel.getMobileNumber().equals(" ")){
             checkUser = "Phone number required";
         }
