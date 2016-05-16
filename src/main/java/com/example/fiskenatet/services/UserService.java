@@ -9,9 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 @Service
 public class UserService {
+    private final static Logger logger = Logger.getLogger(UserService.class.getName());
+    private ConsoleHandler consoleHandler = new ConsoleHandler();
 
     @Autowired
     private UserRepository userRepository;
@@ -86,6 +92,8 @@ public class UserService {
         String averageRating = userRating.getUserAverageRating(sellersFullRating);
         return averageRating;
     }
+
+
 
 
 }

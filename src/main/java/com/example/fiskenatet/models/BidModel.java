@@ -3,6 +3,7 @@ package com.example.fiskenatet.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Timer;
 
 /**
  * Created by nordi_000 on 2016-04-27.

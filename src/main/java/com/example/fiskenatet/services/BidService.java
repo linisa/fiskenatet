@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by nordi_000 on 2016-04-27.
@@ -29,6 +32,7 @@ public class BidService {
 
     private UserModel formerLeadingBidder = new UserModel();
     private BidModel formerLeadingBid = new BidModel();
+    private static final Logger LOGGER = Logger.getLogger(BidService.class.getName());
 
     public void saveBid(BidModel bidModel) {
 
@@ -43,13 +47,16 @@ public class BidService {
     }
 
     private boolean getNextBiggestBid (ProductModel currentProduct) {
-
+        LOGGER.setLevel(Level.INFO);
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        LOGGER.addHandler(consoleHandler);
+    try {
         List<BidModel> bidList = currentProduct.getListOfBids();
         int sizeOfList = bidList.size();
-        if(sizeOfList>0) {
+        if (sizeOfList > 0) {
             formerLeadingBid.setAmount(0);
-            for(BidModel bidModel : bidList) {
-                if(bidModel.getAmount() > formerLeadingBid.getAmount()){
+            for (BidModel bidModel : bidList) {
+                if (bidModel.getAmount() > formerLeadingBid.getAmount()) {
                     formerLeadingBid.setAmount(bidModel.getAmount());
                     formerLeadingBidder = userRepository.getOne(bidModel.getBidder());
                     formerLeadingBid.setBidder(formerLeadingBidder);
@@ -59,8 +66,12 @@ public class BidService {
 
         }
 
-        return false;
 
+    }catch(ArrayIndexOutOfBoundsException ex){
+            LOGGER.log(Level.SEVERE, "ERROR", ex);
+        }
+        return false;
     }
+
 
 }
