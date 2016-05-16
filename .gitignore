@@ -74,5 +74,3 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-
-/target/classes/application.yml

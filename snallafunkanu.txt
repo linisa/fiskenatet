@@ -1,6 +1,6 @@
-maj 16, 2016 11:13:14 FM com.example.fiskenatet.Application main
+maj 16, 2016 11:19:48 FM com.example.fiskenatet.Application main
 INFO: Going to start the whole application
-maj 16, 2016 11:13:30 FM com.example.fiskenatet.Application main
+maj 16, 2016 11:20:03 FM com.example.fiskenatet.Application main
 INFO: Hello sweden har skrivits ut..
-maj 16, 2016 11:13:30 FM com.example.fiskenatet.Application main
-INFO: Här kommer en ny rad
+maj 16, 2016 11:20:03 FM com.example.fiskenatet.Application main
+INFO: hdeuhdeuhdiuehdiuehdeiuhiuedhediuhdiuehiuedhiuedhiuedh
