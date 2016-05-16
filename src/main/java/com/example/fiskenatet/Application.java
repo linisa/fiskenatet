@@ -12,6 +12,7 @@ import java.util.logging.SimpleFormatter;
 @SpringBootApplication
 public class Application {
 
+
 	public static final Logger log = Logger.getLogger(Application.class.getName());
 
 	public static void main(String[] args) {
