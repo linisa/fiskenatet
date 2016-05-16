@@ -1,11 +1,13 @@
 package com.example.fiskenatet.services;
 
+import com.example.fiskenatet.logging.Logging;
 import com.example.fiskenatet.main.UserRating;
 import com.example.fiskenatet.models.UserModel;
 import com.example.fiskenatet.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class UserService {
@@ -13,11 +15,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    Logging logging = new Logging();
+    Logger log = logging.createLog();
+
     // skapa användare
     public void saveUser(UserModel userModel) {
         userRepository.saveAndFlush(userModel);
-
+        log.info("New user created with ID = " +userModel.getId());
     }
+
+    
     // hämta specifik användare med ID
     public UserModel findUser(Long id) {
         return (UserModel) userRepository.getOne(id);
@@ -37,6 +44,7 @@ public class UserService {
     // delete användar med ID
     public void deleteUserInDatabase(Long id) {
         userRepository.delete(id);
+        log.info("User deleted with ID = " +id);
     }
 
     // uppdatera specifik användare med ID

@@ -1,6 +1,5 @@
 package com.example.fiskenatet;
 
-import com.example.fiskenatet.services.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
