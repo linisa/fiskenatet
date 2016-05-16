@@ -94,5 +94,33 @@ public class UserService {
         return averageRating;
     }
 
+    public String checkIfUserExistsInDatabase(UserModel userModel){
+        String checkUser = "OK";
+        List<UserModel> userList = userRepository.findAll();
+        for(UserModel compareUser : userList) {
+            if(compareUser.getUserName().equals(userModel.getUserName())){
+                checkUser = "User name not available";
+            }if(compareUser.getEmail().equals(userModel.getEmail())){
+                checkUser = "Mail already registered";
+            }
+        }
+        return checkUser;
+    }
+    public String controlUserInput(UserModel userModel){
+        String checkUser = "OK";
+        if(userModel.getFirstName().equals("")||userModel.getFirstName().equals(" ")){
+            checkUser = "First name required";
+        }if(userModel.getLastName().equals("")||userModel.getLastName().equals(" ")){
+            checkUser = "Last name required";
+        }if(userModel.getUserName().equals("")||userModel.getUserName().equals(" ")){
+            checkUser = "User name required";
+        }if(userModel.getEmail().equals("")||userModel.getEmail().equals(" ")){
+            checkUser = "Email required";
+        }if(userModel.getMobileNumber().equals("")||userModel.getMobileNumber().equals(" ")){
+            checkUser = "Phone number required";
+        }
+        return checkUser;
+    }
+
 
 }

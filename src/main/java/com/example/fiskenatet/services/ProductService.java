@@ -39,23 +39,29 @@ public class ProductService {
 
     // hämta alla produkter
     public List<ProductModel> findAllProducts() {
-        return (ArrayList<ProductModel>)productRepository.findAll();
+        List<ProductModel> allProducts = productRepository.findAll();
+        log.info("Called method 'findAllProducts' that returns a list of all products");
+        return allProducts;
     }
 
 
     // hämta alla produkter från kategori
     public List<ProductModel> findAllProductsByCategory(String category) {
-        return (List<ProductModel>) productRepository.findProductsByCategory(category);
+        List<ProductModel> productList = productRepository.findProductsByCategory(category);
+        log.info("Called method 'findAllProductsByCategory' with category '" +category+ "' that returned a list of " +productList.size()+ " products");
+        return productList;
     }
 
     public List<ProductModel> findProductsByIsSold(String isSold){
-        return (List<ProductModel>) productRepository.findProductsByIsSold(isSold);
+        List<ProductModel> productList = productRepository.findProductsByIsSold(isSold);
+        log.info("Called method 'findProductsByIsSold' that returned a list of " +productList.size()+ " sold products");
+        return productList;
     }
 
     // hämta en produkt från en vald kategori och användare - EJ KLAR
     public List<ProductModel> getProductByOwnerAndByCategory(String category, Long ownerId) {
         List<ProductModel> productList = productRepository.findProductsByCategoryAndOwnerId(category, ownerId);
-        log.info("Called method 'findProductsByCategoryAndOwnerId' that returned a list of " +productList.size()+
+        log.info("Called method 'getProductByOwnerAndByCategory' that returned a list of " +productList.size()+
                 " products from owner with ID " +ownerId+ " and category '" +category+ "'");
         return productList;
     }
@@ -85,6 +91,7 @@ public class ProductService {
         productToUpdate.setEndDate(productModel.getStartDate());
         productToUpdate.setStartPrice(productModel.getStartPrice());
         productRepository.saveAndFlush(productToUpdate);
+        log.info("Product " +id+ " has been updated");
     }
 
 
@@ -123,6 +130,7 @@ public class ProductService {
         userHashSet.addAll(loserList);
         loserList.clear();
         loserList.addAll(userHashSet);
+        log.info("Called method 'getAllLosers' that returned a list of " +loserList.size()+ " users");
         return loserList;
     }
 
