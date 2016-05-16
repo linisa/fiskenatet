@@ -4,11 +4,48 @@ $(document).ready(function () {
 
     var currentUserId = sessionStorage.getItem('currentUser');
     var currentProductId = sessionStorage.getItem('currentProductId');
+    var currentUserName = sessionStorage.getItem('currentUserName');
     var owner;
     var listOfBids;
     var currentProduct;
 
     getProductDetails();
+
+
+    $('#btnLogIn').click(function () {
+        console.log("KLICK LOGIN!");
+        userUserName = $('#UserUserName').val();
+        userPassword = $('#UserPassword').val();
+        console.log(userUserName);
+        getUserByUserName();
+    });
+
+    function getUserByUserName() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/username/' + userUserName ,
+            success: function (data, textStatus, jgXHR) {
+                console.log("i sucess" + data.password);
+                logInValidation(data);
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+            }
+        });
+    }
+
+    function logInValidation(foundUser) {
+        console.log("i validation");
+        if(foundUser.password == userPassword){
+            console.log("Log in success" + foundUser.firstName);
+            sessionStorage.setItem('currentUser', foundUser.id);
+            sessionStorage.setItem('currentUserName', foundUser.userName)
+            location.reload();
+        }else{
+            alert("Fel lösenord!");
+            //MAKE ALERT FEL PASS
+        }
+    }
 
     $(document).on("click", "#lnkProfile", function () {
         location.href="../webcontent/userProfile.html";
@@ -16,6 +53,7 @@ $(document).ready(function () {
 
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUserName');
         location.href="../webcontent/index.html";
     });
 
@@ -105,22 +143,30 @@ $(document).ready(function () {
             document.getElementById("lnkAddProduct").style.display = "inline-block";
             document.getElementById("lnkProfile").style.display = "inline-block";
             document.getElementById("lnkLogOut").style.display = "inline-block";
+            document.getElementById("lnkRegUser").style.display = "none";
+            document.getElementById("lnkLogIn").style.display = "none";
+            document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
 
             if(sessionStorage.getItem('currentUser') == owner.id){
                 document.getElementById("lnkAddBid").style.display = "none";
                 document.getElementById("addBidDetails").style.display = "none";
+                document.getElementById('buyNowPriceDetails').style.display = "none";
+
             }else{
                 document.getElementById("lnkAddBid").style.display = "inline-block";
                 document.getElementById("addBidDetails").style.display = "inline-block";
+                document.getElementById('buyNowPriceDetails').style.display = "inline-block";
+                document.getElementById("lnkLogIn").style.display = "inline-block";
+                
             }
-            document.getElementById("lnkRegUser").style.display = "none";
+
         }else{
             document.getElementById("lnkAddProduct").style.display = "none";
             document.getElementById("lnkProfile").style.display = "none";
             document.getElementById("lnkLogOut").style.display = "none";
             document.getElementById("lnkAddBid").style.display = "none";
             document.getElementById("addBidDetails").style.display = "none";
-
+            document.getElementById('buyNowPriceDetails').style.display = "none";
             document.getElementById("lnkRegUser").style.display = "inline-block";
         }
     }
