@@ -73,11 +73,10 @@ public class ProductController {
         return new ResponseEntity<List<ProductModel>>(productService.findAllProductsByCategory(category), HttpStatus.OK);
     }
 
-    //hämtar en produkt från en vald kategori för en viss användare
+    //hämtar produkter från en vald kategori för en viss användare
     @CrossOrigin
     @RequestMapping(value = "/products/byownerandcategory/{category}/{ownerId}", method = RequestMethod.GET)
     public ResponseEntity<List<ProductModel>>getProductByOwnerAndByCategory(@PathVariable String category,@PathVariable Long ownerId) {
-        System.out.println("byownerAndCategoryController");
         return new ResponseEntity<List<ProductModel>>(productService.getProductByOwnerAndByCategory(category, ownerId), HttpStatus.OK);
     }
 

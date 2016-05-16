@@ -43,23 +43,27 @@ public class ProductService {
     }
 
 
-    // hämta alla produkter från kategori - EJ KLAR
+    // hämta alla produkter från kategori
     public List<ProductModel> findAllProductsByCategory(String category) {
         return (List<ProductModel>) productRepository.findProductsByCategory(category);
     }
+
     public List<ProductModel> findProductsByIsSold(String isSold){
         return (List<ProductModel>) productRepository.findProductsByIsSold(isSold);
     }
 
     // hämta en produkt från en vald kategori och användare - EJ KLAR
     public List<ProductModel> getProductByOwnerAndByCategory(String category, Long ownerId) {
-        return (List<ProductModel>) productRepository.findByCategoryAndOwner(category, ownerId);
+        List<ProductModel> productList = productRepository.findProductsByCategoryAndOwnerId(category, ownerId);
+        log.info("Called method 'findProductsByCategoryAndOwnerId' that returned a list of " +productList.size()+
+                " products from owner with ID " +ownerId+ " and category '" +category+ "'");
+        return productList;
     }
 
     // hämta en specifik produkt
     public ProductModel findSelectedProduct(Long id){
         ProductModel product = productRepository.getOne(id);
-        log.info("Called method findSelectedProduct and returned product with ID = " +product.getId());
+        log.info("Called method 'findSelectedProduct' and returned product with ID = " +product.getId());
         return product;
 
     }
