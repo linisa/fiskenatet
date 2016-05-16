@@ -5,8 +5,6 @@ $(document).ready(function () {
     var currentUser;
     var currentProduct;
 
-    getUserById();
-
     getUserById(function (currentUser) {
         checkCategory();
     });

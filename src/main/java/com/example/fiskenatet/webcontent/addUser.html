@@ -26,24 +26,28 @@
 
 <form>
     <p>Förnamn:</p>
-    <input id="tfFirstName" type="text" placeholder="Förnamn"><br>
+    <input id="tfFirstName" type="text" placeholder="Förnamn" required><br>
 
     <p>Efternamn:</p>
-    <input id="tfLastName" type="text" placeholder="Efternamn"><br>
+    <input id="tfLastName" type="text" placeholder="Efternamn" required><br>
 
     <p>Användarnamn</p>
-    <input id="tfUserName" type="text" placeholder="Användarnamn">
+    <input id="tfUserName" type="text" placeholder="Användarnamn" required>
 
     <p>Lösenord:</p>
-    <input id="tfPassword" type="password" placeholder="Lösenord"><br>
+    <input id="tfPassword" type="password" placeholder="Lösenord" required><br>
+
+    <p>Upprepa lösenord:</p>
+    <input id="tfPasswordRepeat" type="password" placeholder="Upprepa lösenord" required><br>
 
     <p>e-mail:</p>
-    <input id="tfEmail" type="email" placeholder="e-mail"><br>
+    <input id="tfEmail" type="email" placeholder="e-mail" required><br>
 
     <p>Telefonnummer mobil:</p>
     <input id="tfMobileNumber" type="tel" placeholder="Mobilnummer"><br>
 
-    <a href="#" id="btnAddUser">Registrera</a>
+    <!--<a href="#" id="btnAddUser">Registrera</a>-->
+    <input id="btnAddUser" type="submit" value="Registrera">
 
 </form>
 </body>
