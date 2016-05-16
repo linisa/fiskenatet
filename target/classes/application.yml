@@ -12,7 +12,6 @@ spring:
     username: root
     password: smirre
 
-
   jackson:
     serialization:
       fail-on-empty-beans: false

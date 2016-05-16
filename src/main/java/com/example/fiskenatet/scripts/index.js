@@ -1,6 +1,7 @@
 
 $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
+    var currentUserName = sessionStorage.getItem('currentUserName');
     var userUserName;
     var userPassword;
     var listOfBids;
@@ -25,10 +26,11 @@ $(document).ready(function () {
     function checkIfLoggedIn() {
         if(sessionStorage.getItem('currentUser') != null){
             /*användare inloggad*/
+            
             document.getElementById("lnkAddProduct").style.display = "inline-block";
             document.getElementById("lnkProfile").style.display = "inline-block";
             document.getElementById("lnkLogOut").style.display = "inline-block";
-            
+            document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
 
             document.getElementById("lnkLogIn").style.display = "none";
             document.getElementById("lnkRegUser").style.display = "none";
@@ -50,6 +52,7 @@ $(document).ready(function () {
 
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUserName');
         location.reload();
     });
 
@@ -65,7 +68,7 @@ $(document).ready(function () {
             url: rootURL + '/products/category/' + categoryChoice,
             success: function (data, textStatus, jgXHR) {
                 populateProductList(data);
-                console.log(data[0].title);
+
 
             },
             error: function (jgXHR, textStatus, errorThrown) {
@@ -82,7 +85,6 @@ $(document).ready(function () {
             url: rootURL + '/products',
             success: function (data, textStatus, jgXHR) {
                 populateProductList(data);
-                console.log(data[0].title);
 
             },
             error: function (jgXHR, textStatus, errorThrown) {
@@ -162,6 +164,7 @@ $(document).ready(function () {
         if(foundUser.password == userPassword){
             console.log("Log in success" + foundUser.firstName);
             sessionStorage.setItem('currentUser', foundUser.id);
+            sessionStorage.setItem('currentUserName', foundUser.userName)
             location.reload();
         }else{
             alert("Fel lösenord!");
