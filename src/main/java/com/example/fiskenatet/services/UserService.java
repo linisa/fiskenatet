@@ -109,7 +109,7 @@ public class UserService {
 
     public String validateUserInput(UserModel userModel){
         String checkUser = "OK";
-
+        System.out.println("i validateUserInput");
         List<UserModel> userList = userRepository.findAll();
         for(UserModel compareUser : userList) {
             if(compareUser.getUserName().equals(userModel.getUserName())){
@@ -131,6 +131,7 @@ public class UserService {
         }if(userModel.getMobileNumber().equals("")||userModel.getMobileNumber().equals(" ")){
             checkUser = "Phone number required";
         }
+        System.out.println("i valuuser " + checkUser + " bajs");
         return checkUser;
     }
 

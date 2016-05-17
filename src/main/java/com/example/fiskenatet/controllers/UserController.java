@@ -26,10 +26,13 @@ public class UserController {
     //kolla databasen efter användarDublett & så inga fält är tomma
     //om allt ok, lägger till användaren i databasen
     @CrossOrigin
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/", method = RequestMethod.POST)
     public String createUser(@RequestBody UserModel userModel) {
+        System.out.println("första vändan i controllern");
         String validUser = userService.validateUserInput(userModel);
+        System.out.println("tillbaka i controller " + validUser);
         if(validUser.equals("OK")){
+            System.out.println("a-ok!");
             userService.saveUser(userModel);
         }
         return validUser;
