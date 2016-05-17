@@ -11,13 +11,8 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost/fiskenatet?useSSL=false
     username: root
-<<<<<<< HEAD
-    password: assassin723
+    password: mysql
 
-
-=======
-    password: password
->>>>>>> 909ad6a930a2db3e43206a30afac2fdb2d8f1927
 
   jackson:
     serialization:

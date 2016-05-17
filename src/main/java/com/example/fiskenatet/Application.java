@@ -18,7 +18,7 @@ public class Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
-
+		/*
 		try {
 			FileHandler fileHandler = new FileHandler("logging.txt");
 			fileHandler.setFormatter(new SimpleFormatter());
@@ -27,7 +27,7 @@ public class Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		*/
 
 		//Timer timer = new Timer();
 		// Kör TimerHandler var tionde sekund

@@ -33,8 +33,6 @@ public class ProductService {
     @Autowired
     private UserRepository userRepository;
 
-    //Logging logging = new Logging();
-    //Logger log = logging.createLog();
     Logger log = Logger.getLogger(Application.class.getName());
 
     // skapa produkt
