@@ -212,5 +212,10 @@ public class ProductService {
         return imageIsGood;
     }
 
+    // Flytta produkter från schemat products till history om produkten skapades innan kl15:00 samma dag
+    // Denna funktion kommer att köras strax efter kl 16:00 varje dag
+    public void moveProductsToHisory() {
+        
+    }
 }
 

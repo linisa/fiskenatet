@@ -4,6 +4,7 @@ package com.example.fiskenatet.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.fiskenatet.models.HistoryModel;
 import com.example.fiskenatet.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.web.PageableDefault;
@@ -98,6 +99,14 @@ public class ProductController {
     public ResponseEntity<List<ProductModel>>searchProducts(@PathVariable String value) {
         return new ResponseEntity<List<ProductModel>>(productService.searchProducts(value), HttpStatus.OK);
     }
+
+    //sätter en produkt till såld
+    @CrossOrigin
+    @RequestMapping(value = "/products/endofday", method = RequestMethod.PUT)
+    public void moveProductsToHisory() {
+        productService.moveProductsToHisory();
+    }
+
 
 }
 
