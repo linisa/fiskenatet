@@ -7,7 +7,6 @@ $(document).ready(function () {
     var currentProduct;
 
 
-
     getUserById(function (currentUser) {
         checkCategory();
         document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;

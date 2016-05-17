@@ -4,7 +4,13 @@ $(document).ready(function () {
 
     $('#btnAddUser').click(function () {
         console.log("klick!");
-        addUser();
+        var password = document.getElementById("tfPassword").value;
+        var repeatPassword = document.getElementById("tfPasswordRepeat").value;
+        if(password == repeatPassword){
+            addUser();
+        }else{
+            alert("Lösenorden stämmer ej överrens");
+        }
     });
 
     function addUser(){

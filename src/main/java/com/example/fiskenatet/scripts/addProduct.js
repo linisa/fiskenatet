@@ -61,6 +61,9 @@ $(document).ready(function () {
     function formToJSON() {
         console.log("i form to json");
         var startDate = new Date();
+        var endDate = new Date();
+        endDate.setDate(startDate.getDate() + 1);
+        console.log("startdate: " + startDate.toLocaleString() + " enddate: " + endDate.toLocaleString());
         var product = JSON.stringify({
 
             "category" : $( "#selectCategory option:selected" ).val(),
@@ -70,7 +73,8 @@ $(document).ready(function () {
             "startPrice": $('#txtStartPrice').val(),
             "buyNowPrice": $('#txtBuyNow').val(),
             "owner": {'id' : sellerid},
-            "startDate": startDate
+            "startDate": startDate,
+            "endDate": endDate
         });
         console.log(product);
         return product;

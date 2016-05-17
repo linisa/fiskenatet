@@ -1,6 +1,8 @@
 package com.example.fiskenatet.services;
 
+import com.example.fiskenatet.Application;
 import com.example.fiskenatet.logging.Logging;
+import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.main.UserRating;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
@@ -18,8 +20,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    Logging logging = new Logging();
-    Logger log = logging.createLog();
+    private MailHandler mailHandler = new MailHandler();
+    //Logging logging = new Logging();
+    //Logger log = logging.createLog();
+    Logger log = Logger.getLogger(Application.class.getName());
 
     // skapa användare
     public void saveUser(UserModel userModel) {
@@ -123,8 +127,8 @@ public class UserService {
             checkUser = "Last name required";
         }if(userModel.getUserName().equals("")||userModel.getUserName().equals(" ")){
             checkUser = "User name required";
-        }if(userModel.getEmail().equals("")||userModel.getEmail().equals(" ")){
-            checkUser = "Email required";
+        }if(mailHandler.controlUserMail(userModel.getEmail()) == false){
+            checkUser = "Enter a valid e-mail address";
         }if(userModel.getMobileNumber().equals("")||userModel.getMobileNumber().equals(" ")){
             checkUser = "Phone number required";
         }

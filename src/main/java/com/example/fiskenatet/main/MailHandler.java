@@ -1,5 +1,7 @@
 package com.example.fiskenatet.main;
 
+import com.example.fiskenatet.Application;
+import com.example.fiskenatet.logging.Logging;
 import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
@@ -9,6 +11,7 @@ import com.example.fiskenatet.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -20,6 +23,10 @@ import javax.mail.internet.MimeMessage;
 
 
 public class MailHandler {
+
+    //Logging logging = new Logging();
+    //Logger log = logging.createLog();
+    Logger log = Logger.getLogger(Application.class.getName());
 
     public Session setUpMail() {
 
@@ -55,9 +62,10 @@ public class MailHandler {
             +"\n"+ "Hälsningar Fiskenätet!");
 
             Transport.send(message);
-
+            log.info("Called method 'sendWinnerNotification' that sent a winner-mail to " +winner.getEmail());
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            log.warning("Warning in method 'sendWinnerNotification'. MessagingException: " +e);
+            //throw new RuntimeException(e);
         }
     }
     public void sendSellerNotification(UserModel owner, UserModel winner, ProductModel soldProduct){
@@ -76,7 +84,7 @@ public class MailHandler {
             Transport.send(message);
 
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
         }
     }
     public void sendNewBidNotification(ProductModel currentProduct, BidModel bidModel, UserModel lastBidder) {
@@ -95,7 +103,7 @@ public class MailHandler {
                 Transport.send(message);
 
             } catch (MessagingException e) {
-                throw new RuntimeException(e);
+                //throw new RuntimeException(e);
             }
     }
     public void sendLoserNotification(ProductModel currentProduct, UserModel loser, UserModel seller, BidModel endBid){
@@ -113,8 +121,26 @@ public class MailHandler {
             Transport.send(message);
 
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
         }
 
+    }
+
+    public boolean controlUserMail(String email) {
+        boolean validMail;
+        try {
+            Message message = new MimeMessage(setUpMail());
+            message.setFrom(new InternetAddress("fiskenaetet@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+            message.setSubject("Välkommen till Fiskenätet");
+            message.setText("Tack för din registrering hos Fiskenätet"
+                    + "\n" + "Detta är ett verifikationsmejl"
+                    + "\n" + "Hälsningar Fiskenätet!");
+            Transport.send(message);
+            validMail = true;
+        } catch(MessagingException e){
+            validMail = false;
+        }
+        return validMail;
     }
 }
