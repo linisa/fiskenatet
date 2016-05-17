@@ -11,12 +11,12 @@ import java.util.logging.SimpleFormatter;
  * Created by nordi_000 on 2016-05-16.
  */
 public class Logging {
-
+    /*
     private static Logger log = Logger.getLogger(Application.class.getName());
 
     public Logger createLog() {
         try {
-            FileHandler fileHandler = new FileHandler("logging.txt");
+            FileHandler fileHandler = new FileHandler("loggingUserA.txt");
             fileHandler.setFormatter(new SimpleFormatter());
             log.addHandler(fileHandler);
         } catch (IOException e) {
@@ -24,5 +24,5 @@ public class Logging {
         }
         return log;
     }
-
+*/
 }
