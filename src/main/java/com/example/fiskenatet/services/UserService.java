@@ -119,7 +119,6 @@ public class UserService {
             }if(compareUser.getEmail().equals(userModel.getEmail())){
                 checkUser = "Mail already registered";
             }
-            break;
         }
 
         if(userModel.getFirstName().equals("")||userModel.getFirstName().equals(" ")){
