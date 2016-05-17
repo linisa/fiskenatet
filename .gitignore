@@ -75,5 +75,3 @@ $RECYCLE.BIN/
 logging.txt
 logging.txt.lck
 
-# Application.yml
-target/classes/application.yml

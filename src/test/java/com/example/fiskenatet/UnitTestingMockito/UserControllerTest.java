@@ -46,6 +46,7 @@ public class UserControllerTest {
 
     private static final UserModel user1 = new UserBuilder().id(USER_ID_1).firstName(FIRST_NAME_1).userName(USER_NAME_1).build();
     private static final UserModel user2 = new UserBuilder().id(USER_ID_2).firstName(FIRST_NAME_2).userName(USER_NAME_2).build();
+    private static final UserModel user3 = new UserBuilder().id(3L).firstName("Kalle").lastName("Anka").userName("kalleanka").email("kalle@anka.com").mobileNumber("12345").build();
 
     @Test
     public void testFindAllUsers(){
@@ -75,16 +76,22 @@ public class UserControllerTest {
         verify(userService).deleteUserInDatabase(USER_ID_1);
 
     }
-    @Test
+    /*@Test
     public void testAddUser(){
         userController.createUser(user1);
         verify(userService).saveUser(user1);
-    }
+    }*/
     @Test
     public void testGetUserByUsername(){
         given(userService.findUserByUserName(USER_NAME_1)).willReturn(user1);
         ResponseEntity responsMessage = new ResponseEntity<UserModel>(user1, HttpStatus.OK);
         assertThat(userController.getUserByUserName(USER_NAME_1)).isEqualTo(responsMessage);
+    }
+    @Test
+    public void testCreateUser(){
+        String response = "OK";
+        given(userService.validateUserInput(user3)).willReturn(response);
+        assertThat(userController.createUser(user3)).isEqualTo(response);
     }
 
 
