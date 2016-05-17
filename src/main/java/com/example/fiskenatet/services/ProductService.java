@@ -7,7 +7,6 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import com.example.fiskenatet.Application;
-import com.example.fiskenatet.logging.Logging;
 import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.UserModel;

@@ -1,12 +1,2 @@
-maj 16, 2016 4:19:52 EM com.example.fiskenatet.main.MailHandler sendWinnerNotification
-VARNING: Warning in method 'sendWinnerNotification'. MessagingException: javax.mail.internet.AddressException: Missing local name in string ``@''
-maj 16, 2016 4:19:54 EM com.example.fiskenatet.services.ProductService getAllLosers
-INFO: Called method 'getAllLosers' that returned a list of 0 users
-maj 16, 2016 4:19:55 EM com.example.fiskenatet.services.ProductService updateProductWhenSold
-INFO: Product with ID = 3 has been set to sold
-maj 16, 2016 4:20:42 EM com.example.fiskenatet.main.MailHandler sendWinnerNotification
-INFO: Called method 'sendWinnerNotification' that sent a winner-mail to a@a
-maj 16, 2016 4:20:44 EM com.example.fiskenatet.services.ProductService getAllLosers
-INFO: Called method 'getAllLosers' that returned a list of 0 users
-maj 16, 2016 4:20:44 EM com.example.fiskenatet.services.ProductService updateProductWhenSold
-INFO: Product with ID = 3 has been set to sold
+maj 17, 2016 11:19:32 FM com.example.fiskenatet.Application main
+INFO: Program started and new log file was created
