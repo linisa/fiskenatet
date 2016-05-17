@@ -9,9 +9,31 @@ $(document).ready(function(){
 
     $('#btnUpdateUser').click(function () {
         console.log("button clicked");
-        updateUser();
+        var password = document.getElementById("tfPassword").value;
+        var repeatPassword = document.getElementById("tfRepeatPassword").value;
+        var userName = document.getElementById("tfUserName").value;
+
+        if(hasWhiteSpace(password)) {
+            alert("lösenord får ej innehålla mellanslag");
+        }else if(hasWhiteSpace(userName)){
+            alert("Användarnamn får ej innehålla mellanslag");
+        }else if(password == repeatPassword && password.length < 5){
+            alert("För kort lösenord");
+        }else if(password != repeatPassword) {
+            alert("Lösenorden stämmer ej överrens");
+        }else if(password == repeatPassword && password.length >= 5){
+            console.log("pass ok");
+            updateUser();
+        }else {
+            alert("seriöst, försök i alla fall.");
+        }
         return false;
     });
+
+    function hasWhiteSpace(s) {
+        return/\s/g.test(s);
+
+    }
 
     function getUser() {
         $.ajax({
@@ -46,13 +68,20 @@ $(document).ready(function(){
             data: formToJSON(),
             success: function (data, textStatus, jgXHR) {
                 console.log("success");
-                location.href="../webcontent/userProfile.html";
+                checkResult(data);
             },
             error: function(jgXHR, textStatus, errorThrown) {
                 console.log("editUser error: " + textStatus);
             }
-            
         });
+    }
+
+    function checkResult(result) {
+        if(result == "OK"){
+            location.href="../webcontent/userProfile.html";
+        }else{
+            alert(result);
+        }
     }
 
     function formToJSON() {

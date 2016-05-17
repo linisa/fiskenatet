@@ -5,6 +5,7 @@ import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
 
+
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
