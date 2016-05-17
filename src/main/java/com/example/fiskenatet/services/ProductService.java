@@ -1,5 +1,9 @@
 package com.example.fiskenatet.services;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.repositories.ProductRepository;
+
 
 /**
  * Created by nordi_000 on 2016-04-20.
@@ -134,6 +139,7 @@ public class ProductService {
         return loserList;
     }
 
+
     public List<ProductModel> searchProducts(String value) {
         List<ProductModel> searchResultList = new ArrayList<ProductModel>();
         Set<ProductModel> productHashSet = new HashSet<ProductModel>();
@@ -155,5 +161,56 @@ public class ProductService {
         log.info("Search method 'searchProducts' runned with value: " +value+ " and found " +searchResultList.size()+ " product(s)");
         return searchResultList;
     }
+
+    public String validateProductInput(ProductModel productModel){
+        String checkProduct = "OK";
+
+        if(productModel.getTitle().equals("")||productModel.getTitle().equals(" ")){
+            checkProduct = "Product title required";
+        }
+        if(productModel.getDescription().equals("")||productModel.getDescription().equals(" ")){
+            checkProduct = "Description required";
+        }
+        if(productModel.getCategory().equals("0")){
+            checkProduct = "Select a product category";
+        }
+        if(controlProductImage(productModel) == false){
+            checkProduct = "Select a product image as an URL. Allowed formats: JPEG, JPG, GIF, PNG";
+        }
+        if(productModel.getStartPrice() < 1){
+            checkProduct = "Start price needs to be greater than 0";
+        }
+        if(productModel.getBuyNowPrice() < productModel.getStartPrice()){
+            checkProduct = "Buy now price needs to be greater than starting price";
+        }
+        return checkProduct;
+    }
+
+    private boolean controlProductImage(ProductModel productModel) {
+        boolean imageIsGood;
+
+        if (productModel.getImage().endsWith(".jpeg") || productModel.getImage().endsWith(".jpg")
+                || productModel.getImage().endsWith(".gif") || productModel.getImage().endsWith(".png")) {
+            try {
+                System.out.println("open connection" +  productModel.getImage());
+                URL imageUrl = new URL(productModel.getImage());
+                URLConnection connection = imageUrl.openConnection();
+                connection.connect();
+            } catch (MalformedURLException e) {
+                System.out.println("cant open connection " +  productModel.getImage() + " " + e);
+                imageIsGood = false;
+                return imageIsGood;
+            } catch (IOException e) {
+                System.out.println("cant open connection " +  productModel.getImage() + " " + e);
+                imageIsGood = false;
+                return imageIsGood;
+            }
+            imageIsGood = true;
+        }else{
+            imageIsGood = false;
+        }
+        return imageIsGood;
+    }
+
 }
 

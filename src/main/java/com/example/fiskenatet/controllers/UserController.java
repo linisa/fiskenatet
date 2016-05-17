@@ -24,16 +24,15 @@ public class UserController {
     private UserService userService;
 
     //kolla databasen efter användarDublett & så inga fält är tomma
-    @CrossOrigin
-    @RequestMapping(value = "/verifyuser", method = RequestMethod.POST)
-    public String verifyUser(@RequestBody UserModel userModel) {
-        return userService.validateUserInput(userModel);
-    }
-    // lägg till ny user
+    //om allt ok, lägger till användaren i databasen
     @CrossOrigin
     @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public void createUser(@RequestBody UserModel userModel) {
-        userService.saveUser(userModel);
+    public String createUser(@RequestBody UserModel userModel) {
+        String validUser = userService.validateUserInput(userModel);
+        if(validUser.equals("OK")){
+            userService.saveUser(userModel);
+        }
+        return validUser;
     }
 
     // hämta specifik user med ID

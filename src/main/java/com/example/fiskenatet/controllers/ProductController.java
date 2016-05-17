@@ -23,11 +23,16 @@ public class ProductController {
     @Autowired //inkluderar alla dependency raderna ish.
     private ProductService productService;
 
-    // skapa en produkt
+    //kollar om alla produktinputs är korrekt
+    // om allt är ok, skapas en ny produkt till databasen
     @CrossOrigin
     @RequestMapping(value = "/products", method = RequestMethod.POST)
-    public void createProduct(@RequestBody ProductModel productModel) {
-        productService.saveProduct(productModel);
+    public String createProduct(@RequestBody ProductModel productModel) {
+        String validProduct = productService.validateProductInput(productModel);
+        if(validProduct.equals("OK")) {
+            productService.saveProduct(productModel);
+        }
+        return validProduct;
     }
 
     // hämta alla produkter
