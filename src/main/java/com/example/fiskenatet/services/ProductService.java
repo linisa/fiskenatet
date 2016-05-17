@@ -180,7 +180,7 @@ public class ProductService {
         if(productModel.getStartPrice() < 0){
             checkProduct = "Utropspriset kan inte vara lägre än 0";
         }
-        if(productModel.getBuyNowPrice() < productModel.getStartPrice()){
+        if(productModel.getBuyNowPrice() != 0 && productModel.getBuyNowPrice() < productModel.getStartPrice()){
             checkProduct = "Köp-nu-priset måste vara högre än utropspriset";
         }
         return checkProduct;
