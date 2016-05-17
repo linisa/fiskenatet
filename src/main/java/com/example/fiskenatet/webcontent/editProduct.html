@@ -23,8 +23,8 @@
 </div>
 
 
-<form>
-    <p>Category</p>
+<form id="editProductForm">
+    <p class="formTexts">Kategori</p>
     <select id="selectCategory">
         <option value="0" selected="selected">Välj Kategori</option>
         <option value="1">Torsk</option>
@@ -38,15 +38,15 @@
         <option value="9">Skaldjur</option>
         <option value="10">Övrigt</option>
     </select><br>
-    <p>Product Title</p><br>
+    <p class="formTexts">Produkt titel</p>
     <input type="text" placeholder="title" id="tfProductTitle"><br>
-    <p>Image</p><br>
+    <p class="formTexts">Bild</p>
     <input type="text" placeholder="image URL" id="tfProductImage"><br>
-    <p>Description</p><br>
+    <p class="formTexts">Beskrivning</p>
     <input type="text" placeholder="Description" id="tfDescription"><br>
-    <p>Starting Price</p><br>
+    <p class="formTexts">Start pris</p>
     <input type="number" placeholder="Starting Price" id="tfStartPrice"><br>
-    <p>Buy Now Price</p><br>
+    <p class="formTexts">Köp nu pris</p>
     <input type="number" placeholder="Buy Now Price" id="tfBuyNow"><br>
     <button id="btnUpdateProduct">Spara ändringar</button>
     <!-- datum, tid och stängning-->

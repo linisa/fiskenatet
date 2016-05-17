@@ -1,15 +1,10 @@
 package com.example.fiskenatet.main;
 
 import com.example.fiskenatet.Application;
-import com.example.fiskenatet.logging.Logging;
 import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
-import com.example.fiskenatet.repositories.BidRepository;
-import com.example.fiskenatet.repositories.UserRepository;
-import org.apache.commons.validator.routines.EmailValidator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -19,15 +14,12 @@ import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 
 public class MailHandler {
 
-    //Logging logging = new Logging();
-    //Logger log = logging.createLog();
     Logger log = Logger.getLogger(Application.class.getName());
 
     public Session setUpMail() {
@@ -47,6 +39,7 @@ public class MailHandler {
                 return new PasswordAuthentication(username, password);
             }
         });
+        log.info("Method 'setUpMail' runned with email: " +username+ " and password: " +password);
         return session;
     }
 
@@ -85,8 +78,9 @@ public class MailHandler {
                     + "\n" + "Hälsningar Fiskenätet!");
 
             Transport.send(message);
-
+            log.info("Called method 'sendSellerNotification' that sent a mail to seller " +owner.getEmail());
         } catch (MessagingException e) {
+            log.warning("Warning in method 'sendSellerNotification'. MessagingException: " +e);
             //throw new RuntimeException(e);
         }
     }
@@ -103,10 +97,11 @@ public class MailHandler {
                     + "\n" + "Skynda dig in för att lägga ett nytt bud!"
                     + "\n" + "Nuvarande högsta bud är: " + bidModel.getAmount() + ":-"
                     + "\n" + "Hälsningar Fiskenätet!");
-
-            Transport.send(message);
+                Transport.send(message);
+                log.info("Called method 'sendNewBidNotification' that sent a mail to " +lastBidder.getEmail()+ " who just got overbidded");
 
             } catch (MessagingException e) {
+                log.warning("Warning in method 'sendNewBidNotification'. MessagingException: " +e);
                 //throw new RuntimeException(e);
             }
     }
@@ -124,8 +119,9 @@ public class MailHandler {
                     + "\n" + "Hälsningar Fiskenätet!");
 
             Transport.send(message);
-
+            log.info("Called method 'sendSellerNotification' that sent a mail to loser " +loser.getEmail());
         } catch (MessagingException e) {
+            log.warning("Warning in method 'sendLoserNotification'. MessagingException: " +e);
             //throw new RuntimeException(e);
         }
 
@@ -143,7 +139,9 @@ public class MailHandler {
                     + "\n" + "Hälsningar Fiskenätet!");
             Transport.send(message);
             validMail = true;
+            log.info("Called method 'controlUserMail' that sent a welcome-mail to " +email);
         } catch(MessagingException e){
+            log.warning("Warning in method 'controlUserMail'. MessagingException: " +e);
             validMail = false;
         }
         return validMail;

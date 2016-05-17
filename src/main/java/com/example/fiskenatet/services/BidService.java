@@ -1,7 +1,6 @@
 package com.example.fiskenatet.services;
 
 import com.example.fiskenatet.Application;
-import com.example.fiskenatet.logging.Logging;
 import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.ProductModel;
@@ -33,8 +32,6 @@ public class BidService {
     private UserModel formerLeadingBidder = new UserModel();
     private BidModel formerLeadingBid = new BidModel();
 
-    //Logging logging = new Logging();
-    //Logger log = logging.createLog();
     Logger log = Logger.getLogger(Application.class.getName());
 
     public void saveBid(BidModel bidModel) {

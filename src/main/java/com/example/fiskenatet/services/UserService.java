@@ -1,7 +1,6 @@
 package com.example.fiskenatet.services;
 
 import com.example.fiskenatet.Application;
-import com.example.fiskenatet.logging.Logging;
 import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.main.UserRating;
 import com.example.fiskenatet.models.UserModel;
