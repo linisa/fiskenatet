@@ -4,7 +4,9 @@
 body{
     width: 100%;
     overflow-x: hidden;
-    background-color: #8DCABF;
+    background-color: white;
+
+
 
 }
 
@@ -57,15 +59,38 @@ body{
 }
 
 /*menu end*/
+/*Reg User*/
 
+#regForm{
+    margin-left: 2em;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+#btnAddUser{
+    margin-bottom: 3em;
+    margin-top: 3em;
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 3px 8px 3px 8px;
+    border-top: 2px solid #CCCCCC;
+    border-right: 2px solid #333333;
+    border-bottom: 2px solid #333333;
+    border-left: 2px solid #CCCCCC;
+
+}
+/*Reg User end*/
 
 /*Product List*/
+
 .product{
     background-color: white;
     overflow: hidden;
-    border: outset;
+    border: solid;
     margin: 0.5em;
     padding: 0.5em;
+    border-color: #3366BB;
 }
 
 .description{
@@ -128,6 +153,31 @@ body{
 
 /*Product list end*/
 
+/*addProduct*/
+#addProductForm{
+    margin-left: 2em;
+    margin-bottom: 2em;
+    margin-top: 2em;
+
+}
+
+#btnAddProduct{
+    margin-bottom: 3em;
+    margin-top: 3em;
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 3px 8px 3px 8px;
+    border-top: 2px solid #CCCCCC;
+    border-right: 2px solid #333333;
+    border-bottom: 2px solid #333333;
+    border-left: 2px solid #CCCCCC;
+
+}
+
+
+/*addProduct end*/
 
 /*ProductDetails */
 
@@ -238,6 +288,27 @@ body{
 
 /*productDetails end*/
 
+/*edit Product*/
+#editProductForm{
+    margin-left: 2em;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+#btnUpdateProduct{
+    margin-bottom: 3em;
+    margin-top: 3em;
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 3px 8px 3px 8px;
+    border-top: 2px solid #CCCCCC;
+    border-right: 2px solid #333333;
+    border-bottom: 2px solid #333333;
+    border-left: 2px solid #CCCCCC;
+}
+
+/*edit Product end*/
 /*confirmPurchase*/
 #swishOption p{
     display: inline;
@@ -318,6 +389,61 @@ body{
 
 /*UserProfile*/
 
+#btnEditUser{
+    margin-bottom: 3em;
+    margin-top: 3em;
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 3px 8px 3px 8px;
+    border-top: 2px solid #CCCCCC;
+    border-right: 2px solid #333333;
+    border-bottom: 2px solid #333333;
+    border-left: 2px solid #CCCCCC;
+
+}
+#btnDeleteUser{
+    margin-bottom: 3em;
+    margin-top: 3em;
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 3px 8px 3px 8px;
+    border-top: 2px solid #CCCCCC;
+    border-right: 2px solid #333333;
+    border-bottom: 2px solid #333333;
+    border-left: 2px solid #CCCCCC;
+}
+
+#lnkEditProduct{
+    margin-bottom: 3em;
+    margin-top: 3em;
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 3px 8px 3px 8px;
+    border-top: 2px solid #CCCCCC;
+    border-right: 2px solid #333333;
+    border-bottom: 2px solid #333333;
+    border-left: 2px solid #CCCCCC;
+}
+#lnkDeleteProduct{
+    margin-bottom: 3em;
+    margin-top: 3em;
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 3px 8px 3px 8px;
+    border-top: 2px solid #CCCCCC;
+    border-right: 2px solid #333333;
+    border-bottom: 2px solid #333333;
+    border-left: 2px solid #CCCCCC;
+}
+
 .profileInfo{
     float: left;
     text-align: right;
@@ -328,6 +454,28 @@ body{
 
 /*UserProfile End*/
 
+/*editUser*/
+#btnUpdateUser{
+    margin-bottom: 3em;
+    margin-top: 3em;
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 3px 8px 3px 8px;
+    border-top: 2px solid #CCCCCC;
+    border-right: 2px solid #333333;
+    border-bottom: 2px solid #333333;
+    border-left: 2px solid #CCCCCC;
+
+}
+
+#editUserForm{
+    margin-left: 2em;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+/*editUser End*/
 /*User profile Product list*/
 
 .OwnerProductObject{
@@ -373,9 +521,45 @@ body{
 
 }
 
-
+.formTexts{
+    font-weight: bold;
+    margin-top: 2em;
+    margin-bottom: 0em;
+}
 
 /*User profile Product list END*/
+
+/*about*/
+
+.aboutInfo{
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 3em;
+    padding-right: 3em;
+    border-style: solid;
+    border-color: #3366BB;
+    width: 80%;
+    margin-top: 5em;
+    font-family: Garamond;
+}
+.aboutTxt{
+    width: 80%;
+    font-size: large;
+}
+.aboutTitle{
+    font-weight: bold;
+}
+#aboutImage{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 80%;
+    margin-bottom: 5em;
+    margin-top: 1em;
+
+}
+/*about end*/
 
 
 

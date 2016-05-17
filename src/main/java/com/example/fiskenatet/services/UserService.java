@@ -1,7 +1,6 @@
 package com.example.fiskenatet.services;
 
 import com.example.fiskenatet.Application;
-import com.example.fiskenatet.logging.Logging;
 import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.main.UserRating;
 import com.example.fiskenatet.models.UserModel;
@@ -18,6 +17,9 @@ public class UserService {
     private UserRepository userRepository;
 
     private MailHandler mailHandler = new MailHandler();
+
+    //Logging logging = new Logging();
+    //Logger log = logging.createLog();
 
     Logger log = Logger.getLogger(Application.class.getName());
 
