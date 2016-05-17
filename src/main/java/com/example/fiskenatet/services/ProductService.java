@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.repositories.ProductRepository;
 
-import javax.mail.internet.InternetAddress;
 
 /**
  * Created by nordi_000 on 2016-04-20.
@@ -140,26 +139,49 @@ public class ProductService {
         return loserList;
     }
 
+
+    public List<ProductModel> searchProducts(String value) {
+        List<ProductModel> searchResultList = new ArrayList<ProductModel>();
+        Set<ProductModel> productHashSet = new HashSet<ProductModel>();
+        List<ProductModel> categoryList = productRepository.findProductsByCategoryContaining(value);
+        List<ProductModel> titleList = productRepository.findProductsByTitleContaining(value);
+        List<ProductModel> descriptionList = productRepository.findProductsByDescriptionContaining(value);
+        for (ProductModel product : categoryList) {
+            searchResultList.add(product);
+        }
+        for (ProductModel product : titleList) {
+            searchResultList.add(product);
+        }
+        for (ProductModel product : descriptionList) {
+            searchResultList.add(product);
+        }
+        productHashSet.addAll(searchResultList);
+        searchResultList.clear();
+        searchResultList.addAll(productHashSet);
+        log.info("Search method 'searchProducts' runned with value: " +value+ " and found " +searchResultList.size()+ " product(s)");
+        return searchResultList;
+    }
+
     public String validateProductInput(ProductModel productModel){
         String checkProduct = "OK";
 
         if(productModel.getTitle().equals("")||productModel.getTitle().equals(" ")){
-            checkProduct = "Product title required";
+            checkProduct = "Produkttitel saknas";
         }
         if(productModel.getDescription().equals("")||productModel.getDescription().equals(" ")){
-            checkProduct = "Description required";
+            checkProduct = "Produktbeskrivning saknas";
         }
         if(productModel.getCategory().equals("0")){
-            checkProduct = "Select a product category";
+            checkProduct = "Välj en produktkategori";
         }
         if(controlProductImage(productModel) == false){
-            checkProduct = "Select a product image as an URL. Allowed formats: JPEG, JPG, GIF, PNG";
+            checkProduct = "Välj en produktbild som en URL. Tillåtna format: JPEG, JPG, GIF, PNG";
         }
-        if(productModel.getStartPrice() < 1){
-            checkProduct = "Start price needs to be greater than 0";
+        if(productModel.getStartPrice() < 0){
+            checkProduct = "Utropspriset kan inte vara lägre än 0";
         }
         if(productModel.getBuyNowPrice() < productModel.getStartPrice()){
-            checkProduct = "Buy now price needs to be greater than starting price";
+            checkProduct = "Köp-nu-priset måste vara högre än utropspriset";
         }
         return checkProduct;
     }
@@ -170,7 +192,7 @@ public class ProductService {
         if (productModel.getImage().endsWith(".jpeg") || productModel.getImage().endsWith(".jpg")
                 || productModel.getImage().endsWith(".gif") || productModel.getImage().endsWith(".png")) {
             try {
-                System.out.println("open connection" +  productModel.getImage());
+                System.out.println("open connection " +  productModel.getImage());
                 URL imageUrl = new URL(productModel.getImage());
                 URLConnection connection = imageUrl.openConnection();
                 connection.connect();
