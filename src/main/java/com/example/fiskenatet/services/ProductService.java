@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import com.example.fiskenatet.Application;
 import com.example.fiskenatet.logging.Logging;
 import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.models.BidModel;
@@ -28,8 +29,9 @@ public class ProductService {
     @Autowired
     private UserRepository userRepository;
 
-    Logging logging = new Logging();
-    Logger log = logging.createLog();
+    //Logging logging = new Logging();
+    //Logger log = logging.createLog();
+    Logger log = Logger.getLogger(Application.class.getName());
 
     // skapa produkt
     public void saveProduct(ProductModel productModel) {
@@ -96,7 +98,6 @@ public class ProductService {
 
 
     public void updateProductWhenSold(Long id) {
-        System.out.println("i prodService set sold");
         ProductModel soldProduct = productRepository.getOne(id);
 
         soldProduct.setIsSold("yes");

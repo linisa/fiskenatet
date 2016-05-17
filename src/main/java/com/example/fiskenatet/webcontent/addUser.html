@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Fiskenätet - Användarregistrering</title>
-
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="../scripts/addUser.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -26,24 +27,28 @@
 
 <form>
     <p>Förnamn:</p>
-    <input id="tfFirstName" type="text" placeholder="Förnamn"><br>
+    <input id="tfFirstName" type="text" placeholder="Förnamn" required><br>
 
     <p>Efternamn:</p>
-    <input id="tfLastName" type="text" placeholder="Efternamn"><br>
+    <input id="tfLastName" type="text" placeholder="Efternamn" required><br>
 
     <p>Användarnamn</p>
-    <input id="tfUserName" type="text" placeholder="Användarnamn">
+    <input id="tfUserName" type="text" placeholder="Användarnamn" required>
 
     <p>Lösenord:</p>
-    <input id="tfPassword" type="password" placeholder="Lösenord"><br>
+    <input id="tfPassword" type="password" placeholder="Lösenord" required><br>
+
+    <p>Upprepa lösenord:</p>
+    <input id="tfPasswordRepeat" type="password" placeholder="Upprepa lösenord" required><br>
 
     <p>e-mail:</p>
-    <input id="tfEmail" type="email" placeholder="e-mail"><br>
+    <input id="tfEmail" type="email" placeholder="e-mail" required><br>
 
     <p>Telefonnummer mobil:</p>
     <input id="tfMobileNumber" type="tel" placeholder="Mobilnummer"><br>
 
-    <a href="#" id="btnAddUser">Registrera</a>
+    <!--<a href="#" id="btnAddUser">Registrera</a>-->
+    <input id="btnAddUser" type="submit" value="Registrera">
 
 </form>
 </body>

@@ -12,7 +12,6 @@ spring:
     username: root
     password: password
 
-
   jackson:
     serialization:
       fail-on-empty-beans: false

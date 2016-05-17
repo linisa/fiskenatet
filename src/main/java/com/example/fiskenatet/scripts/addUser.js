@@ -4,7 +4,13 @@ $(document).ready(function () {
 
     $('#btnAddUser').click(function () {
         console.log("klick!");
-        addUser();
+        var password = document.getElementById("tfPassword").value;
+        var repeatPassword = document.getElementById("tfPasswordRepeat").value;
+        if(password == repeatPassword){
+            addUser();
+        }else{
+            alert("Lösenorden stämmer ej överrens");
+        }
     });
 
     function addUser(){
@@ -47,4 +53,39 @@ $(document).ready(function () {
         location.href = "../webcontent/index.html"
 
     }
+    $('#btnLogIn').click(function () {
+        console.log("KLICK LOGIN!");
+        userUserName = $('#UserUserName').val();
+        userPassword = $('#UserPassword').val();
+        console.log(userUserName);
+        getUserByUserName();
+    });
+
+    function getUserByUserName() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/username/' + userUserName ,
+            success: function (data, textStatus, jgXHR) {
+                console.log("i sucess" + data.password);
+                logInValidation(data);
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+            }
+        });
+    }
+
+    function logInValidation(foundUser) {
+        console.log("i validation");
+        if(foundUser.password == userPassword){
+            console.log("Log in success" + foundUser.firstName);
+            sessionStorage.setItem('currentUser', foundUser.id);
+            sessionStorage.setItem('currentUserName', foundUser.userName)
+            location.reload();
+        }else{
+            alert("Fel lösenord!");
+            //MAKE ALERT FEL PASS
+        }
+    }
+
 });

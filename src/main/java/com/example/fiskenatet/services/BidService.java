@@ -1,5 +1,7 @@
 package com.example.fiskenatet.services;
 
+import com.example.fiskenatet.Application;
+import com.example.fiskenatet.logging.Logging;
 import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.ProductModel;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by nordi_000 on 2016-04-27.
@@ -30,8 +33,11 @@ public class BidService {
     private UserModel formerLeadingBidder = new UserModel();
     private BidModel formerLeadingBid = new BidModel();
 
-    public void saveBid(BidModel bidModel) {
+    //Logging logging = new Logging();
+    //Logger log = logging.createLog();
+    Logger log = Logger.getLogger(Application.class.getName());
 
+    public void saveBid(BidModel bidModel) {
         ProductModel currentProduct = productRepository.getOne(bidModel.getCurrentProduct());
         boolean formerBidderExist = getNextBiggestBid(currentProduct);
         if(formerBidderExist) {
@@ -39,6 +45,7 @@ public class BidService {
             mailHandler.sendNewBidNotification(currentProduct, bidModel, formerLeadingBidder);
         }
         bidRepository.saveAndFlush(bidModel);
+        log.info("New bid with ID = " +bidModel.getId()+ " has been saved");
     }
 
     private boolean getNextBiggestBid (ProductModel currentProduct) {
@@ -54,9 +61,7 @@ public class BidService {
                 }
             }
             return true;
-
         }
-
         return false;
     }
 

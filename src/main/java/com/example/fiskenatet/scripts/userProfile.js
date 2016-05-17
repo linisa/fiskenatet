@@ -2,13 +2,14 @@ $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
     var currentUserID = sessionStorage.getItem("currentUser");
     var currentProductId = sessionStorage.getItem('currentProductId');
+    var currentUserName = sessionStorage.getItem('currentUserName');
     var currentUser;
     var currentProduct;
 
-    getUserById();
 
     getUserById(function (currentUser) {
         checkCategory();
+        document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
     });
 
 
@@ -80,6 +81,7 @@ $(document).ready(function () {
     
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUserName');
         location.href="../webcontent/index.html";
     });
 
