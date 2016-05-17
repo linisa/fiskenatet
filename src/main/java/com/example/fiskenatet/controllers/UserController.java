@@ -67,8 +67,12 @@ public class UserController {
     // uppdatera användare - EJ KLAR
     @CrossOrigin
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
-    public void updateUser(@PathVariable Long id, @RequestBody UserModel userModel){
-        userService.updateUserInDatabase(id, userModel);
+    public String updateUser(@PathVariable Long id, @RequestBody UserModel userModel){
+        String validUser = userService.validateUserInput(userModel);
+        if(validUser.equals("OK")){
+            userService.updateUserInDatabase(id, userModel);
+        }
+        return validUser;
     }
 
     @CrossOrigin
