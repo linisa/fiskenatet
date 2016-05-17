@@ -1,5 +1,6 @@
 package com.example.fiskenatet;
 
+import com.example.fiskenatet.timer.TimerHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -17,6 +18,7 @@ public class Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
+		/*
 		try {
 			FileHandler fileHandler = new FileHandler("logging.txt");
 			fileHandler.setFormatter(new SimpleFormatter());
@@ -25,5 +27,10 @@ public class Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
+
+		//Timer timer = new Timer();
+		// Kör TimerHandler var tionde sekund
+		//timer.schedule(new TimerHandler(), 0, 10000);
 	}
 }

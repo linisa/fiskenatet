@@ -35,13 +35,28 @@ public class HistoryModel implements Serializable{
     private Date endDate; //datum + tid?
 
     @Column(name = "sold_for")
-    private int soldFor;
+    private int soldFor = 0;
 
     private String image;
 
     private String category;
 
+    @Column(name = "buyer_username")
+    private String buyerUsername = "no buyer";
+
     public HistoryModel() {
+    }
+
+    public void setBuyerUsername(String buyerUsername) {
+        this.buyerUsername = buyerUsername;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getBuyerUsername() {
+        return buyerUsername;
     }
 
     public Long getId() {
