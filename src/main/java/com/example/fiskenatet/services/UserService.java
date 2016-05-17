@@ -4,12 +4,9 @@ import com.example.fiskenatet.Application;
 import com.example.fiskenatet.logging.Logging;
 import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.main.UserRating;
-import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
 import com.example.fiskenatet.repositories.UserRepository;
-import org.hibernate.sql.Select;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.logging.Logger;
@@ -21,8 +18,10 @@ public class UserService {
     private UserRepository userRepository;
 
     private MailHandler mailHandler = new MailHandler();
+
     //Logging logging = new Logging();
     //Logger log = logging.createLog();
+
     Logger log = Logger.getLogger(Application.class.getName());
 
     // skapa användare
@@ -31,6 +30,7 @@ public class UserService {
         log.info("New user created with ID = " +userModel.getId());
     }
 
+    
     // hämta specifik användare med ID
     public UserModel findUser(Long id) {
         UserModel userModel = userRepository.getOne(id);
@@ -60,6 +60,7 @@ public class UserService {
 
     // uppdatera specifik användare med ID
     public void updateUserInDatabase(Long id, UserModel userModel) {
+
         UserModel userToUpdate = userRepository.getOne(id);
         userToUpdate.setFirstName(userModel.getFirstName());
         userToUpdate.setLastName(userModel.getLastName());
@@ -107,20 +108,20 @@ public class UserService {
         return averageRating;
     }
 
-    public String checkIfUserExistsInDatabase(UserModel userModel){
+    public String validateUserInput(UserModel userModel){
         String checkUser = "OK";
+
         List<UserModel> userList = userRepository.findAll();
         for(UserModel compareUser : userList) {
             if(compareUser.getUserName().equals(userModel.getUserName())){
                 checkUser = "User name not available";
+
             }if(compareUser.getEmail().equals(userModel.getEmail())){
                 checkUser = "Mail already registered";
             }
+            break;
         }
-        return checkUser;
-    }
-    public String controlUserInput(UserModel userModel){
-        String checkUser = "OK";
+
         if(userModel.getFirstName().equals("")||userModel.getFirstName().equals(" ")){
             checkUser = "First name required";
         }if(userModel.getLastName().equals("")||userModel.getLastName().equals(" ")){
