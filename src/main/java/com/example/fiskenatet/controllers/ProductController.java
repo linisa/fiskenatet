@@ -85,7 +85,14 @@ public class ProductController {
     @RequestMapping(value = "/products/productissold/{isSold}", method = RequestMethod.GET)
     public ResponseEntity<List<ProductModel>>getUnsoldProducts(@PathVariable String isSold) {
         return new ResponseEntity<List<ProductModel>>(productService.findProductsByIsSold(isSold), HttpStatus.OK);
-
     }
+
+    // sök produkt
+    @CrossOrigin
+    @RequestMapping(value = "/products/search/{value}", method = RequestMethod.GET)
+    public ResponseEntity<List<ProductModel>>searchProducts(@PathVariable String value) {
+        return new ResponseEntity<List<ProductModel>>(productService.searchProducts(value), HttpStatus.OK);
+    }
+
 }
 
