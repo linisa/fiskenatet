@@ -12,7 +12,6 @@ import java.util.logging.SimpleFormatter;
 @SpringBootApplication
 public class Application {
 
-
 	public static final Logger log = Logger.getLogger(Application.class.getName());
 
 	public static void main(String[] args) {
@@ -21,6 +20,7 @@ public class Application {
 			FileHandler fileHandler = new FileHandler("logging.txt");
 			fileHandler.setFormatter(new SimpleFormatter());
 			log.addHandler(fileHandler);
+			log.info("Program started and new log file was created");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

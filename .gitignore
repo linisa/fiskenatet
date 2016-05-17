@@ -71,3 +71,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Logging files
+logging.txt
+logging.txt.lck
+
+# Application.yml
+target/classes/application.yml
