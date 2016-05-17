@@ -84,7 +84,7 @@ $(document).ready(function () {
             });
             document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br>" +  listOfBids[0].amount + " kr";
         }else{
-            document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br>" +  currentProduct.startPrice + " kr";
+            document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br>" +  0 + " kr";
         }
     }
     

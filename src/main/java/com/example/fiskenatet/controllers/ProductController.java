@@ -54,8 +54,12 @@ public class ProductController {
     // Uppdatera en produkt
     @CrossOrigin
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
-    public void updateProduct(@PathVariable Long id, @RequestBody ProductModel productModel){
-        productService.updateProductInDatabase(id, productModel);
+    public String updateProduct(@PathVariable Long id, @RequestBody ProductModel productModel){
+        String validProduct = productService.validateProductInput(productModel);
+        if(validProduct.equals("OK")) {
+            productService.updateProductInDatabase(id, productModel);
+        }
+        return validProduct;
     }
 
     // Sätt produkt till såld

@@ -26,10 +26,13 @@ public class UserController {
     //kolla databasen efter användarDublett & så inga fält är tomma
     //om allt ok, lägger till användaren i databasen
     @CrossOrigin
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/", method = RequestMethod.POST)
     public String createUser(@RequestBody UserModel userModel) {
+        System.out.println("första vändan i controllern");
         String validUser = userService.validateUserInput(userModel);
+        System.out.println("tillbaka i controller " + validUser);
         if(validUser.equals("OK")){
+            System.out.println("a-ok!");
             userService.saveUser(userModel);
         }
         return validUser;
@@ -67,8 +70,12 @@ public class UserController {
     // uppdatera användare - EJ KLAR
     @CrossOrigin
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
-    public void updateUser(@PathVariable Long id, @RequestBody UserModel userModel){
-        userService.updateUserInDatabase(id, userModel);
+    public String updateUser(@PathVariable Long id, @RequestBody UserModel userModel){
+        String validUser = userService.validateUserInput(userModel);
+        if(validUser.equals("OK")){
+            userService.updateUserInDatabase(id, userModel);
+        }
+        return validUser;
     }
 
     @CrossOrigin

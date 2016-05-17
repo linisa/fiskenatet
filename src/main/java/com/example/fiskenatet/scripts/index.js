@@ -117,7 +117,7 @@ $(document).ready(function () {
                 });
                 productString += '<p class="highestBid">Högsta Bud:<br>' +  listOfBids[0].amount + " kr"  + '</p>';
             }else{
-                productString += '<p class="highestBid">Högsta Bud:<br>' +  allProducts[i].startPrice + " kr" + '</p>';
+                productString += '<p class="highestBid">Högsta Bud:<br>' +  0 + " kr" + '</p>';
             }
 
             productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';
@@ -137,8 +137,15 @@ $(document).ready(function () {
         console.log("KLICK LOGIN!");
         userUserName = $('#UserUserName').val();
         userPassword = $('#UserPassword').val();
-        console.log(userUserName);
-        getUserByUserName();
+
+        userUserName = userUserName.replace(/\s+/g, '');
+        userPassword = userPassword.replace(/\s+/g, '');
+
+        if(userUserName==""||userPassword==""){
+            alert("Något fällt är ej ifyllt");
+        }else {
+            getUserByUserName();
+        }
     });
 
     function getUserByUserName() {
@@ -160,11 +167,10 @@ $(document).ready(function () {
         if(foundUser.password == userPassword){
             console.log("Log in success" + foundUser.firstName);
             sessionStorage.setItem('currentUser', foundUser.id);
-            sessionStorage.setItem('currentUserName', foundUser.userName)
+            sessionStorage.setItem('currentUserName', foundUser.userName);
             location.reload();
         }else{
-            alert("Fel lösenord!");
-            //MAKE ALERT FEL PASS
+            alert("fel lösenord");
         }
     }
 });

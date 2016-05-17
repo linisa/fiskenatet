@@ -109,28 +109,29 @@ public class UserService {
 
     public String validateUserInput(UserModel userModel){
         String checkUser = "OK";
-
+        System.out.println("i validateUserInput");
         List<UserModel> userList = userRepository.findAll();
         for(UserModel compareUser : userList) {
             if(compareUser.getUserName().equals(userModel.getUserName())){
-                checkUser = "User name not available";
+                checkUser = "Användarnamnet är upptaget";
 
             }if(compareUser.getEmail().equals(userModel.getEmail())){
-                checkUser = "Mail already registered";
+                checkUser = "E-postadressen är redan registrerad";
             }
         }
 
         if(userModel.getFirstName().equals("")||userModel.getFirstName().equals(" ")){
-            checkUser = "First name required";
+            checkUser = "Förnamn saknas";
         }if(userModel.getLastName().equals("")||userModel.getLastName().equals(" ")){
-            checkUser = "Last name required";
+            checkUser = "Efternamn saknas";
         }if(userModel.getUserName().equals("")||userModel.getUserName().equals(" ")){
-            checkUser = "User name required";
+            checkUser = "Användarnamn saknas";
         }if(mailHandler.controlUserMail(userModel.getEmail()) == false){
-            checkUser = "Enter a valid e-mail address";
+            checkUser = "Ange en giltig e-postadress";
         }if(userModel.getMobileNumber().equals("")||userModel.getMobileNumber().equals(" ")){
-            checkUser = "Phone number required";
+            checkUser = "Telefonnummer saknas";
         }
+        System.out.println("i valuuser " + checkUser + " bajs");
         return checkUser;
     }
 

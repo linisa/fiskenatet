@@ -5,6 +5,7 @@ import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
 
+
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -134,8 +135,9 @@ public class MailHandler {
             message.setFrom(new InternetAddress("fiskenaetet@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
             message.setSubject("Välkommen till Fiskenätet");
-            message.setText("Tack för din registrering hos Fiskenätet"
-                    + "\n" + "Detta är ett verifikationsmejl"
+            message.setText("Tack för din registrering hos Fiskenätet!"
+                    + "\n" + "Detta är ett verifikationsmejl."
+                    + "\n" + "Lycka till med dina framtida auktioner."
                     + "\n" + "Hälsningar Fiskenätet!");
             Transport.send(message);
             validMail = true;
