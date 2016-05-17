@@ -24,3 +24,5 @@ maj 17, 2016 1:18:38 EM com.example.fiskenatet.services.UserService findUser
 INFO: Called method 'findUser' with ID = 1
 maj 17, 2016 1:18:42 EM com.example.fiskenatet.services.ProductService findAllProducts
 INFO: Called method 'findAllProducts' that returns a list of all products
+maj 17, 2016 1:30:04 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
