@@ -1,14 +1,13 @@
 package com.example.fiskenatet.main;
 
+import com.example.fiskenatet.Application;
 import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
-import com.example.fiskenatet.repositories.BidRepository;
-import com.example.fiskenatet.repositories.UserRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -20,6 +19,8 @@ import javax.mail.internet.MimeMessage;
 
 
 public class MailHandler {
+
+    Logger log = Logger.getLogger(Application.class.getName());
 
     public Session setUpMail() {
 
@@ -38,83 +39,111 @@ public class MailHandler {
                 return new PasswordAuthentication(username, password);
             }
         });
+        log.info("Method 'setUpMail' runned with email: " +username+ " and password: " +password);
         return session;
     }
 
-    public void sendWinnerNotification(UserModel owner, UserModel winner, ProductModel soldProduct){
+    public void sendWinnerNotification(UserModel owner, UserModel winner, ProductModel soldProduct) {
         try {
             List<BidModel> bidList = soldProduct.getListOfBids();
-            BidModel highestBid = bidList.get(bidList.size() -1);
+            BidModel highestBid = bidList.get(bidList.size() - 1);
             Message message = new MimeMessage(setUpMail());
             message.setFrom(new InternetAddress("fiskenaetet@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(winner.getEmail()));
             message.setSubject("Du vann en auktion!");
             message.setText("Grattis " + winner.getFirstName() + "! Du vann budgivningen på " + owner.getUserName() + "'s " + soldProduct.getTitle()
-            +"\n"+ "Slutpris: " + highestBid.getAmount() + ":-"
-            +"\n"+ "Logga in på din sida för att betala."
-            +"\n"+ "Hälsningar Fiskenätet!");
+                    + "\n" + "Slutpris: " + highestBid.getAmount() + ":-"
+                    + "\n" + "Logga in på din sida för att betala."
+                    + "\n" + "Hälsningar Fiskenätet!");
 
             Transport.send(message);
-
+            log.info("Called method 'sendWinnerNotification' that sent a winner-mail to " +winner.getEmail());
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            log.warning("Warning in method 'sendWinnerNotification'. MessagingException: " +e);
+            //throw new RuntimeException(e);
         }
     }
-    public void sendSellerNotification(UserModel owner, UserModel winner, ProductModel soldProduct){
+
+    public void sendSellerNotification(UserModel owner, UserModel winner, ProductModel soldProduct) {
         try {
             List<BidModel> bidList = soldProduct.getListOfBids();
-            BidModel highestBid = bidList.get(bidList.size() -1);
+            BidModel highestBid = bidList.get(bidList.size() - 1);
             Message message = new MimeMessage(setUpMail());
             message.setFrom(new InternetAddress("fiskenaetet@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(owner.getEmail()));
             message.setSubject("Din annons har sålts!");
             message.setText("Grattis " + owner.getFirstName() + "! Din annons '" + soldProduct.getTitle() + "' har sålts för " + highestBid.getAmount() + ":-"
-            +"\n"+ "Köparen är: " + winner.getUserName()
-            +"\n"+ "Logga in på din sida för att se mer information."
-            +"\n"+ "Hälsningar Fiskenätet!");
+                    + "\n" + "Köparen är: " + winner.getUserName()
+                    + "\n" + "Logga in på din sida för att se mer information."
+                    + "\n" + "Hälsningar Fiskenätet!");
 
             Transport.send(message);
-
+            log.info("Called method 'sendSellerNotification' that sent a mail to seller " +owner.getEmail());
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            log.warning("Warning in method 'sendSellerNotification'. MessagingException: " +e);
+            //throw new RuntimeException(e);
         }
     }
+
     public void sendNewBidNotification(ProductModel currentProduct, BidModel bidModel, UserModel lastBidder) {
 
-            try {
+        try {
 
-                Message message = new MimeMessage(setUpMail());
-                message.setFrom(new InternetAddress("fiskenaetet@gmail.com"));
-                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(lastBidder.getEmail()));
-                message.setSubject("Du blev överbudad");
-                message.setText("Någon har budat över på '" + currentProduct.getTitle() +"'"
-                +"\n"+ "Skynda dig in för att lägga ett nytt bud!"
-                +"\n"+ "Nuvarande högsta bud är: " + bidModel.getAmount() +":-"
-                +"\n"+ "Hälsningar Fiskenätet!");
-
+            Message message = new MimeMessage(setUpMail());
+            message.setFrom(new InternetAddress("fiskenaetet@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(lastBidder.getEmail()));
+            message.setSubject("Du blev överbudad");
+            message.setText("Någon har budat över på '" + currentProduct.getTitle() + "'"
+                    + "\n" + "Skynda dig in för att lägga ett nytt bud!"
+                    + "\n" + "Nuvarande högsta bud är: " + bidModel.getAmount() + ":-"
+                    + "\n" + "Hälsningar Fiskenätet!");
                 Transport.send(message);
+                log.info("Called method 'sendNewBidNotification' that sent a mail to " +lastBidder.getEmail()+ " who just got overbidded");
 
             } catch (MessagingException e) {
-                throw new RuntimeException(e);
+                log.warning("Warning in method 'sendNewBidNotification'. MessagingException: " +e);
+                //throw new RuntimeException(e);
             }
     }
-    public void sendLoserNotification(ProductModel currentProduct, UserModel loser, UserModel seller, BidModel endBid){
+
+    public void sendLoserNotification(ProductModel currentProduct, UserModel loser, UserModel seller, BidModel endBid) {
         try {
 
             Message message = new MimeMessage(setUpMail());
             message.setFrom(new InternetAddress("fiskenaetet@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(loser.getEmail()));
             message.setSubject("Du förlorade en budgivning");
-            message.setText("Du förlorade budgivningen på '" + seller.getUserName() + "'s " + currentProduct.getTitle() +"'"
-                    +"\n"+ "Slutpriset blev: " + endBid.getAmount() +":-"
-                    +"\n"+ "Lycka till nästa gång!"
-                    +"\n"+ "Hälsningar Fiskenätet!");
+            message.setText("Du förlorade budgivningen på '" + seller.getUserName() + "'s " + currentProduct.getTitle() + "'"
+                    + "\n" + "Slutpriset blev: " + endBid.getAmount() + ":-"
+                    + "\n" + "Lycka till nästa gång!"
+                    + "\n" + "Hälsningar Fiskenätet!");
 
             Transport.send(message);
-
+            log.info("Called method 'sendSellerNotification' that sent a mail to loser " +loser.getEmail());
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            log.warning("Warning in method 'sendLoserNotification'. MessagingException: " +e);
+            //throw new RuntimeException(e);
         }
 
+    }
+
+    public boolean controlUserMail(String email) {
+        boolean validMail;
+        try {
+            Message message = new MimeMessage(setUpMail());
+            message.setFrom(new InternetAddress("fiskenaetet@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+            message.setSubject("Välkommen till Fiskenätet");
+            message.setText("Tack för din registrering hos Fiskenätet"
+                    + "\n" + "Detta är ett verifikationsmejl"
+                    + "\n" + "Hälsningar Fiskenätet!");
+            Transport.send(message);
+            validMail = true;
+            log.info("Called method 'controlUserMail' that sent a welcome-mail to " +email);
+        } catch(MessagingException e){
+            log.warning("Warning in method 'controlUserMail'. MessagingException: " +e);
+            validMail = false;
+        }
+        return validMail;
     }
 }

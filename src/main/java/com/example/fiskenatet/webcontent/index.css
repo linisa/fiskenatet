@@ -5,6 +5,9 @@ body{
     width: 100%;
     overflow-x: hidden;
     background-color: white;
+
+
+
 }
 
 /*Menu*/
@@ -25,6 +28,10 @@ body{
       float: none;
       display: inline-block;
   }
+
+#lnkProfileUserName :hover {
+
+}
 
 #banner{
     width: 100%;

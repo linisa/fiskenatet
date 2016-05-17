@@ -2,13 +2,14 @@ $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
     var currentUserID = sessionStorage.getItem("currentUser");
     var currentProductId = sessionStorage.getItem('currentProductId');
+    var currentUserName = sessionStorage.getItem('currentUserName');
     var currentUser;
     var currentProduct;
 
-    getUserById();
 
     getUserById(function (currentUser) {
         checkCategory();
+        document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
     });
 
 
@@ -21,8 +22,7 @@ $(document).ready(function () {
             populateUserProducts(currentUser['listOfProducts']);
         }else{
             console.log("kategori vald " + categoryChoice);
-            //populateUserProducts(categoryChoice);
-            //listCategory(categoryChoice);
+            listCategory(categoryChoice);
         }
     }
 
@@ -31,41 +31,22 @@ $(document).ready(function () {
     });
 
 
-    /*function listCategory(currentProduct, callback) {
+    function listCategory(categoryChoice) {
         console.log("I listcategory");
         $.ajax({
             type: 'GET',
             contentType: 'application/json',
-            url: rootURL + '/products/byownerandcategory/' + currentUserID + "/" + currentProduct,
-            data: callback,
+            url: rootURL + '/products/byownerandcategory/' + categoryChoice + "/" + currentUserID,
             success: function (data, textStatus, jgXHR) {
-                populateUserProducts(currentUser['listOfProducts']);
-
+                populateUserProducts(data);
             },
             error: function(jgXHR, textStatus, errorThrown) {
                 //alert('getCustomer error: ' + textStatus);
                 console.log("ListCategory error: " + textStatus);
             }
         });
-    }*/
-
-
-    /*function listCategory(categoryChoice){
-
-        var productList = currentUser['listOfProducts'];
-        console.log("productlist: " + productList[0].title);
-        var productListByCategory = [];
-        for (var i = 0; i < productList.length; i++){
-            console.log("i loopen");
-            if(productList[i].category == categoryChoice){
-                productListByCategory[i] = productList[i];
-                console.log("product added");
-                console.log(productListByCategory[i]);
-            }
-        }
-        populateUserProducts(productListByCategory);
-    }*/
-
+    }
+    
 
     $(document).on("click", "#lnkSetProductAsSold", function () {
         var currentProductID = $(this).data("value");
@@ -80,6 +61,7 @@ $(document).ready(function () {
     
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUserName');
         location.href="../webcontent/index.html";
     });
 
@@ -246,8 +228,7 @@ $(document).ready(function () {
         $products = $('#productList');
         var productString="";
         var smallLimit = 90;
-       for(i = 0; i < currentUser['listOfProducts'].length; i++){
-           var listOfProducts = currentUser['listOfProducts'];
+       for(i = 0; i < listOfProducts.length; i++){
            var startDate = new Date(listOfProducts[i].startDate);
            var isSold = listOfProducts[i].isSold;
            listOfBids = listOfProducts[i]['listOfBids'];

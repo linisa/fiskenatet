@@ -1,5 +1,6 @@
 package com.example.fiskenatet.services;
 
+import com.example.fiskenatet.Application;
 import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.ProductModel;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by nordi_000 on 2016-04-27.
@@ -30,37 +32,34 @@ public class BidService {
     private UserModel formerLeadingBidder = new UserModel();
     private BidModel formerLeadingBid = new BidModel();
 
-    public void saveBid(BidModel bidModel) {
+    Logger log = Logger.getLogger(Application.class.getName());
 
+    public void saveBid(BidModel bidModel) {
         ProductModel currentProduct = productRepository.getOne(bidModel.getCurrentProduct());
-        //ProductModel currentProduct = productRepository.getOne(1L);
         boolean formerBidderExist = getNextBiggestBid(currentProduct);
         if(formerBidderExist) {
             MailHandler mailHandler = new MailHandler();
             mailHandler.sendNewBidNotification(currentProduct, bidModel, formerLeadingBidder);
         }
         bidRepository.saveAndFlush(bidModel);
+        log.info("New bid with ID = " +bidModel.getId()+ " has been saved");
     }
 
     private boolean getNextBiggestBid (ProductModel currentProduct) {
-
         List<BidModel> bidList = currentProduct.getListOfBids();
         int sizeOfList = bidList.size();
-        if(sizeOfList>0) {
+        if (sizeOfList > 0) {
             formerLeadingBid.setAmount(0);
-            for(BidModel bidModel : bidList) {
-                if(bidModel.getAmount() > formerLeadingBid.getAmount()){
+            for (BidModel bidModel : bidList) {
+                if (bidModel.getAmount() > formerLeadingBid.getAmount()) {
                     formerLeadingBid.setAmount(bidModel.getAmount());
                     formerLeadingBidder = userRepository.getOne(bidModel.getBidder());
                     formerLeadingBid.setBidder(formerLeadingBidder);
                 }
             }
             return true;
-
         }
-
         return false;
-
     }
 
 }

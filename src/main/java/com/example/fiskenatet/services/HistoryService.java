@@ -20,7 +20,7 @@ public class HistoryService {
 
     // skapa produkt
     public void saveHistory(HistoryModel historyModel) {
-        historyRepository.saveAndFlush(historyModel); // saveandflush betyder sparar och skickar upp till databasen(?) direkt
+        historyRepository.saveAndFlush(historyModel);
     }
 
     // hämta en alla produkter med en specifik ägare

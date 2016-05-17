@@ -1,6 +1,7 @@
 
 $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
+    var currentUserName = sessionStorage.getItem('currentUserName');
     var userUserName;
     var userPassword;
     var listOfBids;
@@ -25,10 +26,11 @@ $(document).ready(function () {
     function checkIfLoggedIn() {
         if(sessionStorage.getItem('currentUser') != null){
             /*användare inloggad*/
+            
             document.getElementById("lnkAddProduct").style.display = "inline-block";
             document.getElementById("lnkProfile").style.display = "inline-block";
             document.getElementById("lnkLogOut").style.display = "inline-block";
-            
+            document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
 
             document.getElementById("lnkLogIn").style.display = "none";
             document.getElementById("lnkRegUser").style.display = "none";
@@ -50,6 +52,7 @@ $(document).ready(function () {
 
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUserName');
         location.reload();
     });
 
@@ -65,7 +68,7 @@ $(document).ready(function () {
             url: rootURL + '/products/category/' + categoryChoice,
             success: function (data, textStatus, jgXHR) {
                 populateProductList(data);
-                console.log(data[0].title);
+
 
             },
             error: function (jgXHR, textStatus, errorThrown) {
@@ -82,7 +85,6 @@ $(document).ready(function () {
             url: rootURL + '/products',
             success: function (data, textStatus, jgXHR) {
                 populateProductList(data);
-                console.log(data[0].title);
 
             },
             error: function (jgXHR, textStatus, errorThrown) {
@@ -99,28 +101,24 @@ $(document).ready(function () {
         for (i = 0; i < allProducts.length; i++) {
             console.log("i productlistan");
             listOfBids = allProducts[i]['listOfBids'];
-
+            var endDate = new Date(allProducts[i].endDate).toLocaleString();
             var description = allProducts[i].description;
-
-            listOfBids = allProducts[i]['listOfBids'];
 
 
             productString += '<div class="product"><a href="#" class="productLink" data-value="'+ allProducts[i].id +'"><div class = "col-sm-8">';
             productString += '<div><img src="' + allProducts[i].image + '" class="image"></div>';
             productString += '<div class="productText"><h3>' + allProducts[i].title + '</h3>';
             productString += '<p class="description">' + description.substr(0, smallLimit) + '...' + '</p></div></a></div>';
-            productString += '<div class="col-sm-4"><p class="endDate">Slutdatum: <br>' + allProducts[i].endDate + '</p>';
+            productString += '<div class="col-sm-4"><p class="endDate">Slutdatum: <br>' + endDate + '</p>';
 
             if(listOfBids.length != 0){
                 listOfBids.sort(function (a, b) {
                     return b.amount - a.amount;
                 });
-
                 productString += '<p class="highestBid">Högsta Bud:<br>' +  listOfBids[0].amount + " kr"  + '</p>';
             }else{
                 productString += '<p class="highestBid">Högsta Bud:<br>' +  allProducts[i].startPrice + " kr" + '</p>';
             }
-
 
             productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';
         }
@@ -162,6 +160,7 @@ $(document).ready(function () {
         if(foundUser.password == userPassword){
             console.log("Log in success" + foundUser.firstName);
             sessionStorage.setItem('currentUser', foundUser.id);
+            sessionStorage.setItem('currentUserName', foundUser.userName)
             location.reload();
         }else{
             alert("Fel lösenord!");
