@@ -155,8 +155,8 @@ public class ProductService {
         if(controlProductImage(productModel) == false){
             checkProduct = "Select a product image as an URL. Allowed formats: JPEG, JPG, GIF, PNG";
         }
-        if(productModel.getStartPrice() < 1){
-            checkProduct = "Start price needs to be greater than 0";
+        if(productModel.getStartPrice() < 0){
+            checkProduct = "Start price cannot be less than 0";
         }
         if(productModel.getBuyNowPrice() < productModel.getStartPrice()){
             checkProduct = "Buy now price needs to be greater than starting price";
