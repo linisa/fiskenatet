@@ -13,6 +13,23 @@ $(document).ready(function () {
         }
     });
 
+
+    function verifyUser() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: rootURL + '/verifyuser',
+            data: formToJSON(),
+            success: function (data, textStatus, jgXHR) {
+                console.log(data);
+            },
+            error: function(jgXHR, textStatus, errorThrown) {
+                console.log("verifyUser error: " + textStatus);
+            }
+
+        });
+    }
+
     function addUser(){
         console.log("in addUser");
         $.ajax({
