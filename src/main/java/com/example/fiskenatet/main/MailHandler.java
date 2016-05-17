@@ -7,7 +7,7 @@ import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
 import com.example.fiskenatet.repositories.BidRepository;
 import com.example.fiskenatet.repositories.UserRepository;
-import org.apache.commons.validator.routines.EmailValidator;
+
 
 import java.util.ArrayList;
 import java.util.List;

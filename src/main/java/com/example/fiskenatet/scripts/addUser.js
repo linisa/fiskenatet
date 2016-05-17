@@ -7,28 +7,13 @@ $(document).ready(function () {
         var password = document.getElementById("tfPassword").value;
         var repeatPassword = document.getElementById("tfPasswordRepeat").value;
         if(password == repeatPassword){
+            //TODO: make check lösenord-längd
             addUser();
         }else{
             alert("Lösenorden stämmer ej överrens");
         }
     });
 
-
-    function verifyUser() {
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json',
-            url: rootURL + '/verifyuser',
-            data: formToJSON(),
-            success: function (data, textStatus, jgXHR) {
-                console.log(data);
-            },
-            error: function(jgXHR, textStatus, errorThrown) {
-                console.log("verifyUser error: " + textStatus);
-            }
-
-        });
-    }
 
     function addUser(){
         console.log("in addUser");
@@ -43,10 +28,6 @@ $(document).ready(function () {
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("send Error " +textStatus + "  " + errorThrown);
-            },
-            complete: function (jgXHR, textStatus, errorThrown) {
-                console.log("GREAT COMPLETE!");
-                moveMe();
             }
         })
     }
@@ -61,7 +42,7 @@ $(document).ready(function () {
             "mobileNumber": $('#tfMobileNumber').val()
             /*"startDate": startDate*/
         });
-        console.log(product);
+        console.log("i f2j: " + product);
         return product;
     }
 

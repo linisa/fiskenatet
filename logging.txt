@@ -1,0 +1,26 @@
+maj 17, 2016 11:08:30 FM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 17, 2016 1:15:30 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 17, 2016 1:16:47 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 17, 2016 1:16:51 EM com.example.fiskenatet.services.UserService findUserByUserName
+INFO: Called method 'findUserByUserName' with username 'Leif'
+maj 17, 2016 1:16:52 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 17, 2016 1:18:21 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 17, 2016 1:18:28 EM com.example.fiskenatet.services.UserService findUserByUserName
+INFO: Called method 'findUserByUserName' with username 'Leif'
+maj 17, 2016 1:18:28 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 17, 2016 1:18:30 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 17, 2016 1:18:33 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 17, 2016 1:18:37 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 17, 2016 1:18:38 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 17, 2016 1:18:42 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
