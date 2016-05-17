@@ -1,8 +1,6 @@
 # Created by https://www.gitignore.io/api/intellij,windows
 
-# Logging files
-logging.txt
-logging.txt.lck
+
 
 
 ### Intellij ###
@@ -75,3 +73,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Logging files
+logging.txt
+logging.txt.lck
