@@ -23,19 +23,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    //kolla databasen efter användarDubblett
+    //kolla databasen efter användarDublett & så inga fält är tomma
     @CrossOrigin
     @RequestMapping(value = "/verifyuser", method = RequestMethod.POST)
     public String verifyUser(@RequestBody UserModel userModel) {
-        return userService.checkIfUserExistsInDatabase(userModel);
+        return userService.validateUserInput(userModel);
     }
-    //kollar så inga fält är tomma
-    @CrossOrigin
-    @RequestMapping(value = "/controluserinput", method = RequestMethod.POST)
-    public String controlUserInput(@RequestBody UserModel userModel) {
-        return userService.controlUserInput(userModel);
-    }
-
     // lägg till ny user
     @CrossOrigin
     @RequestMapping(value = "/users", method = RequestMethod.POST)

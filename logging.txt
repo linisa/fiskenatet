@@ -1,0 +1,2 @@
+maj 17, 2016 10:23:12 FM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products

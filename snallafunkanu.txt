@@ -1,6 +1,0 @@
-maj 16, 2016 2:02:15 EM com.example.fiskenatet.Application main
-INFO: Going to start the whole application
-maj 16, 2016 2:02:39 EM com.example.fiskenatet.Application main
-INFO: Hello sweden har skrivits ut..
-maj 16, 2016 2:02:39 EM com.example.fiskenatet.Application main
-INFO: hdeuhdeuhdiuehdiuehdeiuhiuedhediuhdiuehiuedhiuedhiuedh

@@ -105,8 +105,9 @@ public class UserService {
         return averageRating;
     }
 
-    public String checkIfUserExistsInDatabase(UserModel userModel){
+    public String validateUserInput(UserModel userModel){
         String checkUser = "OK";
+
         List<UserModel> userList = userRepository.findAll();
         for(UserModel compareUser : userList) {
             if(compareUser.getUserName().equals(userModel.getUserName())){
@@ -115,11 +116,9 @@ public class UserService {
             }if(compareUser.getEmail().equals(userModel.getEmail())){
                 checkUser = "Mail already registered";
             }
+            break;
         }
-        return checkUser;
-    }
-    public String controlUserInput(UserModel userModel){
-        String checkUser = "OK";
+
         if(userModel.getFirstName().equals("")||userModel.getFirstName().equals(" ")){
             checkUser = "First name required";
         }if(userModel.getLastName().equals("")||userModel.getLastName().equals(" ")){
