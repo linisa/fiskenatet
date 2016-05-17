@@ -1,2 +1,2 @@
-maj 17, 2016 11:19:32 FM com.example.fiskenatet.Application main
+maj 17, 2016 11:31:42 FM com.example.fiskenatet.Application main
 INFO: Program started and new log file was created

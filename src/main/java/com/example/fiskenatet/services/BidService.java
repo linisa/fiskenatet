@@ -48,10 +48,10 @@ public class BidService {
     private boolean getNextBiggestBid (ProductModel currentProduct) {
         List<BidModel> bidList = currentProduct.getListOfBids();
         int sizeOfList = bidList.size();
-        if(sizeOfList>0) {
+        if (sizeOfList > 0) {
             formerLeadingBid.setAmount(0);
-            for(BidModel bidModel : bidList) {
-                if(bidModel.getAmount() > formerLeadingBid.getAmount()){
+            for (BidModel bidModel : bidList) {
+                if (bidModel.getAmount() > formerLeadingBid.getAmount()) {
                     formerLeadingBid.setAmount(bidModel.getAmount());
                     formerLeadingBidder = userRepository.getOne(bidModel.getBidder());
                     formerLeadingBid.setBidder(formerLeadingBidder);
