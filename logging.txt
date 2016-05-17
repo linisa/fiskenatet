@@ -1,0 +1,252 @@
+maj 16, 2016 4:07:55 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 16, 2016 4:07:58 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 16, 2016 4:15:14 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 16, 2016 4:15:17 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:15:19 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:15:19 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:15:20 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:15:20 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 3 and category '1'
+maj 16, 2016 4:15:21 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 3 and category '1'
+maj 16, 2016 4:15:21 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 9 and category '1'
+maj 16, 2016 4:15:23 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 9 and category '1'
+maj 16, 2016 4:15:27 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:15:49 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:15:51 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 16, 2016 4:21:15 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 16, 2016 4:21:18 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 3 and category '1'
+maj 16, 2016 4:22:01 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 3 and category '1'
+maj 16, 2016 4:22:03 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:23:16 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:23:17 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:23:19 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:23:20 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:23:28 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 16, 2016 4:23:31 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:23:34 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 16, 2016 4:25:38 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 16, 2016 4:25:40 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:29:01 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:29:05 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 16, 2016 4:29:07 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:29:09 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:29:09 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:29:10 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:29:11 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:29:12 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:29:13 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 5 and category '1'
+maj 16, 2016 4:29:14 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 5 and category '1'
+maj 16, 2016 4:29:14 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:29:56 EM com.example.fiskenatet.services.ProductService saveProduct
+INFO: New product created with ID: 2
+maj 16, 2016 4:29:57 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 16, 2016 4:30:00 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 16, 2016 4:30:04 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:30:05 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:30:06 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:30:09 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:30:10 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:30:11 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:30:14 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:30:16 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:30:16 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:30:17 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:30:20 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 3 and category '1'
+maj 16, 2016 4:30:21 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 3 and category '1'
+maj 16, 2016 4:30:22 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 4 and category '1'
+maj 16, 2016 4:30:23 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 4 and category '1'
+maj 16, 2016 4:30:24 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 5 and category '1'
+maj 16, 2016 4:30:25 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 5 and category '1'
+maj 16, 2016 4:30:26 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 6 and category '1'
+maj 16, 2016 4:30:26 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 6 and category '1'
+maj 16, 2016 4:30:27 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 7 and category '1'
+maj 16, 2016 4:30:29 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 7 and category '1'
+maj 16, 2016 4:30:30 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 8 and category '1'
+maj 16, 2016 4:30:32 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 8 and category '1'
+maj 16, 2016 4:30:33 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 9 and category '1'
+maj 16, 2016 4:30:34 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 9 and category '1'
+maj 16, 2016 4:30:34 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 10 and category '1'
+maj 16, 2016 4:30:36 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 10 and category '1'
+maj 16, 2016 4:30:41 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:31:29 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:31:30 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:31:32 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:31:55 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:31:56 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '1'
+maj 16, 2016 4:31:57 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:31:58 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:31:59 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:32:38 EM com.example.fiskenatet.services.ProductService saveProduct
+INFO: New product created with ID: 3
+maj 16, 2016 4:32:39 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 16, 2016 4:32:45 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 16, 2016 4:32:49 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 2 products from owner with ID 1 and category '1'
+maj 16, 2016 4:32:52 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 2 products from owner with ID 1 and category '1'
+maj 16, 2016 4:32:52 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 2 and category '1'
+maj 16, 2016 4:35:24 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 16, 2016 4:35:27 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 2 products from owner with ID 1 and category '1'
+maj 16, 2016 4:35:28 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 2 products from owner with ID 1 and category '1'
+maj 16, 2016 4:35:29 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '2'
+maj 16, 2016 4:35:30 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '2'
+maj 16, 2016 4:35:31 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '3'
+maj 16, 2016 4:35:31 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '3'
+maj 16, 2016 4:37:00 EM com.example.fiskenatet.services.ProductService saveProduct
+INFO: New product created with ID: 4
+maj 16, 2016 4:37:00 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 16, 2016 4:37:03 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 16, 2016 4:37:07 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '8'
+maj 16, 2016 4:38:06 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '8'
+maj 16, 2016 4:38:07 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 2 products from owner with ID 1 and category '1'
+maj 16, 2016 4:38:10 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 2 products from owner with ID 1 and category '1'
+maj 16, 2016 4:38:11 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '2'
+maj 16, 2016 4:38:12 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '2'
+maj 16, 2016 4:38:14 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '9'
+maj 16, 2016 4:38:14 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '9'
+maj 16, 2016 4:38:21 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '8'
+maj 16, 2016 4:40:44 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '8'
+maj 16, 2016 4:40:47 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '7'
+maj 16, 2016 4:40:48 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '7'
+maj 16, 2016 4:40:48 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '2'
+maj 16, 2016 4:40:49 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '2'
+maj 16, 2016 4:40:56 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '2'
+maj 16, 2016 4:40:56 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 2 products from owner with ID 1 and category '1'
+maj 16, 2016 4:40:59 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 2 products from owner with ID 1 and category '1'
+maj 16, 2016 4:41:00 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '3'
+maj 16, 2016 4:41:00 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '3'
+maj 16, 2016 4:41:01 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '4'
+maj 16, 2016 4:41:02 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '4'
+maj 16, 2016 4:41:02 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '6'
+maj 16, 2016 4:41:03 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '6'
+maj 16, 2016 4:41:04 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '5'
+maj 16, 2016 4:41:04 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '5'
+maj 16, 2016 4:41:05 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '7'
+maj 16, 2016 4:41:06 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '7'
+maj 16, 2016 4:41:07 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '8'
+maj 16, 2016 4:41:09 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '8'
+maj 16, 2016 4:41:10 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '9'
+maj 16, 2016 4:41:10 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '9'
+maj 16, 2016 4:41:11 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '10'
+maj 16, 2016 4:41:12 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 0 products from owner with ID 1 and category '10'
+maj 16, 2016 4:41:12 EM com.example.fiskenatet.services.ProductService getProductByOwnerAndByCategory
+INFO: Called method 'getProductByOwnerAndByCategory' that returned a list of 1 products from owner with ID 1 and category '8'

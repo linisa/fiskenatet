@@ -13,8 +13,6 @@ spring:
     password: assassin723
 
 
-
-
   jackson:
     serialization:
       fail-on-empty-beans: false
