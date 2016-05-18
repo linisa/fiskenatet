@@ -26,7 +26,10 @@ public class HistoryBuilder {
         historyModel.setCategory(category);
         return this;
     }
-
+    public HistoryBuilder owner (UserModel userModel){
+        historyModel.setOwner(userModel);
+        return this;
+    }
     public HistoryModel build(){
         return historyModel;
     }

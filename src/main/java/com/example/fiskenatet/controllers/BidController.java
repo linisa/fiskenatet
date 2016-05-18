@@ -22,6 +22,7 @@ public class BidController {
     @CrossOrigin
     @RequestMapping(value = "/bids", method = RequestMethod.POST)
     public void createBid(@RequestBody BidModel bidModel) {
+        System.out.println("budgivarens id: " + bidModel.getBidder());
         bidService.saveBid(bidModel);
     }
 
