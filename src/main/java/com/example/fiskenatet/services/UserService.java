@@ -59,8 +59,8 @@ public class UserService {
 
     // uppdatera specifik användare med ID
     public void updateUserInDatabase(Long id, UserModel userModel) {
-
         UserModel userToUpdate = userRepository.getOne(id);
+        userToUpdate.setUserName(userModel.getUserName());
         userToUpdate.setFirstName(userModel.getFirstName());
         userToUpdate.setLastName(userModel.getLastName());
         userToUpdate.setEmail(userModel.getEmail());
@@ -69,7 +69,6 @@ public class UserService {
         userRepository.saveAndFlush(userToUpdate);
         log.info("User with ID = " +id+ " has been updated by method 'updateUserInDatabase'");
     }
-
 
     public void saveBuyerRating(Long id, String addRating){
         UserModel userToUpdate = userRepository.getOne(id);
@@ -115,7 +114,7 @@ public class UserService {
             if(compareUser.getId() == id) {
                 userList.remove(compareUser);
                 System.out.println("removed " + compareUser.getEmail() + " from list");
-
+                break;
             }
         }
         String checkUser = validateUserNameAndEmail(userList, userModel);
