@@ -74,7 +74,7 @@ public class ProductService {
         return onlyNotSoldProducts;
     }
 
-        public List<ProductModel> findProductsByIsSold(String isSold){
+    public List<ProductModel> findProductsByIsSold(String isSold){
         List<ProductModel> productList = productRepository.findProductsByIsSold(isSold);
         log.info("Called method 'findProductsByIsSold' that returned a list of " +productList.size()+ " sold products");
         return productList;
