@@ -161,8 +161,6 @@ $(document).ready(function () {
                 }
             }
 
-
-
         }else{
             document.getElementById("lnkAddProduct").style.display = "none";
             document.getElementById("lnkProfile").style.display = "none";

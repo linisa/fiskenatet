@@ -173,56 +173,6 @@ public class ProductService {
         return searchResultList;
     }
 
-    public String validateProductInput(ProductModel productModel){
-        String checkProduct = "OK";
-
-        if(productModel.getTitle().equals("")||productModel.getTitle().equals(" ")){
-            checkProduct = "Produkttitel saknas";
-        }
-        if(productModel.getDescription().equals("")||productModel.getDescription().equals(" ")){
-            checkProduct = "Produktbeskrivning saknas";
-        }
-        if(productModel.getCategory().equals("0")){
-            checkProduct = "Välj en produktkategori";
-        }
-        if(controlProductImage(productModel) == false){
-            checkProduct = "Välj en produktbild som en URL. Tillåtna format: JPEG, JPG, GIF, PNG";
-        }
-        if(productModel.getStartPrice() < 0){
-            checkProduct = "Utropspriset kan inte vara lägre än 0";
-        }
-        if(productModel.getBuyNowPrice() < productModel.getStartPrice()){
-            checkProduct = "Köp-nu-priset måste vara högre än utropspriset";
-        }
-        return checkProduct;
-    }
-
-    private boolean controlProductImage(ProductModel productModel) {
-        boolean imageIsGood;
-
-        if (productModel.getImage().endsWith(".jpeg") || productModel.getImage().endsWith(".jpg")
-                || productModel.getImage().endsWith(".gif") || productModel.getImage().endsWith(".png")) {
-            try {
-                System.out.println("open connection " +  productModel.getImage());
-                URL imageUrl = new URL(productModel.getImage());
-                URLConnection connection = imageUrl.openConnection();
-                connection.connect();
-            } catch (MalformedURLException e) {
-                System.out.println("cant open connection " +  productModel.getImage() + " " + e);
-                imageIsGood = false;
-                return imageIsGood;
-            } catch (IOException e) {
-                System.out.println("cant open connection " +  productModel.getImage() + " " + e);
-                imageIsGood = false;
-                return imageIsGood;
-            }
-            imageIsGood = true;
-        }else{
-            imageIsGood = false;
-        }
-        return imageIsGood;
-    }
-
     // Flytta produkter från schemat products till history om produkten skapades innan kl15:00 samma dag
     // Denna funktion kommer att köras strax efter kl 16:00 varje dag
 

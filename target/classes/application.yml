@@ -13,7 +13,6 @@ spring:
     username: root
     password: mysql
 
-
   jackson:
     serialization:
       fail-on-empty-beans: false
