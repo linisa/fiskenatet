@@ -64,7 +64,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             contentType: 'application/json',
-            url: rootURL + '/products/category/' + categoryChoice,
+            url: rootURL + '/products/category/notsold/' + categoryChoice,
             success: function (data, textStatus, jgXHR) {
                 populateProductList(data);
 
@@ -81,7 +81,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             contentType: 'application/json',
-            url: rootURL + '/products',
+            url: rootURL + '/products/productissold/no',
             success: function (data, textStatus, jgXHR) {
                 populateProductList(data);
 

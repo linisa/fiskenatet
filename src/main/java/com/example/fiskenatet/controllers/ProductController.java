@@ -86,6 +86,13 @@ public class ProductController {
         return new ResponseEntity<List<ProductModel>>(productService.findAllProductsByCategory(category), HttpStatus.OK);
     }
 
+    // hämtar alla produkter från en vald kategori som inte är sålda
+    @CrossOrigin
+    @RequestMapping(value = "/products/category/notsold/{category}", method = RequestMethod.GET)
+    public ResponseEntity<List<ProductModel>>getNotSoldProductsByCategory(@PathVariable String category) {
+        return new ResponseEntity<List<ProductModel>>(productService.findAllProductsByCategoryNotSold(category), HttpStatus.OK);
+    }
+
     //hämtar produkter från en vald kategori för en viss användare
     @CrossOrigin
     @RequestMapping(value = "/products/byownerandcategory/{category}/{ownerId}", method = RequestMethod.GET)
@@ -93,7 +100,7 @@ public class ProductController {
         return new ResponseEntity<List<ProductModel>>(productService.getProductByOwnerAndByCategory(category, ownerId), HttpStatus.OK);
     }
 
-    //sätter en produkt till såld
+    //Hämta produkter som inte är sålda än
     @CrossOrigin
     @RequestMapping(value = "/products/productissold/{isSold}", method = RequestMethod.GET)
     public ResponseEntity<List<ProductModel>>getUnsoldProducts(@PathVariable String isSold) {
@@ -107,11 +114,12 @@ public class ProductController {
         return new ResponseEntity<List<ProductModel>>(productService.searchProducts(value), HttpStatus.OK);
     }
 
-    //sätter en produkt till såld
+    // kör när klockan passerat 16:00 och auktionen stänger för dagen
     @CrossOrigin
     @RequestMapping(value = "/products/endofday", method = RequestMethod.PUT)
     public void auctionDayEnd() {
         productService.auctionDayEnd();
+
     }
 
 
