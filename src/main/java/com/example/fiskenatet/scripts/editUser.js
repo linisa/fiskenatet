@@ -10,7 +10,7 @@ $(document).ready(function(){
     $('#btnUpdateUser').click(function () {
         console.log("button clicked");
         var password = document.getElementById("tfPassword").value;
-        var repeatPassword = document.getElementById("tfRepeatPassword").value;
+        var repeatPassword = document.getElementById("tfPasswordRepeat").value;
         var userName = document.getElementById("tfUserName").value;
 
         if(hasWhiteSpace(password)) {
@@ -54,7 +54,6 @@ $(document).ready(function(){
         document.getElementById("tfFirstName").value = currentUser['firstName'];
         document.getElementById("tfLastName").value = currentUser['lastName'];
         document.getElementById("tfUserName").value = currentUser['userName'];
-        document.getElementById("tfPassword").value = currentUser['password'];
         document.getElementById("tfEmail").value = currentUser['email'];
         document.getElementById("tfMobileNumber").value = currentUser['mobileNumber'];
     }
