@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
-    var currentUserName = sessionStorage.getItem('currentUserName');
+    var currentUserName;
     var userUserName;
     var userPassword;
     var listOfBids;
@@ -25,7 +25,7 @@ $(document).ready(function () {
     function checkIfLoggedIn() {
         if(sessionStorage.getItem('currentUser') != null){
             /*användare inloggad*/
-            
+            currentUserName = sessionStorage.getItem('currentUserName');
             document.getElementById("lnkAddProduct").style.display = "inline-block";
             document.getElementById("lnkProfile").style.display = "inline-block";
             document.getElementById("lnkLogOut").style.display = "inline-block";
@@ -54,11 +54,7 @@ $(document).ready(function () {
         sessionStorage.removeItem('currentUserName');
         location.reload();
     });
-
-    $(document).on("click", "#lnkProfile", function () {
-        location.href="../webcontent/userProfile.html";
-    });
-
+    
     $('#btnSearch').click(function () {
         document.getElementById("productList").innerHTML = "";
         console.log("KLICK SÖK!");
@@ -79,10 +75,7 @@ $(document).ready(function () {
             }
         });
     }
-
-
-
-
+    
     function getProductByCategory(categoryChoice) {
         $.ajax({
             type: 'GET',
@@ -98,8 +91,7 @@ $(document).ready(function () {
             }
         });
     }
-
-
+    
     function getAllProducts() {
         $.ajax({
             type: 'GET',

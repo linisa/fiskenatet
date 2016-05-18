@@ -107,21 +107,38 @@ public class UserService {
         return averageRating;
     }
 
-    public String validateUserInput(UserModel userModel){
-        String checkUser = "OK";
-        System.out.println("i validateUserInput");
+    public String validateUserInputWhenUpdating(Long id, UserModel userModel){
         List<UserModel> userList = userRepository.findAll();
 
         for(UserModel compareUser : userList) {
+            System.out.println("före mail: " + compareUser.getEmail());
+            if(compareUser.getId() == id) {
+                userList.remove(compareUser);
+                System.out.println("removed " + compareUser.getEmail() + " from list");
 
-            if(compareUser.getUserName().equals(userModel.getUserName())){
-                checkUser = "Användarnamnet är upptaget";
-            }
-            if(compareUser.getEmail().equals(userModel.getEmail())){
-                checkUser = "E-postadressen är redan registrerad";
             }
         }
+        String checkUser = validateUserNameAndEmail(userList, userModel);
 
+        if(userModel.getFirstName().equals("")||userModel.getFirstName().equals(" ")){
+            checkUser = "Förnamn saknas";
+        }if(userModel.getLastName().equals("")||userModel.getLastName().equals(" ")){
+            checkUser = "Efternamn saknas";
+        }if(userModel.getUserName().equals("")||userModel.getUserName().equals(" ")){
+            checkUser = "Användarnamn saknas";
+        }if(userModel.getEmail().equals("")||userModel.getEmail().equals(" ")){
+            checkUser = "Ange en e-postadress";
+        }if(userModel.getMobileNumber().equals("")||userModel.getMobileNumber().equals(" ")){
+            checkUser = "Telefonnummer saknas";
+        }
+
+        log.info("Called method 'validateUserInputWhenUpdating' for user with ID = " + userModel.getId() + " that returned string: " + checkUser);
+        return checkUser;
+    }
+
+    public String validateUserInputWhenCreating(UserModel userModel){
+        List<UserModel> userList = userRepository.findAll();
+        String checkUser = validateUserNameAndEmail(userList, userModel);
         if(userModel.getFirstName().equals("")||userModel.getFirstName().equals(" ")){
             checkUser = "Förnamn saknas";
         }if(userModel.getLastName().equals("")||userModel.getLastName().equals(" ")){
@@ -133,7 +150,21 @@ public class UserService {
         }if(userModel.getMobileNumber().equals("")||userModel.getMobileNumber().equals(" ")){
             checkUser = "Telefonnummer saknas";
         }
-        System.out.println("i valuuser " + checkUser + " bajs");
+        log.info("Called method 'validateUserInputWhenCreating' for user with ID = " + userModel.getId() + " that returned string: " + checkUser);
+        return checkUser;
+    }
+
+    private String validateUserNameAndEmail(List<UserModel> userList, UserModel userModel){
+        String checkUser = "OK";
+        for(UserModel compareUser : userList) {
+            System.out.println("efter mail:" + compareUser.getEmail());
+            if(compareUser.getUserName().equals(userModel.getUserName())){
+                checkUser = "Användarnamnet är upptaget";
+
+            }if(compareUser.getEmail().equals(userModel.getEmail())){
+                checkUser = "E-postadressen är redan registrerad";
+            }
+        }
         return checkUser;
     }
 

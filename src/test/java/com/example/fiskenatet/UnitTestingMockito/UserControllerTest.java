@@ -90,7 +90,7 @@ public class UserControllerTest {
     @Test
     public void testCreateUser(){
         String response = "OK";
-        given(userService.validateUserInput(user3)).willReturn(response);
+        given(userService.validateUserInputWhenCreating(user3)).willReturn(response);
         assertThat(userController.createUser(user3)).isEqualTo(response);
     }
 

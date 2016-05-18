@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.Path;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class UserController {
     @RequestMapping(value = "/users/", method = RequestMethod.POST)
     public String createUser(@RequestBody UserModel userModel) {
         System.out.println("första vändan i controllern");
-        String validUser = userService.validateUserInput(userModel);
+        String validUser = userService.validateUserInputWhenCreating(userModel);
         System.out.println("tillbaka i controller " + validUser);
         if(validUser.equals("OK")){
             System.out.println("a-ok!");
@@ -67,11 +68,12 @@ public class UserController {
         userService.deleteUserInDatabase(id);
     }
 
-    // uppdatera användare - EJ KLAR
+    //kontrollerar först användarens inmatade uppgifter
+    // om allt är ok - uppdatera användare
     @CrossOrigin
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
     public String updateUser(@PathVariable Long id, @RequestBody UserModel userModel){
-        String validUser = userService.validateUserInput(userModel);
+        String validUser = userService.validateUserInputWhenUpdating(id, userModel);
         if(validUser.equals("OK")){
             userService.updateUserInDatabase(id, userModel);
         }
