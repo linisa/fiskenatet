@@ -59,6 +59,29 @@ $(document).ready(function () {
         location.href="../webcontent/userProfile.html";
     });
 
+    $('#btnSearch').click(function () {
+        document.getElementById("productList").innerHTML = "";
+        console.log("KLICK SÖK!");
+        var searchString = document.getElementById("tfSearch").value;
+        searchProduct(searchString)
+    });
+
+    function searchProduct(searchString) {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/products/search/' + searchString,
+            success: function (data, textStatus, jgXHR) {
+                populateProductList(data);
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("getAllProducts error: " + textStatus);
+            }
+        });
+    }
+
+
+
 
     function getProductByCategory(categoryChoice) {
         $.ajax({

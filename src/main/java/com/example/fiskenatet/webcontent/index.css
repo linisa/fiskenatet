@@ -6,8 +6,6 @@ body{
     overflow-x: hidden;
     background-color: white;
 
-
-
 }
 
 /*Menu*/
@@ -45,6 +43,21 @@ body{
     font-size: 6em;
     font-weight: bold;
 }
+#searchContainer{
+    position: absolute;
+    top: 16.5em;
+    left: 40%;
+    right: 40%;
+    width: 20%;
+}
+
+#tfSearch{
+    width: 75%;
+}
+#btnSearch{
+    width: 20%;
+}
+
 
 #wrongPassword{
     color: red;
