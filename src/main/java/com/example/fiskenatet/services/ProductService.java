@@ -63,20 +63,15 @@ public class ProductService {
 
     // hämta alla produkter från kategori som inte är sålda
     public List<ProductModel> findAllProductsByCategoryNotSold(String category) {
-        List<ProductModel> listToBeReturned = new ArrayList<ProductModel>();
-        List<ProductModel> productList = productRepository.findProductsByCategory(category);
-        for(ProductModel product : productList) {
+        List<ProductModel> onlyNotSoldProducts = new ArrayList<ProductModel>();
+        List<ProductModel> allProducts = productRepository.findProductsByCategory(category);
+        for(ProductModel product : allProducts) {
             if(product.getIsSold().equals("no")) {
-                System.out.println("Denna produkten är isSold = yes " +product.getId());
-                listToBeReturned.add(product);
+                onlyNotSoldProducts.add(product);
             }
         }
-        for(ProductModel product : listToBeReturned) {
-            System.out.println("Alla produkter som är kvar: " +product.getId());
-        }
-
-        log.info("Called method 'findAllProductsByCategoryNotSold' with category '" + category + "' that returned a list of " + productList.size() + " products");
-        return listToBeReturned;
+        log.info("Called method 'findAllProductsByCategoryNotSold' with category '" + category + "' that returned a list of " + onlyNotSoldProducts.size() + " products");
+        return onlyNotSoldProducts;
     }
 
         public List<ProductModel> findProductsByIsSold(String isSold){
