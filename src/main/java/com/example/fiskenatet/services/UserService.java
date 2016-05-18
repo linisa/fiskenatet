@@ -111,11 +111,13 @@ public class UserService {
         String checkUser = "OK";
         System.out.println("i validateUserInput");
         List<UserModel> userList = userRepository.findAll();
+
         for(UserModel compareUser : userList) {
+
             if(compareUser.getUserName().equals(userModel.getUserName())){
                 checkUser = "Användarnamnet är upptaget";
-
-            }if(compareUser.getEmail().equals(userModel.getEmail())){
+            }
+            if(compareUser.getEmail().equals(userModel.getEmail())){
                 checkUser = "E-postadressen är redan registrerad";
             }
         }

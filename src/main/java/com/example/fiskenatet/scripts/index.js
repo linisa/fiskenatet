@@ -15,7 +15,6 @@ $(document).ready(function () {
         document.getElementById("productList").innerHTML = "";
         var category = document.getElementById("selectCategory");
         var categoryChoice = category.options[category.selectedIndex].value;
-        console.log(categoryChoice);
         if(categoryChoice == 0){
             getAllProducts();
         }else{
@@ -47,7 +46,7 @@ $(document).ready(function () {
 
     $('#selectCategory').change(function () {
         checkCategory();
-    })
+    });
 
 
     $(document).on("click", "#lnkLogOut", function () {
@@ -103,7 +102,6 @@ $(document).ready(function () {
             listOfBids = allProducts[i]['listOfBids'];
             var endDate = new Date(allProducts[i].endDate).toLocaleString();
             var description = allProducts[i].description;
-
 
             productString += '<div class="product"><a href="#" class="productLink" data-value="'+ allProducts[i].id +'"><div class = "col-sm-8">';
             productString += '<div><img src="' + allProducts[i].image + '" class="image"></div>';

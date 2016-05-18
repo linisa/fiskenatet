@@ -5,10 +5,9 @@ $(document).ready(function () {
     $('#btnAddUser').click(function () {
         console.log("klick!");
         var password = document.getElementById("tfPassword").value;
-        var repeatPassword = document.getElementById("tfRepeatPassword").value;
+        var repeatPassword = document.getElementById("tfPasswordRepeat").value;
         var userName = document.getElementById("tfUserName").value;
-
-
+        
         if(hasWhiteSpace(password)) {
             alert("lösenord får ej innehålla mellanslag");
         }else if(hasWhiteSpace(userName)){
@@ -28,7 +27,6 @@ $(document).ready(function () {
 
     function hasWhiteSpace(s) {
         return/\s/g.test(s);
-
     }
 
     function checkResult(result) {
@@ -37,10 +35,8 @@ $(document).ready(function () {
         }else{
             alert(result)
         }
-
     }
-
-
+    
     function addUser(){
         console.log("in addUser");
         $.ajax({

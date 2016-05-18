@@ -1,0 +1,12 @@
+maj 18, 2016 10:06:50 FM com.example.fiskenatet.Application main
+INFO: Program started and new log file was created
+maj 18, 2016 10:08:55 FM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 18, 2016 10:08:57 FM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 18, 2016 10:09:00 FM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1
+maj 18, 2016 10:09:33 FM com.example.fiskenatet.main.MailHandler setUpMail
+INFO: Method 'setUpMail' runned with email: fiskenaetet@gmail.com and password: fisk12345
+maj 18, 2016 10:09:36 FM com.example.fiskenatet.main.MailHandler controlUserMail
+INFO: Called method 'controlUserMail' that sent a welcome-mail to eblillehagen@gmail.com
