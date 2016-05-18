@@ -109,6 +109,7 @@ public class UserService {
 
     public String validateUserInputWhenUpdating(Long id, UserModel userModel){
         List<UserModel> userList = userRepository.findAll();
+
         for(UserModel compareUser : userList) {
             System.out.println("före mail: " + compareUser.getEmail());
             if(compareUser.getId() == id) {

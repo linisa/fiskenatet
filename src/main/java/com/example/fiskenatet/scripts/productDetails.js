@@ -160,7 +160,7 @@ $(document).ready(function () {
                     document.getElementById('buyNowPriceDetails').style.display = "inline-block";
                 }
             }
-            
+
         }else{
             document.getElementById("lnkAddProduct").style.display = "none";
             document.getElementById("lnkProfile").style.display = "none";

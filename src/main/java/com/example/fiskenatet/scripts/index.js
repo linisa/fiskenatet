@@ -15,7 +15,6 @@ $(document).ready(function () {
         document.getElementById("productList").innerHTML = "";
         var category = document.getElementById("selectCategory");
         var categoryChoice = category.options[category.selectedIndex].value;
-        console.log(categoryChoice);
         if(categoryChoice == 0){
             getAllProducts();
         }else{
@@ -47,7 +46,7 @@ $(document).ready(function () {
 
     $('#selectCategory').change(function () {
         checkCategory();
-    })
+    });
 
 
     $(document).on("click", "#lnkLogOut", function () {
@@ -104,7 +103,6 @@ $(document).ready(function () {
             var endDate = new Date(allProducts[i].endDate).toLocaleString();
             var description = allProducts[i].description;
 
-
             productString += '<div class="product"><a href="#" class="productLink" data-value="'+ allProducts[i].id +'"><div class = "col-sm-8">';
             productString += '<div><img src="' + allProducts[i].image + '" class="image"></div>';
             productString += '<div class="productText"><h3>' + allProducts[i].title + '</h3>';
@@ -120,8 +118,10 @@ $(document).ready(function () {
                 productString += '<p class="highestBid">Högsta Bud:<br>' +  0 + " kr" + '</p>';
             }
             if(allProducts[i].buyNowPrice != 0){
-                productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';
+                productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p>';
             }
+            productString += '</div></div>';
+
 
         }
         $products.append(productString);

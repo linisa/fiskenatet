@@ -36,6 +36,14 @@ $(document).ready(function() {
         document.getElementById("tfBuyNow").value = currentProduct['buyNowPrice'];
     }
 
+    function checkResult(result) {
+        if(result == "OK"){
+            location.href="../webcontent/index.html";
+        }else{
+            alert(result)
+        }
+    }
+
     function updateProduct() {
         $.ajax({
             type: 'PUT',
@@ -44,8 +52,9 @@ $(document).ready(function() {
             data: formToJSON(),
             success: function (data, textStatus, jgXHR) {
                 console.log("success");
+                checkResult(data);
                 sessionStorage.removeItem("productToEdit");
-                location.href="../webcontent/userProfile.html";
+
             },
             error: function(jgXHR, textStatus, errorThrown) {
                 console.log("editProduct error: " + textStatus);

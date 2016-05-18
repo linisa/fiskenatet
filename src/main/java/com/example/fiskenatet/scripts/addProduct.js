@@ -25,10 +25,13 @@ $(document).ready(function () {
         location.href="../webcontent/userProfile.html";
     });
 
+
+
     $('#btnAddProduct').click(function () {
         console.log("klick!");
         addProduct();
     });
+
 
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
@@ -36,7 +39,16 @@ $(document).ready(function () {
         location.href="../webcontent/index.html";
     });
 
-    
+
+    function checkResult(result) {
+        if(result == "OK"){
+            location.href="../webcontent/index.html";
+        }else{
+            alert(result)
+        }
+
+    }
+
     function addProduct(){
         console.log("in addProd");
         $.ajax({
@@ -45,15 +57,12 @@ $(document).ready(function () {
             url: rootURL + '/products',
             data: formToJSON(),
             success: function (data, textStatus, jgXHR) {
+                checkResult(data);
                 console.log("GREAT SUCCESS!");
-                location.href="../webcontent/index.html";
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("send Error " +textStatus + "  " + errorThrown);
             },
-            complete:function () {
-                location.href="../webcontent/index.html";
-            }
         })
         
     }
