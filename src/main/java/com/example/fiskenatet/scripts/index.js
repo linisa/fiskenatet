@@ -117,8 +117,10 @@ $(document).ready(function () {
             }else{
                 productString += '<p class="highestBid">Högsta Bud:<br>' +  0 + " kr" + '</p>';
             }
+            if(allProducts[i].buyNowPrice != 0){
+                productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';
+            }
 
-            productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';
         }
         $products.append(productString);
     }
