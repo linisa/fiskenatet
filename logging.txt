@@ -1,12 +1,86 @@
-maj 18, 2016 10:06:50 FM com.example.fiskenatet.Application main
+maj 18, 2016 2:18:51 EM com.example.fiskenatet.Application main
 INFO: Program started and new log file was created
-maj 18, 2016 10:08:55 FM com.example.fiskenatet.services.ProductService findAllProducts
+maj 18, 2016 2:19:02 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 6
+maj 18, 2016 2:19:13 EM com.example.fiskenatet.main.Validation validateUserNameAndEmail
+INFO: Called method 'validateUserNameAndEmail' that returned string: OK
+maj 18, 2016 2:19:13 EM com.example.fiskenatet.main.Validation controlUserInput
+INFO: Called method 'controlUserInput' that returned string: OK
+maj 18, 2016 2:19:13 EM com.example.fiskenatet.services.UserService validateUserInputWhenUpdating
+INFO: Called method 'validateUserInputWhenUpdating' for user with ID = null that returned string: OK
+maj 18, 2016 2:19:13 EM com.example.fiskenatet.services.UserService updateUserInDatabase
+INFO: User with ID = 6 has been updated by method 'updateUserInDatabase'
+maj 18, 2016 2:19:13 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 6
+maj 18, 2016 2:20:33 EM com.example.fiskenatet.services.ProductService findAllProducts
 INFO: Called method 'findAllProducts' that returns a list of all products
-maj 18, 2016 10:08:57 FM com.example.fiskenatet.services.UserService findUser
-INFO: Called method 'findUser' with ID = 1
-maj 18, 2016 10:09:00 FM com.example.fiskenatet.services.UserService findUser
-INFO: Called method 'findUser' with ID = 1
-maj 18, 2016 10:09:33 FM com.example.fiskenatet.main.MailHandler setUpMail
+maj 18, 2016 2:21:00 EM com.example.fiskenatet.main.Validation validateUserNameAndEmail
+INFO: Called method 'validateUserNameAndEmail' that returned string: Användarnamnet är upptaget
+maj 18, 2016 2:21:00 EM com.example.fiskenatet.services.UserService validateUserInputWhenCreating
+INFO: Called method 'validateUserInputWhenCreating' for user with ID = null that returned string: Användarnamnet är upptaget
+maj 18, 2016 2:21:11 EM com.example.fiskenatet.main.Validation validateUserNameAndEmail
+INFO: Called method 'validateUserNameAndEmail' that returned string: OK
+maj 18, 2016 2:21:11 EM com.example.fiskenatet.main.Validation controlUserInput
+INFO: Called method 'controlUserInput' that returned string: OK
+maj 18, 2016 2:21:11 EM com.example.fiskenatet.main.MailHandler setUpMail
 INFO: Method 'setUpMail' runned with email: fiskenaetet@gmail.com and password: fisk12345
-maj 18, 2016 10:09:36 FM com.example.fiskenatet.main.MailHandler controlUserMail
-INFO: Called method 'controlUserMail' that sent a welcome-mail to eblillehagen@gmail.com
+maj 18, 2016 2:21:13 EM com.example.fiskenatet.main.MailHandler controlUserMail
+INFO: Called method 'controlUserMail' that sent a welcome mail to owen_91_5@hotmail.com
+maj 18, 2016 2:21:13 EM com.example.fiskenatet.services.UserService validateUserInputWhenCreating
+INFO: Called method 'validateUserInputWhenCreating' for user with ID = null that returned string: OK
+maj 18, 2016 2:21:13 EM com.example.fiskenatet.services.UserService saveUser
+INFO: New user created with ID = 7
+maj 18, 2016 2:21:13 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 18, 2016 2:21:23 EM com.example.fiskenatet.services.UserService findUserByUserName
+INFO: Called method 'findUserByUserName' with username 'hästpojken'
+maj 18, 2016 2:21:23 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 18, 2016 2:21:25 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 7
+maj 18, 2016 2:22:42 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 18, 2016 2:25:24 EM com.example.fiskenatet.services.ProductService findAllProductsByCategory
+INFO: Called method 'findAllProductsByCategory' with category '4' that returned a list of 0 products
+maj 18, 2016 2:25:26 EM com.example.fiskenatet.services.ProductService findAllProductsByCategory
+INFO: Called method 'findAllProductsByCategory' with category '1' that returned a list of 0 products
+maj 18, 2016 2:25:27 EM com.example.fiskenatet.services.ProductService findAllProductsByCategory
+INFO: Called method 'findAllProductsByCategory' with category '2' that returned a list of 1 products
+maj 18, 2016 2:25:33 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 18, 2016 2:25:35 EM com.example.fiskenatet.services.ProductService findAllProductsByCategory
+INFO: Called method 'findAllProductsByCategory' with category '1' that returned a list of 0 products
+maj 18, 2016 2:25:36 EM com.example.fiskenatet.services.ProductService findAllProductsByCategory
+INFO: Called method 'findAllProductsByCategory' with category '2' that returned a list of 1 products
+maj 18, 2016 2:25:37 EM com.example.fiskenatet.services.ProductService findAllProductsByCategory
+INFO: Called method 'findAllProductsByCategory' with category '3' that returned a list of 1 products
+maj 18, 2016 2:25:40 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 18, 2016 2:27:06 EM com.example.fiskenatet.main.Validation controlProductImage
+INFO: Called method 'controlProductImage' that returned boolean: false
+maj 18, 2016 2:27:06 EM com.example.fiskenatet.main.Validation validateProductInput
+INFO: Called method 'validateProductInput' that returned string: Välj en produktbild som en URL. Tillåtna format: JPEG, JPG, GIF, PNG
+maj 18, 2016 2:27:15 EM com.example.fiskenatet.main.Validation validateProductInput
+INFO: Called method 'validateProductInput' that returned string: Välj en produktbild som en URL. Tillåtna format: JPEG, JPG, GIF, PNG
+maj 18, 2016 2:27:21 EM com.example.fiskenatet.main.Validation controlProductImage
+INFO: Called method 'controlProductImage' that returned boolean: true
+maj 18, 2016 2:27:21 EM com.example.fiskenatet.main.Validation validateProductInput
+INFO: Called method 'validateProductInput' that returned string: Välj en produktkategori
+maj 18, 2016 2:27:26 EM com.example.fiskenatet.main.Validation controlProductImage
+INFO: Called method 'controlProductImage' that returned boolean: true
+maj 18, 2016 2:27:26 EM com.example.fiskenatet.main.Validation validateProductInput
+INFO: Called method 'validateProductInput' that returned string: OK
+maj 18, 2016 2:27:26 EM com.example.fiskenatet.services.ProductService saveProduct
+INFO: New product created with ID: 3
+maj 18, 2016 2:27:26 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 18, 2016 2:27:31 EM com.example.fiskenatet.services.ProductService findSelectedProduct
+INFO: Called method 'findSelectedProduct' and returned product with ID = 3
+maj 18, 2016 2:27:31 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 7
+maj 18, 2016 2:28:23 EM com.example.fiskenatet.services.ProductService findAllProducts
+INFO: Called method 'findAllProducts' that returns a list of all products
+maj 18, 2016 3:01:54 EM com.example.fiskenatet.services.ProductService findSelectedProduct
+INFO: Called method 'findSelectedProduct' and returned product with ID = 1
+maj 18, 2016 3:01:54 EM com.example.fiskenatet.services.UserService findUser
+INFO: Called method 'findUser' with ID = 1

@@ -44,7 +44,7 @@ public class ProductService {
     // hämta alla produkter
     public List<ProductModel> findAllProducts() {
         List<ProductModel> allProducts = productRepository.findAll();
-        log.info("Called method 'findAllProducts' that returns a list of all products");
+        log.info("Called method 'findAllProducts' that returned a list of " + allProducts.size() + " products");
         return allProducts;
     }
 
@@ -156,7 +156,7 @@ public class ProductService {
         productHashSet.addAll(searchResultList);
         searchResultList.clear();
         searchResultList.addAll(productHashSet);
-        log.info("Search method 'searchProducts' runned with value: " +value+ " and found " +searchResultList.size()+ " product(s)");
+        log.info("Search method 'searchProducts' ran with value: " +value+ " and found " +searchResultList.size()+ " product(s)");
         return searchResultList;
     }
 

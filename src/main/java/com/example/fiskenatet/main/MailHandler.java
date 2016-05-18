@@ -141,7 +141,7 @@ public class MailHandler {
                     + "\n" + "Hälsningar Fiskenätet!");
             Transport.send(message);
             validMail = true;
-            log.info("Called method 'controlUserMail' that sent a welcome-mail to " +email);
+            log.info("Called method 'controlUserMail' that sent a welcome mail to " +email);
         } catch(MessagingException e){
             log.warning("Warning in method 'controlUserMail'. MessagingException: " +e);
             validMail = false;
