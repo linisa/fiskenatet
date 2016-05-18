@@ -107,8 +107,8 @@ public class ProductController {
     //sätter en produkt till såld
     @CrossOrigin
     @RequestMapping(value = "/products/endofday", method = RequestMethod.PUT)
-    public void moveProductsToHisory() {
-        productService.moveProductsToHisory();
+    public void auctionDayEnd() {
+        productService.auctionDayEnd();
     }
 
 
