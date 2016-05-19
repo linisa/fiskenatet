@@ -57,7 +57,10 @@ body{
     text-align: center;
     margin-top: 0.5em;
 }
-
+#lnkProfileUserName{
+    font-family: Garamond;
+    font-weight: bold;
+}
 /*menu end*/
 /*Reg User*/
 
@@ -87,7 +90,7 @@ body{
 .product{
     background-color: white;
     overflow: hidden;
-    border: solid;
+    border: double;
     margin: 0.5em;
     padding: 0.5em;
     border-color: #3366BB;
@@ -482,7 +485,9 @@ body{
     background-color: white;
     padding: 10px;
     margin-top: 20px;
-    border:outset;
+    border:double;
+    border-color: #3366BB;
+    margin-bottom: 3em;
 }
 
 #ownerProduct{
@@ -537,7 +542,7 @@ body{
     margin-right: auto;
     padding-left: 3em;
     padding-right: 3em;
-    border-style: solid;
+    border-style: double;
     border-color: #3366BB;
     width: 80%;
     margin-top: 5em;
