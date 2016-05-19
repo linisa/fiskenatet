@@ -1,5 +1,6 @@
 package com.example.fiskenatet.main;
 
+import com.example.fiskenatet.Application;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
 
@@ -8,11 +9,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by Linus on 2016-05-18.
  */
 public class Validation {
+
+    Logger log = Logger.getLogger(Application.class.getName());
 
     public String validateProductInput(ProductModel productModel){
         String checkProduct = "OK";
@@ -35,6 +39,7 @@ public class Validation {
         if(productModel.getBuyNowPrice() != 0 && productModel.getBuyNowPrice() < productModel.getStartPrice()){
             checkProduct = "Köp-nu-priset måste vara högre än utropspriset";
         }
+        log.info("Called method 'validateProductInput' that returned string: " + checkProduct);
         return checkProduct;
     }
 
@@ -61,6 +66,7 @@ public class Validation {
         }else{
             imageIsGood = false;
         }
+        log.info("Called method 'controlProductImage' that returned boolean: " + imageIsGood);
         return imageIsGood;
     }
 
@@ -74,6 +80,7 @@ public class Validation {
                 checkUser = "E-postadressen är redan registrerad";
             }
         }
+        log.info("Called method 'validateUserNameAndEmail' that returned string: " + checkUser);
         return checkUser;
     }
 
@@ -89,6 +96,7 @@ public class Validation {
         }if(userModel.getMobileNumber().equals("")||userModel.getMobileNumber().equals(" ")){
             checkUser = "Telefonnummer saknas";
         }
+        log.info("Called method 'controlUserInput' that returned string: " + checkUser);
         return checkUser;
     }
 }

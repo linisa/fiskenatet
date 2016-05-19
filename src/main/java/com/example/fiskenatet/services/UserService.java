@@ -123,7 +123,7 @@ public class UserService {
             checkUser = validation.controlUserInput(userModel, checkUser);
         }
 
-        log.info("Called method 'validateUserInputWhenUpdating' for user with ID = " + userModel.getId() + " that returned string: " + checkUser);
+        log.info("Called method 'validateUserInputWhenUpdating' for user with ID = " + id + " that returned string: " + checkUser);
         return checkUser;
     }
 
@@ -139,7 +139,7 @@ public class UserService {
                 }
             }
         }
-        log.info("Called method 'validateUserInputWhenCreating' for user with ID = " + userModel.getId() + " that returned string: " + checkUser);
+        log.info("Called method 'validateUserInputWhenCreating' for user with username = " + userModel.getUserName() + " that returned string: " + checkUser);
         return checkUser;
     }
 

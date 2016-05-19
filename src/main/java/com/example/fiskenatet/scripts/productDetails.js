@@ -98,7 +98,7 @@ $(document).ready(function () {
         try{
             var oldBid = listOfBids[0].amount;
         }catch(Exception){
-            oldBid = startPrice
+            oldBid = startPrice -1
         }
         if(newBid > oldBid){
             addBid();

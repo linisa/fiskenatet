@@ -3,7 +3,6 @@ package com.example.fiskenatet.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Timer;
 
 /**
  * Created by nordi_000 on 2016-04-27.
@@ -44,6 +43,10 @@ public class BidModel implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
     }
 
     public Long getCurrentProduct() {

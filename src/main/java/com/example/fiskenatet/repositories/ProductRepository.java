@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.fiskenatet.models.ProductModel;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,5 +31,6 @@ public interface ProductRepository extends JpaRepository<ProductModel, Long> {
 
     public List<ProductModel> findProductsByDescriptionContaining(String description);
 
+    public List<ProductModel> findProductsByEndDateBefore(Date endDate);
 }
 
