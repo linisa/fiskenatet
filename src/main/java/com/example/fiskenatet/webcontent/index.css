@@ -6,8 +6,6 @@ body{
     overflow-x: hidden;
     background-color: white;
 
-
-
 }
 
 /*Menu*/
@@ -32,25 +30,32 @@ body{
 #lnkProfileUserName :hover {
 
 }
-
-#banner{
-    width: 100%;
+#bannerDiv{
     position: relative;
-}
-#bannerText{
-    position: absolute;
-    color: white;
-    top: 0.1em;
-    left: 1em;
-    font-size: 6em;
-    font-weight: bold;
+    background-image: url("../resources/bannerfishies.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 20vw;
 }
 
-#wrongPassword{
-    color: red;
+#bannerText{
+    padding-left: 5vw;
+    font-size: 10vw;
+    color: white;
 }
-#wrongUserName{
-    color: red;
+#searchDiv{
+    position: absolute;
+    bottom: 1vw;
+    margin-left: 30vw;
+}
+
+#tfSearch{
+    color: black;
+    width: 40vw;
+}
+#btnSearch{
+    color: black;
 }
 
 .heading{
