@@ -199,6 +199,11 @@ ul.navbar-nav a:hover{
 
 }
 
+#selectImage{
+    border:none;
+    background-color: #3366BB;
+    color: white;
+}
 #btnAddProduct{
     margin-bottom: 3em;
     margin-top: 3em;
