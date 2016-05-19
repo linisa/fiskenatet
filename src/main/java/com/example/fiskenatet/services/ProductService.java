@@ -1,21 +1,27 @@
 package com.example.fiskenatet.services;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.logging.Logger;
 
 import com.example.fiskenatet.Application;
 import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.models.BidModel;
+import com.example.fiskenatet.models.HistoryModel;
 import com.example.fiskenatet.models.UserModel;
+import com.example.fiskenatet.repositories.BidRepository;
+import com.example.fiskenatet.repositories.HistoryRepository;
 import com.example.fiskenatet.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.repositories.ProductRepository;
+
 
 /**
  * Created by nordi_000 on 2016-04-20.
@@ -27,9 +33,11 @@ public class ProductService {
     private ProductRepository productRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private HistoryRepository historyRepository;
+    @Autowired
+    private BidRepository bidRepository;
 
-    //Logging logging = new Logging();
-    //Logger log = logging.createLog();
     Logger log = Logger.getLogger(Application.class.getName());
 
     // skapa produkt
@@ -41,7 +49,7 @@ public class ProductService {
     // hämta alla produkter
     public List<ProductModel> findAllProducts() {
         List<ProductModel> allProducts = productRepository.findAll();
-        log.info("Called method 'findAllProducts' that returns a list of all products");
+        log.info("Called method 'findAllProducts' that returned a list of " + allProducts.size() + " products");
         return allProducts;
     }
 
@@ -51,6 +59,19 @@ public class ProductService {
         List<ProductModel> productList = productRepository.findProductsByCategory(category);
         log.info("Called method 'findAllProductsByCategory' with category '" +category+ "' that returned a list of " +productList.size()+ " products");
         return productList;
+    }
+
+    // hämta alla produkter från kategori som inte är sålda
+    public List<ProductModel> findAllProductsByCategoryNotSold(String category) {
+        List<ProductModel> onlyNotSoldProducts = new ArrayList<ProductModel>();
+        List<ProductModel> allProducts = productRepository.findProductsByCategory(category);
+        for(ProductModel product : allProducts) {
+            if(product.getIsSold().equals("no")) {
+                onlyNotSoldProducts.add(product);
+            }
+        }
+        log.info("Called method 'findAllProductsByCategoryNotSold' with category '" + category + "' that returned a list of " + onlyNotSoldProducts.size() + " products");
+        return onlyNotSoldProducts;
     }
 
     public List<ProductModel> findProductsByIsSold(String isSold){
@@ -95,7 +116,7 @@ public class ProductService {
         log.info("Product " +id+ " has been updated");
     }
 
-
+    // Sätter produkten till såld och skickar ut mail till winnaren/förlorarna
     public void updateProductWhenSold(Long id) {
         ProductModel soldProduct = productRepository.getOne(id);
 
@@ -104,7 +125,6 @@ public class ProductService {
         UserModel owner = userRepository.getOne(soldProduct.getOwner());
         List<BidModel> bidList = soldProduct.getListOfBids();
         int size = bidList.size();
-
         BidModel highestBid = bidList.get(size - 1);
         UserModel winner = userRepository.getOne(highestBid.getBidder());
         mailHandler.sendWinnerNotification(owner, winner, soldProduct);
@@ -117,6 +137,15 @@ public class ProductService {
         }
         productRepository.saveAndFlush(soldProduct);
         log.info("Product with ID = " +soldProduct.getId()+ " has been set to sold");
+    }
+
+    public void updateProductWhenNotSold(Long id) {
+        ProductModel product = productRepository.getOne(id);
+        //soldProduct.setIsSold("yes");
+        MailHandler mailHandler = new MailHandler();
+        UserModel owner = userRepository.getOne(product.getOwner());
+        mailHandler.sendSellerNotificationProductNotSold(owner, product);
+        //log.info("Product with ID = " +soldProduct.getId()+ " has been set to sold");
     }
 
     private List<UserModel> getAllLosers(UserModel winner, List<BidModel> bidList) {
@@ -132,6 +161,95 @@ public class ProductService {
         loserList.addAll(userHashSet);
         log.info("Called method 'getAllLosers' that returned a list of " +loserList.size()+ " users");
         return loserList;
+    }
+
+
+    public List<ProductModel> searchProducts(String value) {
+        List<ProductModel> searchResultList = new ArrayList<ProductModel>();
+        Set<ProductModel> productHashSet = new HashSet<ProductModel>();
+        List<ProductModel> categoryList = productRepository.findProductsByCategoryContaining(value);
+        List<ProductModel> titleList = productRepository.findProductsByTitleContaining(value);
+        List<ProductModel> descriptionList = productRepository.findProductsByDescriptionContaining(value);
+        for (ProductModel product : categoryList) {
+            searchResultList.add(product);
+        }
+        for (ProductModel product : titleList) {
+            searchResultList.add(product);
+        }
+        for (ProductModel product : descriptionList) {
+            searchResultList.add(product);
+        }
+        productHashSet.addAll(searchResultList);
+        searchResultList.clear();
+        searchResultList.addAll(productHashSet);
+        log.info("Search method 'searchProducts' ran with value: " +value+ " and found " +searchResultList.size()+ " product(s)");
+        return searchResultList;
+    }
+
+    // Flytta produkter från schemat products till history om produkten skapades innan kl15:00 samma dag
+    // Denna funktion kommer att köras strax efter kl 16:00 varje dag
+
+    // 3: Kopiera alla produkter till history
+    // 4: Radera från products
+    //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.0");
+    //sdf.format(date);
+    public void auctionDayEnd() {
+        boolean productIsSold;
+        Date date = new Date();
+        date.setHours(16);
+        date.setMinutes(0);
+        date.setSeconds(1);
+
+        List<ProductModel> outgoingProducts = productRepository.findProductsByEndDateBefore(date);
+        for(ProductModel product : outgoingProducts) {
+            if(product.getListOfBids().isEmpty()) {
+                // produkt utan bud --> Hantera
+                productIsSold = false;
+                updateProductWhenNotSold(product.getId());
+                addProductToHistoryDatabase(product, productIsSold);
+            } else {
+                // produkt med bud --> Hantera
+                productIsSold = true;
+                updateProductWhenSold(product.getId());  // Sätter produkten till såld och skickar ut mail till winnaren/förlorarna
+                moveSoldProductToHistory(product, productIsSold);
+            }
+        }
+    }
+
+    public void addProductToHistoryDatabase(ProductModel productModel, boolean productIsSold) {
+        HistoryModel historyModel = new HistoryModel();
+        historyModel.setProdutID(productModel.getId());
+        historyModel.setCategory(productModel.getCategory());
+        historyModel.setDescription(productModel.getDescription());
+        historyModel.setEndDate(productModel.getEndDate());
+        historyModel.setImage(productModel.getImage());
+        historyModel.setStartDate(productModel.getStartDate());
+        historyModel.setTitle(productModel.getTitle());
+        historyModel.setOwner(userRepository.getOne(productModel.getOwner()));
+        if(productIsSold) {
+            historyModel.setSoldFor(productModel.getListOfBids().get(productModel.getListOfBids().size()-1).getAmount());
+            UserModel bidder = userRepository.getOne(productModel.getListOfBids().get(productModel.getListOfBids().size()-1).getBidder());
+            historyModel.setBuyerUsername(bidder.getUserName());
+            historyRepository.saveAndFlush(historyModel);
+        } else {
+            historyModel.setSoldFor(0);
+            historyModel.setBuyerUsername(null);
+            historyRepository.saveAndFlush(historyModel);
+            productRepository.delete(productModel);
+        }
+    }
+
+    private void moveSoldProductToHistory(ProductModel productModel, boolean productIsSold) {
+        addProductToHistoryDatabase(productModel, productIsSold);
+        removeProductFromProductDatabase(productModel);
+    }
+
+    public void removeProductFromProductDatabase(ProductModel productModel) {
+        List<BidModel> bidsOnProduct = bidRepository.findBidsByCurrentProduct(productModel);
+        for(BidModel bid : bidsOnProduct) {
+            bidRepository.delete(bid);
+        }
+        productRepository.delete(productModel);
     }
 
 }

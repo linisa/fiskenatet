@@ -21,7 +21,18 @@ public class UserBuilder {
         userModel.setFirstName(firstName);
         return this;
     }
-
+    public UserBuilder lastName (String lastName){
+        userModel.setLastName(lastName);
+        return this;
+    }
+    public UserBuilder email (String email){
+        userModel.setEmail(email);
+        return this;
+    }
+    public UserBuilder mobileNumber (String mobileNumber){
+        userModel.setMobileNumber(mobileNumber);
+        return this;
+    }
 
 
     public UserModel build(){

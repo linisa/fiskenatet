@@ -15,7 +15,6 @@ $(document).ready(function () {
         document.getElementById("productList").innerHTML = "";
         var category = document.getElementById("selectCategory");
         var categoryChoice = category.options[category.selectedIndex].value;
-        console.log(categoryChoice);
         if(categoryChoice == 0){
             getAllProducts();
         }else{
@@ -47,7 +46,7 @@ $(document).ready(function () {
 
     $('#selectCategory').change(function () {
         checkCategory();
-    })
+    });
 
 
     $(document).on("click", "#lnkLogOut", function () {
@@ -65,7 +64,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             contentType: 'application/json',
-            url: rootURL + '/products/category/' + categoryChoice,
+            url: rootURL + '/products/category/notsold/' + categoryChoice,
             success: function (data, textStatus, jgXHR) {
                 populateProductList(data);
 
@@ -82,7 +81,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             contentType: 'application/json',
-            url: rootURL + '/products',
+            url: rootURL + '/products/productissold/no',
             success: function (data, textStatus, jgXHR) {
                 populateProductList(data);
 
@@ -104,7 +103,6 @@ $(document).ready(function () {
             var endDate = new Date(allProducts[i].endDate).toLocaleString();
             var description = allProducts[i].description;
 
-
             productString += '<div class="product"><a href="#" class="productLink" data-value="'+ allProducts[i].id +'"><div class = "col-sm-8">';
             productString += '<div><img src="' + allProducts[i].image + '" class="image"></div>';
             productString += '<div class="productText"><h3>' + allProducts[i].title + '</h3>';
@@ -117,10 +115,14 @@ $(document).ready(function () {
                 });
                 productString += '<p class="highestBid">Högsta Bud:<br>' +  listOfBids[0].amount + " kr"  + '</p>';
             }else{
-                productString += '<p class="highestBid">Högsta Bud:<br>' +  allProducts[i].startPrice + " kr" + '</p>';
+                productString += '<p class="highestBid">Högsta Bud:<br>' +  0 + " kr" + '</p>';
             }
+            if(allProducts[i].buyNowPrice != 0){
+                productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p>';
+            }
+            productString += '</div></div>';
 
-            productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p></div></div>';
+
         }
         $products.append(productString);
     }
@@ -137,8 +139,15 @@ $(document).ready(function () {
         console.log("KLICK LOGIN!");
         userUserName = $('#UserUserName').val();
         userPassword = $('#UserPassword').val();
-        console.log(userUserName);
-        getUserByUserName();
+
+        userUserName = userUserName.replace(/\s+/g, '');
+        userPassword = userPassword.replace(/\s+/g, '');
+
+        if(userUserName==""||userPassword==""){
+            alert("Något fällt är ej ifyllt");
+        }else {
+            getUserByUserName();
+        }
     });
 
     function getUserByUserName() {
@@ -160,11 +169,10 @@ $(document).ready(function () {
         if(foundUser.password == userPassword){
             console.log("Log in success" + foundUser.firstName);
             sessionStorage.setItem('currentUser', foundUser.id);
-            sessionStorage.setItem('currentUserName', foundUser.userName)
+            sessionStorage.setItem('currentUserName', foundUser.userName);
             location.reload();
         }else{
-            alert("Fel lösenord!");
-            //MAKE ALERT FEL PASS
+            alert("fel lösenord");
         }
     }
 });

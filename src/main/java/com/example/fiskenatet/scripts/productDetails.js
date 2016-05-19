@@ -84,7 +84,7 @@ $(document).ready(function () {
             });
             document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br>" +  listOfBids[0].amount + " kr";
         }else{
-            document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br>" +  currentProduct.startPrice + " kr";
+            document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br>" +  0 + " kr";
         }
     }
     
@@ -98,7 +98,7 @@ $(document).ready(function () {
         try{
             var oldBid = listOfBids[0].amount;
         }catch(Exception){
-            oldBid = startPrice
+            oldBid = startPrice -1
         }
         if(newBid > oldBid){
             addBid();
@@ -160,8 +160,6 @@ $(document).ready(function () {
                     document.getElementById('buyNowPriceDetails').style.display = "inline-block";
                 }
             }
-
-
 
         }else{
             document.getElementById("lnkAddProduct").style.display = "none";

@@ -25,10 +25,13 @@ $(document).ready(function () {
         location.href="../webcontent/userProfile.html";
     });
 
+
+
     $('#btnAddProduct').click(function () {
         console.log("klick!");
         addProduct();
     });
+
 
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
@@ -36,7 +39,16 @@ $(document).ready(function () {
         location.href="../webcontent/index.html";
     });
 
-    
+
+    function checkResult(result) {
+        if(result == "OK"){
+            location.href="../webcontent/index.html";
+        }else{
+            alert(result)
+        }
+
+    }
+
     function addProduct(){
         console.log("in addProd");
         $.ajax({
@@ -45,15 +57,12 @@ $(document).ready(function () {
             url: rootURL + '/products',
             data: formToJSON(),
             success: function (data, textStatus, jgXHR) {
+                checkResult(data);
                 console.log("GREAT SUCCESS!");
-                location.href="../webcontent/index.html";
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("send Error " +textStatus + "  " + errorThrown);
             },
-            complete:function () {
-                location.href="../webcontent/index.html";
-            }
         })
         
     }
@@ -62,7 +71,22 @@ $(document).ready(function () {
         console.log("i form to json");
         var startDate = new Date();
         var endDate = new Date();
-        endDate.setDate(startDate.getDate() + 1);
+
+        /*
+        * Sätter sluttiden för auktionen till 16:00 samma dag om nya produkten läggs till före kl15:00.
+        * Om den nya produkten skapas efter kl15:00 sätts sluttiden till 16:00 nästa dag.
+        */
+        if(startDate.getHours() < 15) {
+            endDate.setDate(startDate.getDate());
+            endDate.setHours(16);
+            endDate.setMinutes(0);
+            endDate.setSeconds(0);
+        } else {
+            endDate.setDate(startDate.getDate() +1);
+            endDate.setHours(16);
+            endDate.setMinutes(0);
+            endDate.setSeconds(0);
+        }
         console.log("startdate: " + startDate.toLocaleString() + " enddate: " + endDate.toLocaleString());
         var product = JSON.stringify({
 
