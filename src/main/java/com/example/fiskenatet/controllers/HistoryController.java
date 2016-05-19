@@ -27,11 +27,9 @@ public class HistoryController {
 
     @CrossOrigin
     @RequestMapping(value = "/history/{ownerId}", method = RequestMethod.GET)
-    public ResponseEntity<List<HistoryModel>>getHistoryByOwner(@PathVariable Long ownerId) {
+    public ResponseEntity<List<HistoryModel>> getHistoryByOwner(@PathVariable Long ownerId) {
         return new ResponseEntity<List<HistoryModel>>(historyService.getHistoryByOwner(ownerId), HttpStatus.OK);
 
     }
-
-
 
 }

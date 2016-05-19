@@ -4,6 +4,7 @@ package com.example.fiskenatet.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.fiskenatet.main.Validation;
 import com.example.fiskenatet.models.HistoryModel;
 import com.example.fiskenatet.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,14 @@ public class ProductController {
     @Autowired //inkluderar alla dependency raderna ish.
     private ProductService productService;
 
+    private Validation validation = new Validation();
+
     //kollar om alla produktinputs är korrekt
     // om allt är ok, skapas en ny produkt till databasen
     @CrossOrigin
     @RequestMapping(value = "/products", method = RequestMethod.POST)
     public String createProduct(@RequestBody ProductModel productModel) {
-        String validProduct = productService.validateProductInput(productModel);
+        String validProduct = validation.validateProductInput(productModel);
         if(validProduct.equals("OK")) {
             productService.saveProduct(productModel);
         }
@@ -55,7 +58,7 @@ public class ProductController {
     @CrossOrigin
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
     public String updateProduct(@PathVariable Long id, @RequestBody ProductModel productModel){
-        String validProduct = productService.validateProductInput(productModel);
+        String validProduct = validation.validateProductInput(productModel);
         if(validProduct.equals("OK")) {
             productService.updateProductInDatabase(id, productModel);
         }
@@ -83,6 +86,13 @@ public class ProductController {
         return new ResponseEntity<List<ProductModel>>(productService.findAllProductsByCategory(category), HttpStatus.OK);
     }
 
+    // hämtar alla produkter från en vald kategori som inte är sålda
+    @CrossOrigin
+    @RequestMapping(value = "/products/category/notsold/{category}", method = RequestMethod.GET)
+    public ResponseEntity<List<ProductModel>>getNotSoldProductsByCategory(@PathVariable String category) {
+        return new ResponseEntity<List<ProductModel>>(productService.findAllProductsByCategoryNotSold(category), HttpStatus.OK);
+    }
+
     //hämtar produkter från en vald kategori för en viss användare
     @CrossOrigin
     @RequestMapping(value = "/products/byownerandcategory/{category}/{ownerId}", method = RequestMethod.GET)
@@ -90,7 +100,7 @@ public class ProductController {
         return new ResponseEntity<List<ProductModel>>(productService.getProductByOwnerAndByCategory(category, ownerId), HttpStatus.OK);
     }
 
-    //sätter en produkt till såld
+    //Hämta produkter som inte är sålda än
     @CrossOrigin
     @RequestMapping(value = "/products/productissold/{isSold}", method = RequestMethod.GET)
     public ResponseEntity<List<ProductModel>>getUnsoldProducts(@PathVariable String isSold) {
@@ -104,11 +114,12 @@ public class ProductController {
         return new ResponseEntity<List<ProductModel>>(productService.searchProducts(value), HttpStatus.OK);
     }
 
-    //sätter en produkt till såld
+    // kör när klockan passerat 16:00 och auktionen stänger för dagen
     @CrossOrigin
     @RequestMapping(value = "/products/endofday", method = RequestMethod.PUT)
-    public void moveProductsToHisory() {
-        productService.moveProductsToHisory();
+    public void auctionDayEnd() {
+        productService.auctionDayEnd();
+
     }
 
 

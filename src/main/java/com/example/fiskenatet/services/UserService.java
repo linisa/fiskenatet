@@ -3,6 +3,7 @@ package com.example.fiskenatet.services;
 import com.example.fiskenatet.Application;
 import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.main.UserRating;
+import com.example.fiskenatet.main.Validation;
 import com.example.fiskenatet.models.UserModel;
 import com.example.fiskenatet.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class UserService {
     private UserRepository userRepository;
 
     private MailHandler mailHandler = new MailHandler();
+    private Validation validation = new Validation();
 
     //Logging logging = new Logging();
     //Logger log = logging.createLog();
@@ -59,8 +61,8 @@ public class UserService {
 
     // uppdatera specifik användare med ID
     public void updateUserInDatabase(Long id, UserModel userModel) {
-
         UserModel userToUpdate = userRepository.getOne(id);
+        userToUpdate.setUserName(userModel.getUserName());
         userToUpdate.setFirstName(userModel.getFirstName());
         userToUpdate.setLastName(userModel.getLastName());
         userToUpdate.setEmail(userModel.getEmail());
@@ -69,7 +71,6 @@ public class UserService {
         userRepository.saveAndFlush(userToUpdate);
         log.info("User with ID = " +id+ " has been updated by method 'updateUserInDatabase'");
     }
-
 
     public void saveBuyerRating(Long id, String addRating){
         UserModel userToUpdate = userRepository.getOne(id);
@@ -107,35 +108,39 @@ public class UserService {
         return averageRating;
     }
 
-    public String validateUserInput(UserModel userModel){
-        String checkUser = "OK";
-        System.out.println("i validateUserInput");
+    public String validateUserInputWhenUpdating(Long id, UserModel userModel){
         List<UserModel> userList = userRepository.findAll();
 
         for(UserModel compareUser : userList) {
-
-            if(compareUser.getUserName().equals(userModel.getUserName())){
-                checkUser = "Användarnamnet är upptaget";
-            }
-            if(compareUser.getEmail().equals(userModel.getEmail())){
-                checkUser = "E-postadressen är redan registrerad";
+            if(compareUser.getId() == id) {
+                userList.remove(compareUser);
+                System.out.println("removed " + compareUser.getEmail() + " from list");
+                break;
             }
         }
-
-        if(userModel.getFirstName().equals("")||userModel.getFirstName().equals(" ")){
-            checkUser = "Förnamn saknas";
-        }if(userModel.getLastName().equals("")||userModel.getLastName().equals(" ")){
-            checkUser = "Efternamn saknas";
-        }if(userModel.getUserName().equals("")||userModel.getUserName().equals(" ")){
-            checkUser = "Användarnamn saknas";
-        }if(mailHandler.controlUserMail(userModel.getEmail()) == false){
-            checkUser = "Ange en giltig e-postadress";
-        }if(userModel.getMobileNumber().equals("")||userModel.getMobileNumber().equals(" ")){
-            checkUser = "Telefonnummer saknas";
+        String checkUser = validation.validateUserNameAndEmail(userList, userModel);
+        if(checkUser.equals("OK")){
+            checkUser = validation.controlUserInput(userModel, checkUser);
         }
-        System.out.println("i valuuser " + checkUser + " bajs");
+
+        log.info("Called method 'validateUserInputWhenUpdating' for user with ID = " + id + " that returned string: " + checkUser);
         return checkUser;
     }
 
+    public String validateUserInputWhenCreating(UserModel userModel){
+        List<UserModel> userList = userRepository.findAll();
+        String checkUser = validation.validateUserNameAndEmail(userList, userModel);
+        if(checkUser.equals("OK")){
+            checkUser = validation.controlUserInput(userModel, checkUser);
+            if(checkUser.equals("OK")){
+               boolean verifyMail = mailHandler.controlUserMail(userModel.getEmail());
+                if(verifyMail == false){
+                    checkUser = "Ange en giltig e-postadress";
+                }
+            }
+        }
+        log.info("Called method 'validateUserInputWhenCreating' for user with username = " + userModel.getUserName() + " that returned string: " + checkUser);
+        return checkUser;
+    }
 
 }

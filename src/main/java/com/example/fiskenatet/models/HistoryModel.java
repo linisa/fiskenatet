@@ -15,8 +15,11 @@ public class HistoryModel implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "product_id")
+    @Column(name = "history_id")
     private Long id;
+
+    @Column(name = "product_id")
+    private Long productID;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
@@ -49,6 +52,14 @@ public class HistoryModel implements Serializable{
 
     public void setBuyerUsername(String buyerUsername) {
         this.buyerUsername = buyerUsername;
+    }
+
+    public Long getProdutID() {
+        return productID;
+    }
+
+    public void setProdutID(Long produtID) {
+        this.productID = produtID;
     }
 
     public void setId(Long id) {

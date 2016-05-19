@@ -141,11 +141,29 @@ public class MailHandler {
                     + "\n" + "Hälsningar Fiskenätet!");
             Transport.send(message);
             validMail = true;
-            log.info("Called method 'controlUserMail' that sent a welcome-mail to " +email);
+            log.info("Called method 'controlUserMail' that sent a welcome mail to " +email);
         } catch(MessagingException e){
             log.warning("Warning in method 'controlUserMail'. MessagingException: " +e);
             validMail = false;
         }
         return validMail;
+    }
+
+    public void sendSellerNotificationProductNotSold(UserModel owner, ProductModel product) {
+        try {
+            Message message = new MimeMessage(setUpMail());
+            message.setFrom(new InternetAddress("fiskenaetet@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(owner.getEmail()));
+            message.setSubject("Tiden för din annons har gått ut");
+            message.setText("Hej " + owner.getFirstName() + "\n" + "Din annons '" + product.getTitle() + "' har gått ut utan att någon har budat på den. "
+                    + "\n" + "Logga in på din sida för att se mer information."
+                    + "\n" + "Hälsningar Fiskenätet!");
+
+            Transport.send(message);
+            log.info("Called method 'sendSellerNotificationProductNotSold' that sent a mail to seller " +owner.getEmail());
+        } catch (MessagingException e) {
+            log.warning("Warning in method 'sendSellerNotificationProductNotSold'. MessagingException: " +e);
+            //throw new RuntimeException(e);
+        }
     }
 }

@@ -43,6 +43,7 @@ public class ProductControllerTest {
     private static final ProductModel fish1 = new ProductBuilder().id(ID_1).title(TITLE_1).category(CATEGORY_1).build();
     private static final ProductModel fish2 = new ProductBuilder().id(ID_2).title(TITLE_2).category(CATEGORY_2).build();
 
+    //funkar ej fixa!!!
     @Test
     public void testAddProduct(){
         productController.createProduct(fish1);
@@ -53,6 +54,7 @@ public class ProductControllerTest {
         productController.deleteProduct(ID_2);
         verify(productService).deleteProductInDatabase(ID_2);
     }
+    //funkar ej fixa!!!
     @Test
     public void testUpdateProduct(){
         productController.updateProduct(ID_2, fish2);
@@ -87,5 +89,7 @@ public class ProductControllerTest {
         productController.updateProductWhenSold(ID_1);
         verify(productService).updateProductWhenSold(ID_1);
     }
+
+
 
 }
