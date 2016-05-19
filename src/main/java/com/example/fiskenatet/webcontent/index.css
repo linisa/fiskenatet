@@ -4,7 +4,7 @@
 body{
     width: 100%;
     overflow-x: hidden;
-    background-color: white;
+    background-color:#FFF5EE;
 
 
 
@@ -20,16 +20,26 @@ body{
 }
 
 .navbar-nav {
-    background-color: white;
+    background-color: #3366BB;
     width: 100%;
     text-align: center;
+
+    font-size: large;
+
 }
 .navbar-nav li {
-      float: none;
-      display: inline-block;
+    float: none;
+    display: inline-block;
+
   }
+ul.navbar-nav a:hover{
+    color: #3366BB;
+    background-color:#FFF5EE;
+
+}
 
 #lnkProfileUserName :hover {
+
 
 }
 
@@ -58,8 +68,27 @@ body{
     margin-top: 0.5em;
 }
 #lnkProfileUserName{
-    font-family: Garamond;
-    font-weight: bold;
+    color: white;
+    
+}
+
+#selectCategory{
+    border:none;
+    background-color: #3366BB;
+    color: white;
+}
+
+.menuTxt{
+    color: white;
+}
+.dropdown-menu{
+    background-color: #3366BB;
+}
+#userusername{
+    background-color: #3366BB;
+}
+#userpassword{
+    background-color: #3366BB;
 }
 /*menu end*/
 /*Reg User*/
@@ -74,8 +103,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -169,8 +198,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -302,8 +331,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -397,8 +426,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -411,8 +440,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -425,8 +454,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -438,8 +467,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -463,8 +492,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -477,6 +506,9 @@ body{
     margin-left: 2em;
     margin-bottom: 2em;
     margin-top: 2em;
+}
+#tfMobileNumber{
+    margin-bottom: 2em;
 }
 /*editUser End*/
 /*User profile Product list*/
