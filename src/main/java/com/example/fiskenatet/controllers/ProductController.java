@@ -32,7 +32,7 @@ public class ProductController {
     @CrossOrigin
     @RequestMapping(value = "/products", method = RequestMethod.POST)
     public String createProduct(@RequestBody ProductModel productModel) {
-        String validProduct = validation.validateProductInput(productModel);
+        String validProduct = productService.validateProductInput(productModel);
         if(validProduct.equals("OK")) {
             productService.saveProduct(productModel);
         }
@@ -58,7 +58,7 @@ public class ProductController {
     @CrossOrigin
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
     public String updateProduct(@PathVariable Long id, @RequestBody ProductModel productModel){
-        String validProduct = validation.validateProductInput(productModel);
+        String validProduct = productService.validateProductInput(productModel);
         if(validProduct.equals("OK")) {
             productService.updateProductInDatabase(id, productModel);
         }
@@ -97,7 +97,7 @@ public class ProductController {
     @CrossOrigin
     @RequestMapping(value = "/products/byownerandcategory/{category}/{ownerId}", method = RequestMethod.GET)
     public ResponseEntity<List<ProductModel>>getProductByOwnerAndByCategory(@PathVariable String category,@PathVariable Long ownerId) {
-        return new ResponseEntity<List<ProductModel>>(productService.getProductByOwnerAndByCategory(category, ownerId), HttpStatus.OK);
+        return new ResponseEntity<List<ProductModel>>(productService.findProductByOwnerAndByCategory(category, ownerId), HttpStatus.OK);
     }
 
     //Hämta produkter som inte är sålda än

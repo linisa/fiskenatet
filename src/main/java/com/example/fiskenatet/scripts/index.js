@@ -89,7 +89,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             contentType: 'application/json',
-            url: rootURL + '/products/search/' + searchString,
+            url: rootURL + '/productsearch/' + searchString,
             success: function (data, textStatus, jgXHR) {
                 populateProductList(data);
             },

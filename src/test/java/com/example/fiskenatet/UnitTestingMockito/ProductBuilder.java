@@ -1,6 +1,7 @@
 package com.example.fiskenatet.UnitTestingMockito;
 
 import com.example.fiskenatet.models.ProductModel;
+import com.example.fiskenatet.models.UserModel;
 
 /**
  * Created by nordi_000 on 2016-05-02.
@@ -23,6 +24,10 @@ public class ProductBuilder {
     }
     public ProductBuilder category(String category){
         productModel.setCategory(category);
+        return this;
+    }
+    public ProductBuilder owner (UserModel userModel){
+        productModel.setOwner(userModel);
         return this;
     }
 
