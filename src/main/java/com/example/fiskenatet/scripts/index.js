@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
-    var currentUserName = sessionStorage.getItem('currentUserName');
+    var currentUserName;
     var userUserName;
     var userPassword;
     var listOfBids;
@@ -10,7 +10,30 @@ $(document).ready(function () {
     checkCategory();
     //getAllProducts();
     checkIfLoggedIn();
-    
+
+    window.setInterval(function(){
+        var date = new Date();
+        if(date.getHours() === 13 && date.getMinutes() === 45){
+            endOfDay();
+        }
+    }, 5000);
+
+    function endOfDay() {
+        $.ajax({
+            type: 'PUT',
+            contentType: 'application/json',
+            url:rootURL + '/products/endofday',
+            success: function (data, textStatus, jgXHR) {
+                console.log("End of day, Expired auctions moved");
+                location.reload();
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("endOfDay error: " + textStatus);
+            }
+        });
+    };
+
+
     function checkCategory() {
         document.getElementById("productList").innerHTML = "";
         var category = document.getElementById("selectCategory");
@@ -25,7 +48,7 @@ $(document).ready(function () {
     function checkIfLoggedIn() {
         if(sessionStorage.getItem('currentUser') != null){
             /*användare inloggad*/
-            
+            currentUserName = sessionStorage.getItem('currentUserName');
             document.getElementById("lnkAddProduct").style.display = "inline-block";
             document.getElementById("lnkProfile").style.display = "inline-block";
             document.getElementById("lnkLogOut").style.display = "inline-block";
@@ -54,12 +77,28 @@ $(document).ready(function () {
         sessionStorage.removeItem('currentUserName');
         location.reload();
     });
-
-    $(document).on("click", "#lnkProfile", function () {
-        location.href="../webcontent/userProfile.html";
+    
+    $('#btnSearch').click(function () {
+        document.getElementById("productList").innerHTML = "";
+        console.log("KLICK SÖK!");
+        var searchString = document.getElementById("tfSearch").value;
+        searchProduct(searchString)
     });
 
-
+    function searchProduct(searchString) {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/products/search/' + searchString,
+            success: function (data, textStatus, jgXHR) {
+                populateProductList(data);
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("getAllProducts error: " + textStatus);
+            }
+        });
+    }
+    
     function getProductByCategory(categoryChoice) {
         $.ajax({
             type: 'GET',
@@ -75,8 +114,7 @@ $(document).ready(function () {
             }
         });
     }
-
-
+    
     function getAllProducts() {
         $.ajax({
             type: 'GET',

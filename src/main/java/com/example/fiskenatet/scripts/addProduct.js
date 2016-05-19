@@ -1,24 +1,24 @@
+var rootURL ='http://localhost:8091/api';
+var sellerid;
+var currentUserName;
+
+CheckIfLoggedIn();
+function CheckIfLoggedIn() {
+    sellerid = sessionStorage.getItem("currentUser");
+    currentUserName = sessionStorage.getItem('currentUserName');
+    if(sellerid == null){
+        location.href="../webcontent/index.html";
+    }
+}
 
 $(document).ready(function () {
-    var rootURL ='http://localhost:8091/api';
-    var sellerid = sessionStorage.getItem("currentUser");
-    var currentUserName = sessionStorage.getItem('currentUserName');
 
-    checkIfLoggedIn();
+    setUp();
 
-    function checkIfLoggedIn() {
-        if(sessionStorage.getItem('currentUser') != null){
-            /*användare inloggad*/
-
+    function setUp() {
             document.getElementById("lnkProfile").style.display = "inline-block";
             document.getElementById("lnkLogOut").style.display = "inline-block";
             document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
-
-        }else{
-            document.getElementById("lnkProfile").style.display = "none";
-            document.getElementById("lnkLogOut").style.display = "none";
-
-        }
     }
 
     $(document).on("click", "#lnkProfile", function () {

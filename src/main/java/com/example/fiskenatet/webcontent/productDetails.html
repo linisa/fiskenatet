@@ -11,10 +11,11 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="row">
-        <div class="col-sm-12">
-            <img id="banner" alt="logga" src="../resources/bannerfishies.jpg">
+<div class="row">
+    <div class="col-sm-12">
+        <div id="bannerDiv">
             <p id="bannerText">#Fiskenätet</p>
+        </div>
             <!--MENUBAR-->
             <ul id="menubar" class="nav navbar-nav">
                 <li><a class="menuTxt" href="index.html">Hem</a></li>
@@ -29,9 +30,9 @@
                     <ul class="dropdown-menu">
                         <form>
                             <p>Användarnamn</p>
-                            <input type="text" id="UserUserName" name="inputUserName" placeholder="Användarnamn" required><br>
+                            <input type="text" id="UserUserName" name="inputUserName" placeholder="Användarnamn" maxlength="64" required><br>
                             <p>Lösenord</p>
-                            <input type="password" id="UserPassword" name="inputPassword" placeholder="Lösenord" required><br>
+                            <input type="password" id="UserPassword" name="inputPassword" placeholder="Lösenord" maxlength="64" required><br>
                             <input type="button" value="Logga in!" id="btnLogIn">
                         </form>
                     </ul>

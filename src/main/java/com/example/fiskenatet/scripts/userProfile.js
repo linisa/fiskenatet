@@ -1,10 +1,21 @@
+var rootURL = 'http://localhost:8091/api';
+var currentUserID;
+var currentProductId = sessionStorage.getItem('currentProductId');
+var currentUserName;
+var currentUser;
+var currentProduct;
+
+CheckIfLoggedIn();
+function CheckIfLoggedIn() {
+    currentUserID = sessionStorage.getItem("currentUser");
+    currentUserName = sessionStorage.getItem('currentUserName');
+    if(currentUserID == null){
+        location.href="../webcontent/index.html";
+    }
+}
+
 $(document).ready(function () {
-    var rootURL = 'http://localhost:8091/api';
-    var currentUserID = sessionStorage.getItem("currentUser");
-    var currentProductId = sessionStorage.getItem('currentProductId');
-    var currentUserName = sessionStorage.getItem('currentUserName');
-    var currentUser;
-    var currentProduct;
+
 
 
     getUserById(function (currentUser) {
