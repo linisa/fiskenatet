@@ -4,6 +4,7 @@ package com.example.fiskenatet.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.fiskenatet.main.Validation;
 import com.example.fiskenatet.models.HistoryModel;
 import com.example.fiskenatet.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,14 @@ public class ProductController {
     @Autowired //inkluderar alla dependency raderna ish.
     private ProductService productService;
 
+    private Validation validation = new Validation();
+
     //kollar om alla produktinputs är korrekt
     // om allt är ok, skapas en ny produkt till databasen
     @CrossOrigin
     @RequestMapping(value = "/products", method = RequestMethod.POST)
     public String createProduct(@RequestBody ProductModel productModel) {
-        String validProduct = productService.validateProductInput(productModel);
+        String validProduct = validation.validateProductInput(productModel);
         if(validProduct.equals("OK")) {
             productService.saveProduct(productModel);
         }
@@ -55,7 +58,7 @@ public class ProductController {
     @CrossOrigin
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
     public String updateProduct(@PathVariable Long id, @RequestBody ProductModel productModel){
-        String validProduct = productService.validateProductInput(productModel);
+        String validProduct = validation.validateProductInput(productModel);
         if(validProduct.equals("OK")) {
             productService.updateProductInDatabase(id, productModel);
         }

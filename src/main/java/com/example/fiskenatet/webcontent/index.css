@@ -30,40 +30,32 @@ body{
 #lnkProfileUserName :hover {
 
 }
-
-#banner{
-    width: 100%;
+#bannerDiv{
     position: relative;
+    background-image: url("../resources/bannerfishies.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 20vw;
 }
+
 #bannerText{
-    position: absolute;
+    padding-left: 5vw;
+    font-size: 10vw;
     color: white;
-    top: 0.1em;
-    left: 1em;
-    font-size: 6em;
-    font-weight: bold;
 }
-#searchContainer{
+#searchDiv{
     position: absolute;
-    top: 16.5em;
-    left: 40%;
-    right: 40%;
-    width: 20%;
+    bottom: 1vw;
+    margin-left: 30vw;
 }
 
 #tfSearch{
-    width: 75%;
+    color: black;
+    width: 40vw;
 }
 #btnSearch{
-    width: 20%;
-}
-
-
-#wrongPassword{
-    color: red;
-}
-#wrongUserName{
-    color: red;
+    color: black;
 }
 
 .heading{

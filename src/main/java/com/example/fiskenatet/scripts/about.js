@@ -1,30 +1,36 @@
-checkIfLoggedIn();
-function checkIfLoggedIn() {
-    if(sessionStorage.getItem('currentUser') != null){
-        /*användare inloggad*/
-        currentUserName = sessionStorage.getItem('currentUserName');
-        document.getElementById("lnkAddProduct").style.display = "inline-block";
-        document.getElementById("lnkProfile").style.display = "inline-block";
-        document.getElementById("lnkLogOut").style.display = "inline-block";
-        document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
+$(document).ready(function () {
+    var rootURL = 'http://localhost:8091/api';
 
-        document.getElementById("lnkLogIn").style.display = "none";
-        document.getElementById("lnkRegUser").style.display = "none";
-    }else{
-        document.getElementById("lnkAddProduct").style.display = "none";
-        document.getElementById("lnkProfile").style.display = "none";
-        document.getElementById("lnkLogOut").style.display = "none";
+    checkIfLoggedIn();
+    function checkIfLoggedIn() {
+        var currentUserName = sessionStorage.getItem('currentUserName');
 
-        document.getElementById("lnkLogIn").style.display = "inline-block";
-        document.getElementById("lnkRegUser").style.display = "inline-block";
+        if (sessionStorage.getItem('currentUser') != null) {
+            /*användare inloggad*/
+            document.getElementById("lnkAddProduct").style.display = "inline-block";
+            document.getElementById("lnkProfile").style.display = "inline-block";
+            document.getElementById("lnkLogOut").style.display = "inline-block";
+            document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
+
+            document.getElementById("lnkLogIn").style.display = "none";
+            document.getElementById("lnkRegUser").style.display = "none";
+        } else {
+            document.getElementById("lnkAddProduct").style.display = "none";
+            document.getElementById("lnkProfile").style.display = "none";
+            document.getElementById("lnkLogOut").style.display = "none";
+
+            document.getElementById("lnkLogIn").style.display = "inline-block";
+            document.getElementById("lnkRegUser").style.display = "inline-block";
+        }
+        
     }
-
+    
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
         sessionStorage.removeItem('currentUserName');
         location.reload();
     });
-
+    
     $('#btnLogIn').click(function () {
         console.log("KLICK LOGIN!");
         userUserName = $('#UserUserName').val();
@@ -33,9 +39,9 @@ function checkIfLoggedIn() {
         userUserName = userUserName.replace(/\s+/g, '');
         userPassword = userPassword.replace(/\s+/g, '');
 
-        if(userUserName==""||userPassword==""){
+        if (userUserName == "" || userPassword == "") {
             alert("Något fällt är ej ifyllt");
-        }else {
+        } else {
             getUserByUserName();
         }
     });
@@ -44,7 +50,7 @@ function checkIfLoggedIn() {
         $.ajax({
             type: 'GET',
             contentType: 'application/json',
-            url: rootURL + '/username/' + userUserName ,
+            url: rootURL + '/username/' + userUserName,
             success: function (data, textStatus, jgXHR) {
                 console.log("i sucess" + data.password);
                 logInValidation(data);
@@ -56,13 +62,13 @@ function checkIfLoggedIn() {
 
     function logInValidation(foundUser) {
         console.log("i validation");
-        if(foundUser.password == userPassword){
+        if (foundUser.password == userPassword) {
             console.log("Log in success" + foundUser.firstName);
             sessionStorage.setItem('currentUser', foundUser.id);
             sessionStorage.setItem('currentUserName', foundUser.userName);
             location.reload();
-        }else{
+        } else {
             alert("fel lösenord");
         }
     }
-}
+});

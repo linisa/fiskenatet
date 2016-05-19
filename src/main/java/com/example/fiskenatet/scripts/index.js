@@ -10,7 +10,30 @@ $(document).ready(function () {
     checkCategory();
     //getAllProducts();
     checkIfLoggedIn();
-    
+
+    window.setInterval(function(){
+        var date = new Date();
+        if(date.getHours() === 13 && date.getMinutes() === 45){
+            endOfDay();
+        }
+    }, 5000);
+
+    function endOfDay() {
+        $.ajax({
+            type: 'PUT',
+            contentType: 'application/json',
+            url:rootURL + '/products/endofday',
+            success: function (data, textStatus, jgXHR) {
+                console.log("End of day, Expired auctions moved");
+                location.reload();
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("endOfDay error: " + textStatus);
+            }
+        });
+    };
+
+
     function checkCategory() {
         document.getElementById("productList").innerHTML = "";
         var category = document.getElementById("selectCategory");
