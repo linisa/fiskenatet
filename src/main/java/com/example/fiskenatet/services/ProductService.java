@@ -163,7 +163,24 @@ public class ProductService {
         log.info("Called method 'getAllLosers' that returned a list of " +loserList.size()+ " users");
         return loserList;
     }
+    public List<ProductModel> searchProducts(String value) {
+        List<ProductModel> searchResultList = new ArrayList<ProductModel>();
+        Set<ProductModel> productHashSet = new HashSet<ProductModel>();
+        List<ProductModel> titleList = productRepository.findProductsByTitleContaining(value);
+        List<ProductModel> descriptionList = productRepository.findProductsByDescriptionContaining(value);
 
+        for (ProductModel product : titleList) {
+            searchResultList.add(product);
+        }
+        for (ProductModel product : descriptionList) {
+            searchResultList.add(product);
+        }
+        productHashSet.addAll(searchResultList);
+        searchResultList.clear();
+        searchResultList.addAll(productHashSet);
+        log.info("Search method 'searchProducts' ran with value: " +value+ " and found " +searchResultList.size()+ " product(s)");
+        return searchResultList;
+    }
 
     // Flytta produkter från schemat products till history om produkten skapades innan kl15:00 samma dag
     // Denna funktion kommer att köras strax efter kl 16:00 varje dag
