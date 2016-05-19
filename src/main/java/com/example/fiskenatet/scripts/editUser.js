@@ -1,10 +1,17 @@
+var rootURL = 'http://localhost:8091/api';
+var currentUserID;
+var currentUser;
+
+CheckIfLoggedIn();
+function CheckIfLoggedIn() {
+    currentUserID = sessionStorage.getItem("currentUser");
+    if(currentUserID == null){
+        location.href="../webcontent/index.html";
+    }
+}
+
 $(document).ready(function(){
-
-    var currentUserID = sessionStorage.getItem('currentUser');
-    var currentUser;
-
-    var rootURL = 'http://localhost:8091/api';
-
+    
     getUser();
 
     $('#btnUpdateUser').click(function () {

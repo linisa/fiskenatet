@@ -1,9 +1,22 @@
+CheckIfLoggedIn();
+
+function CheckIfLoggedIn() {
+    currentUserID = sessionStorage.getItem("currentUser");
+    if(currentUserID == null){
+        location.href="../webcontent/index.html";
+    }
+}
+
 $(document).ready(function () {
     var rootURL = 'http://localhost:8091/api';
     var currentProductId = sessionStorage.getItem('currentProductId');
+    var currentUserID;
     var currentProduct;
     var owner;
 
+
+    
+    
     getProductDetails();
 
     $(document).on("click", "#btnSwishOption", function () {
@@ -13,6 +26,7 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#btnConfirmSwish", function () {
+        document.getElementById('btnConfirmSwish')
         setSellerRating();
         addBidIfBuyout(function () {
             setProductAsSold();
@@ -42,7 +56,7 @@ $(document).ready(function () {
         var bidDate = new Date();
         var bid = JSON.stringify({
             "currentProduct": {'id' : currentProductId},
-            "bidder": {'id' : owner.id},
+            "bidder": {'id' : currentUserID},
             "amount": currentProduct.buyNowPrice,
             "bidDate": bidDate
 

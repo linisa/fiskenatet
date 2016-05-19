@@ -29,7 +29,11 @@ public class HistoryController {
     @RequestMapping(value = "/history/{ownerId}", method = RequestMethod.GET)
     public ResponseEntity<List<HistoryModel>> getHistoryByOwner(@PathVariable Long ownerId) {
         return new ResponseEntity<List<HistoryModel>>(historyService.getHistoryByOwner(ownerId), HttpStatus.OK);
-
+    }
+    @CrossOrigin
+    @RequestMapping(value = "/history/{username}", method = RequestMethod.GET)
+    public ResponseEntity<List<HistoryModel>> getHistoryByUser(@PathVariable String username) {
+        return new ResponseEntity<List<HistoryModel>>(historyService.getHistoryByBuyer(username), HttpStatus.OK);
     }
 
 }
