@@ -16,6 +16,7 @@ import com.example.fiskenatet.models.UserModel;
 import com.example.fiskenatet.repositories.BidRepository;
 import com.example.fiskenatet.repositories.HistoryRepository;
 import com.example.fiskenatet.repositories.UserRepository;
+import org.jcp.xml.dsig.internal.SignerOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -163,28 +164,6 @@ public class ProductService {
         return loserList;
     }
 
-
-    public List<ProductModel> searchProducts(String value) {
-        List<ProductModel> searchResultList = new ArrayList<ProductModel>();
-        Set<ProductModel> productHashSet = new HashSet<ProductModel>();
-        List<ProductModel> categoryList = productRepository.findProductsByCategoryContaining(value);
-        List<ProductModel> titleList = productRepository.findProductsByTitleContaining(value);
-        List<ProductModel> descriptionList = productRepository.findProductsByDescriptionContaining(value);
-        for (ProductModel product : categoryList) {
-            searchResultList.add(product);
-        }
-        for (ProductModel product : titleList) {
-            searchResultList.add(product);
-        }
-        for (ProductModel product : descriptionList) {
-            searchResultList.add(product);
-        }
-        productHashSet.addAll(searchResultList);
-        searchResultList.clear();
-        searchResultList.addAll(productHashSet);
-        log.info("Search method 'searchProducts' ran with value: " +value+ " and found " +searchResultList.size()+ " product(s)");
-        return searchResultList;
-    }
 
     // Flytta produkter från schemat products till history om produkten skapades innan kl15:00 samma dag
     // Denna funktion kommer att köras strax efter kl 16:00 varje dag

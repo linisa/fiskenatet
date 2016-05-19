@@ -109,7 +109,7 @@ public class ProductController {
 
     // sök produkt
     @CrossOrigin
-    @RequestMapping(value = "/products/search/{value}", method = RequestMethod.GET)
+    @RequestMapping(value = "/productsearch/{value}", method = RequestMethod.GET)
     public ResponseEntity<List<ProductModel>>searchProducts(@PathVariable String value) {
         return new ResponseEntity<List<ProductModel>>(productService.searchProducts(value), HttpStatus.OK);
     }

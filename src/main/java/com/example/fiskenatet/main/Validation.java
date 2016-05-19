@@ -45,7 +45,6 @@ public class Validation {
 
     private boolean controlProductImage(ProductModel productModel) {
         boolean imageIsGood;
-
         if (productModel.getImage().endsWith(".jpeg") || productModel.getImage().endsWith(".jpg")
                 || productModel.getImage().endsWith(".gif") || productModel.getImage().endsWith(".png")) {
             try {
