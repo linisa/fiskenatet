@@ -12,4 +12,6 @@ import java.util.List;
 public interface HistoryRepository extends JpaRepository<HistoryModel, Long> {
 
     public List<HistoryModel> findHistoryByOwner(Long ownerId);
+
+    public List<HistoryModel> findHistoryByBuyerUsername(String username);
 }

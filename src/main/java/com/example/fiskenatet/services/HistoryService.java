@@ -34,5 +34,10 @@ public class HistoryService {
         log.info("Called method 'getHistoryByOwner' that returned a list of " + historyList.size() + " products from history for owner with ID: " + ownerId);
         return historyList;
     }
+    public List<HistoryModel> getHistoryByBuyer(String username){
+        List<HistoryModel> historyList = historyRepository.findHistoryByBuyerUsername(username);
+        log.info("Called method 'getHistoryByBuyer' that returned a list of " + historyList.size() + " products from history for owner with username: " + username);
+        return historyList;
+    }
 
 }
