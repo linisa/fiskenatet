@@ -41,6 +41,12 @@ ul.navbar-nav a:hover{
 
 
 }
+#lnkProfileUserName{
+    font-family: Calibri;
+    font-size: 0.8em;
+    margin-right: 0em;
+    margin-left: auto;
+}
 
 #bannerDiv{
     position: relative;
@@ -154,9 +160,9 @@ ul.navbar-nav a:hover{
     margin-top: 20px;
     left: 0;
     bottom: 0;
-    border: 0px solid rgba(0,0,0,0.1);
-    border-radius: 0 0 2px 2px;
-    border-bottom-width: 7px;
+    border-color: black;
+    border: double;
+
 }
 .highestBid{
     background-color: #4D4DFF;
@@ -169,9 +175,7 @@ ul.navbar-nav a:hover{
     margin-top: 20px;
     left: 0;
     bottom: 0;
-    border: 0px solid rgba(0,0,0,0.1);
-    border-radius: 0 0 2px 2px;
-    border-bottom-width: 7px;
+    border: double;
 
 }
 .buyNowPrice{
@@ -185,9 +189,7 @@ ul.navbar-nav a:hover{
     margin-top: 20px;
     left: 0;
     bottom: 0;
-    border: 0px solid rgba(0,0,0,0.1);
-    border-radius: 0 0 2px 2px;
-    border-bottom-width: 7px;
+    border:double;
 
 }
 .image{
@@ -268,6 +270,7 @@ ul.navbar-nav a:hover{
     display: block;
     left: 0;
     bottom: 0;
+
 }
 
 #addBidDetails{
