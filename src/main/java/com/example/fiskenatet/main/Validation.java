@@ -31,9 +31,9 @@ public class Validation {
         if(productModel.getCategory().equals("0")){
             checkProduct = "Välj en produktkategori";
         }
-//        if(controlProductImage(productModel) == false){
-//            checkProduct = "Välj en produktbild som en URL. Tillåtna format: JPEG, JPG, GIF, PNG";
-//        }
+        if(controlProductImage(productModel) == false){
+            checkProduct = "Välj en produktbild som en URL. Tillåtna format: JPEG, JPG, GIF, PNG";
+        }
         if(productModel.getStartPrice() < 0){
             checkProduct = "Utropspriset kan inte vara lägre än 0";
         }
@@ -46,7 +46,10 @@ public class Validation {
 
     private boolean controlProductImage(ProductModel productModel) {
         boolean imageIsGood;
-        if (productModel.getImage().endsWith(".jpeg") || productModel.getImage().endsWith(".jpg")
+        if(productModel.getImage().contains("../resources/")){
+            imageIsGood = true;
+        }
+        else if(productModel.getImage().endsWith(".jpeg") || productModel.getImage().endsWith(".jpg")
                 || productModel.getImage().endsWith(".gif") || productModel.getImage().endsWith(".png")) {
             try {
                 System.out.println("open connection " +  productModel.getImage());

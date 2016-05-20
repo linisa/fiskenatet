@@ -26,7 +26,7 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#btnConfirmSwish", function () {
-        document.getElementById('btnConfirmSwish')
+        document.getElementById('btnConfirmSwish').disabled = true;
         setSellerRating();
         addBidIfBuyout(function () {
             setProductAsSold();
@@ -124,10 +124,16 @@ $(document).ready(function () {
             url: rootURL + '/products/issold/' + currentProductId,
             success: function (data, textStatus, jgXHR) {
                 console.log("success");
+                waitThenReturnHome();
             },
             error: function(jgXHR, textStatus, errorThrown) {
                 console.log("setProductAsSold error: " + textStatus);
             }
         });
+    }
+
+    function waitThenReturnHome() {
+        sleep(3000);
+        location.href='../webcontent/index.html';
     }
 });

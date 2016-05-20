@@ -26,6 +26,5 @@ public interface ProductRepository extends JpaRepository<ProductModel, Long> {
 
     public List<ProductModel> findProductsByEndDateBefore(Date endDate);
 
-
 }
 
