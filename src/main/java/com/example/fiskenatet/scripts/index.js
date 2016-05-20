@@ -145,7 +145,7 @@ $(document).ready(function () {
             productString += '<div><img src="' + allProducts[i].image + '" class="image"></div>';
             productString += '<div class="productText"><h3>' + allProducts[i].title + '</h3>';
             productString += '<p class="description">' + description.substr(0, smallLimit) + '...' + '</p></div></a></div>';
-            productString += '<div class="col-sm-4"><p class="endDate">Slutdatum: <br>' + endDate + '</p>';
+            productString += '<div class="col-sm-4" id="productInfoDiv"><p class="endDate">Slutdatum: <br>' + endDate + '</p>';
 
             if(listOfBids.length != 0){
                 listOfBids.sort(function (a, b) {
@@ -157,6 +157,8 @@ $(document).ready(function () {
             }
             if(allProducts[i].buyNowPrice != 0){
                 productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p>';
+            }else{
+                productString += '<p class="buyNowPrice"><br><br>';
             }
             productString += '</div></div>';
 

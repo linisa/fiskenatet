@@ -132,6 +132,10 @@ ul.navbar-nav a:hover{
 
 /*Product List*/
 
+#productInfoDiv{
+    background-color: #3366BB;
+}
+
 .product{
     background-color: white;
     overflow: hidden;
@@ -195,7 +199,6 @@ ul.navbar-nav a:hover{
     left: 0;
     bottom: 0;
 
-
 }
 .image{
     height: 150px;
@@ -242,6 +245,8 @@ ul.navbar-nav a:hover{
 /*addProduct end*/
 
 /*ProductDetails */
+
+
 #productDetTxt{
     font-family: Calibri;
     font-size: 1.3em;
