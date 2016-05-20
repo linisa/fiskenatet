@@ -40,7 +40,7 @@ public class MailHandler {
                 return new PasswordAuthentication(username, password);
             }
         });
-        log.info("Method 'setUpMail' runned with email: " +username+ " and password: " +password);
+        log.info("Method 'setUpMail' ran with email: " +username+ " and password: " +password);
         return session;
     }
 
