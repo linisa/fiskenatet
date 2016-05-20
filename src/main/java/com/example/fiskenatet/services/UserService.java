@@ -72,6 +72,9 @@ public class UserService {
         userToUpdate.setEmail(userModel.getEmail());
         userToUpdate.setMobileNumber(userModel.getMobileNumber());
         userToUpdate.setPassword(userModel.getPassword());
+        userToUpdate.setPaymentMethod(userModel.getPaymentMethod());
+        userToUpdate.setAddress(userModel.getAddress());
+        userToUpdate.setPostCode(userModel.getPostCode());
         userRepository.saveAndFlush(userToUpdate);
         log.info("User with ID = " +id+ " has been updated by method 'updateUserInDatabase'");
     }

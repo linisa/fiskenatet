@@ -2,6 +2,9 @@ package com.example.fiskenatet.testMailHandler;
 
 import com.example.fiskenatet.main.MailHandler;
 import junit.framework.TestCase;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -12,16 +15,15 @@ import java.util.Properties;
  */
 public class MailHandlerTest extends TestCase {
 
-    MailHandler mailHandler;
+    private MailHandler mailHandler;
 
     public void setUp() throws Exception {
         super.setUp();
         mailHandler = new MailHandler();
 
     }
-
     public void testControlUserMail() throws Exception{
         assertTrue(mailHandler.controlUserMail("linisa89@hotmail.com"));
     }
-    
+
 }

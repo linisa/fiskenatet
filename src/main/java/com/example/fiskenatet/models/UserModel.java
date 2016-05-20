@@ -58,6 +58,17 @@ public class UserModel implements Serializable {
     @Column(name = "rating_as_buyer")
     private String ratingAsBuyer = "No rating yet";
 
+    @Column(name = "payment_method")
+    private int paymentMethod;
+
+    @Column(name = "paypal_username")
+    private String payPalUserName;
+
+    private String address;
+
+    @Column (name = "postal_code")
+    private String postCode;
+
     public Long getId() {
         return id;
     }
@@ -152,5 +163,37 @@ public class UserModel implements Serializable {
 
     public void setRatingAsBuyer(String ratingAsBuyer) {
         this.ratingAsBuyer = ratingAsBuyer;
+    }
+
+    public int getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(int paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPayPalUserName() {
+        return payPalUserName;
+    }
+
+    public void setPayPalUserName(String payPalUserName) {
+        this.payPalUserName = payPalUserName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
     }
 }

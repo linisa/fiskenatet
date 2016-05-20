@@ -89,7 +89,6 @@ public class MailHandler {
     public void sendNewBidNotification(ProductModel currentProduct, BidModel bidModel, UserModel lastBidder) {
 
         try {
-
             Message message = new MimeMessage(setUpMail());
             message.setFrom(new InternetAddress("fiskenaetet@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(lastBidder.getEmail()));
