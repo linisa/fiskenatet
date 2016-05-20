@@ -137,15 +137,55 @@ $(document).ready(function () {
         });
     }
 
+    function getCategory() {
+        var category;
+        switch (currentProduct.category){
+            case "1":
+                category = "Torsk";
+                break;
+            case "2":
+                category = "Makrill";
+                break;
+            case "3":
+                category = "Kolja";
+                break;
+            case "4":
+                category = "Lax";
+                break;
+            case "5":
+                category = "Gråsej";
+                break;
+            case "6":
+                category = "Sill";
+                break;
+            case "7":
+                category = "Vitling";
+                break;
+            case "8":
+                category = "Rödspotta";
+                break;
+            case "9":
+                category = "Skaldjur";
+                break;
+            case "10":
+                category = "Övrigt";
+                break;
+            default:
+                category = "ERROR"
+        }
+        
+        return category;
+    }
+
     function populateProductDetails() {
         var startDate= new Date(currentProduct.startDate).toLocaleString();
         var endDate = new Date(currentProduct.endDate).toLocaleString();
-
+        var productCategory = getCategory();
         document.getElementById('productImage').src = currentProduct.image;
         document.getElementById('productTextDetails').innerHTML  = currentProduct.title;
         document.getElementById('ownerDetails').innerHTML = "Säljs av: " + owner.userName;
         document.getElementById('startDateDetails').innerHTML = " " + startDate;
-        document.getElementById('categoryDetails').innerHTML = "Kategori: " + currentProduct.category;
+        document.getElementById('categoryDetails').innerHTML = "Kategori: " + productCategory;
         document.getElementById('descriptionDetails').innerHTML = currentProduct.description;
         document.getElementById('endDateDetails').innerHTML = "Slutdatum: <br> " + endDate;
         document.getElementById('lnkAddBid').innerHTML = "Lägg ett bud";

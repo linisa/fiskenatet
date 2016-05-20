@@ -247,6 +247,46 @@ $(document).ready(function () {
         return payment;
     }
 
+    function getCategory(categoryInt) {
+        var category;
+        switch (categoryInt){
+            case "1":
+                category = "Torsk";
+                break;
+            case "2":
+                category = "Makrill";
+                break;
+            case "3":
+                category = "Kolja";
+                break;
+            case "4":
+                category = "Lax";
+                break;
+            case "5":
+                category = "Gråsej";
+                break;
+            case "6":
+                category = "Sill";
+                break;
+            case "7":
+                category = "Vitling";
+                break;
+            case "8":
+                category = "Rödspotta";
+                break;
+            case "9":
+                category = "Skaldjur";
+                break;
+            case "10":
+                category = "Övrigt";
+                break;
+            default:
+                category = "ERROR"
+        }
+
+        return category;
+    }
+
     function populateUserProducts(listOfProducts) {
         document.getElementById('productList').innerHTML = "";
         $products = $('#productList');
@@ -254,7 +294,9 @@ $(document).ready(function () {
         var smallLimit = 90;
        for(i = 0; i < listOfProducts.length; i++){
            var startDate = new Date(listOfProducts[i].startDate);
+           var endDate = new Date(listOfProducts[i].endDate)
            var isSold = listOfProducts[i].isSold;
+           var productCategory = getCategory(listOfProducts[i].category);
            listOfBids = listOfProducts[i]['listOfBids'];
 
            productString+='<div class="OwnerProductObject"><div class="row"><div class="col-sm-4">';
@@ -264,8 +306,8 @@ $(document).ready(function () {
            productString+='<p class="ownerProductDescription">' + listOfProducts[i].description + '</p>';
            productString+='</div></div><div class="row"><div class="col-sm-6">';
            productString+='<p id="ownerProductStartDate">Datum tillagt: <br>' + startDate.toLocaleString() + '</p>';
-           productString+='<p id="ownerProductEndDate">Slutdatum: <br>' + listOfProducts[i].endDate + '</p>';
-           productString+='<p id="ownerProductCategory">Kategori: <br>' + listOfProducts[i].category + '</p>';
+           productString+='<p id="ownerProductEndDate">Slutdatum: <br>' + endDate.toLocaleString() + '</p>';
+           productString+='<p id="ownerProductCategory">Kategori: <br>' + productCategory+ '</p>';
            productString+='</div><div class="col-sm-6">';
            productString+='<p id="ownerProductTotalBids">Totalt antal bud: <br>' + listOfProducts[i].listOfBids.length + '</p>';
 
@@ -302,4 +344,3 @@ $(document).ready(function () {
         $products.append(productString);
     }
 });
-
