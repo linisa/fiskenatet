@@ -319,6 +319,10 @@ ul.navbar-nav a:hover{
     border-radius: 0 0 2px 2px;
     border-bottom-width: 7px;
 }
+#highestBidDetails:hover{
+    cursor: pointer;
+}
+
 #buyNowPriceDetails{
     background-color: #8282E7;
     text-align: center;
