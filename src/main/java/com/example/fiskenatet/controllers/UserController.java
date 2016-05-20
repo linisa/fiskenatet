@@ -33,7 +33,6 @@ public class UserController {
         String validUser = userService.validateUserInputWhenCreating(userModel);
         System.out.println("tillbaka i controller " + validUser);
         if(validUser.equals("OK")){
-            System.out.println("a-ok!");
             userService.saveUser(userModel);
         }
         return validUser;

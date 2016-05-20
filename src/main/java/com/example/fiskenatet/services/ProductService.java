@@ -10,12 +10,14 @@ import java.util.logging.Logger;
 
 import com.example.fiskenatet.Application;
 import com.example.fiskenatet.main.MailHandler;
+import com.example.fiskenatet.main.Validation;
 import com.example.fiskenatet.models.BidModel;
 import com.example.fiskenatet.models.HistoryModel;
 import com.example.fiskenatet.models.UserModel;
 import com.example.fiskenatet.repositories.BidRepository;
 import com.example.fiskenatet.repositories.HistoryRepository;
 import com.example.fiskenatet.repositories.UserRepository;
+import org.jcp.xml.dsig.internal.SignerOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,7 @@ public class ProductService {
     @Autowired
     private BidRepository bidRepository;
 
+    private Validation validation = new Validation();
     Logger log = Logger.getLogger(Application.class.getName());
 
     // skapa produkt
@@ -81,7 +84,7 @@ public class ProductService {
     }
 
     // hämta en produkt från en vald kategori och användare - EJ KLAR
-    public List<ProductModel> getProductByOwnerAndByCategory(String category, Long ownerId) {
+    public List<ProductModel> findProductByOwnerAndByCategory(String category, Long ownerId) {
         List<ProductModel> productList = productRepository.findProductsByCategoryAndOwnerId(category, ownerId);
         log.info("Called method 'getProductByOwnerAndByCategory' that returned a list of " +productList.size()+
                 " products from owner with ID " +ownerId+ " and category '" +category+ "'");
@@ -162,17 +165,12 @@ public class ProductService {
         log.info("Called method 'getAllLosers' that returned a list of " +loserList.size()+ " users");
         return loserList;
     }
-
-
     public List<ProductModel> searchProducts(String value) {
         List<ProductModel> searchResultList = new ArrayList<ProductModel>();
         Set<ProductModel> productHashSet = new HashSet<ProductModel>();
-        List<ProductModel> categoryList = productRepository.findProductsByCategoryContaining(value);
         List<ProductModel> titleList = productRepository.findProductsByTitleContaining(value);
         List<ProductModel> descriptionList = productRepository.findProductsByDescriptionContaining(value);
-        for (ProductModel product : categoryList) {
-            searchResultList.add(product);
-        }
+
         for (ProductModel product : titleList) {
             searchResultList.add(product);
         }
@@ -250,6 +248,11 @@ public class ProductService {
             bidRepository.delete(bid);
         }
         productRepository.delete(productModel);
+    }
+
+    public String validateProductInput(ProductModel productModel){
+        String checkProduct = validation.validateProductInput(productModel);
+        return checkProduct;
     }
 
 }

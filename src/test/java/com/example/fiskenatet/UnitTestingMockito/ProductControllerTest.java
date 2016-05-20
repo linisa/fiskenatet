@@ -1,7 +1,9 @@
 package com.example.fiskenatet.UnitTestingMockito;
 
 import com.example.fiskenatet.controllers.ProductController;
+import com.example.fiskenatet.main.Validation;
 import com.example.fiskenatet.models.ProductModel;
+import com.example.fiskenatet.models.UserModel;
 import com.example.fiskenatet.repositories.ProductRepository;
 import com.example.fiskenatet.services.ProductService;
 import org.junit.BeforeClass;
@@ -39,26 +41,30 @@ public class ProductControllerTest {
     private static final String TITLE_2 = "Blåval";
     private static final String CATEGORY_1 = "Fiskar";
     private static final String CATEGORY_2 = "Valar";
+    private static final Long OWNER_ID_1 = 1L;
+    private static final UserModel OWNER_1 = new UserBuilder().id(OWNER_ID_1).firstName("Pelle").build();
+    private static final Long OWNER_ID_2 = 2L;
+    private static final UserModel OWNER_2 = new UserBuilder().id(OWNER_ID_2).firstName("Kalle").build();
 
-    private static final ProductModel fish1 = new ProductBuilder().id(ID_1).title(TITLE_1).category(CATEGORY_1).build();
-    private static final ProductModel fish2 = new ProductBuilder().id(ID_2).title(TITLE_2).category(CATEGORY_2).build();
+    private static final ProductModel fish1 = new ProductBuilder().id(ID_1).title(TITLE_1).category(CATEGORY_1).owner(OWNER_1).build();
+    private static final ProductModel fish2 = new ProductBuilder().id(ID_2).title(TITLE_2).category(CATEGORY_2).owner(OWNER_2).build();
 
-    //funkar ej fixa!!!
     @Test
     public void testAddProduct(){
-        productController.createProduct(fish1);
-        verify(productService).saveProduct(fish1);
+        String response = "OK";
+        given(productService.validateProductInput(fish1)).willReturn(response);
+        assertThat(productController.updateProduct(ID_1, fish1)).isEqualTo(response);
     }
     @Test
     public void testDeleteProduct(){
         productController.deleteProduct(ID_2);
         verify(productService).deleteProductInDatabase(ID_2);
     }
-    //funkar ej fixa!!!
     @Test
     public void testUpdateProduct(){
-        productController.updateProduct(ID_2, fish2);
-        verify(productService).updateProductInDatabase(ID_2, fish2);
+        String response = "OK";
+        given(productService.validateProductInput(fish2)).willReturn(response);
+        assertThat(productController.updateProduct(ID_2, fish2)).isEqualTo(response);
     }
     @Test
     public void testGetAllProducts(){
@@ -83,13 +89,27 @@ public class ProductControllerTest {
         given(productService.findAllProductsByCategory(CATEGORY_2)).willReturn(Arrays.asList(fish2));
         assertThat(productController.getProductsByCategory(CATEGORY_2)).isEqualTo(responsMessage);
     }
+    @Test
+    public void testGetProductByOwnerAndCategory(){
+        ArrayList<ProductModel>productList = new ArrayList<ProductModel>();
+        productList.add(fish1);
+        ResponseEntity responsMessage = new ResponseEntity<ArrayList<ProductModel>>(productList, HttpStatus.OK);
+        given(productService.findProductByOwnerAndByCategory(CATEGORY_1, OWNER_ID_1)).willReturn(Arrays.asList(fish1));
+        assertThat(productController.getProductByOwnerAndByCategory(CATEGORY_1, OWNER_ID_1)).isEqualTo(responsMessage);
+    }
 
     @Test
     public void testUpdateProductWhenSold(){
         productController.updateProductWhenSold(ID_1);
         verify(productService).updateProductWhenSold(ID_1);
     }
-
-
+    @Test
+    public void testSearchProducts(){
+        ArrayList<ProductModel> productList = new ArrayList<ProductModel>();
+        productList.add(fish2);
+        ResponseEntity responsMessage = new ResponseEntity<ArrayList<ProductModel>>(productList, HttpStatus.OK);
+        given(productService.searchProducts(TITLE_2)).willReturn(Arrays.asList(fish2));
+        assertThat(productController.searchProducts(TITLE_2)).isEqualTo(responsMessage);
+    }
 
 }

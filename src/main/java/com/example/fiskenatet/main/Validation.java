@@ -1,6 +1,7 @@
 package com.example.fiskenatet.main;
 
 import com.example.fiskenatet.Application;
+import com.example.fiskenatet.models.HistoryModel;
 import com.example.fiskenatet.models.ProductModel;
 import com.example.fiskenatet.models.UserModel;
 
@@ -45,8 +46,10 @@ public class Validation {
 
     private boolean controlProductImage(ProductModel productModel) {
         boolean imageIsGood;
-
-        if (productModel.getImage().endsWith(".jpeg") || productModel.getImage().endsWith(".jpg")
+        if(productModel.getImage().contains("../resources/")){
+            imageIsGood = true;
+        }
+        else if(productModel.getImage().endsWith(".jpeg") || productModel.getImage().endsWith(".jpg")
                 || productModel.getImage().endsWith(".gif") || productModel.getImage().endsWith(".png")) {
             try {
                 System.out.println("open connection " +  productModel.getImage());
@@ -70,14 +73,19 @@ public class Validation {
         return imageIsGood;
     }
 
-    public String validateUserNameAndEmail(List<UserModel> userList, UserModel userModel){
+    public String validateUserNameAndEmail(List<UserModel> userList, List<HistoryModel> historyList, UserModel userModel){
         String checkUser = "OK";
         for(UserModel compareUser : userList) {
             if(compareUser.getUserName().equals(userModel.getUserName())){
                 checkUser = "Användarnamnet är upptaget";
-
-            }if(compareUser.getEmail().equals(userModel.getEmail())){
+            }
+            if(compareUser.getEmail().equals(userModel.getEmail())){
                 checkUser = "E-postadressen är redan registrerad";
+            }
+        }
+        for(HistoryModel compareBuyer : historyList){
+            if(compareBuyer.getBuyerUsername().equals(userModel.getUserName())){
+                checkUser = "Användarnamnet är upptaget";
             }
         }
         log.info("Called method 'validateUserNameAndEmail' that returned string: " + checkUser);
