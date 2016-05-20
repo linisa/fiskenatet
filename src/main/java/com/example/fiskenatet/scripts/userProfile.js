@@ -230,8 +230,21 @@ $(document).ready(function () {
         document.getElementById('upLastName').innerHTML =currentUser.lastName;
         document.getElementById('upEmail').innerHTML =currentUser.email;
         document.getElementById('upMobileNumber').innerHTML =currentUser.mobileNumber;
+        document.getElementById('upAddress').innerHTML = currentUser.address + " " + currentUser.postCode;
+        document.getElementById('upPayment').innerHTML = getPaymentMethod();
         //document.getElementById('upRatingAsSeller').innerHTML =currentUser[''];
         //document.getElementById('upRatingAsBuyer').innerHTML =currentUser[''];
+    }
+    function getPaymentMethod(){
+        var payment;
+        if(currentUser.paymentMethod == 1){
+            payment = "Swish";
+        }else if(currentUser.paymentMethod == 2){
+            payment = "PayPal";
+        }else{
+            payment = "Swish eller Paypal";
+        }
+        return payment;
     }
 
     function populateUserProducts(listOfProducts) {

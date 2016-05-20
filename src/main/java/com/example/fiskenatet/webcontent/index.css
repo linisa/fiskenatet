@@ -546,9 +546,7 @@ ul.navbar-nav a:hover{
     margin-bottom: 2em;
     margin-top: 2em;
 }
-#tfMobileNumber{
-    margin-bottom: 2em;
-}
+
 /*editUser End*/
 /*User profile Product list*/
 
@@ -564,6 +562,7 @@ ul.navbar-nav a:hover{
 #ownerProduct{
 
 }
+
 #ownerProductImage{
 
 }
