@@ -103,7 +103,16 @@ public class Validation {
             checkUser = "Ange en e-postadress";
         }if(userModel.getMobileNumber().equals("")||userModel.getMobileNumber().equals(" ")){
             checkUser = "Telefonnummer saknas";
+        }if(userModel.getAddress().equals("")||userModel.getAddress().equals(" ")){
+            checkUser = "Ange din postadress";
+        }if(userModel.getPostCode().equals("")||userModel.getPostCode().equals(" ")){
+            checkUser = "Ange ditt postnummer";
+        }if(userModel.getPaymentMethod() != 0 && userModel.getPaymentMethod() !=1 && userModel.getPaymentMethod() !=2) {
+            checkUser = "Välj ett betalningsalternativ";
+        }if (userModel.getPaymentMethod() == 1 && userModel.getPayPalUserName().equals("")) {
+                checkUser = "Ange ditt Paypal.Me-namn";
         }
+
         log.info("Called method 'controlUserInput' that returned string: " + checkUser);
         return checkUser;
     }

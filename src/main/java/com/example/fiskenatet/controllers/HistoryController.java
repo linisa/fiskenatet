@@ -22,6 +22,7 @@ public class HistoryController {
     @CrossOrigin
     @RequestMapping(value = "/history", method = RequestMethod.POST)
     public void createHistory(@RequestBody HistoryModel historyModel) {
+
         historyService.saveHistory(historyModel);
     }
 

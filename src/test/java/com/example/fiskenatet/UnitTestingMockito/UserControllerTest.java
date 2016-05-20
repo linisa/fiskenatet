@@ -69,7 +69,6 @@ public class UserControllerTest {
     public void testDeleteUser() {
         userController.deleteUser(USER_ID_1);
         verify(userService).deleteUserInDatabase(USER_ID_1);
-
     }
     @Test
     public void testGetUserByUsername(){

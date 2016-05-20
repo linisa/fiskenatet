@@ -1,5 +1,8 @@
 package com.example.fiskenatet;
 
+import com.example.fiskenatet.models.UserModel;
+import com.example.fiskenatet.services.HistoryService;
+import com.example.fiskenatet.services.UserService;
 import com.example.fiskenatet.timer.TimerHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
