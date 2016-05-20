@@ -18,7 +18,7 @@ $(document).ready(function () {
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
         sessionStorage.removeItem('currentUserName');
-        location.href="../webcontent/index.html";
+        location.reload();
     });
 
 
@@ -166,6 +166,10 @@ $(document).ready(function () {
 
 //Buy Now & Add Bid
 
+    $(document).on("click", "#highestBidDetails", function () {
+        location.href="../webcontent/bidHistory.html"
+    });
+    
     $(document).on("click", "#buyNowPriceDetails", function () {
         location.href="../webcontent/confirmPurchase.html"
     });
@@ -210,7 +214,8 @@ $(document).ready(function () {
         var date = new Date();
         var product = JSON.stringify({
             "currentProduct": {'id' : currentProductId},
-            "bidder": {'id' : currentUserId},
+            "bidder": {'id' : currentUserID},
+            "bidderUserName": currentUserName,
             "amount": $('#addBidDetails').val(),
             "bidDate": date
         });
