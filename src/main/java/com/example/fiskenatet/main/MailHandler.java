@@ -40,7 +40,7 @@ public class MailHandler {
                 return new PasswordAuthentication(username, password);
             }
         });
-        log.info("Method 'setUpMail' runned with email: " +username+ " and password: " +password);
+        log.info("Method 'setUpMail' ran with email: " +username+ " and password: " +password);
         return session;
     }
 
@@ -89,7 +89,6 @@ public class MailHandler {
     public void sendNewBidNotification(ProductModel currentProduct, BidModel bidModel, UserModel lastBidder) {
 
         try {
-
             Message message = new MimeMessage(setUpMail());
             message.setFrom(new InternetAddress("fiskenaetet@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(lastBidder.getEmail()));

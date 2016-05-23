@@ -144,7 +144,6 @@ public class ProductService {
 
     public void updateProductWhenNotSold(Long id) {
         ProductModel product = productRepository.getOne(id);
-        //soldProduct.setIsSold("yes");
         MailHandler mailHandler = new MailHandler();
         UserModel owner = userRepository.getOne(product.getOwner());
         mailHandler.sendSellerNotificationProductNotSold(owner, product);
@@ -202,19 +201,27 @@ public class ProductService {
         for(ProductModel product : outgoingProducts) {
             if(product.getListOfBids().isEmpty()) {
                 // produkt utan bud --> Hantera
-                productIsSold = false;
                 updateProductWhenNotSold(product.getId());
-                addProductToHistoryDatabase(product, productIsSold);
+                System.out.println("produkthoran owner id = " +product.getOwner());
+                UserModel user = new UserModel();
+
+                addProductToHistoryDatabase(product, false);
             } else {
                 // produkt med bud --> Hantera
-                productIsSold = true;
                 updateProductWhenSold(product.getId());  // Sätter produkten till såld och skickar ut mail till winnaren/förlorarna
-                moveSoldProductToHistory(product, productIsSold);
+                //moveSoldProductToHistory(product, productIsSold);
+
+
             }
         }
     }
 
+    // utan bud klar, funkar
+    // med bud klart, funkar?
+    // köp nu ej klart
+
     public void addProductToHistoryDatabase(ProductModel productModel, boolean productIsSold) {
+        System.out.println("inne i funktionen i history service");
         HistoryModel historyModel = new HistoryModel();
         historyModel.setProdutID(productModel.getId());
         historyModel.setCategory(productModel.getCategory());
@@ -230,19 +237,20 @@ public class ProductService {
             historyModel.setBuyerUsername(bidder.getUserName());
             historyRepository.saveAndFlush(historyModel);
         } else {
-            historyModel.setSoldFor(0);
-            historyModel.setBuyerUsername(null);
+            // buyerUsername default "no buyer";
+            // soldFor är by default 0
             historyRepository.saveAndFlush(historyModel);
             productRepository.delete(productModel);
         }
     }
 
-    private void moveSoldProductToHistory(ProductModel productModel, boolean productIsSold) {
-        addProductToHistoryDatabase(productModel, productIsSold);
+
+    public void moveConfirmedProductToHistory(ProductModel productModel) {
+        addProductToHistoryDatabase(productModel, true);
         removeProductFromProductDatabase(productModel);
     }
 
-    public void removeProductFromProductDatabase(ProductModel productModel) {
+    private void removeProductFromProductDatabase(ProductModel productModel) {
         List<BidModel> bidsOnProduct = bidRepository.findBidsByCurrentProduct(productModel);
         for(BidModel bid : bidsOnProduct) {
             bidRepository.delete(bid);

@@ -19,14 +19,14 @@
             <!--MENUBAR-->
             <ul id="menubar" class="nav navbar-nav">
                 <li><a class="menuTxt" href="index.html">Hem</a></li>
-                <li><a class="menuTxt" id="lnkAddProduct" href="addProduct.html">Skapa Auktion</a></li>
+                <li><a class="menuTxt" id="lnkAbout" href="about.html">Om oss</a></li>
+                <li><a class="menuTxt" id="lnkAddProduct" href="addProduct.html">Skapa auktion</a></li>
                 <li><a class="menuTxt" id="lnkProfile" href="#">Profil</a></li>
-                <li><a class="menuTxt" id="lnkLogOut" href="#">Logga ut</a></li>
-                <li><a class="menuTxt" id="lnkAbout" href="about.html">Om Oss</a></li>
                 <li><a class="menuTxt" id="lnkRegUser" href="addUser.html">Registrera</a></li>
+                <li><a class="menuTxt" id="lnkLogOut" href="#">Logga ut</a></li>
 
                 <li class="dropdown">
-                    <a id="lnkLogIn" class="dropdown-toggle" data-toggle="dropdown" href="#">Logga in<span class="caret"></span></a>
+                    <a id="lnkLogIn" class="dropdown-toggle menuTxt" data-toggle="dropdown" href="#">Logga in<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <form>
                             <p>Användarnamn</p>
@@ -52,7 +52,7 @@
                             <img id="productImage" class="col-sm-12">
                         </div>
                     </div>
-                    <div class="col-sm-8">
+                    <div id="productDetTxt" class="col-sm-8">
                         <p id="productTextDetails"></p>
                         <p id="ownerDetails"></p>
                         <p id="sellerRatingStar"></p>
@@ -62,12 +62,14 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <a href="#"><p id="buyNowPriceDetails"></p></a>
+                    <a class="pdButton" href="#"><p id="buyNowPriceDetails"></p></a>
                     <input type="number" id="addBidDetails" required>
-                    <a href="#"><p id="lnkAddBid"></p></a>
+                    <a class="pdButton" href="#"><p id="lnkAddBid"></p></a>
                     <p id="highestBidDetails"></p>
-                    <p id="startPriceDetails"></p>
-                    <p id="endDateDetails"></p>
+                    <div id="productInfoDiv">
+                        <p id="startPriceDetails"></p>
+                        <p id="endDateDetails"></p>
+                    </div>
                 </div>
             </div>
         </div>

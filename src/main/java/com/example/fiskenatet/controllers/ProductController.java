@@ -116,12 +116,17 @@ public class ProductController {
 
     // kör när klockan passerat 16:00 och auktionen stänger för dagen
     @CrossOrigin
-    @RequestMapping(value = "/products/endofday", method = RequestMethod.PUT)
+    @RequestMapping(value = "/products/endofday", method = RequestMethod.GET)
     public void auctionDayEnd() {
         productService.auctionDayEnd();
 
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "/product/addtohistory", method = RequestMethod.POST)
+    public void createHistory(@RequestBody ProductModel productModel) {
+        productService.moveConfirmedProductToHistory(productModel);
+    }
 
 }
 

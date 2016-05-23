@@ -371,7 +371,7 @@ $(document).ready(function () {
                 console.log("setBuyerRating error: " + textStatus);
             }
         });
-
+        
     }
     
     function buyerRatingURL(currentProduct) {

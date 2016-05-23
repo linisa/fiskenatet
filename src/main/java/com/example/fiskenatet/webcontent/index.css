@@ -24,6 +24,7 @@ body{
     font-size: large;
 
 }
+
 .navbar-nav li {
     float: none;
     display: inline-block;
@@ -32,6 +33,18 @@ body{
 ul.navbar-nav a:hover{
     color: #3366BB;
     background-color:#FFF5EE;
+}
+
+
+#lnkProfileUserName :hover {
+
+
+}
+#lnkProfileUserName{
+    font-family: Calibri;
+    font-size: 0.8em;
+    margin-right: 0em;
+    margin-left: auto;
 }
 
 
@@ -69,7 +82,6 @@ ul.navbar-nav a:hover{
 }
 #lnkProfileUserName{
     color: white;
-    
 }
 
 #selectCategory{
@@ -116,6 +128,10 @@ ul.navbar-nav a:hover{
 
 /*Product List*/
 
+#productInfoDiv{
+    background-color: #3366BB;
+}
+
 .product{
     background-color: white;
     overflow: hidden;
@@ -128,53 +144,56 @@ ul.navbar-nav a:hover{
 .description{
     text-decoration: none;
     background-color: inherit;
-    color: #258281;
+    color: black;
+}
+.productText{
+    color: black;
 }
 .endDate{
-    background-color: #EB6688;
+    background-color: #3366BB;
     text-align: center;
     width: 100%;
     height: 100%;
-    padding: 10px 10px;
+
     color: #fff;
     display: block;
-    margin-top: 20px;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    margin-left: 1em;
     left: 0;
     bottom: 0;
-    border: 0px solid rgba(0,0,0,0.1);
-    border-radius: 0 0 2px 2px;
-    border-bottom-width: 7px;
+
+
 }
 .highestBid{
-    background-color: #EB6688;
+    background-color: #3366BB;
     text-align: center;
     width: 100%;
     height: 100%;
     padding: 10px 10px;
     color: #fff;
     display: block;
-    margin-top: 20px;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    margin-left: 1em;
     left: 0;
     bottom: 0;
-    border: 0px solid rgba(0,0,0,0.1);
-    border-radius: 0 0 2px 2px;
-    border-bottom-width: 7px;
+
 
 }
 .buyNowPrice{
-    background-color: #69cbff;
+    background-color: #3366BB;
     text-align: center;
     width: 100%;
     height: 100%;
     padding: 10px 10px;
     color: #fff;
     display: block;
-    margin-top: 20px;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    margin-left: 1em;
     left: 0;
     bottom: 0;
-    border: 0px solid rgba(0,0,0,0.1);
-    border-radius: 0 0 2px 2px;
-    border-bottom-width: 7px;
 
 }
 .image{
@@ -214,12 +233,22 @@ ul.navbar-nav a:hover{
 }
 
 
+.productText{
+    font-family: Calibri;
+    font-size: large;
+}
+
 /*addProduct end*/
 
 /*ProductDetails */
 
+
+#productDetTxt{
+    font-family: Calibri;
+    font-size: 1.3em;
+}
 #productTextDetails{
-    font-size: 4em;
+    font-size: 3em;
 
 }
 
@@ -238,7 +267,7 @@ ul.navbar-nav a:hover{
 }
 #endDateDetails{
     margin-top: 1em;
-    background-color: #EB6688;
+    background-color: #3366BB;
     text-align: center;
     width: 100%;
     height: 100%;
@@ -247,9 +276,8 @@ ul.navbar-nav a:hover{
     display: block;
     left: 0;
     bottom: 0;
-    border: 0px solid rgba(0,0,0,0.1);
-    border-radius: 0 0 2px 2px;
-    border-bottom-width: 7px;
+    margin-top: 0em;
+
 }
 
 #addBidDetails{
@@ -260,9 +288,9 @@ ul.navbar-nav a:hover{
     box-shadow: inset 1px 1px;
 }
 
-#lnkAddBid{
+#lnkAddBid {
     margin-top: 1em;
-    background-color: #EB6688;
+    background-color: #00CC00;
     text-align: center;
     width: 100%;
     height: 100%;
@@ -274,10 +302,11 @@ ul.navbar-nav a:hover{
     border: 0px solid rgba(0,0,0,0.1);
     border-radius: 0 0 2px 2px;
     border-bottom-width: 7px;
+
 }
 
 #highestBidDetails{
-    background-color: #EB6688;
+    background-color: #4D4DFF;
     text-align: center;
     width: 100%;
     height: 100%;
@@ -291,8 +320,12 @@ ul.navbar-nav a:hover{
     border-radius: 0 0 2px 2px;
     border-bottom-width: 7px;
 }
+#highestBidDetails:hover{
+    cursor: pointer;
+}
+
 #buyNowPriceDetails{
-    background-color: #69cbff;
+    background-color: #8282E7;
     text-align: center;
     width: 100%;
     height: 100%;
@@ -305,10 +338,11 @@ ul.navbar-nav a:hover{
     border: 0px solid rgba(0,0,0,0.1);
     border-radius: 0 0 2px 2px;
     border-bottom-width: 7px;
+    text-decoration: none;
 }
 
 #startPriceDetails{
-    background-color: #EB6688;
+    background-color: #3366BB;
     text-align: center;
     width: 100%;
     height: 100%;
@@ -316,12 +350,12 @@ ul.navbar-nav a:hover{
     color: #fff;
     display: block;
     margin-top: 20px;
+    margin-bottom: 0em;
     left: 0;
     bottom: 0;
-    border: 0px solid rgba(0,0,0,0.1);
-    border-radius: 0 0 2px 2px;
-    border-bottom-width: 7px;
+
 }
+
 
 /*productDetails end*/
 
@@ -347,6 +381,7 @@ ul.navbar-nav a:hover{
 
 /*edit Product end*/
 /*confirmPurchase*/
+
 #swishOption p{
     display: inline;
 }
@@ -523,9 +558,7 @@ ul.navbar-nav a:hover{
     margin-bottom: 2em;
     margin-top: 2em;
 }
-#tfMobileNumber{
-    margin-bottom: 2em;
-}
+
 /*editUser End*/
 /*User profile Product list*/
 
