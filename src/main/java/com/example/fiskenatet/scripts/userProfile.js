@@ -76,19 +76,21 @@ $(document).ready(function () {
         });
     }
 
-
-
+    $(document).on("click", "#lnkSetProductAsSold", function () {
+        var currentProductID = $(this).data("value");
         getProductById(currentProductID, function (currentProduct) {
             setBuyerRating(currentProduct);
             moveSoldProductToHistory(currentProduct);
-        })
+        });
     });
+
+
     
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
         sessionStorage.removeItem('currentUserName');
         location.href="../webcontent/index.html";
-
+    });
 // MENU BUTTONS & FUNCTIONS END
 
 // USER BUTTONS & FUNCTIONS
@@ -188,6 +190,7 @@ $(document).ready(function () {
 
     $(document).on("click", "#btnDeleteUser", function () {
         checkUserForActiveAuctions();
+
     });
 
     function checkUserForActiveAuctions() {
