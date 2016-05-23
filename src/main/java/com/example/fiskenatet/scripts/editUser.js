@@ -11,6 +11,21 @@ function CheckIfLoggedIn() {
 }
 
 $(document).ready(function(){
+
+    document.getElementById('payPalName').style.display ="none";
+
+    $(document).on("click", "#editUserForm", function(){
+        payMentOption();
+    });
+    function payMentOption() {
+        if(document.getElementById('payWithSwish').checked){
+            document.getElementById('payPalName').style.display ="none";
+        }else if(document.getElementById('payWithPaypal').checked){
+            document.getElementById('payPalName').style.display ="inline-block";
+        }else if(document.getElementById('payWithEither').checked) {
+            document.getElementById('payPalName').style.display = "inline-block";
+        }
+    }
     
     getUser();
 
@@ -63,6 +78,20 @@ $(document).ready(function(){
         document.getElementById("tfUserName").value = currentUser['userName'];
         document.getElementById("tfEmail").value = currentUser['email'];
         document.getElementById("tfMobileNumber").value = currentUser['mobileNumber'];
+        document.getElementById("tfAdress").value = currentUser['address'];
+        document.getElementById("tfUpdatePostCode").value = currentUser['postCode'];
+        if(currentUser.paymentMethod == 1){
+           document.getElementById('payWithSwish').checked = true;
+        }else if(currentUser.paymentMethod == 2){
+            document.getElementById('payWithPaypal').checked = true;
+            document.getElementById('payPalName').style.display ="inline-block";
+            document.getElementById('payPalName').value = currentUser['payPalUserName'];
+        }else if(currentUser.paymentMethod == 3){
+            document.getElementById('payWithEither').checked = true;
+            document.getElementById('payPalName').style.display ="inline-block";
+            document.getElementById('payPalName').value = currentUser['payPalUserName'];
+        }
+
     }
 
     function updateUser() {
@@ -92,14 +121,31 @@ $(document).ready(function(){
 
     function formToJSON() {
         console.log("i form to json");
-
+        var payment;
+        var payPalUsername;
+        if(document.getElementById('payWithSwish').checked){
+            payment = 1;
+            payPalUsername = "-";
+        }else if(document.getElementById('payWithPaypal').checked){
+            document.getElementById('payPalName').style.display ="inline-block";
+            payment = 2;
+            payPalUsername = document.getElementById('payPalName').value;
+        }else if(document.getElementById('payWithEither').checked){
+            document.getElementById('payPalName').style.display ="inline-block";
+            payment = 3;
+            payPalUsername = document.getElementById('payPalName').value;
+        }
         var user = JSON.stringify({
             "firstName": $('#tfFirstName').val(),
             "lastName": $('#tfLastName').val(),
             "userName": $('#tfUserName').val(),
             "password": $('#tfPassword').val(),
             "email": $('#tfEmail').val(),
-            "mobileNumber": $('#tfMobileNumber').val()
+            "mobileNumber": $('#tfMobileNumber').val(),
+            "address": $('#tfAdress').val(),
+            "postCode": $('#tfUpdatePostCode').val(),
+            "paymentMethod": payment,
+            "payPalUserName": payPalUsername
         });
         console.log(user);
         return user;

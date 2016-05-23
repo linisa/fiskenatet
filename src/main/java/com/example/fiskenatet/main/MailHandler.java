@@ -75,7 +75,10 @@ public class MailHandler {
             message.setSubject("Din annons har sålts!");
             message.setText("Grattis " + owner.getFirstName() + "! Din annons '" + soldProduct.getTitle() + "' har sålts för " + highestBid.getAmount() + ":-"
                     + "\n" + "Köparen är: " + winner.getUserName()
-                    + "\n" + "Logga in på din sida för att se mer information."
+                    + "\n" + winner.getFirstName() + " " + winner.getLastName()
+                    + "\n" + winner.getEmail()
+                    + "\n" + winner.getMobileNumber()
+                    + "\n" + winner.getAddress() + " " + winner.getPostCode()
                     + "\n" + "Hälsningar Fiskenätet!");
 
             Transport.send(message);

@@ -531,6 +531,10 @@ ul.navbar-nav a:hover{
 /*UserProfile End*/
 
 /*editUser*/
+#tfUpdatePostCode{
+    margin-bottom: 1em;
+}
+
 #btnUpdateUser{
     margin-bottom: 3em;
     margin-top: 3em;
@@ -543,8 +547,10 @@ ul.navbar-nav a:hover{
     border-right: 2px solid #333333;
     border-bottom: 2px solid #333333;
     border-left: 2px solid #CCCCCC;
+    cursor: pointer;
 
 }
+
 
 #editUserForm{
     margin-left: 2em;
