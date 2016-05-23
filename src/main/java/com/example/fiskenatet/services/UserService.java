@@ -39,6 +39,8 @@ public class UserService {
     // hämta specifik användare med ID
     public UserModel findUser(Long id) {
         UserModel userModel = userRepository.getOne(id);
+        System.out.println("User id = " + id);
+        System.out.println("User model = " +userModel.getFirstName());
         log.info("Called method 'findUser' with ID = " +userModel.getId());
         return userModel;
     }
