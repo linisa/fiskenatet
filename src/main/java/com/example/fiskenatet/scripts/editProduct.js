@@ -13,7 +13,8 @@ $(document).ready(function() {
     var currentProductID = sessionStorage.getItem('productToEdit');
     var currentProduct;
 
-
+    var currentUserName = sessionStorage.getItem('currentUserName');
+    document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
     
     
     getProduct();
@@ -88,4 +89,10 @@ $(document).ready(function() {
         console.log(product);
         return product;
     }
+
+    $(document).on("click", "#lnkLogOut", function () {
+        sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUserName');
+        location.href="../webcontent/index.html";
+    });
 });
