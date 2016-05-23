@@ -1,7 +1,8 @@
 $(document).ready(function () {
 
     var rootURL = 'http://localhost:8091/api';
-
+    var userUserName;
+    var userPassword;
     var currentUserID = sessionStorage.getItem('currentUser');
     var currentProductId = sessionStorage.getItem('currentProductId');
     var currentUserName = sessionStorage.getItem('currentUserName');
@@ -26,8 +27,15 @@ $(document).ready(function () {
         console.log("KLICK LOGIN!");
         userUserName = $('#UserUserName').val();
         userPassword = $('#UserPassword').val();
-        console.log(userUserName);
-        getUserByUserName();
+
+        userUserName = userUserName.replace(/\s+/g, '');
+        userPassword = userPassword.replace(/\s+/g, '');
+
+        if (userUserName == "" || userPassword == "") {
+            alert("Något fält är ej ifyllt");
+        } else {
+            getUserByUserName();
+        }
     });
 
     function getUserByUserName() {
@@ -40,6 +48,7 @@ $(document).ready(function () {
                 logInValidation(data);
             },
             error: function (jgXHR, textStatus, errorThrown) {
+                alert("Användarnamnet hittas inte");
             }
         });
     }
