@@ -1,10 +1,21 @@
+var rootURL = 'http://localhost:8091/api';
+var currentUserID;
+var currentProductId = sessionStorage.getItem('currentProductId');
+var currentUserName;
+var currentUser;
+var currentProduct;
+
+CheckIfLoggedIn();
+function CheckIfLoggedIn() {
+    currentUserID = sessionStorage.getItem("currentUser");
+    currentUserName = sessionStorage.getItem('currentUserName');
+    if(currentUserID == null){
+        location.href="../webcontent/index.html";
+    }
+}
+
 $(document).ready(function () {
-    var rootURL = 'http://localhost:8091/api';
-    var currentUserID = sessionStorage.getItem("currentUser");
-    var currentProductId = sessionStorage.getItem('currentProductId');
-    var currentUserName = sessionStorage.getItem('currentUserName');
-    var currentUser;
-    var currentProduct;
+
 
 
     getUserById(function (currentUser) {
@@ -219,8 +230,61 @@ $(document).ready(function () {
         document.getElementById('upLastName').innerHTML =currentUser.lastName;
         document.getElementById('upEmail').innerHTML =currentUser.email;
         document.getElementById('upMobileNumber').innerHTML =currentUser.mobileNumber;
+        document.getElementById('upAddress').innerHTML = currentUser.address + " " + currentUser.postCode;
+        document.getElementById('upPayment').innerHTML = getPaymentMethod();
         //document.getElementById('upRatingAsSeller').innerHTML =currentUser[''];
         //document.getElementById('upRatingAsBuyer').innerHTML =currentUser[''];
+    }
+    function getPaymentMethod(){
+        var payment;
+        if(currentUser.paymentMethod == 1){
+            payment = "Swish";
+        }else if(currentUser.paymentMethod == 2){
+            payment = "PayPal";
+        }else{
+            payment = "Swish eller Paypal";
+        }
+        return payment;
+    }
+
+    function getCategory(categoryInt) {
+        var category;
+        switch (categoryInt){
+            case "1":
+                category = "Torsk";
+                break;
+            case "2":
+                category = "Makrill";
+                break;
+            case "3":
+                category = "Kolja";
+                break;
+            case "4":
+                category = "Lax";
+                break;
+            case "5":
+                category = "Gråsej";
+                break;
+            case "6":
+                category = "Sill";
+                break;
+            case "7":
+                category = "Vitling";
+                break;
+            case "8":
+                category = "Rödspotta";
+                break;
+            case "9":
+                category = "Skaldjur";
+                break;
+            case "10":
+                category = "Övrigt";
+                break;
+            default:
+                category = "ERROR"
+        }
+
+        return category;
     }
 
     function populateUserProducts(listOfProducts) {
@@ -230,7 +294,9 @@ $(document).ready(function () {
         var smallLimit = 90;
        for(i = 0; i < listOfProducts.length; i++){
            var startDate = new Date(listOfProducts[i].startDate);
+           var endDate = new Date(listOfProducts[i].endDate)
            var isSold = listOfProducts[i].isSold;
+           var productCategory = getCategory(listOfProducts[i].category);
            listOfBids = listOfProducts[i]['listOfBids'];
 
            productString+='<div class="OwnerProductObject"><div class="row"><div class="col-sm-4">';
@@ -240,8 +306,8 @@ $(document).ready(function () {
            productString+='<p class="ownerProductDescription">' + listOfProducts[i].description + '</p>';
            productString+='</div></div><div class="row"><div class="col-sm-6">';
            productString+='<p id="ownerProductStartDate">Datum tillagt: <br>' + startDate.toLocaleString() + '</p>';
-           productString+='<p id="ownerProductEndDate">Slutdatum: <br>' + listOfProducts[i].endDate + '</p>';
-           productString+='<p id="ownerProductCategory">Kategori: <br>' + listOfProducts[i].category + '</p>';
+           productString+='<p id="ownerProductEndDate">Slutdatum: <br>' + endDate.toLocaleString() + '</p>';
+           productString+='<p id="ownerProductCategory">Kategori: <br>' + productCategory+ '</p>';
            productString+='</div><div class="col-sm-6">';
            productString+='<p id="ownerProductTotalBids">Totalt antal bud: <br>' + listOfProducts[i].listOfBids.length + '</p>';
 
@@ -278,4 +344,3 @@ $(document).ready(function () {
         $products.append(productString);
     }
 });
-

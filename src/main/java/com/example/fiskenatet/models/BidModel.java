@@ -25,6 +25,9 @@ public class BidModel implements Serializable {
     @JoinColumn(name = "bidder_id")
     private UserModel bidder;
 
+    private String bidderUserName;
+
+
     private int amount;
 
     @Column (name = "bid_date")
@@ -33,6 +36,15 @@ public class BidModel implements Serializable {
     public BidModel(){
 
     }
+
+    public String getBidderUserName() {
+        return bidderUserName;
+    }
+
+    public void setBidderUserName(String bidderUserName) {
+        this.bidderUserName = bidderUserName;
+    }
+
     public Date getBidDate() {
         return bidDate;
     }

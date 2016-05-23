@@ -16,13 +16,18 @@
 <body>
     <div class="row">
         <div class="col-sm-12">
-            <img id="banner" alt="logga" src="../resources/bannerfishies.jpg">
-            <p id="bannerText">#Fiskenätet</p>
+            <div id="bannerDiv">
+                <p id="bannerText">#Fiskenätet</p>
+                <div id="searchDiv">
+                    <input type="text" id="tfSearch">
+                    <input type="button" id="btnSearch" value="Sök">
+                </div>
+            </div>
 <!--MENUBAR-->
             <ul id="menubar" class="nav navbar-nav">
                 <li class="dropdown">
                     <select id="selectCategory">
-                        <option value="0" selected="selected">Välj Kategori</option>
+                        <option value="0"selected="selected">Välj kategori</option>
                         <option value="1">Torsk</option>
                         <option value="2">Makrill</option>
                         <option value="3">Kolja</option>
@@ -37,26 +42,30 @@
                 </li>
 
 
-                <li><a id="lnkAddProduct" href="addProduct.html">Skapa Auktion</a></li>
+                <li><a class="menuTxt" id="lnkAbout" href="about.html">Om oss</a></li>
+                <li><a class="menuTxt" id="lnkAddProduct" href="addProduct.html">Skapa auktion</a></li>
+                <li><a class="menuTxt" id="lnkProfile" href="userProfile.html">Profil</a></li>
+                <li><a class="menuTxt" id="lnkRegUser" href="addUser.html">Registrera</a></li>
+                <li><a class="menuTxt" id="lnkLogOut" href="#">Logga ut</a></li>
 
-                <li><a id="lnkProfile" href="#">Profil</a></li>
-                <li><a id="lnkLogOut" href="#">Logga ut</a></li>
-                <li><a id="lnkRegUser" href="addUser.html">Registrera</a></li>
-                <li><a id="lnkAbout" href="about.html">Om Oss</a></li>
-                <li class="dropdown">
-                    <a id="lnkLogIn" class="dropdown-toggle" data-toggle="dropdown" href="#">Logga in<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <form>
-                            <p>Användarnamn</p>
-                            <input type="text" id="UserUserName" name="inputUserName" placeholder="Användarnamn" required><br>
-                            <p>Lösenord</p>
-                            <input type="password" id="UserPassword" name="inputPassword" placeholder="Lösenord" required><br>
-                            <input type="button" value="Logga in!" id="btnLogIn">
-                        </form>
-                    </ul>
-                </li>
-                <li><p id="lnkProfileUserName"><p/></li>
-            </ul>
+                    <li class="dropdown">
+                        <a class="menuTxt" id= "lnkLogIn" class="dropdown-toggle" data-toggle="dropdown" href="#">Logga in<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <form>
+                                <p class="menuTxt">Användarnamn</p>
+                                <input type="text"id="UserUserName" name="inputUserName" placeholder="Användarnamn" required><br>
+                                <p class="menuTxt">Lösenord</p>
+                                <input type="password"id="UserPassword" name="inputPassword" placeholder="Lösenord" required><br>
+                                <input type="button" value="Logga in!" id="btnLogIn">
+                            </form>
+                        </ul>
+                    </li>
+                    <li><p id="lnkProfileUserName"><p/></li>
+                </ul>
+
+
+
+
             <!--MENUBAR END-->
         </div>
     </div>

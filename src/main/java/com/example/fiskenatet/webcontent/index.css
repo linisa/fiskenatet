@@ -4,9 +4,7 @@
 body{
     width: 100%;
     overflow-x: hidden;
-    background-color: white;
-
-
+    background-color:#FFF5EE;
 
 }
 
@@ -20,44 +18,94 @@ body{
 }
 
 .navbar-nav {
-    background-color: white;
+    background-color: #3366BB;
     width: 100%;
     text-align: center;
+
+    font-size: large;
+
 }
+
 .navbar-nav li {
-      float: none;
-      display: inline-block;
+    float: none;
+    display: inline-block;
+
   }
+ul.navbar-nav a:hover{
+    color: #3366BB;
+    background-color:#FFF5EE;
+
+}
 
 #lnkProfileUserName :hover {
 
+
+}
+#lnkProfileUserName{
+    font-family: Calibri;
+    font-size: 0.8em;
+    margin-right: 0em;
+    margin-left: auto;
 }
 
-#banner{
-    width: 100%;
+#bannerDiv{
     position: relative;
-}
-#bannerText{
-    position: absolute;
-    color: white;
-    top: 0.1em;
-    left: 1em;
-    font-size: 6em;
-    font-weight: bold;
+    background-image: url("../resources/bannerfishies.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 20vw;
 }
 
-#wrongPassword{
-    color: red;
+#bannerText{
+    padding-left: 5vw;
+    font-size: 10vw;
+    color: white;
 }
-#wrongUserName{
-    color: red;
+#searchDiv{
+    position: absolute;
+    bottom: 1vw;
+    margin-left: 30vw;
+}
+
+#tfSearch{
+    color: black;
+    width: 40vw;
+}
+#btnSearch{
+    color: black;
 }
 
 .heading{
     text-align: center;
     margin-top: 0.5em;
 }
+#lnkProfileUserName{
+    color: white;
 
+
+
+    
+}
+
+#selectCategory{
+    border:none;
+    background-color: #3366BB;
+    color: white;
+}
+
+.menuTxt{
+    color: white;
+}
+.dropdown-menu{
+    background-color: #3366BB;
+}
+#userusername{
+    background-color: #3366BB;
+}
+#userpassword{
+    background-color: #3366BB;
+}
 /*menu end*/
 /*Reg User*/
 
@@ -71,8 +119,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -84,10 +132,14 @@ body{
 
 /*Product List*/
 
+#productInfoDiv{
+    background-color: #3366BB;
+}
+
 .product{
     background-color: white;
     overflow: hidden;
-    border: solid;
+    border: double;
     margin: 0.5em;
     padding: 0.5em;
     border-color: #3366BB;
@@ -96,53 +148,56 @@ body{
 .description{
     text-decoration: none;
     background-color: inherit;
-    color: #258281;
+    color: black;
+}
+.productText{
+    color: black;
 }
 .endDate{
-    background-color: #EB6688;
+    background-color: #3366BB;
     text-align: center;
     width: 100%;
     height: 100%;
-    padding: 10px 10px;
+
     color: #fff;
     display: block;
-    margin-top: 20px;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    margin-left: 1em;
     left: 0;
     bottom: 0;
-    border: 0px solid rgba(0,0,0,0.1);
-    border-radius: 0 0 2px 2px;
-    border-bottom-width: 7px;
+
+
 }
 .highestBid{
-    background-color: #EB6688;
+    background-color: #3366BB;
     text-align: center;
     width: 100%;
     height: 100%;
     padding: 10px 10px;
     color: #fff;
     display: block;
-    margin-top: 20px;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    margin-left: 1em;
     left: 0;
     bottom: 0;
-    border: 0px solid rgba(0,0,0,0.1);
-    border-radius: 0 0 2px 2px;
-    border-bottom-width: 7px;
+
 
 }
 .buyNowPrice{
-    background-color: #69cbff;
+    background-color: #3366BB;
     text-align: center;
     width: 100%;
     height: 100%;
     padding: 10px 10px;
     color: #fff;
     display: block;
-    margin-top: 20px;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    margin-left: 1em;
     left: 0;
     bottom: 0;
-    border: 0px solid rgba(0,0,0,0.1);
-    border-radius: 0 0 2px 2px;
-    border-bottom-width: 7px;
 
 }
 .image{
@@ -161,13 +216,18 @@ body{
 
 }
 
+#selectImage{
+    border:none;
+    background-color: #3366BB;
+    color: white;
+}
 #btnAddProduct{
     margin-bottom: 3em;
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -177,12 +237,22 @@ body{
 }
 
 
+.productText{
+    font-family: Calibri;
+    font-size: large;
+}
+
 /*addProduct end*/
 
 /*ProductDetails */
 
+
+#productDetTxt{
+    font-family: Calibri;
+    font-size: 1.3em;
+}
 #productTextDetails{
-    font-size: 4em;
+    font-size: 3em;
 
 }
 
@@ -201,7 +271,7 @@ body{
 }
 #endDateDetails{
     margin-top: 1em;
-    background-color: #EB6688;
+    background-color: #3366BB;
     text-align: center;
     width: 100%;
     height: 100%;
@@ -210,9 +280,8 @@ body{
     display: block;
     left: 0;
     bottom: 0;
-    border: 0px solid rgba(0,0,0,0.1);
-    border-radius: 0 0 2px 2px;
-    border-bottom-width: 7px;
+    margin-top: 0em;
+
 }
 
 #addBidDetails{
@@ -223,9 +292,9 @@ body{
     box-shadow: inset 1px 1px;
 }
 
-#lnkAddBid{
+#lnkAddBid {
     margin-top: 1em;
-    background-color: #EB6688;
+    background-color: #00CC00;
     text-align: center;
     width: 100%;
     height: 100%;
@@ -237,10 +306,11 @@ body{
     border: 0px solid rgba(0,0,0,0.1);
     border-radius: 0 0 2px 2px;
     border-bottom-width: 7px;
+
 }
 
 #highestBidDetails{
-    background-color: #EB6688;
+    background-color: #4D4DFF;
     text-align: center;
     width: 100%;
     height: 100%;
@@ -254,8 +324,12 @@ body{
     border-radius: 0 0 2px 2px;
     border-bottom-width: 7px;
 }
+#highestBidDetails:hover{
+    cursor: pointer;
+}
+
 #buyNowPriceDetails{
-    background-color: #69cbff;
+    background-color: #8282E7;
     text-align: center;
     width: 100%;
     height: 100%;
@@ -268,10 +342,11 @@ body{
     border: 0px solid rgba(0,0,0,0.1);
     border-radius: 0 0 2px 2px;
     border-bottom-width: 7px;
+    text-decoration: none;
 }
 
 #startPriceDetails{
-    background-color: #EB6688;
+    background-color: #3366BB;
     text-align: center;
     width: 100%;
     height: 100%;
@@ -279,12 +354,12 @@ body{
     color: #fff;
     display: block;
     margin-top: 20px;
+    margin-bottom: 0em;
     left: 0;
     bottom: 0;
-    border: 0px solid rgba(0,0,0,0.1);
-    border-radius: 0 0 2px 2px;
-    border-bottom-width: 7px;
+
 }
+
 
 /*productDetails end*/
 
@@ -299,8 +374,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -310,6 +385,7 @@ body{
 
 /*edit Product end*/
 /*confirmPurchase*/
+
 #swishOption p{
     display: inline;
 }
@@ -394,8 +470,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -408,8 +484,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -422,8 +498,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -435,8 +511,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -460,8 +536,8 @@ body{
     margin-top: 3em;
     font: bold 11px Arial;
     text-decoration: none;
-    background-color: #EEEEEE;
-    color: #333333;
+    background-color: #3366BB;
+    color: white;
     padding: 3px 8px 3px 8px;
     border-top: 2px solid #CCCCCC;
     border-right: 2px solid #333333;
@@ -475,6 +551,7 @@ body{
     margin-bottom: 2em;
     margin-top: 2em;
 }
+
 /*editUser End*/
 /*User profile Product list*/
 
@@ -482,12 +559,15 @@ body{
     background-color: white;
     padding: 10px;
     margin-top: 20px;
-    border:outset;
+    border:double;
+    border-color: #3366BB;
+    margin-bottom: 3em;
 }
 
 #ownerProduct{
 
 }
+
 #ownerProductImage{
 
 }
@@ -537,7 +617,7 @@ body{
     margin-right: auto;
     padding-left: 3em;
     padding-right: 3em;
-    border-style: solid;
+    border-style: double;
     border-color: #3366BB;
     width: 80%;
     margin-top: 5em;

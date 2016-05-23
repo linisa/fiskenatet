@@ -2,14 +2,24 @@ $(document).ready(function () {
 
     var rootURL = 'http://localhost:8091/api';
 
-    var currentUserId = sessionStorage.getItem('currentUser');
+    var currentUserID = sessionStorage.getItem('currentUser');
     var currentProductId = sessionStorage.getItem('currentProductId');
     var currentUserName = sessionStorage.getItem('currentUserName');
     var owner;
     var listOfBids;
     var currentProduct;
 
-    getProductDetails();
+// MENU BUTTONS & FUNCTIONS
+
+    $(document).on("click", "#lnkProfile", function () {
+        location.href="../webcontent/userProfile.html";
+    });
+
+    $(document).on("click", "#lnkLogOut", function () {
+        sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUserName');
+        location.reload();
+    });
 
 
     $('#btnLogIn').click(function () {
@@ -47,39 +57,60 @@ $(document).ready(function () {
         }
     }
 
-    $(document).on("click", "#lnkProfile", function () {
-        location.href="../webcontent/userProfile.html";
-    });
 
-    $(document).on("click", "#lnkLogOut", function () {
-        sessionStorage.removeItem('currentUser');
-        sessionStorage.removeItem('currentUserName');
-        location.href="../webcontent/index.html";
-    });
+    function checkIfLoggedIn() {
+        if(currentUserID != null){
+            /*användare inloggad*/
+            document.getElementById("lnkAddProduct").style.display = "inline-block";
+            document.getElementById("lnkProfile").style.display = "inline-block";
+            document.getElementById("lnkLogOut").style.display = "inline-block";
+            document.getElementById("lnkRegUser").style.display = "none";
+            document.getElementById("lnkLogIn").style.display = "none";
+            document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
 
-    $(document).on("click", "#buyNowPriceDetails", function () {
+            if(currentUserID == owner.id){
+                document.getElementById("lnkAddBid").style.display = "none";
+                document.getElementById("addBidDetails").style.display = "none";
+            }else{
+                document.getElementById("lnkAddBid").style.display = "inline-block";
+                document.getElementById("addBidDetails").style.display = "inline-block";
+            }
+        }else{
+            document.getElementById("lnkAddProduct").style.display = "none";
+            document.getElementById("lnkProfile").style.display = "none";
+            document.getElementById("lnkLogOut").style.display = "none";
+            document.getElementById("lnkAddBid").style.display = "none";
+            document.getElementById("addBidDetails").style.display = "none";
+            document.getElementById('buyNowPriceDetails').style.display = "none";
+            document.getElementById("lnkRegUser").style.display = "inline-block";
+            document.getElementById("lnkLogIn").style.display = "inline-block";
+        }
+    }
 
-        location.href="../webcontent/confirmPurchase.html"
-    });
-    
-    function setProductAsSold() {
+// MENU BUTTONS & FUNCTIONS END
+
+    getProductDetails();
+    function getProductDetails() {
         $.ajax({
-            type: 'PUT',
+            type: 'GET',
             contentType: 'application/json',
-            url: rootURL + '/products/issold/' + currentProductId,
+            url: rootURL + '/products/' + currentProductId,
             success: function (data, textStatus, jgXHR) {
-                console.log("success");
+                currentProduct = data;
+                getHighestBid();
+                getProductOwner();
+
             },
-            error: function(jgXHR, textStatus, errorThrown) {
-                console.log("editProduct error: " + textStatus);
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("getAllProducts error: " + textStatus);
             }
         });
     }
-    
+
     function getHighestBid() {
         listOfBids = currentProduct['listOfBids'];
         if(listOfBids.length != 0){
-           listOfBids.sort(function (a, b) {
+            listOfBids.sort(function (a, b) {
                 return b.amount - a.amount;
             });
             document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br>" +  listOfBids[0].amount + " kr";
@@ -87,8 +118,101 @@ $(document).ready(function () {
             document.getElementById('highestBidDetails').innerHTML = "Högsta Bud: <br>" +  0 + " kr";
         }
     }
+
+    function getProductOwner() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/users/' + currentProduct.owner,
+            success: function (data, textStatus, jgXHR) {
+                owner = data;
+                checkIfLoggedIn();
+                populateProductDetails();
+
+
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("getAllProducts error: " + textStatus);
+            }
+        });
+    }
+
+    function getCategory() {
+        var category;
+        switch (currentProduct.category){
+            case "1":
+                category = "Torsk";
+                break;
+            case "2":
+                category = "Makrill";
+                break;
+            case "3":
+                category = "Kolja";
+                break;
+            case "4":
+                category = "Lax";
+                break;
+            case "5":
+                category = "Gråsej";
+                break;
+            case "6":
+                category = "Sill";
+                break;
+            case "7":
+                category = "Vitling";
+                break;
+            case "8":
+                category = "Rödspotta";
+                break;
+            case "9":
+                category = "Skaldjur";
+                break;
+            case "10":
+                category = "Övrigt";
+                break;
+            default:
+                category = "ERROR"
+        }
+        
+        return category;
+    }
+
+    function populateProductDetails() {
+        var startDate= new Date(currentProduct.startDate).toLocaleString();
+        var endDate = new Date(currentProduct.endDate).toLocaleString();
+        var productCategory = getCategory();
+        document.getElementById('productImage').src = currentProduct.image;
+        document.getElementById('productTextDetails').innerHTML  = currentProduct.title;
+        document.getElementById('ownerDetails').innerHTML = "Säljs av: " + owner.userName;
+        document.getElementById('startDateDetails').innerHTML = " " + startDate;
+        document.getElementById('categoryDetails').innerHTML = "Kategori: " + productCategory;
+        document.getElementById('descriptionDetails').innerHTML = currentProduct.description;
+        document.getElementById('endDateDetails').innerHTML = "Slutdatum: <br> " + endDate;
+        document.getElementById('lnkAddBid').innerHTML = "Lägg ett bud";
+        document.getElementById('startPriceDetails').innerHTML = "Utropspris: <br> " + currentProduct.startPrice + " kr";
+        document.getElementById('buyNowPriceDetails').innerHTML = "Köp nu: <br> " + currentProduct.buyNowPrice + " kr";
+        if(currentProduct.buyNowPrice == 0||currentUserID == owner.id){
+            document.getElementById('buyNowPriceDetails').style.display = "none";
+        }else if(currentProduct.listOfBids.length !=0){
+            if(currentProduct['listOfBids'][0].amount>(currentProduct.buyNowPrice/2)) {
+                document.getElementById('buyNowPriceDetails').style.display = "none";
+            }else {
+                document.getElementById('buyNowPriceDetails').style.display = "inline-block";
+            }
+        }else{
+            document.getElementById('buyNowPriceDetails').style.display = "inline-block";
+        }
+    }
+
+//Buy Now & Add Bid
+
+    $(document).on("click", "#highestBidDetails", function () {
+        location.href="../webcontent/bidHistory.html"
+    });
     
-    
+    $(document).on("click", "#buyNowPriceDetails", function () {
+        location.href="../webcontent/confirmPurchase.html"
+    });
 
     $('#lnkAddBid').click(function () {
         console.log("klick!");
@@ -106,7 +230,7 @@ $(document).ready(function () {
             alert("För lågt bud");
         }
     });
-    
+
     function addBid(){
         console.log("in addBid");
         $.ajax({
@@ -130,94 +254,13 @@ $(document).ready(function () {
         var date = new Date();
         var product = JSON.stringify({
             "currentProduct": {'id' : currentProductId},
-            "bidder": {'id' : currentUserId},
+            "bidder": {'id' : currentUserID},
+            "bidderUserName": currentUserName,
             "amount": $('#addBidDetails').val(),
             "bidDate": date
         });
         return product;
     }
-    
-    function checkIfLoggedIn() {
-        if(sessionStorage.getItem('currentUser') != null){
-            /*användare inloggad*/
-            document.getElementById("lnkAddProduct").style.display = "inline-block";
-            document.getElementById("lnkProfile").style.display = "inline-block";
-            document.getElementById("lnkLogOut").style.display = "inline-block";
-            document.getElementById("lnkRegUser").style.display = "none";
-            document.getElementById("lnkLogIn").style.display = "none";
-            document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
 
-            if(sessionStorage.getItem('currentUser') == owner.id){
-                document.getElementById("lnkAddBid").style.display = "none";
-                document.getElementById("addBidDetails").style.display = "none";
-                document.getElementById('buyNowPriceDetails').style.display = "none";
-            }else{
-                document.getElementById("lnkAddBid").style.display = "inline-block";
-                document.getElementById("addBidDetails").style.display = "inline-block";
-                if(listOfBids[0].amount>(currentProduct.buyNowPrice/2)){
-                    document.getElementById('buyNowPriceDetails').style.display = "none";
-                }else{
-                    document.getElementById('buyNowPriceDetails').style.display = "inline-block";
-                }
-            }
-
-        }else{
-            document.getElementById("lnkAddProduct").style.display = "none";
-            document.getElementById("lnkProfile").style.display = "none";
-            document.getElementById("lnkLogOut").style.display = "none";
-            document.getElementById("lnkAddBid").style.display = "none";
-            document.getElementById("addBidDetails").style.display = "none";
-            document.getElementById('buyNowPriceDetails').style.display = "none";
-            document.getElementById("lnkRegUser").style.display = "inline-block";
-            document.getElementById("lnkLogIn").style.display = "inline-block";
-        }
-    }
-    
-    function getProductDetails() {
-        $.ajax({
-            type: 'GET',
-            contentType: 'application/json',
-            url: rootURL + '/products/' + currentProductId,
-            success: function (data, textStatus, jgXHR) {
-                currentProduct = data;
-                getProductOwner();
-                getHighestBid();
-            },
-            error: function (jgXHR, textStatus, errorThrown) {
-                console.log("getAllProducts error: " + textStatus);
-            }
-        });
-    }
-
-    function getProductOwner() {
-        $.ajax({
-            type: 'GET',
-            contentType: 'application/json',
-            url: rootURL + '/users/' + currentProduct.owner,
-            success: function (data, textStatus, jgXHR) {
-                owner = data;
-                populateProductDetails();
-                checkIfLoggedIn();
-            },
-            error: function (jgXHR, textStatus, errorThrown) {
-                console.log("getAllProducts error: " + textStatus);
-            }
-        });
-    }
-
-    function populateProductDetails() {
-        var startDate= new Date(currentProduct.startDate).toLocaleString();
-        var endDate = new Date(currentProduct.endDate).toLocaleString();
-        
-        document.getElementById('productImage').src = currentProduct.image;
-        document.getElementById('productTextDetails').innerHTML  = currentProduct.title;
-        document.getElementById('ownerDetails').innerHTML = "Säljs av: " + owner.userName;
-        document.getElementById('startDateDetails').innerHTML = " " + startDate;
-        document.getElementById('categoryDetails').innerHTML = "Kategori: " + currentProduct.category;
-        document.getElementById('descriptionDetails').innerHTML = currentProduct.description;
-        document.getElementById('endDateDetails').innerHTML = "Slutdatum: <br> " + endDate;
-        document.getElementById('lnkAddBid').innerHTML = "Lägg ett bud";
-        document.getElementById('startPriceDetails').innerHTML = "Utropspris: <br> " + currentProduct.startPrice + " kr";
-        document.getElementById('buyNowPriceDetails').innerHTML = "Köp nu: <br> " + currentProduct.buyNowPrice + " kr";
-    }
+//Buy Now & Add Bid END
 });

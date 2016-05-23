@@ -12,15 +12,16 @@
     <link rel ="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="row">
-        <div class="col-sm-12">
-            <img id="banner" alt="logga" src="../resources/bannerfishies.jpg">
+<div class="row">
+    <div class="col-sm-12">
+        <div id="bannerDiv">
             <p id="bannerText">#Fiskenätet</p>
+        </div>
             <!--MENUBAR-->
             <ul id="menubar" class="nav navbar-nav">
                 <li class="dropdown">
                     <select id="selectCategory">
-                        <option value="0" selected="selected">Välj Kategori</option>
+                        <option value="0" selected="selected">Välj kategori</option>
                         <option value="1">Torsk</option>
                         <option value="2">Makrill</option>
                         <option value="3">Kolja</option>
@@ -33,9 +34,13 @@
                         <option value="10">Övrigt</option>
                     </select>
                 </li>
-                <li><a href="index.html">Hem</a></li>
-                <li><a id="lnkAddProduct" href="addProduct.html">Skapa Auktion</a></li>
-                <li><a id="lnkLogOut" href="#">Logga ut</a></li>
+
+
+                <li><a class="menuTxt" href="index.html">Hem</a></li>
+                <li><a class="menuTxt" id="lnkAbout" href="about.html">Om oss</a></li>
+                <li><a class="menuTxt" id="lnkAddProduct" href="addProduct.html">Skapa auktion</a></li>
+                <li><a class="menuTxt" id="lnkLogOut" href="#">Logga ut</a></li>
+
                 <li><p id="lnkProfileUserName"><p/></li>
             </ul>
             <!--MENUBAR END-->
@@ -69,6 +74,18 @@
                                 <tr>
                                     <td>Mobilnummer: </td>
                                     <td id="upMobileNumber"></td>
+                                </tr>
+                                <tr>
+                                    <td>Adress: </td>
+                                    <td id="upAddress"></td>
+                                </tr>
+                                <tr>
+                                    <td>Betalning: </td>
+                                    <td id="upPayment"></td>
+                                </tr>
+                                <tr>
+                                    <td>Postnummer: </td>
+                                    <td id="upPostCode"></td>
                                 </tr>
                                 <tr>
                                     <td>Säljarbetyg: </td>

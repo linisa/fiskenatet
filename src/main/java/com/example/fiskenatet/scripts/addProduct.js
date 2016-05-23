@@ -1,24 +1,30 @@
+var rootURL ='http://localhost:8091/api';
+var sellerid;
+var currentUserName;
+
+CheckIfLoggedIn();
+function CheckIfLoggedIn() {
+    sellerid = sessionStorage.getItem("currentUser");
+    currentUserName = sessionStorage.getItem('currentUserName');
+    if(sellerid == null){
+        location.href="../webcontent/index.html";
+    }
+}
 
 $(document).ready(function () {
-    var rootURL ='http://localhost:8091/api';
-    var sellerid = sessionStorage.getItem("currentUser");
-    var currentUserName = sessionStorage.getItem('currentUserName');
 
-    checkIfLoggedIn();
+    
+    imageOptions();
 
-    function checkIfLoggedIn() {
-        if(sessionStorage.getItem('currentUser') != null){
-            /*användare inloggad*/
 
+    setUp();
+
+
+    function setUp() {
             document.getElementById("lnkProfile").style.display = "inline-block";
             document.getElementById("lnkLogOut").style.display = "inline-block";
             document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
 
-        }else{
-            document.getElementById("lnkProfile").style.display = "none";
-            document.getElementById("lnkLogOut").style.display = "none";
-
-        }
     }
 
     $(document).on("click", "#lnkProfile", function () {
@@ -26,6 +32,20 @@ $(document).ready(function () {
     });
 
 
+    $(document).on("click", "#imageDiv", function () {
+        imageOptions();
+    });
+
+    function imageOptions() {
+
+        if(document.getElementById('imageOptionUrl').checked){
+            document.getElementById("txtImgUrl").style.display = "inline-block";
+            document.getElementById("selectImage").style.display = "none";
+        }else if(document.getElementById('imgOptionSelect').checked){
+            document.getElementById("txtImgUrl").style.display = "none";
+            document.getElementById("selectImage").style.display = "inline-block";
+        }
+    }
 
     $('#btnAddProduct').click(function () {
         console.log("klick!");
@@ -71,6 +91,8 @@ $(document).ready(function () {
         console.log("i form to json");
         var startDate = new Date();
         var endDate = new Date();
+        var image;
+
 
         /*
         * Sätter sluttiden för auktionen till 16:00 samma dag om nya produkten läggs till före kl15:00.
@@ -87,12 +109,20 @@ $(document).ready(function () {
             endDate.setMinutes(0);
             endDate.setSeconds(0);
         }
+
+
+        if(document.getElementById('imageOptionUrl').checked){
+            image = document.getElementById("txtImgUrl").value;
+        }else{
+            image = $("#selectImage option:selected").val();
+        }
+
         console.log("startdate: " + startDate.toLocaleString() + " enddate: " + endDate.toLocaleString());
         var product = JSON.stringify({
 
             "category" : $( "#selectCategory option:selected" ).val(),
             "title": $('#txtProductTitle').val(),
-            "image": $('#txtProductImage').val(),
+            "image": image,
             "description": $('#txtDescription').val(),
             "startPrice": $('#txtStartPrice').val(),
             "buyNowPrice": $('#txtBuyNow').val(),

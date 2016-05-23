@@ -30,7 +30,7 @@ public class ProductModel implements Serializable{
     private int buyNowPrice;
 
     @Column(name = "start_price")
-    private int startPrice;
+    private int startPrice = 0;
 
     @Lob
     @Column(name = "description")

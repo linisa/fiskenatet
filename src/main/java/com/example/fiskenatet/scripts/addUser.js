@@ -1,6 +1,20 @@
 $(document).ready(function () {
     var rootURL ='http://localhost:8091/api';
 
+    document.getElementById('payPalName').style.display ="none";
+
+    $(document).on("click", "#regForm", function(){
+        payMentOption();
+    });
+    function payMentOption() {
+        if(document.getElementById('payWithSwish').checked){
+            document.getElementById('payPalName').style.display ="none";
+        }else if(document.getElementById('payWithPaypal').checked){
+            document.getElementById('payPalName').style.display ="inline-block";
+        }else if(document.getElementById('payWithEither').checked) {
+            document.getElementById('payPalName').style.display = "inline-block";
+        }
+    }
 
     $('#btnAddUser').click(function () {
         console.log("klick!");
@@ -56,17 +70,35 @@ $(document).ready(function () {
     }
     function formToJSON() {
         console.log("i form to json");
-        var product = JSON.stringify({
+        var payment;
+        var payPalUsername;
+        if(document.getElementById('payWithSwish').checked){
+            payment = 1;
+            payPalUsername = "ingen paypal tack";
+        }else if(document.getElementById('payWithPaypal').checked){
+            document.getElementById('payPalName').style.display ="inline-block";
+            payment = 2;
+            payPalUsername = document.getElementById('payPalName').value;
+        }else if(document.getElementById('payWithEither').checked){
+            document.getElementById('payPalName').style.display ="inline-block";
+            payment = 3;
+            payPalUsername = document.getElementById('payPalName').value;
+        }
+        var user = JSON.stringify({
             "firstName": $('#tfFirstName').val(),
             "lastName": $('#tfLastName').val(),
             "userName": $('#tfUserName').val(),
             "password": $('#tfPassword').val(),
             "email": $('#tfEmail').val(),
-            "mobileNumber": $('#tfMobileNumber').val()
+            "mobileNumber": $('#tfMobileNumber').val(),
+            "address": $('#tfAdress').val(),
+            "postCode": $('#tfPostCode').val(),
+            "paymentMethod": payment,
+            "payPalUserName": payPalUsername
             /*"startDate": startDate*/
         });
-        console.log("i f2j: " + product);
-        return product;
+        console.log("i f2j: " + user);
+        return user;
     }
 
     function moveMe() {

@@ -24,11 +24,10 @@ public class HistoryService {
     HistoryRepository historyRepository;
 
     @Autowired
+
     ProductRepository productRepository;
     @Autowired
     UserRepository userRepository;
-
-
 
     Logger log = Logger.getLogger(Application.class.getName());
 
@@ -43,6 +42,18 @@ public class HistoryService {
         List<HistoryModel> historyList = historyRepository.findHistoryByOwner(ownerId);
         log.info("Called method 'getHistoryByOwner' that returned a list of " + historyList.size() + " products from history for owner with ID: " + ownerId);
         return historyList;
+    }
+    public List<HistoryModel> getHistoryByBuyer(String username){
+        List<HistoryModel> historyList = historyRepository.findHistoryByBuyerUsername(username);
+        log.info("Called method 'getHistoryByBuyer' that returned a list of " + historyList.size() + " products from history for owner with username: " + username);
+        return historyList;
+    }
+
+
+    public void runMe() {
+        HistoryModel user = historyRepository.findOne(1L);
+        UserModel model = userRepository.findOne(user.getOwner());
+        System.out.println("User first name = " +model.getFirstName());
     }
 
 

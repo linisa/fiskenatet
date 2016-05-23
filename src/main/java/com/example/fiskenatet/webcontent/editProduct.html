@@ -9,14 +9,15 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-
 <div class="row">
     <div class="col-sm-12">
-        <img id="banner" alt="logga" src="../resources/bannerfishies.jpg">
-        <p id="bannerText">#Fiskenätet</p>
+        <div id="bannerDiv">
+            <p id="bannerText">#Fiskenätet</p>
+        </div>
         <!--MENUBAR-->
         <ul id="menubar" class="nav navbar-nav">
-            <li><a href="index.html">Hem</a></li>
+            <li><a class="menuTxt" href="index.html">Hem</a></li>
+            <li><p class="menuTxt" id="lnkProfileUserName"><p/></li>
         </ul>
         <!--MENUBAR END-->
     </div>
@@ -26,7 +27,7 @@
 <form id="editProductForm">
     <p class="formTexts">Kategori</p>
     <select id="selectCategory">
-        <option value="0" selected="selected">Välj Kategori</option>
+        <option value="0" selected="selected">Välj kategori</option>
         <option value="1">Torsk</option>
         <option value="2">Makrill</option>
         <option value="3">Kolja</option>

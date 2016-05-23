@@ -13,14 +13,15 @@
 <body>
 <div class="row">
     <div class="col-sm-12">
-        <img id="banner" alt="logga" src="../resources/bannerfishies.jpg">
-        <p id="bannerText">#Fiskenätet</p>
+        <div id="bannerDiv">
+            <p id="bannerText">#Fiskenätet</p>
+        </div>
         <!--MENUBAR-->
         <ul id="menubar" class="nav navbar-nav">
-            <li><a href="index.html">Hem</a></li>
-            <li><a id="lnkProfile" href="#">Profil</a></li>
-            <li><a id="lnkLogOut" href="#">Logga ut</a></li>
-            <li><p id="lnkProfileUserName"><p/></li>
+            <li><a class="menuTxt" href="index.html">Hem</a></li>
+            <li><a class="menuTxt" id="lnkProfile" href="#">Profil</a></li>
+            <li><a class="menuTxt" id="lnkLogOut" href="#">Logga ut</a></li>
+            <li><p class="menuTxt" id="lnkProfileUserName"><p/></li>
         </ul>
         <!--MENUBAR END-->
     </div>
@@ -29,7 +30,7 @@
     <form id="addProductForm">
         <p class="formTexts">Kategori</p>
         <select id="selectCategory">
-            <option value="0" selected="selected">Välj Kategori</option>
+            <option value="0" selected="selected">Välj kategori</option>
             <option value="1">Torsk</option>
             <option value="2">Makrill</option>
             <option value="3">Kolja</option>
@@ -43,12 +44,28 @@
         </select><br>
         <p class="formTexts">Produkttitel</p>
         <input type="text" placeholder="Produkttitel" id="txtProductTitle">
-        <p class="formTexts">Bild</p>
-        <from>
-        <input type="radio" name="ImageOption" value="ImageOptionUrl">
-        <input type="text" placeholder="Bild URL" id="txtProductImage">
+        <div id="imageDiv">
 
-        </from>
+            <p class="formTexts">Bild</p><br>
+            <input type="radio" name="ImageOption" id="imageOptionUrl" checked >Ladda upp en egen bild!<br>
+            <input type="radio" name="ImageOption" id="imgOptionSelect">Välj en bild från vårat utbud!<br>
+
+            <input type="text" placeholder="Bild URL" id="txtImgUrl">
+
+            <select id="selectImage">
+                <option value="../resources/torsk.gif">Torsk</option>
+                <option value="../resources/Makrill.gif">Makrill</option>
+                <option value="../resources/Kolja.png">Kolja</option>
+                <option value="../resources/lax.jpg">Lax</option>
+                <option value="../resources/Gråsej.png">Gråsej</option>
+                <option value="../resources/sill.jpg">Sill</option>
+                <option value="../resources/vitling.png">Vitling</option>
+                <option value="../resources/rodspatta.jpg">Rödspotta</option>
+                <option value="../resources/skaldjur.jpg">Skaldjur</option>
+                <option value="../resources/ovrigt.jpg">Övrigt</option>
+            </select>
+
+        </div>
         <p class="formTexts">Beskrivning</p>
         <input type="text" placeholder="Beskrivning" id="txtDescription">
         <p class="formTexts">Startpris</p>

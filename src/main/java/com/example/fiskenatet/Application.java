@@ -35,12 +35,7 @@ public class Application {
 		}
 		*/
 
-		//Timer timer = new Timer();
-		// Kör TimerHandler var tionde sekund
-		//timer.schedule(new TimerHandler(), 0, 10000);
 
-		// "köp nu" sätter kopplar till fel köpare. bidder_id blir fel
-		// alert meddelande när man skapat en ny användare. "användare skapade"
 
 	}
 }

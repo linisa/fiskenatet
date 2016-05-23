@@ -59,12 +59,6 @@ public class UserControllerTest {
         assertThat(userController.getAllUsers()).isEqualTo(responsMessage);
     }
 
-   /* @Test
-    public void testUpdateUser() {
-        userController.updateUser(USER_ID_2, user1);
-        verify(userService).updateUserInDatabase(USER_ID_2, user1);
-    }*/
-
     @Test
     public void testGetUser(){
         given(userService.findUser(USER_ID_1)).willReturn(user1);
@@ -75,13 +69,7 @@ public class UserControllerTest {
     public void testDeleteUser() {
         userController.deleteUser(USER_ID_1);
         verify(userService).deleteUserInDatabase(USER_ID_1);
-
     }
-    /*@Test
-    public void testAddUser(){
-        userController.createUser(user1);
-        verify(userService).saveUser(user1);
-    }*/
     @Test
     public void testGetUserByUsername(){
         given(userService.findUserByUserName(USER_NAME_1)).willReturn(user1);

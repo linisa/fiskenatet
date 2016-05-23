@@ -11,33 +11,35 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="row">
-        <div class="col-sm-12">
-            <img id="banner" alt="logga" src="../resources/bannerfishies.jpg">
+<div class="row">
+    <div class="col-sm-12">
+        <div id="bannerDiv">
             <p id="bannerText">#Fiskenätet</p>
+        </div>
             <!--MENUBAR-->
             <ul id="menubar" class="nav navbar-nav">
-                <li><a href="index.html">Hem</a></li>
-                <li><a id="lnkAddProduct" href="addProduct.html">Skapa Auktion</a></li>
-                <li><a id="lnkProfile" href="#">Profil</a></li>
-                <li><a id="lnkLogOut" href="#">Logga ut</a></li>
-                <li><p id="lnkProfileUserName"><p/></li>
-                <li><a id="lnkRegUser" href="addUser.html">Registrera</a></li>
-                <li><a id="lnkAbout" href="about.html">Om Oss</a></li>
+                <li><a class="menuTxt" href="index.html">Hem</a></li>
+                <li><a class="menuTxt" id="lnkAbout" href="about.html">Om oss</a></li>
+                <li><a class="menuTxt" id="lnkAddProduct" href="addProduct.html">Skapa auktion</a></li>
+                <li><a class="menuTxt" id="lnkProfile" href="#">Profil</a></li>
+                <li><a class="menuTxt" id="lnkRegUser" href="addUser.html">Registrera</a></li>
+                <li><a class="menuTxt" id="lnkLogOut" href="#">Logga ut</a></li>
+
+
 
                 <li class="dropdown">
-                    <a id="lnkLogIn" class="dropdown-toggle" data-toggle="dropdown" href="#">Logga in<span class="caret"></span></a>
+                    <a id="lnkLogIn" class="dropdown-toggle menuTxt" data-toggle="dropdown" href="#">Logga in<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <form>
                             <p>Användarnamn</p>
-                            <input type="text" id="UserUserName" name="inputUserName" placeholder="Användarnamn" required><br>
+                            <input type="text" id="UserUserName" name="inputUserName" placeholder="Användarnamn" maxlength="64" required><br>
                             <p>Lösenord</p>
-                            <input type="password" id="UserPassword" name="inputPassword" placeholder="Lösenord" required><br>
+                            <input type="password" id="UserPassword" name="inputPassword" placeholder="Lösenord" maxlength="64" required><br>
                             <input type="button" value="Logga in!" id="btnLogIn">
                         </form>
                     </ul>
                 </li>
-
+                <li><p class="menuTxt" id="lnkProfileUserName"><p/></li>
             </ul>
             <!--MENUBAR END-->
         </div>
@@ -52,7 +54,7 @@
                             <img id="productImage" class="col-sm-12">
                         </div>
                     </div>
-                    <div class="col-sm-8">
+                    <div id="productDetTxt" class="col-sm-8">
                         <p id="productTextDetails"></p>
                         <p id="ownerDetails"></p>
                         <p id="startDateDetails"></p>
@@ -61,12 +63,14 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <a href="#"><p id="buyNowPriceDetails"></p></a>
+                    <a class="pdButton" href="#"><p id="buyNowPriceDetails"></p></a>
                     <input type="number" id="addBidDetails" required>
-                    <a href="#"><p id="lnkAddBid"></p></a>
+                    <a class="pdButton" href="#"><p id="lnkAddBid"></p></a>
                     <p id="highestBidDetails"></p>
-                    <p id="startPriceDetails"></p>
-                    <p id="endDateDetails"></p>
+                    <div id="productInfoDiv">
+                        <p id="startPriceDetails"></p>
+                        <p id="endDateDetails"></p>
+                    </div>
                 </div>
             </div>
         </div>

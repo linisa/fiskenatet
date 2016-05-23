@@ -4,7 +4,9 @@ import com.example.fiskenatet.Application;
 import com.example.fiskenatet.main.MailHandler;
 import com.example.fiskenatet.main.UserRating;
 import com.example.fiskenatet.main.Validation;
+import com.example.fiskenatet.models.HistoryModel;
 import com.example.fiskenatet.models.UserModel;
+import com.example.fiskenatet.repositories.HistoryRepository;
 import com.example.fiskenatet.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private HistoryRepository historyRepository;
 
     private MailHandler mailHandler = new MailHandler();
     private Validation validation = new Validation();
@@ -70,6 +74,9 @@ public class UserService {
         userToUpdate.setEmail(userModel.getEmail());
         userToUpdate.setMobileNumber(userModel.getMobileNumber());
         userToUpdate.setPassword(userModel.getPassword());
+        userToUpdate.setPaymentMethod(userModel.getPaymentMethod());
+        userToUpdate.setAddress(userModel.getAddress());
+        userToUpdate.setPostCode(userModel.getPostCode());
         userRepository.saveAndFlush(userToUpdate);
         log.info("User with ID = " +id+ " has been updated by method 'updateUserInDatabase'");
     }
@@ -112,6 +119,7 @@ public class UserService {
 
     public String validateUserInputWhenUpdating(Long id, UserModel userModel){
         List<UserModel> userList = userRepository.findAll();
+        List<HistoryModel> historyList = historyRepository.findAll();
 
         for(UserModel compareUser : userList) {
             if(compareUser.getId() == id) {
@@ -120,7 +128,7 @@ public class UserService {
                 break;
             }
         }
-        String checkUser = validation.validateUserNameAndEmail(userList, userModel);
+        String checkUser = validation.validateUserNameAndEmail(userList, historyList, userModel);
         if(checkUser.equals("OK")){
             checkUser = validation.controlUserInput(userModel, checkUser);
         }
@@ -131,7 +139,9 @@ public class UserService {
 
     public String validateUserInputWhenCreating(UserModel userModel){
         List<UserModel> userList = userRepository.findAll();
-        String checkUser = validation.validateUserNameAndEmail(userList, userModel);
+        List<HistoryModel> historyList = historyRepository.findAll();
+
+        String checkUser = validation.validateUserNameAndEmail(userList, historyList, userModel);
         if(checkUser.equals("OK")){
             checkUser = validation.controlUserInput(userModel, checkUser);
             if(checkUser.equals("OK")){
