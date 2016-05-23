@@ -21,7 +21,6 @@ body{
     background-color: #3366BB;
     width: 100%;
     text-align: center;
-
     font-size: large;
 
 }
@@ -34,8 +33,8 @@ body{
 ul.navbar-nav a:hover{
     color: #3366BB;
     background-color:#FFF5EE;
-
 }
+
 
 #lnkProfileUserName :hover {
 
@@ -47,6 +46,7 @@ ul.navbar-nav a:hover{
     margin-right: 0em;
     margin-left: auto;
 }
+
 
 #bannerDiv{
     position: relative;
@@ -82,10 +82,6 @@ ul.navbar-nav a:hover{
 }
 #lnkProfileUserName{
     color: white;
-
-
-
-    
 }
 
 #selectCategory{
@@ -133,7 +129,8 @@ ul.navbar-nav a:hover{
 /*Product List*/
 
 #productInfoDiv{
-    background-color: #3366BB;
+
+    border-color: #3366BB;
 }
 
 .product{
@@ -464,6 +461,17 @@ ul.navbar-nav a:hover{
 
 
 /*UserProfile*/
+#sellerRatingStar{
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+    display: inline;
+}
+#buyerRatingStar{
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+    display: inline;
+}
+
 
 #btnEditUser{
     margin-bottom: 3em;
@@ -568,43 +576,6 @@ ul.navbar-nav a:hover{
     border:double;
     border-color: #3366BB;
     margin-bottom: 3em;
-}
-
-#ownerProduct{
-
-}
-
-#ownerProductImage{
-
-}
-
-#ownerProductTitle{
-
-}
-
-#ownerProductDescription{
-
-}
-#ownerProductStartDate{
-
-}
-#ownerProductEndDate{
-
-}
-#ownerProductTotalBids{
-
-}
-#ownerProductHighestBid{
-
-}
-#ownerProductBuyNowPrice{
-
-}
-#btnEditProduct{
-
-}
-#btndeleteProduct{
-
 }
 
 .formTexts{

@@ -189,7 +189,10 @@ $(document).ready(function () {
     function populateProductDetails() {
         var startDate= new Date(currentProduct.startDate).toLocaleString();
         var endDate = new Date(currentProduct.endDate).toLocaleString();
+        checkUserSellerRating();
+
         var productCategory = getCategory();
+
         document.getElementById('productImage').src = currentProduct.image;
         document.getElementById('productTextDetails').innerHTML  = currentProduct.title;
         document.getElementById('ownerDetails').innerHTML = "Säljs av: " + owner.userName;
@@ -210,6 +213,43 @@ $(document).ready(function () {
             }
         }else{
             document.getElementById('buyNowPriceDetails').style.display = "inline-block";
+        }
+    }
+
+    function checkUserSellerRating() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + "/users/getsellerrating/" + currentProduct.owner,
+            success: function (data, textStatus, jgXHR) {
+                populateSellerRating(data);
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("GetBuyerRating error: " + textStatus);
+            }
+        });
+    }
+
+    function populateSellerRating(sellerRating) {
+        switch (sellerRating){
+            case "1":
+//★★★★★★★★★★★★★★★
+                document.getElementById("sellerRatingStar").innerHTML="★";
+                break;
+            case "2":
+                document.getElementById("sellerRatingStar").innerHTML="★★";
+                break;
+            case "3":
+                document.getElementById("sellerRatingStar").innerHTML="★★★";
+                break;
+            case "4":
+                document.getElementById("sellerRatingStar").innerHTML="★★★★";
+                break;
+            case "5":
+                document.getElementById("sellerRatingStar").innerHTML="★★★★★";
+                break;
+            default:
+                document.getElementById("sellerRatingStar").innerHTML="No stars yet!";
         }
     }
 
