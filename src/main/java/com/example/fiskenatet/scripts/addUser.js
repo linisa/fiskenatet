@@ -74,7 +74,7 @@ $(document).ready(function () {
         var payPalUsername;
         if(document.getElementById('payWithSwish').checked){
             payment = 1;
-            payPalUsername = "ingen paypal tack";
+            payPalUsername = "-";
         }else if(document.getElementById('payWithPaypal').checked){
             document.getElementById('payPalName').style.display ="inline-block";
             payment = 2;

@@ -109,12 +109,9 @@ public class Validation {
             checkUser = "Ange ditt postnummer";
         }if(userModel.getPaymentMethod() == 0) {
             checkUser = "Välj ett betalningsalternativ";
-        }if (userModel.getPaymentMethod() == 2 && userModel.getPayPalUserName().equals("")) {
-            checkUser = "Ange ditt Paypal.Me-namn";
-        }if(userModel.getPaymentMethod() == 3 && userModel.getPayPalUserName().equals("")){
+        }if (userModel.getPaymentMethod() > 1 && userModel.getPayPalUserName().equals("")) {
             checkUser = "Ange ditt Paypal.Me-namn";
         }
-
         log.info("Called method 'controlUserInput' that returned string: " + checkUser);
         return checkUser;
     }

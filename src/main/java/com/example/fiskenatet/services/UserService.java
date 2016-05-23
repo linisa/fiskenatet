@@ -77,6 +77,7 @@ public class UserService {
         userToUpdate.setPaymentMethod(userModel.getPaymentMethod());
         userToUpdate.setAddress(userModel.getAddress());
         userToUpdate.setPostCode(userModel.getPostCode());
+        userToUpdate.setPayPalUserName(userModel.getPayPalUserName());
         userRepository.saveAndFlush(userToUpdate);
         log.info("User with ID = " +id+ " has been updated by method 'updateUserInDatabase'");
     }
