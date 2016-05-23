@@ -205,7 +205,9 @@ $(document).ready(function () {
     function populateUserProducts(listOfProducts) {
         document.getElementById('productList').innerHTML = "";
         $products = $('#productList');
+        $finishedAuctions = $('#finishedAuctionsList')
         var productString="";
+        var finishedAuctionString="";
         var smallLimit = 90;
         for(i = 0; i < listOfProducts.length; i++){
             var startDate = new Date(listOfProducts[i].startDate);
@@ -240,22 +242,33 @@ $(document).ready(function () {
             productString+='</div><div class="col-sm-4">';
             productString+='<a id="lnkDeleteProduct"href="#" data-value="'+ listOfProducts[i].id +'">Ta bort annons</a></div>';
             if(isSold == "yes"){
-                productString+='<p id="confirmPurchase" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta köp</p>';
-                productString+='<div id="buyerRatingDiv" class="collapse">';
-                productString+='<fieldset class="rating">';
-                productString+='<legend>Säljarbetyg:</legend>';
-                productString+='<input type="radio" id="star5" name="rating" value="5" /><label for="star5">5 stars</label>';
-                productString+='<input type="radio" id="star4" name="rating" value="4" /><label for="star4">4 stars</label>';
-                productString+='<input type="radio" id="star3" name="rating" value="3" /><label for="star3">3 stars</label>';
-                productString+='<input type="radio" id="star2" name="rating" value="2" /><label for="star2">2 stars</label>';
-                productString+='<input type="radio" id="star1" name="rating" value="1" /><label for="star1">1 star</label>';
-                productString+='</fieldset>';
-                productString+='<div class="col-sm-4"><a id="lnkSetProductAsSold" href="#" data-value="'+ listOfProducts[i].id +'">Bekräfta köp</a></div></div>';
+                finishedAuctionString += '<p id="finishedAuctionName">' + listOfProducts[i].title + '</p>';
+                finishedAuctionString += '<p id="finishedAuctionRating">';
+                finishedAuctionString += '<input type="radio" id="star5" name="rating" value="5" /><label for="star5">5 stars</label>';
+                finishedAuctionString += '<input type="radio" id="star4" name="rating" value="4" /><label for="star4">4 stars</label>';
+                finishedAuctionString += '<input type="radio" id="star3" name="rating" value="3" /><label for="star3">3 stars</label>';
+                finishedAuctionString += '<input type="radio" id="star2" name="rating" value="2" /><label for="star2">2 stars</label>';
+                finishedAuctionString += '<input type="radio" id="star1" name="rating" value="1" /><label for="star1">1 star</label>';
+                finishedAuctionString += '</p>';
+                
+                
+                // productString+='<p id="confirmPurchase" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta köp</p>';
+                // productString+='<div id="buyerRatingDiv" class="collapse">';
+                // productString+='<fieldset class="rating">';
+                // productString+='<legend>Säljarbetyg:</legend>';
+                // productString+='<input type="radio" id="star5" name="rating" value="5" /><label for="star5">5 stars</label>';
+                // productString+='<input type="radio" id="star4" name="rating" value="4" /><label for="star4">4 stars</label>';
+                // productString+='<input type="radio" id="star3" name="rating" value="3" /><label for="star3">3 stars</label>';
+                // productString+='<input type="radio" id="star2" name="rating" value="2" /><label for="star2">2 stars</label>';
+                // productString+='<input type="radio" id="star1" name="rating" value="1" /><label for="star1">1 star</label>';
+                // productString+='</fieldset>';
+                // productString+='<div class="col-sm-4"><a id="lnkSetProductAsSold" href="#" data-value="'+ listOfProducts[i].id +'">Bekräfta köp</a></div></div>';
             }
             productString+='</div></div></div>';
         }
         $products.append(productString);
     }
+    
 
     $(document).on("click", "#lnkEditProduct", function () {
         console.log("click, i editProduct");
