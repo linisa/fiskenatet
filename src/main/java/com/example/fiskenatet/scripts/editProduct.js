@@ -74,12 +74,20 @@ $(document).ready(function() {
         });
     }
 
+
+
     function formToJSON() {
+        var image;
+        if(document.getElementById('imageOptionUrl').checked){
+            image = document.getElementById("txtImgUrl").value;
+        }else{
+            image = $("#selectImage option:selected").val();
+        }
         var product = JSON.stringify({
-            
+
             "category" : $( "#selectCategory option:selected" ).val(),
             "title": $('#tfProductTitle').val(),
-            "image": $('#tfProductImage').val(),
+            "image": image,
             "description": $('#tfDescription').val(),
             "startPrice": $('#tfStartPrice').val(),
             "buyNowPrice": $('#tfBuyNow').val(),

@@ -274,6 +274,7 @@ $(document).ready(function () {
         return category;
     }
 
+
     function populateUserProducts(listOfProducts) {
         document.getElementById('productList').innerHTML = "";
         $products = $('#productList');

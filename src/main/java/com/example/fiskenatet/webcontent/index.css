@@ -21,7 +21,6 @@ body{
     background-color: #3366BB;
     width: 100%;
     text-align: center;
-
     font-size: large;
 
 }
@@ -37,15 +36,15 @@ ul.navbar-nav a:hover{
 
 }
 
-#lnkProfileUserName :hover {
+#lnkProfileUserName:hover {
 
 
 }
 #lnkProfileUserName{
     font-family: Calibri;
     font-size: 0.8em;
-    margin-right: 0em;
-    margin-left: auto;
+    padding-right: 0%;
+
 }
 
 #bannerDiv{
@@ -82,10 +81,6 @@ ul.navbar-nav a:hover{
 }
 #lnkProfileUserName{
     color: white;
-
-
-
-    
 }
 
 #selectCategory{
