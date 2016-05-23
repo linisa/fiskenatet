@@ -64,9 +64,7 @@ $(document).ready(function () {
 
         getProductById(currentProductID, function (currentProduct) {
             setBuyerRating(currentProduct);
-            productToHistoryJSON(currentProduct, function (JSONHistory) {
-                moveSoldProductToHistory(JSONHistory);
-            });
+            moveSoldProductToHistory(currentProduct);
         })
     });
     
@@ -145,20 +143,21 @@ $(document).ready(function () {
     
     function moveSoldProductToHistory(JSONHistory){
         console.log("in moveSoldProductToHistory");
+        console.log(JSONHistory);
         $.ajax({
             type: 'POST',
             contentType:'application/json',
-            url: rootURL + '/history',
-            data: JSONHistory,
+            url: rootURL + '/products/addtohistory/' +JSONHistory.id,
             success: function (data, textStatus, jgXHR) {
                 console.log("GREAT SUCCESS!");
-                deleteProduct(currentProductId);
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("send Error " +textStatus + "  " + errorThrown);
             }
         })
     }
+
+
 
     function productToHistoryJSON(currentProduct, callback) {
         var product = JSON.stringify({

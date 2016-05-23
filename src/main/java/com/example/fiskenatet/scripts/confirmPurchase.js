@@ -1,18 +1,20 @@
 CheckIfLoggedIn();
-
+var rootURL = 'http://localhost:8091/api';
+var currentProductId = sessionStorage.getItem('currentProductId');
+var currentUserName;
+var currentUserID;
+var currentProduct;
+var owner;
 function CheckIfLoggedIn() {
     currentUserID = sessionStorage.getItem("currentUser");
+    currentUserName = sessionStorage.getItem("currentUserName");
     if(currentUserID == null){
         location.href="../webcontent/index.html";
     }
 }
 
 $(document).ready(function () {
-    var rootURL = 'http://localhost:8091/api';
-    var currentProductId = sessionStorage.getItem('currentProductId');
-    var currentUserID;
-    var currentProduct;
-    var owner;
+
 
 
     
@@ -56,6 +58,7 @@ $(document).ready(function () {
         var bidDate = new Date();
         var bid = JSON.stringify({
             "currentProduct": {'id' : currentProductId},
+            "bidderUserName": currentUserName,
             "bidder": {'id' : currentUserID},
             "amount": currentProduct.buyNowPrice,
             "bidDate": bidDate

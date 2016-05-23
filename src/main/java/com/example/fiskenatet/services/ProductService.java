@@ -232,7 +232,14 @@ public class ProductService {
         historyModel.setTitle(productModel.getTitle());
         historyModel.setOwner(userRepository.getOne(productModel.getOwner()));
         if(productIsSold) {
-            historyModel.setSoldFor(productModel.getListOfBids().get(productModel.getListOfBids().size()-1).getAmount());
+            List<BidModel> bids = productModel.getListOfBids();
+            int count = 0;
+            for(BidModel bidLoop : bids) {
+                count++;
+            }
+            count--;
+            int soldFor = bids.get(count).getAmount();
+            historyModel.setSoldFor(soldFor);
             UserModel bidder = userRepository.getOne(productModel.getListOfBids().get(productModel.getListOfBids().size()-1).getBidder());
             historyModel.setBuyerUsername(bidder.getUserName());
             historyRepository.saveAndFlush(historyModel);
@@ -245,7 +252,8 @@ public class ProductService {
     }
 
 
-    public void moveConfirmedProductToHistory(ProductModel productModel) {
+    public void moveConfirmedProductToHistory(Long id) {
+        ProductModel productModel = productRepository.getOne(id);
         addProductToHistoryDatabase(productModel, true);
         removeProductFromProductDatabase(productModel);
     }
