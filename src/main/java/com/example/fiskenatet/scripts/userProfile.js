@@ -3,7 +3,7 @@ var currentUserID;
 var currentProductId = sessionStorage.getItem('currentProductId');
 var currentUserName;
 var currentUser;
-var currentProduct;
+
 
 CheckIfLoggedIn();
 function CheckIfLoggedIn() {
@@ -16,16 +16,39 @@ function CheckIfLoggedIn() {
 
 $(document).ready(function () {
 
-
+// MENU BUTTONS & FUNCTIONS
 
     getUserById(function (currentUser) {
         checkCategory();
         document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
     });
 
+    function getUserById(callback) {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/users/' + currentUserID,
+            success: function (data, textStatus, jgXHR) {
+                currentUser = data;
+                callback(data);
+                populateUserInfo();
+                populateUserProducts(currentUser['listOfProducts']);
+            }
+        });
+    }
+
+    $(document).on("click", "#lnkLogOut", function () {
+        sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUserName');
+        location.href="../webcontent/index.html";
+    });
+
+    $(document).on("click", "#selectCategory", function () {
+        checkCategory();
+    });
 
     function checkCategory() {
-        
+
         var category = document.getElementById("selectCategory");
         var categoryChoice = category.options[category.selectedIndex].value;
         if(categoryChoice == 0){
@@ -36,11 +59,6 @@ $(document).ready(function () {
             listCategory(categoryChoice);
         }
     }
-
-    $(document).on("click", "#selectCategory", function () {
-        checkCategory();
-    });
-
 
     function listCategory(categoryChoice) {
         console.log("I listcategory");
@@ -57,24 +75,187 @@ $(document).ready(function () {
             }
         });
     }
-    
 
-    $(document).on("click", "#lnkSetProductAsSold", function () {
-        var currentProductID = $(this).data("value");
 
-        getProductById(currentProductID, function (currentProduct) {
-            setBuyerRating(currentProduct);
-            productToHistoryJSON(currentProduct, function (JSONHistory) {
-                moveSoldProductToHistory(JSONHistory);
-            });
-        })
+// MENU BUTTONS & FUNCTIONS END
+
+// USER BUTTONS & FUNCTIONS
+
+    function populateUserInfo() {
+        document.getElementById('upUserName').innerHTML =currentUser.userName;
+        document.getElementById('upFirstName').innerHTML =currentUser.firstName;
+        document.getElementById('upLastName').innerHTML =currentUser.lastName;
+        document.getElementById('upEmail').innerHTML =currentUser.email;
+        document.getElementById('upMobileNumber').innerHTML =currentUser.mobileNumber;
+        checkUserSellerRating();
+        checkUserBuyerRating();
+    }
+
+    function checkUserSellerRating() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + "/users/getsellerrating/" + currentUserID,
+            success: function (data, textStatus, jgXHR) {
+                console.log("GetBuyerRating:" + data);
+                populateUserSellerRating(data);
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("GetBuyerRating error: " + textStatus);
+            }
+        });
+    }
+
+    function populateUserSellerRating(sellerRating) {
+        switch (sellerRating){
+            case "1":
+//★★★★★★★★★★★★★★★
+                document.getElementById("sellerRatingStar").innerHTML="★";
+                break;
+            case "2":
+                document.getElementById("sellerRatingStar").innerHTML="★★";
+                break;
+            case "3":
+                document.getElementById("sellerRatingStar").innerHTML="★★★";
+                break;
+            case "4":
+                document.getElementById("sellerRatingStar").innerHTML="★★★★";
+                break;
+            case "5":
+                document.getElementById("sellerRatingStar").innerHTML="★★★★★";
+                break;
+            default:
+                document.getElementById("sellerRatingStar").innerHTML="No stars yet!";
+        }
+    }
+
+
+
+    function checkUserBuyerRating() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + "/users/getbuyerrating/" + currentUserID,
+            success: function (data, textStatus, jgXHR) {
+                console.log("buyerRating:" + data);
+                populateUserBuyerRating(data);
+
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("GetBuyerRating error: " + textStatus);
+            }
+        });
+    }
+
+    function populateUserBuyerRating(buyerRating) {
+        switch (buyerRating){
+            case "1":
+//★★★★★★★★★★★★★★★
+                document.getElementById("buyerRatingStar").innerHTML="★";
+                break;
+            case "2":
+                document.getElementById("buyerRatingStar").innerHTML="★★";
+                break;
+            case "3":
+                document.getElementById("buyerRatingStar").innerHTML="★★★";
+                break;
+            case "4":
+                document.getElementById("buyerRatingStar").innerHTML="★★★★";
+                break;
+            case "5":
+                document.getElementById("buyerRatingStar").innerHTML="★★★★★";
+                break;
+            default:    
+                document.getElementById("sellerRatingStar").innerHTML="No stars yet!";
+                break;
+        }
+    }
+
+
+
+
+    $(document).on("click", "#btnDeleteUser", function () {
+        checkUserForActiveAuctions();
     });
-    
-    $(document).on("click", "#lnkLogOut", function () {
-        sessionStorage.removeItem('currentUser');
-        sessionStorage.removeItem('currentUserName');
-        location.href="../webcontent/index.html";
-    });
+
+    function checkUserForActiveAuctions() {
+        if(currentUser['listOfProducts'].length == 0){
+            deleteUser();
+        }else{
+            alert("Det går inte att ta bort ett konto med aktiva auktioner!");
+        }
+    }
+
+    function deleteUser() {
+        $.ajax({
+            type: 'DELETE',
+            contentType: 'application/json',
+            url: rootURL + '/users/' + currentUserID,
+            success: function (data, textStatus, jgXHR) {
+                sessionStorage.removeItem('currentUser');
+                location.href="../webcontent/index.html";
+            }
+        });
+    }
+
+// USER BUTTONS & FUNCTIONS END
+
+// PRODUCTS BUTTONS & FUNCTIONS
+    //THE HORROR
+    function populateUserProducts(listOfProducts) {
+        document.getElementById('productList').innerHTML = "";
+        $products = $('#productList');
+        var productString="";
+        var smallLimit = 90;
+        for(i = 0; i < listOfProducts.length; i++){
+            var startDate = new Date(listOfProducts[i].startDate);
+            var isSold = listOfProducts[i].isSold;
+            listOfBids = listOfProducts[i]['listOfBids'];
+
+            productString+='<div class="OwnerProductObject"><div class="row"><div class="col-sm-4">';
+            productString+='<img class="col-sm-12" src="' + listOfProducts[i].image + '">';
+            productString+='</div><div class="col-sm-8">';
+            productString+='<h3 id="ownerProductTitle">' + listOfProducts[i].title + '</h3>';
+            productString+='<p class="ownerProductDescription">' + listOfProducts[i].description + '</p>';
+            productString+='</div></div><div class="row"><div class="col-sm-6">';
+            productString+='<p id="ownerProductStartDate">Datum tillagt: <br>' + startDate.toLocaleString() + '</p>';
+            productString+='<p id="ownerProductEndDate">Slutdatum: <br>' + listOfProducts[i].endDate + '</p>';
+            productString+='<p id="ownerProductCategory">Kategori: <br>' + listOfProducts[i].category + '</p>';
+            productString+='</div><div class="col-sm-6">';
+            productString+='<p id="ownerProductTotalBids">Totalt antal bud: <br>' + listOfProducts[i].listOfBids.length + '</p>';
+
+            if(listOfBids.length != 0){
+                listOfBids.sort(function (a, b) {
+                    return b.amount - a.amount;
+                });
+
+                productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' +  listOfBids[0].amount + " kr"  + '</p>';
+            }else{
+                productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' +  listOfProducts[i].startPrice + " kr" + '</p>';
+            }
+
+            productString+='<p id="ownerProductBuyNowPrice">Utköpspris: <br>' + listOfProducts[i].buyNowPrice + '</p>';
+            productString+='</div></div><div class="row"><div class="col-sm-4">';
+            productString+='<a id="lnkEditProduct" href="#" data-value="'+ listOfProducts[i].id +'">Redigera annons</a>';
+            productString+='</div><div class="col-sm-4">';
+            productString+='<a id="lnkDeleteProduct"href="#" data-value="'+ listOfProducts[i].id +'">Ta bort annons</a></div>';
+            if(isSold == "yes"){
+                productString+='<p id="confirmPurchase" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta köp</p>';
+                productString+='<div id="buyerRatingDiv" class="collapse">';
+                productString+='<fieldset class="rating">';
+                productString+='<legend>Säljarbetyg:</legend>';
+                productString+='<input type="radio" id="star5" name="rating" value="5" /><label for="star5">5 stars</label>';
+                productString+='<input type="radio" id="star4" name="rating" value="4" /><label for="star4">4 stars</label>';
+                productString+='<input type="radio" id="star3" name="rating" value="3" /><label for="star3">3 stars</label>';
+                productString+='<input type="radio" id="star2" name="rating" value="2" /><label for="star2">2 stars</label>';
+                productString+='<input type="radio" id="star1" name="rating" value="1" /><label for="star1">1 star</label>';
+                productString+='</fieldset>';
+                productString+='<div class="col-sm-4"><a id="lnkSetProductAsSold" href="#" data-value="'+ listOfProducts[i].id +'">Bekräfta köp</a></div></div>';
+            }
+            productString+='</div></div></div>';
+        }
+        $products.append(productString);
+    }
 
     $(document).on("click", "#lnkEditProduct", function () {
         console.log("click, i editProduct");
@@ -102,47 +283,42 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("click", "#btnDeleteUser", function () {
-        checkUserForActiveAuctions();
-    });
-
-    function checkUserForActiveAuctions() {
-        if(currentUser['listOfProducts'].length == 0){
-            deleteUser();
-        }else{
-            alert("Det går inte att ta bort ett konto med aktiva auktioner!");
-        }
-    }
-
-    function setBuyerRating(currentProduct) {
-        var buyerRating = $("input[type='radio'][name='rating']:checked").val();
-        console.log("setBuyerRating " + buyerRating);
+    function deleteProduct(currentProductId) {
         $.ajax({
-            type: 'PUT',
+            type: 'DELETE',
             contentType: 'application/json',
-            url: buyerRatingURL(currentProduct),
-            data:buyerRating,
+            url: rootURL + '/products/' + currentProductId,
             success: function (data, textStatus, jgXHR) {
-                console.log("Buyer rating put:" + buyerRating);
-            },
-            error: function (jgXHR, textStatus, errorThrown) {
-                console.log("setBuyerRating error: " + textStatus);
+                console.log("deleteProduct: " + data);
+                sessionStorage.removeItem('currentProductId');
+                location.reload();
             }
         });
-
     }
-    
-    function buyerRatingURL(currentProduct) {
 
-        var bidList = currentProduct['listOfBids'];
-        bidList.sort(function (a, b) {
-            return b.amount - a.amount;
+
+    $(document).on("click", "#lnkSetProductAsSold", function () {
+        var currentProductID = $(this).data("value");
+
+        getProductById(currentProductID, function (currentProduct) {
+            setBuyerRating(currentProduct);
+            productToHistoryJSON(currentProduct, function (JSONHistory) {
+                moveSoldProductToHistory(JSONHistory);
+            });
+        })
+    });
+
+    function getProductById(currentProductId, callBack) {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/products/' + currentProductId,
+            success: function (data, textStatus, jgXHR) {
+                callBack(data);
+            }
         });
-        var ratingURL = 'http://localhost:8091/api/users/setbuyerrating/' + bidList[0].bidder;
-        console.log(ratingURL);
-        return ratingURL;
     }
-    
+
     function moveSoldProductToHistory(JSONHistory){
         console.log("in moveSoldProductToHistory");
         $.ajax({
@@ -173,120 +349,46 @@ $(document).ready(function () {
         console.log(product);
         callback(product);
     }
+
+
+
+// PRODUCTS BUTTONS & FUNCTIONS END
+
+// BUYER RATING
+
+    function setBuyerRating(currentProduct) {
+        var buyerRating = $("input[type='radio'][name='rating']:checked").val();
+        console.log("setBuyerRating " + buyerRating);
+        $.ajax({
+            type: 'PUT',
+            contentType: 'application/json',
+            url: buyerRatingURL(currentProduct),
+            data:buyerRating,
+            success: function (data, textStatus, jgXHR) {
+                console.log("Buyer rating put:" + buyerRating);
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("setBuyerRating error: " + textStatus);
+            }
+        });
+
+    }
     
-    function deleteUser() {
-        $.ajax({
-            type: 'DELETE',
-            contentType: 'application/json',
-            url: rootURL + '/users/' + currentUserID,
-            success: function (data, textStatus, jgXHR) {
-                sessionStorage.removeItem('currentUser');
-                location.href="../webcontent/index.html";
-            }
+    function buyerRatingURL(currentProduct) {
+
+        var bidList = currentProduct['listOfBids'];
+        bidList.sort(function (a, b) {
+            return b.amount - a.amount;
         });
+        var ratingURL = 'http://localhost:8091/api/users/setbuyerrating/' + bidList[0].bidder;
+        console.log(ratingURL);
+        return ratingURL;
     }
 
-    function getProductById(currentProductId, callBack) {
-        $.ajax({
-            type: 'GET',
-            contentType: 'application/json',
-            url: rootURL + '/products/' + currentProductId,
-            success: function (data, textStatus, jgXHR) {
-                callBack(data);
-            }
-        });
-    }
-
-    function deleteProduct(currentProductId) {
-        $.ajax({
-            type: 'DELETE',
-            contentType: 'application/json',
-            url: rootURL + '/products/' + currentProductId,
-            success: function (data, textStatus, jgXHR) {
-                console.log("deleteProduct: " + data);
-                sessionStorage.removeItem('currentProductId');
-                location.reload();
-            }
-        });
-    }
-
-    function getUserById(callback) {
-        $.ajax({
-            type: 'GET',
-            contentType: 'application/json',
-            url: rootURL + '/users/' + currentUserID,
-            success: function (data, textStatus, jgXHR) {
-                currentUser = data;
-                callback(data);
-                populateUserInfo();
-                populateUserProducts(currentUser['listOfProducts']);
-            }
-        });
-    }
-
-    function populateUserInfo() {
-        document.getElementById('upUserName').innerHTML =currentUser.userName;
-        document.getElementById('upFirstName').innerHTML =currentUser.firstName;
-        document.getElementById('upLastName').innerHTML =currentUser.lastName;
-        document.getElementById('upEmail').innerHTML =currentUser.email;
-        document.getElementById('upMobileNumber').innerHTML =currentUser.mobileNumber;
-        //document.getElementById('upRatingAsSeller').innerHTML =currentUser[''];
-        //document.getElementById('upRatingAsBuyer').innerHTML =currentUser[''];
-    }
-
-    function populateUserProducts(listOfProducts) {
-        document.getElementById('productList').innerHTML = "";
-        $products = $('#productList');
-        var productString="";
-        var smallLimit = 90;
-       for(i = 0; i < listOfProducts.length; i++){
-           var startDate = new Date(listOfProducts[i].startDate);
-           var isSold = listOfProducts[i].isSold;
-           listOfBids = listOfProducts[i]['listOfBids'];
-
-           productString+='<div class="OwnerProductObject"><div class="row"><div class="col-sm-4">';
-           productString+='<img class="col-sm-12" src="' + listOfProducts[i].image + '">';
-           productString+='</div><div class="col-sm-8">';
-           productString+='<h3 id="ownerProductTitle">' + listOfProducts[i].title + '</h3>';
-           productString+='<p class="ownerProductDescription">' + listOfProducts[i].description + '</p>';
-           productString+='</div></div><div class="row"><div class="col-sm-6">';
-           productString+='<p id="ownerProductStartDate">Datum tillagt: <br>' + startDate.toLocaleString() + '</p>';
-           productString+='<p id="ownerProductEndDate">Slutdatum: <br>' + listOfProducts[i].endDate + '</p>';
-           productString+='<p id="ownerProductCategory">Kategori: <br>' + listOfProducts[i].category + '</p>';
-           productString+='</div><div class="col-sm-6">';
-           productString+='<p id="ownerProductTotalBids">Totalt antal bud: <br>' + listOfProducts[i].listOfBids.length + '</p>';
-
-           if(listOfBids.length != 0){
-               listOfBids.sort(function (a, b) {
-                   return b.amount - a.amount;
-               });
-
-               productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' +  listOfBids[0].amount + " kr"  + '</p>';
-           }else{
-               productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' +  listOfProducts[i].startPrice + " kr" + '</p>';
-           }
-
-           productString+='<p id="ownerProductBuyNowPrice">Utköpspris: <br>' + listOfProducts[i].buyNowPrice + '</p>';
-           productString+='</div></div><div class="row"><div class="col-sm-4">';
-           productString+='<a id="lnkEditProduct" href="#" data-value="'+ listOfProducts[i].id +'">Redigera annons</a>';
-           productString+='</div><div class="col-sm-4">';
-           productString+='<a id="lnkDeleteProduct"href="#" data-value="'+ listOfProducts[i].id +'">Ta bort annons</a></div>';
-           if(isSold == "yes"){
-               productString+='<p id="confirmPurchase" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta köp</p>';
-               productString+='<div id="buyerRatingDiv" class="collapse">';
-               productString+='<fieldset class="rating">';
-               productString+='<legend>Säljarbetyg:</legend>';
-               productString+='<input type="radio" id="star5" name="rating" value="5" /><label for="star5">5 stars</label>';
-               productString+='<input type="radio" id="star4" name="rating" value="4" /><label for="star4">4 stars</label>';
-               productString+='<input type="radio" id="star3" name="rating" value="3" /><label for="star3">3 stars</label>';
-               productString+='<input type="radio" id="star2" name="rating" value="2" /><label for="star2">2 stars</label>';
-               productString+='<input type="radio" id="star1" name="rating" value="1" /><label for="star1">1 star</label>';
-               productString+='</fieldset>';
-               productString+='<div class="col-sm-4"><a id="lnkSetProductAsSold" href="#" data-value="'+ listOfProducts[i].id +'">Bekräfta köp</a></div></div>';
-           }
-           productString+='</div></div></div>';
-       }
-        $products.append(productString);
-    }
+//BUYER RATING END    
+    
+//SELLER RATING
+//TODO: FLYTTA SELLER RATING HIT!
+//SELLER RATING END    
 });
 
