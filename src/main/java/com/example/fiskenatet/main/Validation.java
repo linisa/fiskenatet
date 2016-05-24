@@ -101,9 +101,16 @@ public class Validation {
             checkUser = "Användarnamn saknas";
         }if(userModel.getEmail().equals("")||userModel.getEmail().equals(" ")){
             checkUser = "Ange en e-postadress";
-        }if(userModel.getMobileNumber().equals("")||userModel.getMobileNumber().equals(" ")){
-            checkUser = "Telefonnummer saknas";
-        }if(userModel.getAddress().equals("")||userModel.getAddress().equals(" ")){
+        }if(userModel.getMobileNumber().equals("")||userModel.getMobileNumber().equals(" ")) {
+            checkUser = "Mobilnummer saknas";
+        } else{
+            try {
+                Integer.parseInt(userModel.getMobileNumber());
+            } catch (NumberFormatException e) {
+                checkUser = "Felaktigt mobilnummer, testa siffror";
+            }
+        }
+        if(userModel.getAddress().equals("")||userModel.getAddress().equals(" ")){
             checkUser = "Ange din postadress";
         }if(userModel.getPostCode().equals("")||userModel.getPostCode().equals(" ")){
             checkUser = "Ange ditt postnummer";
