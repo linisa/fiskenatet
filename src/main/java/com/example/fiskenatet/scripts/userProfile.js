@@ -315,7 +315,7 @@ $(document).ready(function () {
             productString+='</div><div class="col-sm-4">';
             productString+='<a id="lnkDeleteProduct"href="#" data-value="'+ listOfProducts[i].id +'">Ta bort annons</a></div>';
             if(isSold == "yes"){
-                productString+='<p id="confirmPurchase" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta köp</p>';
+                productString+='<p id="confirmPurchase" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta betalning</p>';
                 productString+='<div id="buyerRatingDiv" class="collapse">';
                 productString+='<fieldset class="rating">';
                 productString+='<legend>Säljarbetyg:</legend>';
@@ -325,7 +325,7 @@ $(document).ready(function () {
                 productString+='<input type="radio" id="star2" name="rating" value="2" /><label for="star2">2 stars</label>';
                 productString+='<input type="radio" id="star1" name="rating" value="1" /><label for="star1">1 star</label>';
                 productString+='</fieldset>';
-                productString+='<div class="col-sm-4"><a id="lnkSetProductAsSold" href="#" data-value="'+ listOfProducts[i].id +'">Bekräfta köp</a></div></div>';
+                productString+='<div class="col-sm-4"><a id="lnkSetProductAsSold" href="#" data-value="'+ listOfProducts[i].id +'">Bekräfta betalning</a></div></div>';
             }
             productString+='</div></div></div>';
         }
