@@ -1,7 +1,8 @@
 $(document).ready(function () {
 
     var rootURL = 'http://localhost:8091/api';
-
+    var userUserName;
+    var userPassword;
     var currentUserID = sessionStorage.getItem('currentUser');
     var currentProductId = sessionStorage.getItem('currentProductId');
     var currentUserName = sessionStorage.getItem('currentUserName');
@@ -26,8 +27,15 @@ $(document).ready(function () {
         console.log("KLICK LOGIN!");
         userUserName = $('#UserUserName').val();
         userPassword = $('#UserPassword').val();
-        console.log(userUserName);
-        getUserByUserName();
+
+        userUserName = userUserName.replace(/\s+/g, '');
+        userPassword = userPassword.replace(/\s+/g, '');
+
+        if (userUserName == "" || userPassword == "") {
+            alert("Något fält är ej ifyllt");
+        } else {
+            getUserByUserName();
+        }
     });
 
     function getUserByUserName() {
@@ -40,6 +48,7 @@ $(document).ready(function () {
                 logInValidation(data);
             },
             error: function (jgXHR, textStatus, errorThrown) {
+                alert("Användarnamnet hittas inte");
             }
         });
     }
@@ -178,9 +187,12 @@ $(document).ready(function () {
     }
 
     function populateProductDetails() {
-        var startDate= new Date(currentProduct.startDate).toLocaleString();
-        var endDate = new Date(currentProduct.endDate).toLocaleString();
+        var startDate= new Date(currentProduct.startDate).toLocaleDateString(navigator.language, {hour: '2-digit', minute:'2-digit'});
+        var endDate = new Date(currentProduct.endDate).toLocaleDateString(navigator.language, {hour: '2-digit', minute:'2-digit'});
+        checkUserSellerRating();
+
         var productCategory = getCategory();
+
         document.getElementById('productImage').src = currentProduct.image;
         document.getElementById('productTextDetails').innerHTML  = currentProduct.title;
         document.getElementById('ownerDetails').innerHTML = "Säljs av: " + owner.userName;
@@ -201,6 +213,43 @@ $(document).ready(function () {
             }
         }else{
             document.getElementById('buyNowPriceDetails').style.display = "inline-block";
+        }
+    }
+
+    function checkUserSellerRating() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + "/users/getsellerrating/" + currentProduct.owner,
+            success: function (data, textStatus, jgXHR) {
+                populateSellerRating(data);
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                console.log("GetBuyerRating error: " + textStatus);
+            }
+        });
+    }
+
+    function populateSellerRating(sellerRating) {
+        switch (sellerRating){
+            case "1":
+//★★★★★★★★★★★★★★★
+                document.getElementById("sellerRatingStar").innerHTML="★";
+                break;
+            case "2":
+                document.getElementById("sellerRatingStar").innerHTML="★★";
+                break;
+            case "3":
+                document.getElementById("sellerRatingStar").innerHTML="★★★";
+                break;
+            case "4":
+                document.getElementById("sellerRatingStar").innerHTML="★★★★";
+                break;
+            case "5":
+                document.getElementById("sellerRatingStar").innerHTML="★★★★★";
+                break;
+            default:
+                document.getElementById("sellerRatingStar").innerHTML="No stars yet!";
         }
     }
 

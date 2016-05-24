@@ -138,7 +138,7 @@ $(document).ready(function () {
         for (i = 0; i < allProducts.length; i++) {
             console.log("i productlistan");
             listOfBids = allProducts[i]['listOfBids'];
-            var endDate = new Date(allProducts[i].endDate).toLocaleString();
+            var endDate = new Date(allProducts[i].endDate).toLocaleDateString(navigator.language, {hour: '2-digit', minute:'2-digit'});
             var description = allProducts[i].description;
 
             productString += '<div class="product"><a href="#" class="productLink" data-value="'+ allProducts[i].id +'"><div class = "col-sm-8">';
@@ -184,7 +184,7 @@ $(document).ready(function () {
         userPassword = userPassword.replace(/\s+/g, '');
 
         if(userUserName==""||userPassword==""){
-            alert("Något fällt är ej ifyllt");
+            alert("Något fält är ej ifyllt");
         }else {
             getUserByUserName();
         }
@@ -200,6 +200,7 @@ $(document).ready(function () {
                     logInValidation(data);
             },
             error: function (jgXHR, textStatus, errorThrown) {
+                alert("Användarnamnet hittas inte");
             }
         });
     }

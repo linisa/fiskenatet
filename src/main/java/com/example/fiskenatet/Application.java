@@ -35,8 +35,7 @@ public class Application {
 		}
 		*/
 
-		//Timer timer = new Timer();
-		// Kör TimerHandler var tionde sekund
-		//timer.schedule(new TimerHandler(), 0, 10000);
+
+
 	}
 }
