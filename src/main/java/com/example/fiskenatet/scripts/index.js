@@ -10,28 +10,31 @@ $(document).ready(function () {
     checkCategory();
     //getAllProducts();
     checkIfLoggedIn();
-
+    
+    //TIMECHECKER
+    var hasMovedAuctions =false;
     window.setInterval(function(){
-        var date = new Date();
-        if(date.getHours() === 13 && date.getMinutes() === 45){
-            endOfDay();
+        var currentTime = new Date();
+        if(currentTime.getHours()==16 && currentTime.getMinutes()==00 && hasMovedAuctions==false){
+            console.log("Dagens auktioner avslutade!");
+            hasMovedAuctions=true;
+            moveExpiredAuctions();
         }
     }, 5000);
 
-    function endOfDay() {
+
+    function moveExpiredAuctions() {
         $.ajax({
-            type: 'PUT',
+            type: 'GET',
             contentType: 'application/json',
-            url:rootURL + '/products/endofday',
+            url: rootURL + '/products/endofday',
             success: function (data, textStatus, jgXHR) {
-                console.log("End of day, Expired auctions moved");
                 location.reload();
-            },
-            error: function (jgXHR, textStatus, errorThrown) {
-                console.log("endOfDay error: " + textStatus);
             }
         });
-    };
+    }
+
+//TIMECHECKER END
 
 
     function checkCategory() {
@@ -138,7 +141,7 @@ $(document).ready(function () {
         for (i = 0; i < allProducts.length; i++) {
             console.log("i productlistan");
             listOfBids = allProducts[i]['listOfBids'];
-            var endDate = new Date(allProducts[i].endDate).toLocaleString();
+            var endDate = new Date(allProducts[i].endDate).toLocaleDateString(navigator.language, {hour: '2-digit', minute: '2-digit'});
             var description = allProducts[i].description;
 
             productString += '<div class="product"><a href="#" class="productLink" data-value="'+ allProducts[i].id +'"><div class = "col-sm-8">';
