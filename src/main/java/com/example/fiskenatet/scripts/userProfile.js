@@ -101,8 +101,24 @@ $(document).ready(function () {
         document.getElementById('upLastName').innerHTML =currentUser.lastName;
         document.getElementById('upEmail').innerHTML =currentUser.email;
         document.getElementById('upMobileNumber').innerHTML =currentUser.mobileNumber;
+        document.getElementById('upAddress').innerHTML = currentUser.address + " " + currentUser.postCode;
+        getUserPaymentMethod();
         checkUserSellerRating();
         checkUserBuyerRating();
+    }
+    function getUserPaymentMethod(){
+        var userPayment = currentUser.paymentMethod;
+        switch (userPayment){
+            case 1:
+                document.getElementById('upPayment').innerHTML = "Swish";
+                break;
+            case 2:
+                document.getElementById('upPayment').innerHTML = "PayPal";
+                break;
+            case 3:
+                document.getElementById('upPayment').innerHTML = "Swish eller PayPal";
+                break;
+        }
     }
 
     function checkUserSellerRating() {
@@ -249,7 +265,7 @@ $(document).ready(function () {
                 productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' +  listOfProducts[i].startPrice + " kr" + '</p>';
             }
 
-            productString+='<p id="ownerProductBuyNowPrice">Utköpspris: <br>' + listOfProducts[i].buyNowPrice + '</p>';
+            productString+='<p id="ownerProductBuyNowPrice">Utköpspris: <br>' + listOfProducts[i].buyNowPrice + " kr" + '</p>';
             productString+='</div></div><div class="row"><div class="col-sm-4">';
             productString+='<a id="lnkEditProduct" href="#" data-value="'+ listOfProducts[i].id +'">Redigera annons</a>';
             productString+='</div><div class="col-sm-4">';
