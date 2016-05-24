@@ -100,6 +100,15 @@ $(document).ready(function () {
             }
         });
     }
+    
+    $(document).on("click", "#lnkSetProductAsSold", function () {
+        var currentProductID = $(this).data("value");
+        getProductById(currentProductID, function (currentProduct) {
+            setBuyerRating(currentProduct);
+            moveSoldProductToHistory(currentProduct);
+        });
+    });
+
 
 
     
@@ -119,8 +128,24 @@ $(document).ready(function () {
         document.getElementById('upLastName').innerHTML =currentUser.lastName;
         document.getElementById('upEmail').innerHTML =currentUser.email;
         document.getElementById('upMobileNumber').innerHTML =currentUser.mobileNumber;
+        document.getElementById('upAddress').innerHTML = currentUser.address + " " + currentUser.postCode;
+        getUserPaymentMethod();
         checkUserSellerRating();
         checkUserBuyerRating();
+    }
+    function getUserPaymentMethod(){
+        var userPayment = currentUser.paymentMethod;
+        switch (userPayment){
+            case 1:
+                document.getElementById('upPayment').innerHTML = "Swish";
+                break;
+            case 2:
+                document.getElementById('upPayment').innerHTML = "PayPal";
+                break;
+            case 3:
+                document.getElementById('upPayment').innerHTML = "Swish eller PayPal";
+                break;
+        }
     }
 
     function checkUserSellerRating() {
@@ -204,6 +229,7 @@ $(document).ready(function () {
 
     $(document).on("click", "#btnDeleteUser", function () {
         checkUserForActiveAuctions();
+
     });
 
     function checkUserForActiveAuctions() {
@@ -229,7 +255,49 @@ $(document).ready(function () {
 // USER BUTTONS & FUNCTIONS END
 
 // PRODUCTS BUTTONS & FUNCTIONS
+
     //THE HORROR
+
+    function getCategory(product) {
+        var category = product.category;
+        switch (category){
+            case "1":
+                category = "Torsk";
+                break;
+            case "2":
+                category = "Makrill";
+                break;
+            case "3":
+                category = "Kolja";
+                break;
+            case "4":
+                category = "Lax";
+                break;
+            case "5":
+                category = "Gråsej";
+                break;
+            case "6":
+                category = "Sill";
+                break;
+            case "7":
+                category = "Vitling";
+                break;
+            case "8":
+                category = "Rödspotta";
+                break;
+            case "9":
+                category = "Skaldjur";
+                break;
+            case "10":
+                category = "Övrigt";
+                break;
+            default:
+                category = "ERROR"
+        }
+
+        return category;
+    }
+
     function populateUserProducts(listOfProducts) {
         document.getElementById('productList').innerHTML = "";
         $products = $('#productList');
@@ -240,6 +308,7 @@ $(document).ready(function () {
             var endDate = new Date(listOfProducts[i].endDate);
             var isSold = listOfProducts[i].isSold;
             listOfBids = listOfProducts[i]['listOfBids'];
+            var productCategory = getCategory(listOfProducts[i]);
 
             productString+='<div class="OwnerProductObject"><div class="row"><div class="col-sm-4">';
             productString+='<img class="col-sm-12" src="' + listOfProducts[i].image + '">';
@@ -263,7 +332,7 @@ $(document).ready(function () {
                 productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' +  listOfProducts[i].startPrice + " kr" + '</p>';
             }
 
-            productString+='<p id="ownerProductBuyNowPrice">Utköpspris: <br>' + listOfProducts[i].buyNowPrice + '</p>';
+            productString+='<p id="ownerProductBuyNowPrice">Utköpspris: <br>' + listOfProducts[i].buyNowPrice + " kr" + '</p>';
             productString+='</div></div><div class="row"><div class="col-sm-4">';
             productString+='<a id="lnkEditProduct" href="#" data-value="'+ listOfProducts[i].id +'">Redigera annons</a>';
             productString+='</div><div class="col-sm-4">';
@@ -360,24 +429,7 @@ $(document).ready(function () {
         })
     }
 
-
-
-    function productToHistoryJSON(currentProduct, callback) {
-        var product = JSON.stringify({
-            "owner" : {id: currentUserID},
-            "description": currentProduct.description,
-            "title": currentProduct.title,
-            "startDate": currentProduct.startDate,
-            "endDate": currentProduct.endDate,
-            "soldFor": currentProduct.soldFor,
-            "image": currentProduct.image
-        });
-        console.log(product);
-        callback(product);
-    }
-
-
-
+    
 // PRODUCTS BUTTONS & FUNCTIONS END
 
 // BUYER RATING
@@ -416,4 +468,5 @@ $(document).ready(function () {
 //TODO: FLYTTA SELLER RATING HIT!
 //SELLER RATING END    
 });
+
 

@@ -82,10 +82,15 @@ $(document).ready(function () {
     });
     
     $('#btnSearch').click(function () {
-        document.getElementById("productList").innerHTML = "";
+
         console.log("KLICK SÖK!");
         var searchString = document.getElementById("tfSearch").value;
-        searchProduct(searchString)
+        if(searchString === "") {
+            alert("Skriv något i sökfältet");
+        }else{
+            document.getElementById("productList").innerHTML = "";
+            searchProduct(searchString);
+        }
     });
 
     function searchProduct(searchString) {
@@ -109,8 +114,6 @@ $(document).ready(function () {
             url: rootURL + '/products/category/notsold/' + categoryChoice,
             success: function (data, textStatus, jgXHR) {
                 populateProductList(data);
-
-
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("getAllProducts error: " + textStatus);
@@ -136,36 +139,39 @@ $(document).ready(function () {
     function populateProductList(allProducts) {
         $products = $('#productList');
 
-        var productString="";
+        var productString = "";
         var smallLimit = 90;
-        for (i = 0; i < allProducts.length; i++) {
-            console.log("i productlistan");
-            listOfBids = allProducts[i]['listOfBids'];
-            var endDate = new Date(allProducts[i].endDate).toLocaleDateString(navigator.language, {hour: '2-digit', minute: '2-digit'});
-            var description = allProducts[i].description;
 
-            productString += '<div class="product"><a href="#" class="productLink" data-value="'+ allProducts[i].id +'"><div class = "col-sm-8">';
-            productString += '<div><img src="' + allProducts[i].image + '" class="image"></div>';
-            productString += '<div class="productText"><h3>' + allProducts[i].title + '</h3>';
-            productString += '<p class="description">' + description.substr(0, smallLimit) + '...' + '</p></div></a></div>';
-            productString += '<div class="col-sm-4" id="productInfoDiv"><p class="endDate">Slutdatum: <br>' + endDate + '</p>';
+        if (allProducts.length < 1) {
+            productString += '<br><p>Hittade inga annonser</p>';
+        }else{
+            for (i = 0; i < allProducts.length; i++) {
+                console.log("i productlistan");
+                listOfBids = allProducts[i]['listOfBids'];
+                var endDate = new Date(allProducts[i].endDate).toLocaleDateString(navigator.language, {hour: '2-digit', minute:'2-digit'});
+                var description = allProducts[i].description;
 
-            if(listOfBids.length != 0){
-                listOfBids.sort(function (a, b) {
-                    return b.amount - a.amount;
-                });
-                productString += '<p class="highestBid">Högsta Bud:<br>' +  listOfBids[0].amount + " kr"  + '</p>';
-            }else{
-                productString += '<p class="highestBid">Högsta Bud:<br>' +  0 + " kr" + '</p>';
+                productString += '<div class="product"><a href="#" class="productLink" data-value="' + allProducts[i].id + '"><div class = "col-sm-8">';
+                productString += '<div><img src="' + allProducts[i].image + '" class="image"></div>';
+                productString += '<div class="productText"><h3>' + allProducts[i].title + '</h3>';
+                productString += '<p class="description">' + description.substr(0, smallLimit) + '...' + '</p></div></a></div>';
+                productString += '<div class="col-sm-4" id="productInfoDiv"><p class="endDate">Slutdatum: <br>' + endDate + '</p>';
+
+                if (listOfBids.length != 0) {
+                    listOfBids.sort(function (a, b) {
+                        return b.amount - a.amount;
+                    });
+                    productString += '<p class="highestBid">Högsta Bud:<br>' + listOfBids[0].amount + " kr" + '</p>';
+                } else {
+                    productString += '<p class="highestBid">Högsta Bud:<br>' + 0 + " kr" + '</p>';
+                }
+                if (allProducts[i].buyNowPrice != 0) {
+                    productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + " kr" + '</p>';
+                } else {
+                    productString += '<p class="buyNowPrice"><br><br>';
+                }
+                productString += '</div></div>';
             }
-            if(allProducts[i].buyNowPrice != 0){
-                productString += '<p class="buyNowPrice">Köp Nu:<br>' + allProducts[i].buyNowPrice + '</p>';
-            }else{
-                productString += '<p class="buyNowPrice"><br><br>';
-            }
-            productString += '</div></div>';
-
-
         }
         $products.append(productString);
     }

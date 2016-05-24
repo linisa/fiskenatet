@@ -35,16 +35,11 @@ ul.navbar-nav a:hover{
     background-color:#FFF5EE;
 }
 
-
-#lnkProfileUserName :hover {
-
-
-}
 #lnkProfileUserName{
     font-family: Calibri;
     font-size: 0.8em;
-    margin-right: 0em;
-    margin-left: auto;
+    padding-right: 0%;
+
 }
 
 
@@ -130,7 +125,8 @@ ul.navbar-nav a:hover{
 /*Product List*/
 
 #productInfoDiv{
-    background-color: #3366BB;
+
+    border-color: #3366BB;
 }
 
 .product{
@@ -211,6 +207,11 @@ ul.navbar-nav a:hover{
     margin-bottom: 2em;
     margin-top: 2em;
 
+}
+
+#previewImage{
+    max-height: 10em;
+    max-width: 10em;
 }
 
 #selectImage{

@@ -185,8 +185,8 @@ $(document).ready(function () {
     }
 
     function populateProductDetails() {
-        var startDate= new Date(currentProduct.startDate).toLocaleString();
-        var endDate = new Date(currentProduct.endDate).toLocaleString();
+        var startDate= new Date(currentProduct.startDate).toLocaleDateString(navigator.language, {hour: '2-digit', minute:'2-digit'});
+        var endDate = new Date(currentProduct.endDate).toLocaleDateString(navigator.language, {hour: '2-digit', minute:'2-digit'});
         checkUserSellerRating();
 
         var productCategory = getCategory();
@@ -194,7 +194,7 @@ $(document).ready(function () {
         document.getElementById('productImage').src = currentProduct.image;
         document.getElementById('productTextDetails').innerHTML  = currentProduct.title;
         document.getElementById('ownerDetails').innerHTML = "Säljs av: " + owner.userName;
-        document.getElementById('startDateDetails').innerHTML = " " + startDate;
+        document.getElementById('startDateDetails').innerHTML = "Skapad: " + startDate;
         document.getElementById('categoryDetails').innerHTML = "Kategori: " + productCategory;
         document.getElementById('descriptionDetails').innerHTML = currentProduct.description;
         document.getElementById('endDateDetails').innerHTML = "Slutdatum: <br> " + endDate;

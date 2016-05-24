@@ -19,7 +19,20 @@
         <!--MENUBAR-->
         <ul id="menubar" class="nav navbar-nav">
             <li><a class="menuTxt" href="index.html">Hem</a></li>
-            <li><a class="menuTxt" id="lnkAbout" href="about.html">Om Oss</a></li>
+            <li><a class="menuTxt" id="lnkAbout" href="about.html">Om oss</a></li>
+            <li><a class="menuTxt" id="lnkRegUser" href="addUser.html" style="color: #3366BB; background-color:#FFF5EE">Registrera</a></li>
+            <li class="dropdown">
+                <a class="menuTxt" id= "lnkLogIn" class="dropdown-toggle" data-toggle="dropdown" href="#">Logga in<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <form>
+                        <p class="menuTxt">Användarnamn</p>
+                        <input type="text"id="UserUserName" name="inputUserName" placeholder="Användarnamn" required><br>
+                        <p class="menuTxt">Lösenord</p>
+                        <input type="password"id="UserPassword" name="inputPassword" placeholder="Lösenord" required><br>
+                        <input type="button" value="Logga in!" id="btnLogIn">
+                    </form>
+                </ul>
+            </li>
         </ul>
         <!--MENUBAR END-->
     </div>
@@ -36,10 +49,10 @@
     <input id="tfUserName" type="text" placeholder="Användarnamn">
 
     <p class="formTexts">Lösenord: (får ej innehålla mellanslag)</p>
-    <input id="tfPassword" type="password" placeholder="Lösenord"><br>
+    <input id="tfPassword" type="password" placeholder="Lösenord" maxlength="64"><br>
 
     <p class="formTexts">Upprepa lösenord:</p>
-    <input id="tfPasswordRepeat" type="password" placeholder="Upprepa lösenord"><br>
+    <input id="tfPasswordRepeat" type="password" placeholder="Upprepa lösenord" maxlength="64"><br>
 
     <p class="formTexts">E-mail:</p>
     <input id="tfEmail" type="email" placeholder="e-mail"><br>

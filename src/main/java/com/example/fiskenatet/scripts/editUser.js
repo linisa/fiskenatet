@@ -1,6 +1,7 @@
 var rootURL = 'http://localhost:8091/api';
 var currentUserID;
 var currentUser;
+var currentUserName;
 
 CheckIfLoggedIn();
 function CheckIfLoggedIn() {
@@ -11,6 +12,9 @@ function CheckIfLoggedIn() {
 }
 
 $(document).ready(function(){
+
+    currentUserName = sessionStorage.getItem('currentUserName');
+    document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
 
     document.getElementById('payPalName').style.display ="none";
 
@@ -150,4 +154,9 @@ $(document).ready(function(){
         console.log(user);
         return user;
     }
+    $(document).on("click", "#lnkLogOut", function () {
+        sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUserName');
+        location.href="../webcontent/index.html";
+    });
 });
