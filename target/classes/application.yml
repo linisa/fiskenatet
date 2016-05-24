@@ -6,12 +6,20 @@ spring:
       dialect: org.hibernate.dialect.MYSQLInnoDBDialect
       naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
       ddl-auto: update
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6b505a79275563650ebae9934f813a9b015e6ea7
   datasource:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost/fiskenatet?useSSL=false
     username: root
+<<<<<<< HEAD
     password: assassin723
+=======
+    password: mysql
+
+>>>>>>> 6b505a79275563650ebae9934f813a9b015e6ea7
 
   jackson:
     serialization:
