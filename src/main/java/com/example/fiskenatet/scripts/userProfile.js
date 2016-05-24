@@ -338,7 +338,8 @@ $(document).ready(function () {
             productString+='</div><div class="col-sm-4">';
             productString+='<a id="lnkDeleteProduct"href="#" data-value="'+ listOfProducts[i].id +'">Ta bort annons</a></div>';
             if(isSold == "yes"){
-                productString+='<p id="confirmPurchase" data-id="'+ listOfProducts[i].id +'" data-value="'+ listOfProducts[i].title +'" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta köp</p>';
+                productString+='<div class="col-sm-4">';
+                productString+='<p id="confirmPurchase" data-id="'+ listOfProducts[i].id +'" data-value="'+ listOfProducts[i].title +'" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta köp</p></div>';
             }
             productString+='</div></div></div>';
         }
