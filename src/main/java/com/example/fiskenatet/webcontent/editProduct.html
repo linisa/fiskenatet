@@ -16,12 +16,13 @@
         </div>
         <!--MENUBAR-->
         <ul id="menubar" class="nav navbar-nav">
+
             <li><a class="menuTxt" id="lnkHome" href="index.html">Hem</a></li>
             <li><a class="menuTxt" id="lnkAbout" href="about.html">Om oss</a></li>
             <li><a class="menuTxt" id="lnkAddProduct" href="addProduct.html">Skapa auktion</a></li>
             <li><a class="menuTxt" id="lnkProfile" href="userProfile.html"  style="color: #3366BB; background-color:#FFF5EE">Profil</a></li>
             <li><a class="menuTxt" id="lnkLogOut" href="#">Logga ut</a></li>
-            <li><p id="lnkProfileUserName"><p/></li>
+            <li><p class="menuTxt" id="lnkProfileUserName"></p></li>
         </ul>
         <!--MENUBAR END-->
     </div>
@@ -45,7 +46,29 @@
     </select><br>
     <p class="formTexts">Produkttitel</p>
     <input type="text" placeholder="Produkttitel" id="tfProductTitle"><br>
-    <p class="formTexts">Bild</p>
+
+    <div id="imageDiv">
+
+        <p class="formTexts">Bild</p><br>
+        <div id="previewImage" ><img src=""></div>
+        <p class="formTexts">Ändra bild</p>
+        <input type="radio" name="ImageOption" id="imageOptionUrl" checked >Ladda upp en egen bild!<br>
+        <input type="radio" name="ImageOption" id="imgOptionSelect">Välj en bild från vårat utbud!<br>
+
+        <select id="selectImage">
+            <option value="../resources/torsk.gif">Torsk</option>
+            <option value="../resources/Makrill.gif">Makrill</option>
+            <option value="../resources/Kolja.png">Kolja</option>
+            <option value="../resources/lax.jpg">Lax</option>
+            <option value="../resources/Gråsej.png">Gråsej</option>
+            <option value="../resources/sill.jpg">Sill</option>
+            <option value="../resources/vitling.png">Vitling</option>
+            <option value="../resources/rodspatta.jpg">Rödspotta</option>
+            <option value="../resources/skaldjur.jpg">Skaldjur</option>
+            <option value="../resources/ovrigt.jpg">Övrigt</option>
+        </select>
+
+    </div>
     <input type="text" placeholder="Bild URL" id="tfProductImage"><br>
     <p class="formTexts">Beskrivning</p>
     <input type="text" placeholder="Beskrivning" id="tfDescription"><br>
