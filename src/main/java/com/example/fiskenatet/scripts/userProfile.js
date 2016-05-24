@@ -16,6 +16,9 @@ function CheckIfLoggedIn() {
 }
 
 $(document).ready(function () {
+
+    document.getElementById('buyerRatingDiv').style.display = 'none';
+
 //TIMECHECKER
     var hasMovedAuctions =false;
     window.setInterval(function(){
@@ -100,16 +103,6 @@ $(document).ready(function () {
             }
         });
     }
-
-    $(document).on("click", "#lnkSetProductAsSold", function () {
-        var currentProductID = $(this).data("value");
-        getProductById(currentProductID, function (currentProduct) {
-            setBuyerRating(currentProduct);
-            moveSoldProductToHistory(currentProduct);
-        });
-    });
-
-
 
 
     $(document).on("click", "#lnkLogOut", function () {
@@ -339,7 +332,7 @@ $(document).ready(function () {
             productString+='<a id="lnkDeleteProduct"href="#" data-value="'+ listOfProducts[i].id +'">Ta bort annons</a></div>';
             if(isSold == "yes"){
                 productString+='<div class="col-sm-4">';
-                productString+='<p id="confirmPurchase" data-id="'+ listOfProducts[i].id +'" data-value="'+ listOfProducts[i].title +'" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta köp</p></div>';
+                productString+='<p id="confirmPurchase" data-id="'+ listOfProducts[i].id +'" data-value="'+ listOfProducts[i].title +'" data-target="#buyerRatingDiv">Bekräfta köp</p></div>';
             }
             productString+='</div></div></div>';
         }
@@ -347,6 +340,7 @@ $(document).ready(function () {
     }
 
     $(document).on("click", "#confirmPurchase", function () {
+        document.getElementById('buyerRatingDiv').style.display = 'block';
         var productTitle = $(this).data("value");
         var productID = $(this).data("id");
         document.getElementById("titleToConfirm").innerHTML = productTitle;
@@ -395,7 +389,7 @@ $(document).ready(function () {
 
     $(document).on("click", "#lnkSetProductAsSold", function () {
         console.log("click lnkSetProductAsSold, product: " + productToConfirmAsSold);
-
+        document.getElementById('buyerRatingDiv').style.display = 'none';
         getProductById(productToConfirmAsSold, function (currentProduct) {
             setBuyerRating(currentProduct);
             moveSoldProductToHistory(currentProduct);
