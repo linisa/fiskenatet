@@ -384,6 +384,15 @@ ul.navbar-nav a:hover{
 /*edit Product end*/
 /*confirmPurchase*/
 
+#buyerRatingTitle{
+    font: bold 16px Arial;
+}
+
+#titleToConfirm{
+    font: bold 22px Arial;
+    float: left;
+}
+
 #swishOption p{
     display: inline;
 }
@@ -396,7 +405,7 @@ ul.navbar-nav a:hover{
 }
 
 .rating {
-
+    float: left;
 }
 
 /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
@@ -472,6 +481,7 @@ ul.navbar-nav a:hover{
 /*confirmPurchase END*/
 
 
+
 /*UserProfile*/
 #sellerRatingStar{
     color: #f70;
@@ -538,6 +548,11 @@ ul.navbar-nav a:hover{
     border-right: 2px solid #333333;
     border-bottom: 2px solid #333333;
     border-left: 2px solid #CCCCCC;
+}
+
+#lnkSetProductAsSold{
+    font: bold 18px Arial;
+    text-decoration: underline;
 }
 
 .profileInfo{
