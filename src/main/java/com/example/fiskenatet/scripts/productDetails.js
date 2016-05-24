@@ -187,8 +187,8 @@ $(document).ready(function () {
     }
 
     function populateProductDetails() {
-        var startDate= new Date(currentProduct.startDate).toLocaleString();
-        var endDate = new Date(currentProduct.endDate).toLocaleString();
+        var startDate= new Date(currentProduct.startDate).toLocaleDateString(navigator.language, {hour: '2-digit', minute:'2-digit'});
+        var endDate = new Date(currentProduct.endDate).toLocaleDateString(navigator.language, {hour: '2-digit', minute:'2-digit'});
         checkUserSellerRating();
 
         var productCategory = getCategory();
