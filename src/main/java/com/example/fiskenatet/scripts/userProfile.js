@@ -20,18 +20,18 @@ $(document).ready(function () {
     document.getElementById('buyerRatingDiv').style.display = 'none';
 
 //TIMECHECKER
-    var hasMovedAuctions =false;
     window.setInterval(function(){
         var currentTime = new Date();
-        if(currentTime.getHours()==16 && currentTime.getMinutes()==00 && hasMovedAuctions==false){
-            console.log("Dagens auktioner avslutade!");
-            hasMovedAuctions=true;
-            moveExpiredAuctions();
+        if(currentTime.getHours()==16 && currentTime.getMinutes()==00){
+            setTimeout(function () {
+                moveExpiredAuctions();
+            }, 60000);
         }
     }, 5000);
 
 
     function moveExpiredAuctions() {
+        console.log("Dagens auktioner avslutade!");
         $.ajax({
             type: 'GET',
             contentType: 'application/json',
@@ -397,6 +397,7 @@ $(document).ready(function () {
     });
 
     function getProductById(currentProductId, callBack) {
+        console.log("i getProductById() " + currentProductId);
         $.ajax({
             type: 'GET',
             contentType: 'application/json',
