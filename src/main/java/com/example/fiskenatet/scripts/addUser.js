@@ -1,6 +1,8 @@
 $(document).ready(function () {
     var rootURL ='http://localhost:8091/api';
-
+    var userUserName;
+    var userPassword;
+    
     document.getElementById('payPalName').style.display ="none";
 
     $(document).on("click", "#regForm", function(){
@@ -124,6 +126,7 @@ $(document).ready(function () {
                 logInValidation(data);
             },
             error: function (jgXHR, textStatus, errorThrown) {
+                alert("Användarnamnet hittas inte");
             }
         });
     }
@@ -134,7 +137,7 @@ $(document).ready(function () {
             console.log("Log in success" + foundUser.firstName);
             sessionStorage.setItem('currentUser', foundUser.id);
             sessionStorage.setItem('currentUserName', foundUser.userName)
-            location.reload();
+            location.href = "../webcontent/index.html"
         }else{
             alert("Fel lösenord!");
             //MAKE ALERT FEL PASS

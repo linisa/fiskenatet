@@ -124,7 +124,8 @@ ul.navbar-nav a:hover{
 /*Product List*/
 
 #productInfoDiv{
-    background-color: #3366BB;
+
+    border-color: #3366BB;
 }
 
 .product{

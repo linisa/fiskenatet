@@ -123,9 +123,10 @@ public class ProductController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/product/addtohistory", method = RequestMethod.POST)
-    public void createHistory(@RequestBody ProductModel productModel) {
-        productService.moveConfirmedProductToHistory(productModel);
+    @RequestMapping(value = "/products/addtohistory/{id}", method = RequestMethod.POST)
+    public void createHistory(@PathVariable Long id) {
+
+        productService.moveConfirmedProductToHistory(id);
     }
 
 }
