@@ -29,7 +29,7 @@ $(document).ready(function () {
         }else if(hasWhiteSpace(userName)){
             alert("Användarnamn får ej innehålla mellanslag");
         }else if(password == repeatPassword && password.length < 5){
-            alert("För kort lösenord");
+            alert("För kort lösenord, lösenordet ska innehålla minst 5 tecken");
         }else if(password != repeatPassword) {
             alert("Lösenorden stämmer ej överrens");
         }else if(password == repeatPassword && password.length >= 5){
