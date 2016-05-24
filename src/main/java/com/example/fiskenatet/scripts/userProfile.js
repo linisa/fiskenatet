@@ -100,7 +100,7 @@ $(document).ready(function () {
             }
         });
     }
-    
+
     $(document).on("click", "#lnkSetProductAsSold", function () {
         var currentProductID = $(this).data("value");
         getProductById(currentProductID, function (currentProduct) {
@@ -111,7 +111,7 @@ $(document).ready(function () {
 
 
 
-    
+
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
         sessionStorage.removeItem('currentUserName');
@@ -221,7 +221,7 @@ $(document).ready(function () {
             case "5":
                 document.getElementById("buyerRatingStar").innerHTML="★★★★★";
                 break;
-            default:    
+            default:
                 document.getElementById("buyerRatingStar").innerHTML="Inget Köparbetyg";
                 break;
         }
@@ -352,7 +352,7 @@ $(document).ready(function () {
         productToConfirmAsSold = productID;
     });
 
-    
+
     $(document).on("click", "#lnkEditProduct", function () {
         console.log("click, i editProduct");
         var currentProductID = $(this).data("value");
@@ -429,7 +429,7 @@ $(document).ready(function () {
         })
     }
 
-    
+
 // PRODUCTS BUTTONS & FUNCTIONS END
 
 // BUYER RATING
@@ -450,7 +450,7 @@ $(document).ready(function () {
             }
         });
     }
-    
+
     function buyerRatingURL(currentProduct) {
 
         var bidList = currentProduct['listOfBids'];
@@ -462,11 +462,9 @@ $(document).ready(function () {
         return ratingURL;
     }
 
-//BUYER RATING END    
-    
+//BUYER RATING END
+
 //SELLER RATING
 //TODO: FLYTTA SELLER RATING HIT!
-//SELLER RATING END    
+//SELLER RATING END
 });
-
-

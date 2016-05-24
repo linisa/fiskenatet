@@ -15,9 +15,7 @@ function CheckIfLoggedIn() {
 
 $(document).ready(function () {
 
-
-
-    
+    document.getElementById('lnkProfileUserName').innerHTML = "Inloggad som: " + currentUserName;
     
     getProductDetails();
 
@@ -139,4 +137,9 @@ $(document).ready(function () {
         sleep(3000);
         location.href='../webcontent/index.html';
     }
+    $(document).on("click", "#lnkLogOut", function () {
+        sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUserName');
+        location.href="../webcontent/index.html";
+    });
 });
