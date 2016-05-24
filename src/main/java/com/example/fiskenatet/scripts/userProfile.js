@@ -3,6 +3,7 @@ var currentUserID;
 var currentProductId = sessionStorage.getItem('currentProductId');
 var currentUserName;
 var currentUser;
+var productToConfirmAsSold;
 
 
 CheckIfLoggedIn();
@@ -15,6 +16,30 @@ function CheckIfLoggedIn() {
 }
 
 $(document).ready(function () {
+//TIMECHECKER
+    var hasMovedAuctions =false;
+    window.setInterval(function(){
+        var currentTime = new Date();
+        if(currentTime.getHours()==16 && currentTime.getMinutes()==00 && hasMovedAuctions==false){
+            console.log("Dagens auktioner avslutade!");
+            hasMovedAuctions=true;
+            moveExpiredAuctions();
+        }
+    }, 5000);
+
+
+    function moveExpiredAuctions() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: rootURL + '/products/endofday',
+            success: function (data, textStatus, jgXHR) {
+                location.reload();
+            }
+        });
+    }
+
+//TIMECHECKER END
 
 // MENU BUTTONS & FUNCTIONS
 
@@ -86,11 +111,13 @@ $(document).ready(function () {
 
 
 
+
     $(document).on("click", "#lnkLogOut", function () {
         sessionStorage.removeItem('currentUser');
         sessionStorage.removeItem('currentUserName');
         location.href="../webcontent/index.html";
     });
+
 // MENU BUTTONS & FUNCTIONS END
 
 // USER BUTTONS & FUNCTIONS
@@ -127,11 +154,11 @@ $(document).ready(function () {
             contentType: 'application/json',
             url: rootURL + "/users/getsellerrating/" + currentUserID,
             success: function (data, textStatus, jgXHR) {
-                console.log("GetBuyerRating:" + data);
+                console.log("sellerRating:" + data);
                 populateUserSellerRating(data);
             },
             error: function (jgXHR, textStatus, errorThrown) {
-                console.log("GetBuyerRating error: " + textStatus);
+                console.log("GetSellerRating error: " + textStatus);
             }
         });
     }
@@ -155,7 +182,7 @@ $(document).ready(function () {
                 document.getElementById("sellerRatingStar").innerHTML="★★★★★";
                 break;
             default:
-                document.getElementById("sellerRatingStar").innerHTML="No stars yet!";
+                document.getElementById("sellerRatingStar").innerHTML="Inget säljarbetyg";
         }
     }
 
@@ -169,7 +196,6 @@ $(document).ready(function () {
             success: function (data, textStatus, jgXHR) {
                 console.log("buyerRating:" + data);
                 populateUserBuyerRating(data);
-
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("GetBuyerRating error: " + textStatus);
@@ -196,13 +222,10 @@ $(document).ready(function () {
                 document.getElementById("buyerRatingStar").innerHTML="★★★★★";
                 break;
             default:
-                document.getElementById("sellerRatingStar").innerHTML="No stars yet!";
+                document.getElementById("buyerRatingStar").innerHTML="Inget Köparbetyg";
                 break;
         }
     }
-
-
-
 
     $(document).on("click", "#btnDeleteUser", function () {
         checkUserForActiveAuctions();
@@ -293,9 +316,9 @@ $(document).ready(function () {
             productString+='<h3 id="ownerProductTitle">' + listOfProducts[i].title + '</h3>';
             productString+='<p class="ownerProductDescription">' + listOfProducts[i].description + '</p>';
             productString+='</div></div><div class="row"><div class="col-sm-6">';
-            productString+='<p id="ownerProductStartDate">Datum tillagt: <br>' + startDate.toLocaleDateString(navigator.language, {hour: '2-digit', minute:'2-digit'}) + '</p>';
-            productString+='<p id="ownerProductEndDate">Slutdatum: <br>' + endDate.toLocaleDateString(navigator.language, {hour: '2-digit', minute:'2-digit'}) + '</p>';
-            productString+='<p id="ownerProductCategory">Kategori: <br>' + productCategory + '</p>';
+            productString+='<p id="ownerProductStartDate">Datum tillagt: <br>' + startDate.toLocaleDateString(navigator.language, {hour: '2-digit', minute: '2-digit'}) + '</p>';
+            productString+='<p id="ownerProductEndDate">Slutdatum: <br>' + endDate.toLocaleDateString(navigator.language, {hour: '2-digit', minute: '2-digit'}) + '</p>';
+            productString+='<p id="ownerProductCategory">Kategori: <br>' + listOfProducts[i].category + '</p>';
             productString+='</div><div class="col-sm-6">';
             productString+='<p id="ownerProductTotalBids">Totalt antal bud: <br>' + listOfProducts[i].listOfBids.length + '</p>';
 
@@ -315,22 +338,20 @@ $(document).ready(function () {
             productString+='</div><div class="col-sm-4">';
             productString+='<a id="lnkDeleteProduct"href="#" data-value="'+ listOfProducts[i].id +'">Ta bort annons</a></div>';
             if(isSold == "yes"){
-                productString+='<p id="confirmPurchase" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta köp</p>';
-                productString+='<div id="buyerRatingDiv" class="collapse">';
-                productString+='<fieldset class="rating">';
-                productString+='<legend>Säljarbetyg:</legend>';
-                productString+='<input type="radio" id="star5" name="rating" value="5" /><label for="star5">5 stars</label>';
-                productString+='<input type="radio" id="star4" name="rating" value="4" /><label for="star4">4 stars</label>';
-                productString+='<input type="radio" id="star3" name="rating" value="3" /><label for="star3">3 stars</label>';
-                productString+='<input type="radio" id="star2" name="rating" value="2" /><label for="star2">2 stars</label>';
-                productString+='<input type="radio" id="star1" name="rating" value="1" /><label for="star1">1 star</label>';
-                productString+='</fieldset>';
-                productString+='<div class="col-sm-4"><a id="lnkSetProductAsSold" href="#" data-value="'+ listOfProducts[i].id +'">Bekräfta köp</a></div></div>';
+                productString+='<p id="confirmPurchase" data-id="'+ listOfProducts[i].id +'" data-value="'+ listOfProducts[i].title +'" data-toggle="collapse" data-target="#buyerRatingDiv">Bekräfta köp</p>';
             }
             productString+='</div></div></div>';
         }
         $products.append(productString);
     }
+
+    $(document).on("click", "#confirmPurchase", function () {
+        var productTitle = $(this).data("value");
+        var productID = $(this).data("id");
+        document.getElementById("titleToConfirm").innerHTML = productTitle;
+        productToConfirmAsSold = productID;
+    });
+
 
     $(document).on("click", "#lnkEditProduct", function () {
         console.log("click, i editProduct");
@@ -371,15 +392,12 @@ $(document).ready(function () {
         });
     }
 
-
     $(document).on("click", "#lnkSetProductAsSold", function () {
-        var currentProductID = $(this).data("value");
+        console.log("click lnkSetProductAsSold, product: " + productToConfirmAsSold);
 
-        getProductById(currentProductID, function (currentProduct) {
+        getProductById(productToConfirmAsSold, function (currentProduct) {
             setBuyerRating(currentProduct);
-            productToHistoryJSON(currentProduct, function (JSONHistory) {
-                moveSoldProductToHistory(JSONHistory);
-            });
+            moveSoldProductToHistory(currentProduct);
         })
     });
 
@@ -394,38 +412,22 @@ $(document).ready(function () {
         });
     }
 
-    function moveSoldProductToHistory(JSONHistory){
+    function moveSoldProductToHistory(currentProduct){
         console.log("in moveSoldProductToHistory");
-        console.log(JSONHistory);
+        console.log(currentProduct);
         $.ajax({
             type: 'POST',
             contentType:'application/json',
-            url: rootURL + '/products/addtohistory/' +JSONHistory.id,
+            url: rootURL + '/products/addtohistory/' +currentProduct.id,
             success: function (data, textStatus, jgXHR) {
                 console.log("GREAT SUCCESS!");
+                location.reload();
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("send Error " +textStatus + "  " + errorThrown);
             }
         })
     }
-
-
-
-    function productToHistoryJSON(currentProduct, callback) {
-        var product = JSON.stringify({
-            "owner" : {id: currentUserID},
-            "description": currentProduct.description,
-            "title": currentProduct.title,
-            "startDate": currentProduct.startDate,
-            "endDate": currentProduct.endDate,
-            "soldFor": currentProduct.soldFor,
-            "image": currentProduct.image
-        });
-        console.log(product);
-        callback(product);
-    }
-
 
 
 // PRODUCTS BUTTONS & FUNCTIONS END
@@ -447,9 +449,8 @@ $(document).ready(function () {
                 console.log("setBuyerRating error: " + textStatus);
             }
         });
-
     }
-    
+
     function buyerRatingURL(currentProduct) {
 
         var bidList = currentProduct['listOfBids'];
@@ -461,11 +462,9 @@ $(document).ready(function () {
         return ratingURL;
     }
 
-//BUYER RATING END    
-    
+//BUYER RATING END
+
 //SELLER RATING
 //TODO: FLYTTA SELLER RATING HIT!
-//SELLER RATING END    
+//SELLER RATING END
 });
-
-
