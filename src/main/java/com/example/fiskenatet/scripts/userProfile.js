@@ -318,7 +318,7 @@ $(document).ready(function () {
             productString+='</div></div><div class="row"><div class="col-sm-6">';
             productString+='<p id="ownerProductStartDate">Datum tillagt: <br>' + startDate.toLocaleDateString(navigator.language, {hour: '2-digit', minute: '2-digit'}) + '</p>';
             productString+='<p id="ownerProductEndDate">Slutdatum: <br>' + endDate.toLocaleDateString(navigator.language, {hour: '2-digit', minute: '2-digit'}) + '</p>';
-            productString+='<p id="ownerProductCategory">Kategori: <br>' + listOfProducts[i].category + '</p>';
+            productString+='<p id="ownerProductCategory">Kategori: <br>' + productCategory + '</p>';
             productString+='</div><div class="col-sm-6">';
             productString+='<p id="ownerProductTotalBids">Totalt antal bud: <br>' + listOfProducts[i].listOfBids.length + '</p>';
 
