@@ -83,6 +83,7 @@ ul.navbar-nav a:hover{
     border:none;
     background-color: #3366BB;
     color: white;
+    cursor: pointer;
 }
 
 .menuTxt{

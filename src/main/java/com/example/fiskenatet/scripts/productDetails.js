@@ -137,8 +137,6 @@ $(document).ready(function () {
                 owner = data;
                 checkIfLoggedIn();
                 populateProductDetails();
-
-
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 console.log("getAllProducts error: " + textStatus);
@@ -196,14 +194,14 @@ $(document).ready(function () {
         document.getElementById('productImage').src = currentProduct.image;
         document.getElementById('productTextDetails').innerHTML  = currentProduct.title;
         document.getElementById('ownerDetails').innerHTML = "Säljs av: " + owner.userName;
-        document.getElementById('startDateDetails').innerHTML = " " + startDate;
+        document.getElementById('startDateDetails').innerHTML = "Skapad: " + startDate;
         document.getElementById('categoryDetails').innerHTML = "Kategori: " + productCategory;
         document.getElementById('descriptionDetails').innerHTML = currentProduct.description;
         document.getElementById('endDateDetails').innerHTML = "Slutdatum: <br> " + endDate;
         document.getElementById('lnkAddBid').innerHTML = "Lägg ett bud";
         document.getElementById('startPriceDetails').innerHTML = "Utropspris: <br> " + currentProduct.startPrice + " kr";
         document.getElementById('buyNowPriceDetails').innerHTML = "Köp nu: <br> " + currentProduct.buyNowPrice + " kr";
-        if(currentProduct.buyNowPrice == 0||currentUserID == owner.id){
+        if(currentProduct.buyNowPrice == 0||currentUserID == owner.id||currentUserID == null){
             document.getElementById('buyNowPriceDetails').style.display = "none";
         }else if(currentProduct.listOfBids.length !=0){
             if(currentProduct['listOfBids'][0].amount>(currentProduct.buyNowPrice/2)) {
@@ -249,7 +247,7 @@ $(document).ready(function () {
                 document.getElementById("sellerRatingStar").innerHTML="★★★★★";
                 break;
             default:
-                document.getElementById("sellerRatingStar").innerHTML="No stars yet!";
+                document.getElementById("sellerRatingStar").innerHTML="Inget betyg!";
         }
     }
 
