@@ -322,7 +322,7 @@ $(document).ready(function () {
 
                 productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' +  listOfBids[0].amount + " kr"  + '</p>';
             }else{
-                productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' +  listOfProducts[i].startPrice + " kr" + '</p>';
+                productString+='<p id="ownerProductHighestBid">Högsta bud: <br>' +  "0 kr" + '</p>';
             }
 
             productString+='<p id="ownerProductBuyNowPrice">Utköpspris: <br>' + listOfProducts[i].buyNowPrice + " kr" + '</p>';
