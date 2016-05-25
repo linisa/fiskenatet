@@ -138,7 +138,7 @@ $(document).ready(function () {
     }
 
     function setProductAsSold() {
-        document.getElementById('confirmationMessage').innerHTML = '<b>Ditt köp är nu slutfört. Du skickas nu vidare till startsidan</b>';
+        document.getElementById('confirmationMessage').innerHTML = '<b>Ditt köp är slutfört! Du skickas nu vidare till startsidan.</b>';
         console.log("Setting product as sold")
         $.ajax({
             type: 'PUT',

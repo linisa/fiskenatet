@@ -41,16 +41,18 @@ public class ProductControllerTest {
     private static final String TITLE_2 = "Blåval";
     private static final String CATEGORY_1 = "Fiskar";
     private static final String CATEGORY_2 = "Valar";
+    private static final String IS_NOT_SOLD = "No";
+    private static final String IS_SOLD = "Yes";
     private static final Long OWNER_ID_1 = 1L;
     private static final UserModel OWNER_1 = new UserBuilder().id(OWNER_ID_1).firstName("Pelle").build();
     private static final Long OWNER_ID_2 = 2L;
     private static final UserModel OWNER_2 = new UserBuilder().id(OWNER_ID_2).firstName("Kalle").build();
 
-    private static final ProductModel fish1 = new ProductBuilder().id(ID_1).title(TITLE_1).category(CATEGORY_1).owner(OWNER_1).build();
-    private static final ProductModel fish2 = new ProductBuilder().id(ID_2).title(TITLE_2).category(CATEGORY_2).owner(OWNER_2).build();
+    private static final ProductModel fish1 = new ProductBuilder().id(ID_1).title(TITLE_1).category(CATEGORY_1).owner(OWNER_1).isSold(IS_SOLD).build();
+    private static final ProductModel fish2 = new ProductBuilder().id(ID_2).title(TITLE_2).category(CATEGORY_2).owner(OWNER_2).isSold(IS_NOT_SOLD).build();
 
     @Test
-    public void testAddProduct(){
+    public void testCreateProduct(){
         String response = "OK";
         given(productService.validateProductInput(fish1)).willReturn(response);
         assertThat(productController.updateProduct(ID_1, fish1)).isEqualTo(response);
@@ -90,7 +92,7 @@ public class ProductControllerTest {
         assertThat(productController.getProductsByCategory(CATEGORY_2)).isEqualTo(responsMessage);
     }
     @Test
-    public void testGetProductByOwnerAndCategory(){
+    public void testGetProductByOwnerAndByCategory(){
         ArrayList<ProductModel>productList = new ArrayList<ProductModel>();
         productList.add(fish1);
         ResponseEntity responsMessage = new ResponseEntity<ArrayList<ProductModel>>(productList, HttpStatus.OK);
@@ -110,6 +112,32 @@ public class ProductControllerTest {
         ResponseEntity responsMessage = new ResponseEntity<ArrayList<ProductModel>>(productList, HttpStatus.OK);
         given(productService.searchProducts(TITLE_2)).willReturn(Arrays.asList(fish2));
         assertThat(productController.searchProducts(TITLE_2)).isEqualTo(responsMessage);
+    }
+    @Test
+    public void testGetNotSoldProductsByCategory(){
+        ArrayList<ProductModel>productList = new ArrayList<ProductModel>();
+        productList.add(fish2);
+        ResponseEntity responsMessage = new ResponseEntity<ArrayList<ProductModel>>(productList, HttpStatus.OK);
+        given(productService.findAllProductsByCategoryNotSold(CATEGORY_2)).willReturn(Arrays.asList(fish2));
+        assertThat(productController.getNotSoldProductsByCategory(CATEGORY_2)).isEqualTo(responsMessage);
+    }
+    @Test
+    public void testGetUnsoldProducts(){
+        ArrayList<ProductModel>productList = new ArrayList<ProductModel>();
+        productList.add(fish2);
+        ResponseEntity responsMessage = new ResponseEntity<ArrayList<ProductModel>>(productList, HttpStatus.OK);
+        given(productService.findProductsByIsSold(IS_NOT_SOLD)).willReturn(Arrays.asList(fish2));
+        assertThat(productController.getUnsoldProducts(IS_NOT_SOLD)).isEqualTo(responsMessage);
+    }
+    @Test
+    public void testAuctionDayEnd(){
+        productController.auctionDayEnd();
+        verify(productService).auctionDayEnd();
+    }
+    @Test
+    public void testCreateHistory(){
+        productController.createHistory(ID_1);
+        verify(productService).moveConfirmedProductToHistory(ID_1);
     }
 
 }

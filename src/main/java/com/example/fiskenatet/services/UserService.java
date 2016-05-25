@@ -129,10 +129,7 @@ public class UserService {
                 break;
             }
         }
-        String checkUser = validation.validateUserNameAndEmail(userList, historyList, userModel);
-        if(checkUser.equals("OK")){
-            checkUser = validation.controlUserInput(userModel, checkUser);
-        }
+        String checkUser = checkUserInput(userList, historyList, userModel);
 
         log.info("Called method 'validateUserInputWhenUpdating' for user with ID = " + id + " that returned string: " + checkUser);
         return checkUser;
@@ -141,18 +138,22 @@ public class UserService {
     public String validateUserInputWhenCreating(UserModel userModel){
         List<UserModel> userList = userRepository.findAll();
         List<HistoryModel> historyList = historyRepository.findAll();
+        String checkUser = checkUserInput(userList, historyList, userModel);
 
+        log.info("Called method 'validateUserInputWhenCreating' for user with username = " + userModel.getUserName() + " that returned string: " + checkUser);
+        return checkUser;
+    }
+    private String checkUserInput(List<UserModel> userList, List<HistoryModel> historyList, UserModel userModel){
         String checkUser = validation.validateUserNameAndEmail(userList, historyList, userModel);
         if(checkUser.equals("OK")){
             checkUser = validation.controlUserInput(userModel, checkUser);
             if(checkUser.equals("OK")){
-               boolean verifyMail = mailHandler.controlUserMail(userModel.getEmail());
+                boolean verifyMail = mailHandler.controlUserMail(userModel.getEmail());
                 if(verifyMail == false){
                     checkUser = "Ange en giltig e-postadress";
                 }
             }
         }
-        log.info("Called method 'validateUserInputWhenCreating' for user with username = " + userModel.getUserName() + " that returned string: " + checkUser);
         return checkUser;
     }
 

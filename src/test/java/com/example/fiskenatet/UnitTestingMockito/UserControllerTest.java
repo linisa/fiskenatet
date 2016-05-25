@@ -44,13 +44,15 @@ public class UserControllerTest {
     private static final String FIRST_NAME_2 = "Kalle";
     private static final Long USER_ID_2 = 2L;
     private static final Long USER_ID_3 = 3L;
+    private static final String BUYER_RATING_1 = "534";
+    private static final String SELLER_RATING_1 = "3214";
 
-    private static final UserModel user1 = new UserBuilder().id(USER_ID_1).firstName(FIRST_NAME_1).userName(USER_NAME_1).build();
+    private static final UserModel user1 = new UserBuilder().id(USER_ID_1).firstName(FIRST_NAME_1).userName(USER_NAME_1).sellerRating(SELLER_RATING_1).buyerRating(BUYER_RATING_1).build();
     private static final UserModel user2 = new UserBuilder().id(USER_ID_2).firstName(FIRST_NAME_2).userName(USER_NAME_2).build();
     private static final UserModel user3 = new UserBuilder().id(USER_ID_3).firstName("Kalle").lastName("Anka").userName("kalleanka").email("kalle@anka.com").mobileNumber("12345").build();
 
     @Test
-    public void testFindAllUsers(){
+    public void testGetAllUsers(){
         ArrayList<UserModel> userList = new ArrayList<UserModel>();
         userList.add(user1);
         userList.add(user2);
@@ -88,6 +90,26 @@ public class UserControllerTest {
         given(userService.validateUserInputWhenUpdating(USER_ID_3, user3)).willReturn(response);
         assertThat(userController.updateUser(USER_ID_3, user3)).isEqualTo(response);
     }
-
-
+    @Test
+    public void testRateABuyer(){
+        userController.rateABuyer(USER_ID_3, "3");
+        verify(userService).saveBuyerRating(USER_ID_3, "3");
+    }
+    @Test
+    public void testRateASeller(){
+        userController.rateASeller(USER_ID_1, "1");
+        verify(userService).saveSellerRating(USER_ID_1, "1");
+    }
+    @Test
+    public void testGetBuyerRate(){
+        String buyerRating = "534";
+        given(userService.findBuyerRating(USER_ID_1)).willReturn(buyerRating);
+        assertThat(userController.getBuyerRate(USER_ID_1)).isEqualTo(buyerRating);
+    }
+    @Test
+    public void testGetSellerRate(){
+        String sellerRating = "3214";
+        given(userService.findSellerRating(USER_ID_1)).willReturn(sellerRating);
+        assertThat(userController.getSellerRate(USER_ID_1)).isEqualTo(sellerRating);
+    }
 }

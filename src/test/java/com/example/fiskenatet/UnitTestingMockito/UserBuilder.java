@@ -33,7 +33,14 @@ public class UserBuilder {
         userModel.setMobileNumber(mobileNumber);
         return this;
     }
-
+    public UserBuilder sellerRating (String sellerRating){
+        userModel.setRatingAsSeller(sellerRating);
+        return this;
+    }
+    public UserBuilder buyerRating(String buyerRating){
+        userModel.setRatingAsBuyer(buyerRating);
+        return this;
+    }
 
     public UserModel build(){
         return userModel;

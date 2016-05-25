@@ -141,7 +141,7 @@ public class ProductService {
         log.info("Product with ID = " +soldProduct.getId()+ " has been set to sold");
     }
 
-    public void updateProductWhenNotSold(Long id) {
+    private void updateProductWhenNotSold(Long id) {
         ProductModel product = productRepository.getOne(id);
         MailHandler mailHandler = new MailHandler();
         UserModel owner = userRepository.getOne(product.getOwner());
@@ -201,7 +201,7 @@ public class ProductService {
             if(product.getListOfBids().isEmpty()) {
                 // produkt utan bud --> Hantera
                 updateProductWhenNotSold(product.getId());
-                System.out.println("produkthoran owner id = " +product.getOwner());
+
                 UserModel user = new UserModel();
 
                 addProductToHistoryDatabase(product, false);
@@ -219,7 +219,7 @@ public class ProductService {
     // med bud klart, funkar?
     // köp nu ej klart
 
-    public void addProductToHistoryDatabase(ProductModel productModel, boolean productIsSold) {
+    private void addProductToHistoryDatabase(ProductModel productModel, boolean productIsSold) {
         System.out.println("inne i funktionen i history service");
         HistoryModel historyModel = new HistoryModel();
         historyModel.setProdutID(productModel.getId());

@@ -30,6 +30,10 @@ public class ProductBuilder {
         productModel.setOwner(userModel);
         return this;
     }
+    public ProductBuilder isSold(String isSold){
+        productModel.setIsSold(isSold);
+        return this;
+    }
 
     public ProductModel build(){
         return productModel;

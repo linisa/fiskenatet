@@ -25,7 +25,7 @@ $(document).ready(function () {
         var userName = document.getElementById("tfUserName").value;
         
         if(hasWhiteSpace(password)) {
-            alert("lösenord får ej innehålla mellanslag");
+            alert("Lösenord får ej innehålla mellanslag");
         }else if(hasWhiteSpace(userName)){
             alert("Användarnamn får ej innehålla mellanslag");
         }else if(password == repeatPassword && password.length < 5){

@@ -25,8 +25,6 @@ public class ProductController {
     @Autowired //inkluderar alla dependency raderna ish.
     private ProductService productService;
 
-    private Validation validation = new Validation();
-
     //kollar om alla produktinputs är korrekt
     // om allt är ok, skapas en ny produkt till databasen
     @CrossOrigin
@@ -120,7 +118,6 @@ public class ProductController {
     @RequestMapping(value = "/products/endofday", method = RequestMethod.GET)
     public void auctionDayEnd() {
         productService.auctionDayEnd();
-
     }
 
     @CrossOrigin

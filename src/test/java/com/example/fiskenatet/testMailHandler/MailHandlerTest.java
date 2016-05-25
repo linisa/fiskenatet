@@ -23,7 +23,7 @@ public class MailHandlerTest extends TestCase {
 
     }
     public void testControlUserMail() throws Exception{
-        assertTrue(mailHandler.controlUserMail("linisa89@hotmail.com"));
+        assertTrue(mailHandler.controlUserMail("fiskenaetet@gmail.com"));
     }
 
 }

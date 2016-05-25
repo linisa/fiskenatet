@@ -31,12 +31,6 @@ public class HistoryService {
 
     Logger log = Logger.getLogger(Application.class.getName());
 
-    // skapa produkt
-    public void saveHistory(HistoryModel historyModel) {
-        historyRepository.saveAndFlush(historyModel);
-        log.info("New history saved with ID: " + historyModel.getId());
-    }
-
     // hämta en alla produkter med en specifik ägare
     public List<HistoryModel> getHistoryByOwner(Long ownerId){
         List<HistoryModel> historyList = historyRepository.findHistoryByOwner(ownerId);
@@ -48,16 +42,6 @@ public class HistoryService {
         log.info("Called method 'getHistoryByBuyer' that returned a list of " + historyList.size() + " products from history for owner with username: " + username);
         return historyList;
     }
-
-
-    public void runMe() {
-        HistoryModel user = historyRepository.findOne(1L);
-        UserModel model = userRepository.findOne(user.getOwner());
-        System.out.println("User first name = " +model.getFirstName());
-    }
-
-
-
 
 
 }

@@ -20,16 +20,6 @@ public class HistoryController {
     @Autowired
     private HistoryService historyService;
 
-
-    /*
-    @CrossOrigin
-    @RequestMapping(value = "/history", method = RequestMethod.POST)
-    public void createHistory(@RequestBody HistoryModel historyModel) {
-        productService.moveConfirmedProductToHistory(historyModel);
-        historyService.saveHistory(historyModel);
-    }
-    */
-
     @CrossOrigin
     @RequestMapping(value = "/history/{ownerId}", method = RequestMethod.GET)
     public ResponseEntity<List<HistoryModel>> getHistoryByOwner(@PathVariable Long ownerId) {
