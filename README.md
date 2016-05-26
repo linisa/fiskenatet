@@ -263,8 +263,9 @@ userProfile.html
 
 VI.Bugs&issues
 ---------------
-
-Nothing to report.
+When updating a user, if the user already has bought/won an ad (eg. the user has his username listed under buyer_username
+in the history table in the database.), then the user will be prompted that the username is already in use even if the user
+don't want to change his current username.
 
 
 
