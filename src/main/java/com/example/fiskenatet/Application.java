@@ -17,7 +17,7 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 
-/*
+
 		try {
 			FileHandler fileHandler = new FileHandler("logging.txt", true);
 			fileHandler.setFormatter(new SimpleFormatter());
@@ -25,7 +25,7 @@ public class Application {
 			log.info("Program started and new log file was created");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}*/
+		}
 
 	}
 
