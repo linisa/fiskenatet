@@ -1,6 +1,6 @@
 spring:
   application:
-    name: Fiskenatet
+    name: fiskenatet
   jpa:
     properties:
       dialect: org.hibernate.dialect.MySQLInnoDBDialect
