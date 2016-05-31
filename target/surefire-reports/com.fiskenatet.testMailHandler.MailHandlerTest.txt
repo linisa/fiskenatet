@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.fiskenatet.testMailHandler.MailHandlerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.333 sec - in com.fiskenatet.testMailHandler.MailHandlerTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.584 sec - in com.fiskenatet.testMailHandler.MailHandlerTest

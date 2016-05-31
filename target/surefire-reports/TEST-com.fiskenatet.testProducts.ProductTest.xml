@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.fiskenatet.testProducts.ProductTest" time="0.001" tests="3" errors="0" skipped="0" failures="0">
+<testsuite name="com.fiskenatet.testProducts.ProductTest" time="0" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Progra~1\Java\jdk1.8.0_72\jre\bin"/>
@@ -28,7 +28,7 @@
     <property name="os.name" value="Windows 10"/>
     <property name="classworlds.conf" value="C:\apache-maven-3.3.9\bin\..\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Progra~1\Java\jdk1.8.0_72\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\Linus\.posh_gvm\vertx\current\bin;C:\Users\Linus\.posh_gvm\sshoogr\current\bin;C:\Users\Linus\.posh_gvm\springboot\current\bin;C:\Users\Linus\.posh_gvm\scala\current\bin;C:\Users\Linus\.posh_gvm\sbt\current\bin;C:\Users\Linus\.posh_gvm\maven\current\bin;C:\Users\Linus\.posh_gvm\lazybones\current\bin;C:\Users\Linus\.posh_gvm\kotlin\current\bin;C:\Users\Linus\.posh_gvm\kobalt\current\bin;C:\Users\Linus\.posh_gvm\jbossforge\current\bin;C:\Users\Linus\.posh_gvm\jbakery\current\bin;C:\Users\Linus\.posh_gvm\jbake\current\bin;C:\Users\Linus\.posh_gvm\groovyserv\current\bin;C:\Users\Linus\.posh_gvm\groovy\current\bin;C:\Users\Linus\.posh_gvm\griffon\current\bin;C:\Users\Linus\.posh_gvm\grails\current\bin;C:\Users\Linus\.posh_gvm\gradle\current\bin;C:\Users\Linus\.posh_gvm\glide\current\bin;C:\Users\Linus\.posh_gvm\gaiden\current\bin;C:\Users\Linus\.posh_gvm\crash\current\bin;C:\Users\Linus\.posh_gvm\ceylon\current\bin;C:\Users\Linus\.posh_gvm\asciidoctorj\current\bin;C:\Users\Linus\.posh_gvm\ant\current\bin;C:\Users\Linus\.posh_gvm\activator\current\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Common Files\Roxio Shared\OEM\DLLShared\;C:\Program Files (x86)\Common Files\Roxio Shared\OEM\12.0\DLLShared\;C:\Program Files (x86)\Roxio\OEM\AudioCore\;C:\Program Files (x86)\Skype\Phone\C:\Program Files (x86)\Java\jdk1.8.0_60\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Heroku\bin;C:\Program Files (x86)\git\cmd;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 &amp; MySQL Utilities 1.5\;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 &amp; MySQL Utilities 1.5\Doctrine extensions for PHP\;C:\Program Files\CloudFoundry;C:\Program Files\CloudFoundryy;C:\apache-maven-3.3.9\bin;."/>
+    <property name="java.library.path" value="C:\Progra~1\Java\jdk1.8.0_72\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Common Files\Roxio Shared\OEM\DLLShared\;C:\Program Files (x86)\Common Files\Roxio Shared\OEM\12.0\DLLShared\;C:\Program Files (x86)\Roxio\OEM\AudioCore\;C:\Program Files (x86)\Skype\Phone\C:\Program Files (x86)\Java\jdk1.8.0_60\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Heroku\bin;C:\Program Files (x86)\git\cmd;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 &amp; MySQL Utilities 1.5\;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 &amp; MySQL Utilities 1.5\Doctrine extensions for PHP\;C:\Program Files\CloudFoundry;C:\Program Files\CloudFoundryy;C:\apache-maven-3.3.9\bin;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -43,7 +43,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Progra~1\Java\jdk1.8.0_72\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher package"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="sv"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -63,6 +63,6 @@
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
   <testcase name="testGetProduct" classname="com.fiskenatet.testProducts.ProductTest" time="0"/>
-  <testcase name="testAddProduct" classname="com.fiskenatet.testProducts.ProductTest" time="0.001"/>
+  <testcase name="testAddProduct" classname="com.fiskenatet.testProducts.ProductTest" time="0"/>
   <testcase name="testGetAllProducts" classname="com.fiskenatet.testProducts.ProductTest" time="0"/>
 </testsuite>
