@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0.005" tests="13" errors="0" skipped="0" failures="0">
+<testsuite name="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0.007" tests="13" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Progra~1\Java\jdk1.8.0_72\jre\bin"/>
@@ -63,16 +63,16 @@
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
   <testcase name="testAuctionDayEnd" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0"/>
-  <testcase name="testGetNotSoldProductsByCategory" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0"/>
+  <testcase name="testGetNotSoldProductsByCategory" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0.001"/>
   <testcase name="testUpdateProductWhenSold" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0"/>
   <testcase name="testGetProductByOwnerAndByCategory" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0.001"/>
   <testcase name="testGetUnsoldProducts" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0"/>
-  <testcase name="testCreateProduct" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0.003"/>
+  <testcase name="testCreateProduct" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0.004"/>
   <testcase name="testSearchProducts" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0"/>
   <testcase name="testUpdateProduct" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0"/>
   <testcase name="testCreateHistory" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0"/>
-  <testcase name="testGetSelectedProduct" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0.001"/>
-  <testcase name="testDeleteProduct" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0"/>
+  <testcase name="testGetSelectedProduct" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0"/>
+  <testcase name="testDeleteProduct" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0.001"/>
   <testcase name="testGetAllProducts" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0"/>
   <testcase name="testGetProductByCategory" classname="com.fiskenatet.UnitTestingMockito.ProductControllerTest" time="0"/>
 </testsuite>
