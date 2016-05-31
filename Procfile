@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/fiskenatet.war
+web: java -Dserver.port=$PORT -jar target/fiskenatet-1.0-SNAPSHOT.jar
