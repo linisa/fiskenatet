@@ -1,21 +1,21 @@
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\controllers\UserController.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\main\FishEnum.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\services\UserService.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\services\ProductService.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\models\HistoryModel.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\controllers\ProductController.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\repositories\BidRepository.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\repositories\HistoryRepository.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\Application.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\main\MailHandler.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\models\UserModel.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\repositories\ProductRepository.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\services\HistoryService.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\models\BidModel.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\controllers\HistoryController.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\services\BidService.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\controllers\BidController.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\main\UserRating.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\repositories\UserRepository.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\main\Validation.java
-C:\Users\Linus\Downloads\Fiskenätet\src\main\java\com\example\fiskenatet\models\ProductModel.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\controllers\HistoryController.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\Application.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\models\UserModel.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\controllers\BidController.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\repositories\UserRepository.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\services\ProductService.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\controllers\ProductController.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\controllers\UserController.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\models\BidModel.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\models\ProductModel.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\repositories\BidRepository.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\models\HistoryModel.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\services\HistoryService.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\services\UserService.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\repositories\HistoryRepository.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\services\BidService.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\stuff\FishEnum.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\stuff\MailHandler.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\repositories\ProductRepository.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\stuff\UserRating.java
+C:\Users\Linus\Desktop\Fiskenätet - final\src\main\java\com\fiskenatet\stuff\Validation.java

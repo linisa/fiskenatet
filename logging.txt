@@ -1,2 +1,96 @@
-maj 24, 2016 10:45:36 FM com.example.fiskenatet.Application main
+maj 24, 2016 10:45:36 FM Application main
 INFO: Program started and new log file was created
+maj 26, 2016 1:30:31 EM Application main
+INFO: Program started and new log file was created
+maj 26, 2016 1:33:12 EM ProductService findProductsByIsSold
+INFO: Called method 'findProductsByIsSold' that returned a list of 0 sold products
+maj 26, 2016 1:33:47 EM Validation controlProductImage
+INFO: Called method 'controlProductImage' that returned boolean: true
+maj 26, 2016 1:33:47 EM Validation validateProductInput
+INFO: Called method 'validateProductInput' that returned string: OK
+maj 26, 2016 1:33:47 EM ProductService saveProduct
+INFO: New product created with ID: 11
+maj 26, 2016 1:33:47 EM ProductService findProductsByIsSold
+INFO: Called method 'findProductsByIsSold' that returned a list of 1 sold products
+maj 26, 2016 1:34:43 EM ProductService findProductsByIsSold
+INFO: Called method 'findProductsByIsSold' that returned a list of 1 sold products
+maj 26, 2016 1:34:48 EM UserService findUserByUserName
+INFO: Called method 'findUserByUserName' with username 'linisa'
+maj 26, 2016 1:34:48 EM ProductService findProductsByIsSold
+INFO: Called method 'findProductsByIsSold' that returned a list of 1 sold products
+maj 26, 2016 1:36:39 EM ProductService findSelectedProduct
+INFO: Called method 'findSelectedProduct' and returned product with ID = 11
+maj 26, 2016 1:36:39 EM UserService findUser
+INFO: Called method 'findUser' with ID = 2
+maj 26, 2016 1:36:39 EM UserRating getUserAverageRating
+INFO: Method 'getUserAverageRating' was called and returned 1
+maj 26, 2016 1:36:39 EM UserService findSellerRating
+INFO: Called method 'findSellerRating' with ID = 2 that returned sellers average rating 1
+maj 26, 2016 1:36:43 EM ProductService findSelectedProduct
+INFO: Called method 'findSelectedProduct' and returned product with ID = 11
+maj 26, 2016 1:36:43 EM UserService findUser
+INFO: Called method 'findUser' with ID = 2
+maj 26, 2016 1:36:49 EM UserRating setSellerRatingForDatabase
+INFO: Called method 'setSellerRatingForDatabase' that added new rating 1 to old rating 121 for user with ID = 2
+maj 26, 2016 1:36:50 EM BidService saveBid
+INFO: New bid with ID = 8 has been saved
+maj 26, 2016 1:36:50 EM MailHandler setUpMail
+INFO: Method 'setUpMail' ran with email: fiskenaetet@gmail.com and password: fisk12345
+maj 26, 2016 1:36:50 EM UserService saveSellerRating
+INFO: Saved new seller rating for user with ID = 2 through method 'saveSellerRating'
+maj 26, 2016 1:36:52 EM MailHandler sendWinnerNotification
+INFO: Called method 'sendWinnerNotification' that sent a winner-mail to linisa89@hotmail.com
+maj 26, 2016 1:36:52 EM MailHandler setUpMail
+INFO: Method 'setUpMail' ran with email: fiskenaetet@gmail.com and password: fisk12345
+maj 26, 2016 1:36:53 EM MailHandler sendSellerNotification
+INFO: Called method 'sendSellerNotification' that sent a mail to seller nordin.oscar@gmail.com
+maj 26, 2016 1:36:53 EM ProductService getAllLosers
+INFO: Called method 'getAllLosers' that returned a list of 0 users
+maj 26, 2016 1:36:53 EM ProductService updateProductWhenSold
+INFO: Product with ID = 11 has been set to sold
+maj 26, 2016 1:36:54 EM ProductService findProductsByIsSold
+INFO: Called method 'findProductsByIsSold' that returned a list of 0 sold products
+maj 26, 2016 1:40:52 EM ProductService findProductsByIsSold
+INFO: Called method 'findProductsByIsSold' that returned a list of 0 sold products
+maj 26, 2016 1:42:25 EM Validation validateUserNameAndEmail
+INFO: Called method 'validateUserNameAndEmail' that returned string: OK
+maj 26, 2016 1:42:25 EM Validation controlUserInput
+INFO: Called method 'controlUserInput' that returned string: OK
+maj 26, 2016 1:42:25 EM MailHandler setUpMail
+INFO: Method 'setUpMail' ran with email: fiskenaetet@gmail.com and password: fisk12345
+maj 26, 2016 1:42:26 EM MailHandler controlUserMail
+INFO: Called method 'controlUserMail' that sent a welcome mail to linisa89@hotsasdam
+maj 26, 2016 1:42:26 EM UserService validateUserInputWhenCreating
+INFO: Called method 'validateUserInputWhenCreating' for user with username = xczxcz that returned string: OK
+maj 26, 2016 1:42:26 EM UserService saveUser
+INFO: New user created with ID = 4
+maj 26, 2016 1:42:26 EM ProductService findProductsByIsSold
+INFO: Called method 'findProductsByIsSold' that returned a list of 0 sold products
+maj 26, 2016 1:42:47 EM Validation validateUserNameAndEmail
+INFO: Called method 'validateUserNameAndEmail' that returned string: Användarnamnet är upptaget
+maj 26, 2016 1:42:47 EM UserService validateUserInputWhenCreating
+INFO: Called method 'validateUserInputWhenCreating' for user with username = oscar that returned string: Användarnamnet är upptaget
+maj 26, 2016 1:43:04 EM Validation validateUserNameAndEmail
+INFO: Called method 'validateUserNameAndEmail' that returned string: OK
+maj 26, 2016 1:43:04 EM Validation controlUserInput
+INFO: Called method 'controlUserInput' that returned string: OK
+maj 26, 2016 1:43:04 EM MailHandler setUpMail
+INFO: Method 'setUpMail' ran with email: fiskenaetet@gmail.com and password: fisk12345
+maj 26, 2016 1:43:04 EM MailHandler controlUserMail
+VARNING: Warning in method 'controlUserMail'. MessagingException: javax.mail.SendFailedException: Invalid Addresses;
+  nested exception is:
+	com.sun.mail.smtp.SMTPAddressFailedException: 553-5.1.2 The recipient address <linisa89hotmail.com> is not a valid RFC-5321
+553 5.1.2 address. zi6sm2378236lbb.5 - gsmtp
+
+maj 26, 2016 1:43:04 EM UserService validateUserInputWhenCreating
+INFO: Called method 'validateUserInputWhenCreating' for user with username = fitta that returned string: Ange en giltig e-postadress
+maj 26, 2016 2:16:39 EM Application main
+INFO: Program started and new log file was created
+maj 26, 2016 2:23:55 EM Application main
+INFO: Program started and new log file was created
+maj 26, 2016 2:36:58 EM ProductService findProductsByIsSold
+INFO: Called method 'findProductsByIsSold' that returned a list of 0 sold products
+maj 26, 2016 2:37:10 EM UserService findUserByUserName
+INFO: Called method 'findUserByUserName' with username 'oscar'
+maj 26, 2016 2:37:11 EM ProductService findProductsByIsSold
+INFO: Called method 'findProductsByIsSold' that returned a list of 0 sold products
