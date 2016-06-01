@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/fiskenatet-1.0-SNAPSHOT.jar
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* Application
