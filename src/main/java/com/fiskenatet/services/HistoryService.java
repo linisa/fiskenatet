@@ -1,6 +1,6 @@
 package com.fiskenatet.services;
 
-import com.fiskenatet.Application;
+import Application;
 import com.fiskenatet.models.HistoryModel;
 import com.fiskenatet.repositories.HistoryRepository;
 import com.fiskenatet.repositories.ProductRepository;

@@ -1,6 +1,6 @@
 package com.fiskenatet.stuff;
 
-import com.fiskenatet.Application;
+import Application;
 import com.fiskenatet.models.UserModel;
 
 import java.util.logging.Logger;

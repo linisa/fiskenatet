@@ -1,6 +1,6 @@
 package com.fiskenatet.services;
 
-import com.fiskenatet.Application;
+import Application;
 import com.fiskenatet.stuff.MailHandler;
 import com.fiskenatet.stuff.UserRating;
 import com.fiskenatet.stuff.Validation;

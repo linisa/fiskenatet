@@ -1,6 +1,6 @@
 package com.fiskenatet.services;
 
-import com.fiskenatet.Application;
+import Application;
 import com.fiskenatet.stuff.MailHandler;
 import com.fiskenatet.models.BidModel;
 import com.fiskenatet.models.ProductModel;

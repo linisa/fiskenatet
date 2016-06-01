@@ -1,6 +1,6 @@
 package com.fiskenatet.stuff;
 
-import com.fiskenatet.Application;
+import Application;
 import com.fiskenatet.models.BidModel;
 import com.fiskenatet.models.ProductModel;
 import com.fiskenatet.models.UserModel;

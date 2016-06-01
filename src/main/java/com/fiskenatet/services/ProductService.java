@@ -3,7 +3,7 @@ package com.fiskenatet.services;
 import java.util.*;
 import java.util.logging.Logger;
 
-import com.fiskenatet.Application;
+import Application;
 import com.fiskenatet.stuff.MailHandler;
 import com.fiskenatet.stuff.Validation;
 import com.fiskenatet.models.BidModel;
