@@ -1,9 +1,10 @@
-Fiskenätet is an auction application where users can put items up for sale and bid on auctions.
+Fiskenätet is an auction application where users can put items up for sale and bid on other users items.
 
 Techniques used:
-  Spring Framework
-  JS
-  MySQL
-  jQuery
-  Maven
-  JPA
+Java
+Spring Framework
+JS
+MySQL
+jQuery
+Maven
+JPA
